@@ -22,19 +22,19 @@ class PlacesRepository extends ServiceEntityRepository
     // /**
     //  * @return Places[] Returns an array of Places objects
     //  */
-    /*
     public function findByExampleField($value)
     {
+        // SELECT * FROM `places` INNER JOIN `places_category` ON `places`.`id` = `places_category`.`places_id` = 1
+
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
+            ->join('places_category', 'i')
+            ->where('p.id =' . $value)
+            ->andWhere('i.places_id =' . $value)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?Places

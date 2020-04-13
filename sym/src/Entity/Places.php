@@ -17,36 +17,43 @@ class Places
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      * @Groups("places")
+     * @Groups("user")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("category")
      * @Groups("places")
+     * @Groups("user")
+     * @Groups("place_picture")
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("places")
+     * @Groups("category")
+     * @Groups("user")
      */
     private $adress;
 
     /**
      * @ORM\Column(type="datetime")
      * @Groups("places")
+     * @Groups("user")
      */
     private $created_at;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      * @Groups("places")
+     * 
      */
     private $updated_at;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="Places")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(onDelete="SET NULL")
      * @Groups("places")
      */
     private $user;
@@ -63,6 +70,7 @@ class Places
      */
     private $Place_picture;
 
+   
     public function __construct()
     {
         $this->Category = new ArrayCollection();

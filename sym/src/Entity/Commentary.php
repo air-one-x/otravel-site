@@ -23,6 +23,8 @@ class Commentary
     /**
      * @ORM\Column(type="text")
      * @Groups("commentary")
+     * @groups("user")
+     * @Groups("commentary_picture")
      */
     private $text;
 
@@ -39,10 +41,11 @@ class Commentary
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="Commentary")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(onDelete="SET NULL")
      * @Groups("commentary")
      */
     private $user;
+
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\CommentaryPicture", mappedBy="commentary", orphanRemoval=true)

@@ -6,11 +6,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use App\Entity\Places;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
  */
-class Category
+class Category 
 {
     /**
      * @ORM\Id()
@@ -23,6 +25,7 @@ class Category
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("category") 
+     * @Groups("places")
      */
     private $name;
 
@@ -42,6 +45,8 @@ class Category
      * @Groups("category") 
      */
     private $places;
+
+        
 
     public function __construct()
     {
@@ -88,6 +93,7 @@ class Category
 
         return $this;
     }
+ 
 
     /**
      * @return Collection|Places[]

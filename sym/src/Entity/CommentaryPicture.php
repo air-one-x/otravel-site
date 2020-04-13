@@ -21,6 +21,7 @@ class CommentaryPicture
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("commentary_picture")
+     * @Groups("commentary")
      */
     private $name;
 
@@ -32,7 +33,7 @@ class CommentaryPicture
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Commentary", inversedBy="CommentaryPicture")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(onDelete="SET NULL")
      * @Groups("commentary_picture")
      */
     private $commentary;
