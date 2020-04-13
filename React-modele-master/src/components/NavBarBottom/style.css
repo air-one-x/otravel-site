@@ -1,0 +1,7 @@
+.nav--bar--bottom {
+
+    display:flex;
+    justify-content: space-around;
+    vertical-align: bottom;
+    align-items: flex-end;
+}
