@@ -4,7 +4,7 @@ import axios from 'axios';
 import './style.css'
 
 // == Import
-import NavBar from '../Navbar/Navbar';
+import NavBar from '../Navbar';
 import MapContainer from '../MapContainer';
 import NavBarBottom from '../../containers/NavBarBottom';
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import './style.css';
+import FormLoginModal from '../../modal/formLoginModal';
 
 const NavBar = () => {
 
@@ -11,7 +12,8 @@ const NavBar = () => {
   <form className="form-inline my-2 my-lg-0 navbar--input">
       <input className="navbar--input__search " type="search" placeholder="Rechercher une ville" aria-label="Search" />
     </form>
-    
+
+    {/*VERSION ORDINATEUR*/ }
     <div className="menu-desktop">
 
       <button className="menu-desktop__choice button--menu btn">Ajouter un lieu</button>
@@ -51,6 +53,7 @@ const NavBar = () => {
 
     </div>
 
+     {/*VERSION MOBILE*/ }
 
   <button className="navbar-toggler button--burger" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span className="navbar-toggler-icon"></span>
@@ -61,7 +64,7 @@ const NavBar = () => {
         <a className="nav-link-menu" disabled>Menu</a>
       </li>
       <li className="nav-item  nav-item-choice">
-        <a className="nav-link" href="#">Connexion</a>
+        <FormLoginModal />
       </li>
       <li className="nav-item nav-item-choice">
         <a className="nav-link" href="#">Inscription</a>

@@ -29,23 +29,23 @@ const AddPlaceModal = () => (
             <div className="form-group">
               
             <div className="form-group">
-              <label for="exampleFormControlFile1">Example file input</label>
+              <label for="exampleFormControlFile1"></label>
               <input type="file" className="form-control-file" id="exampleFormControlFile1" />
             </div>
 
             <div className="form-group">
-              <label for="exampleFormControlFile1">Example file input</label>
+              <label for="exampleFormControlFile1"></label>
               <input type="file" className="form-control-file" id="exampleFormControlFile1" />
             </div>
 
             <div className="form-group">
-              <label for="exampleFormControlFile1">Example file input</label>
+              <label for="exampleFormControlFile1"></label>
               <input type="file" className="form-control-file" id="exampleFormControlFile1" />
             </div>
 
             </div>
             <div className="form-group">
-              <label for="exampleFormControlTextarea1">Example textarea</label>
+              <label for="exampleFormControlTextarea1"></label>
               <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
           </form>

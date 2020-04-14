@@ -66,6 +66,7 @@
     "react": "*",
     "react-dom": "*",
     "react-redux": "*",
+    "react-spring": "^8.0.27",
     "redux": "*"
   }
 }
