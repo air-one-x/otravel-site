@@ -51,7 +51,6 @@ class ApiController extends AbstractController
     public function edit()
     {
 
-
     }
 
     /**
@@ -59,7 +58,6 @@ class ApiController extends AbstractController
      */
     public function add()
     {
-
 
     }
 
@@ -120,7 +118,6 @@ class ApiController extends AbstractController
         $data = $serializer->normalize($user, null, ['groups' => 'commentary']);
         return $this->json($data);
 
-
     }
 
     /**
@@ -141,7 +138,6 @@ class ApiController extends AbstractController
     public function edit_commentary()
     {
 
-
     }
 
     /**
@@ -149,7 +145,6 @@ class ApiController extends AbstractController
      */
     public function add_commentary()
     {
-
 
     }
 
@@ -163,7 +158,6 @@ class ApiController extends AbstractController
         $data = $serializer->normalize($user, null, ['groups' => 'place_picture']);
         return $this->json($data);
 
-
     }
 
     /**
@@ -175,7 +169,6 @@ class ApiController extends AbstractController
         $data = $serializer->normalize($user, null, ['groups' => 'place_picture']);
         return $this->json($data);
 
-
     }
 
     /**
@@ -183,7 +176,6 @@ class ApiController extends AbstractController
      */
     public function add_place_picture()
     {
-
 
     }
 
@@ -197,7 +189,6 @@ class ApiController extends AbstractController
         $data = $serializer->normalize($user, null, ['groups' => 'commentary_picture']);
         return $this->json($data);
 
-
     }
 
     /**
@@ -209,7 +200,6 @@ class ApiController extends AbstractController
         $data = $serializer->normalize($user, null, ['groups' => 'commentary_picture']);
         return $this->json($data);
 
-
     }
 
     /**
@@ -218,8 +208,9 @@ class ApiController extends AbstractController
     public function add_commentary_picture()
     {
 
-
     }
 
-
 }
+
+
+
