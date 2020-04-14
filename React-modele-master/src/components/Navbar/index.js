@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import './style.css';
 import FormLoginModal from '../../modal/formLoginModal';
+import InscriptionModal from '../../modal/inscriptionModal';
 
 const NavBar = () => {
 
@@ -67,7 +68,7 @@ const NavBar = () => {
         <FormLoginModal />
       </li>
       <li className="nav-item nav-item-choice">
-        <a className="nav-link" href="#">Inscription</a>
+        <InscriptionModal />
       </li>
       <li className="nav-item nav-item-choice">
         <a className="nav-link" href="#">Conditions</a>
