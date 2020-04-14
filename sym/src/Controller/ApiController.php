@@ -9,12 +9,13 @@ use App\Entity\Category;
 use App\Repository\CategoryRepository;
 use App\Entity\Places;
 use App\Repository\PlacesRepository;
-use App\Entity\PlacesPicture;
-use App\Repository\PlacesPictureRepository;
+use App\Entity\PlacePicture;
+use App\Repository\PlacePictureRepository;
 use App\Entity\Commentary;
 use App\Repository\CommentaryRepository;
 use App\Entity\CommentaryPicture;
 use App\Repository\CommentaryPictureRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -39,7 +40,7 @@ class ApiController extends AbstractController
     public function read(User $user, UserRepository $userRepository, SerializerInterface $serializer)
     {
         $user = $userRepository->find($user);
-        $data = $serializer->normalize($user, null, ['groups' => 'user']);
+        $data = $serializer->normalize($user, null,['groups' => 'user']);
         return $this->json($data);
 
     }
@@ -79,10 +80,11 @@ class ApiController extends AbstractController
      */
     public function read_category(Category $category, CategoryRepository $categoryRepository, SerializerInterface $serializer)
     {
+     
         $user = $categoryRepository->find($category);
         $data = $serializer->normalize($user, null, ['groups' => 'category']);
         return $this->json($data);
-
+        
     }
 
     /**
@@ -126,6 +128,7 @@ class ApiController extends AbstractController
      */
     public function read_commentary(Commentary $commentary, CommentaryRepository $commentaryRepository, SerializerInterface $serializer)
     {
+      
         $user = $commentaryRepository->find($commentary);
         $data = $serializer->normalize($user, null, ['groups' => 'commentary']);
         return $this->json($data);
@@ -153,8 +156,12 @@ class ApiController extends AbstractController
     /**
      * @Route("/api/place_picture", name="browse_place_picture")
      */
-    public function browse_place_picture()
+    public function browse_place_picture(PlacePictureRepository $placepictureRepository, SerializerInterface $serializer)
     {
+        $user = $placepictureRepository->findAll();
+
+        $data = $serializer->normalize($user, null, ['groups' => 'place_picture']);
+        return $this->json($data);
 
 
     }
@@ -162,8 +169,11 @@ class ApiController extends AbstractController
     /**
      * @Route("/api/place_picture/{id}", name="read_place_picture")
      */
-    public function read_place_picture()
+    public function read_place_picture(PlacePicture $placepicture, PlacePictureRepository $placepictureRepository, SerializerInterface $serializer)
     {
+        $user = $placepictureRepository->find($placepicture);
+        $data = $serializer->normalize($user, null, ['groups' => 'place_picture']);
+        return $this->json($data);
 
 
     }
@@ -180,8 +190,12 @@ class ApiController extends AbstractController
     /**
      * @Route("/api/commentary_picture", name="browse_commentary_picture")
      */
-    public function browse_commentary_picture()
+    public function browse_commentary_picture(CommentaryPictureRepository $commentarypictureRepository, SerializerInterface $serializer)
     {
+        $user = $commentarypictureRepository->findAll();
+
+        $data = $serializer->normalize($user, null, ['groups' => 'commentary_picture']);
+        return $this->json($data);
 
 
     }
@@ -189,8 +203,11 @@ class ApiController extends AbstractController
     /**
      * @Route("/api/commentary_picture/{id}", name="read_commentary_picture")
      */
-    public function read_commentary_picture()
+    public function read_commentary_picture(CommentaryPicture $commentarypicture, CommentaryPictureRepository $commentarypictureRepository, SerializerInterface $serializer)
     {
+        $user = $commentarypictureRepository->find($commentarypicture);
+        $data = $serializer->normalize($user, null, ['groups' => 'commentary_picture']);
+        return $this->json($data);
 
 
     }
@@ -203,4 +220,6 @@ class ApiController extends AbstractController
 
 
     }
+
+
 }

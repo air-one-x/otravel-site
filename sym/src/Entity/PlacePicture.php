@@ -21,6 +21,7 @@ class PlacePicture
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("place_picture")
+     * @Groups("places")
      */
     private $name;
 
@@ -32,7 +33,7 @@ class PlacePicture
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Places", inversedBy="Place_picture")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(onDelete="SET NULL")
      * @Groups("place_picture")
      */
     private $places;
