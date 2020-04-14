@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import counter from './counter';
+import NavButtons from './navButton';
 
 export default combineReducers({
-  counter,
+  NavButtons,
 });

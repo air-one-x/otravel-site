@@ -1,10 +1,17 @@
-export const INCREMENT_COUNTER = 'INCREMENT_COUNTER';
-export const DECREMENT_COUNTER = 'DECREMENT_COUNTER';
+export const ACTIVE_BUTTON_FILTER = 'ACTIVE_BUTTON_FILTER';
+export const ACTIVE_BUTTON_ADD = 'ACTIVE_BUTTON_FILTER';
+export const REMOVE_FILTER = "REMOVE_FILTER";
 
-export const increment = () => ({
-  type: INCREMENT_COUNTER,
+export const activeButtonFilter = () => ({
+  type: ACTIVE_BUTTON_FILTER,
 });
 
-export const decrement = () => ({
-  type: DECREMENT_COUNTER,
+export const activeButtonAdd = () => ({
+  type: ACTIVE_BUTTON_ADD,
 });
+
+export const removeFilter = () => ({
+  type: REMOVE_FILTER,
+})
+
+

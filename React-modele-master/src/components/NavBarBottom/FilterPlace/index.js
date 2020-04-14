@@ -1,13 +1,14 @@
 import React from 'react' ;
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFilter } from '@fortawesome/free-solid-svg-icons'
+import FilterPlaceModal from '../../../modal/filterPlaceModal';
 import './style.css';
 
 
-const FilterPlace = () => (
+const FilterPlace = ({buttonFilter, handleFilter, cancelFilter}) => {
+    return(
     <div className="filter">
-      <FontAwesomeIcon icon={faFilter} className="filter__button" />
+      <FilterPlaceModal />
     </div>
-);
+  );
+};
 
 export default FilterPlace;

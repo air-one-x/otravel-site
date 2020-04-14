@@ -1,9 +1,32 @@
-.nav--bar--bottom {
-    display:flex;
-    justify-content: space-around;
-    padding: 3px;
-    margin-bottom: 0.6rem;
+.mobile--buttons {
+    display: none;
+}
+
+.localisation--button--desktop {
+    background-color: white;    
+    display: block;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
-    bottom :0;
-    width:100%;
+    bottom :13px;
+    right: 10px;
+}
+
+@media all and (max-width: 991px) {
+    .mobile--buttons {
+        display: block;
+        display:flex;
+        justify-content: space-around;
+        position: absolute;
+        bottom :0;
+        width:100%;      
+    }
+
+    .localisation--button--desktop {
+        display:none;
+    }
 }

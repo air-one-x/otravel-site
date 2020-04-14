@@ -1,16 +1,16 @@
 import React from 'react' ;
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
+
+import AddPlaceModal from '../../../modal/addPlaceModal';
 import './style.css';
 
 const AddPlace = () => {
+      return(
+          <div>
+            <AddPlaceModal />
+          </div>
+      );
+  
+  };
 
-
-return (
-    <div className="add--place">
-       <FontAwesomeIcon icon={faPlus} className="add--place__button" />
-    </div>
-);
-}
 
 export default AddPlace;

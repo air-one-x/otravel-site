@@ -3,9 +3,9 @@ import NavigationIcon from '@material-ui/icons/Navigation';
 import './style.css';
 
 const LocalisationButton = () => (
-    <div className="Localisation--Button">
+    <button className="Localisation--Button">
     <NavigationIcon color="primary" />
-    </div>
+    </button>
 );
 
 export default LocalisationButton;

@@ -3,7 +3,7 @@ import './style.css';
 
 const MapContainer = () => (
 
-    <div className="map">
+    <div className="map row">
         ggdgdgdgfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
         ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
         ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff 

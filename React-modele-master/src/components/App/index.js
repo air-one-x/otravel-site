@@ -6,7 +6,7 @@ import './style.css'
 // == Import
 import NavBar from '../Navbar/Navbar';
 import MapContainer from '../MapContainer';
-import NavBarBottom from '../NavBarBottom';
+import NavBarBottom from '../../containers/NavBarBottom';
 
 
 // == Composant
@@ -15,7 +15,7 @@ const App = () => (
   <div className="app">
     <NavBar />
     <MapContainer />
-    <NavBarBottom  className="nav--bar--bottom"/>    
+    <NavBarBottom/>    
   </div>
 );
 
