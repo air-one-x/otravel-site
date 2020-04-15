@@ -1,10 +1,12 @@
-export const INCREMENT_COUNTER = 'INCREMENT_COUNTER';
-export const DECREMENT_COUNTER = 'DECREMENT_COUNTER';
 
-export const increment = () => ({
-  type: INCREMENT_COUNTER,
+export const CHANGE_EMAIL = 'CHANGE_EMAIL';
+export const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
+
+export const changePassword = (payload) => ({
+  type: CHANGE_PASSWORD,
+  payload,
 });
-
-export const decrement = () => ({
-  type: DECREMENT_COUNTER,
+export const changeEmail = (payload) => ({
+  type: CHANGE_EMAIL,
+  payload,
 });
