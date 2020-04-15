@@ -35,9 +35,7 @@ class User implements UserInterface
      * @Groups("user")
      */
     private $avatar;
-
-
-
+    
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * @Groups("user")
@@ -141,10 +139,6 @@ class User implements UserInterface
 
         return $this;
     }
-
-
-    
-
     /**
      * @see UserInterface
      */

@@ -13,6 +13,13 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserController extends AbstractController
 {
+    private $passwordEncoder;
+
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $this->passwordEncoder = $passwordEncoder;
+    }
+
     /**
      * @Route("/inscription", name="user_inscription")
      */
@@ -39,7 +46,11 @@ class UserController extends AbstractController
            $user->setAvatar($file);
            $user->setUsername($username);
            $user->setEmail($email);
-           $user->setPassword($password);
+
+           $user->setPassword($this->passwordEncoder->encodePassword(
+            $user,
+            $password
+        ));
             
 
             $entityManager = $this->getDoctrine()->getManager();

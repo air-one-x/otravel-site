@@ -30,8 +30,8 @@ class RegistrationType extends AbstractType
                 new File([
                     'maxSize' => '1024k',
                     'mimeTypes' => [
-                        'application/jpg',
-                        'application/png',
+                        'image/png',
+                        'image/jpeg',
                     ],
                     'mimeTypesMessage' => 'Veuillez uploader un fichier au format JPG ou PNG',
                 ]) 
