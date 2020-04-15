@@ -1,15 +1,16 @@
 import { connect } from 'react-redux';
 import formLoginModal from '../modal/formLoginModal';
-import { changeEmail, changePassword } from '../actions';
+import { changeEmail, changePassword, login } from '../actions';
 
 const mapStateTopProps = (state) => ({
-  userEmail: state.user.email,
-  userPassword: state.user.password,
+  userEmail: state.user.form.email,
+  userPassword: state.user.form.password,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   changeEmail: (event) => dispatch(changeEmail(event)),
   changePassword: (event) => dispatch(changePassword(event)),
+  login: () => dispatch(login()),
 });
 
 export default connect(mapStateTopProps, mapDispatchToProps)(formLoginModal);

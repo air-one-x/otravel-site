@@ -1,8 +1,12 @@
-import { CHANGE_EMAIL } from '../actions/index';
+import { CHANGE_EMAIL, CHANGE_PASSWORD, LOGIN_SUCCESS } from '../actions/index';
 
 const stateInit = {
-  email: 'bouclierman@herocorp.io',
-  password: 'jennifer',
+  form: {
+    email: 'bouclierman@herocorp.io',
+    password: 'jennifer',
+  },
+  isLogged: false,
+  infos: {},
 };
 
 export default (state = stateInit, action = {}) => {
@@ -10,7 +14,24 @@ export default (state = stateInit, action = {}) => {
     case CHANGE_EMAIL:
       return {
         ...state,
-        email: action.payload,
+        form: {
+          email: action.payload,
+        },
+      };
+    case CHANGE_PASSWORD:
+      return {
+        ...state,
+        form: {
+          password: action.payload,
+        },
+      };
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        infos: {
+          ...action.payload,
+        },
+        isLogged: action.payload.logged,
       };
     default:
       return state;

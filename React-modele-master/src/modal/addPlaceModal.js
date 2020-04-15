@@ -21,11 +21,11 @@ const AddPlaceModal = () => (
           <form>
             <div className="form-group">
               <label htmlFor="exampleFormControlInput1">Adresse</label>
-              <input disabled type="email" className="form-control" id="exampleFormControlInput1" placeholder="1 rues des turcs" />
+              <input disabled type="email" className="form-control" placeholder="1 rues des turcs" />
             </div>
             <div className="form-group">
               <label htmlFor="exampleFormControlSelect1">Catégories</label>
-              <select className="form-control" id="exampleFormControlSelect1">
+              <select className="form-control">
                 <option>Douches</option>
                 <option>Toilettes</option>
               </select>
@@ -39,12 +39,12 @@ const AddPlaceModal = () => (
 
             <div className="form-group">
               <label htmlFor="exampleFormControlFile1"></label>
-              <input type="file" className="form-control-file" id="exampleFormControlFile1" />
+              <input type="file" className="form-control-file" id="exampleFormControlFile2" />
             </div>
 
             <div className="form-group">
               <label htmlFor="exampleFormControlFile1"></label>
-              <input type="file" className="form-control-file" id="exampleFormControlFile1" />
+              <input type="file" className="form-control-file" id="exampleFormControlFile4" />
             </div>
 
             </div>

@@ -98,54 +98,54 @@ export default function SpringModal() {
 
               <div className={classes.margin}>
                 <Grid container spacing={1} alignItems="flex-end">
-                  <Grid item>
+                  <Grid container item>
                     <AccountCircle />
                   </Grid>
-                  <Grid item>
+                  <Grid container item>
                     <TextField type="text" id="name" label="nom" />
                   </Grid>
                 </Grid>
 
                 <Grid container spacing={1} alignItems="flex-end">
-                  <Grid item>
+                  <Grid container item>
                     <AccountCircle />
                   </Grid>
-                  <Grid item>
+                  <Grid container item>
                     <TextField type="password" label="prénom" />
                   </Grid>
                 </Grid>
 
                 <Grid container spacing={1} alignItems="flex-end">
-                  <Grid item>
+                  <Grid container item>
                     <AccountCircle />
                   </Grid>
-                  <Grid item>
+                  <Grid container item>
                     <TextField type="password" id="paswword" label="pseudo" />
                   </Grid>
                 </Grid>
                 <Grid container spacing={1} alignItems="flex-end">
-                  <Grid item>
+                  <Grid container item>
                     <AlternateEmailIcon />
                   </Grid>
-                  <Grid item>
+                  <Grid container item>
                     <TextField type="email" label="adresse email" />
                   </Grid>
                 </Grid>
 
                 <Grid container spacing={1} alignItems="flex-end">
-                  <Grid item>
+                  <Grid container item>
                     <LockIcon />
                   </Grid>
-                  <Grid item>
+                  <Grid container item>
                     <TextField type="password" label="Mot de passe" />
                   </Grid>
                 </Grid>
 
                 <Grid container spacing={1} alignItems="flex-end">
-                  <Grid item>
+                  <Grid container item>
                     <LockIcon />
                   </Grid>
-                  <Grid item>
+                  <Grid container item>
                     <TextField type="password" label="Verification mot de passe" />
                   </Grid>
                 </Grid>
@@ -154,7 +154,7 @@ export default function SpringModal() {
                 <input type="checkbox" name="checkConditions" id="checkConditions" style={{width: '15px', height: '15px', marginRight: '0.3rem'}}/>
                 <label htmlFor="checkConditions" style={{fontSize: '0.7em'}}> En cochant la case, j'accepte les <a href="#" style={{color: '#303f9f'}}>conditions d'utilisations </a></label>
               </div>
-              <div container className="m-3 justify-content-center">
+              <div className="m-3 justify-content-center">
                 <Button className="mr-3" variant="contained">annuler</Button>
                 <Button variant="contained" color="primary">valider</Button>
               </div>
