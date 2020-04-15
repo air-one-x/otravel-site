@@ -1,9 +1,13 @@
 import React from 'react';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const AddPlaceModal = () => (
     <div>
-    <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">+</button>
-    <div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <button type="button" className="btn btn-circle" data-toggle="modal" data-target="#exampleModal">
+     <FontAwesomeIcon icon={faPlus} />
+    </button>
+    <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div className="modal-dialog" role="document">
         <div className="modal-content">
           <div className="modal-header">
@@ -16,11 +20,11 @@ const AddPlaceModal = () => (
 
           <form>
             <div className="form-group">
-              <label for="exampleFormControlInput1">Adresse</label>
+              <label htmlFor="exampleFormControlInput1">Adresse</label>
               <input disabled type="email" className="form-control" id="exampleFormControlInput1" placeholder="1 rues des turcs" />
             </div>
             <div className="form-group">
-              <label for="exampleFormControlSelect1">Catégories</label>
+              <label htmlFor="exampleFormControlSelect1">Catégories</label>
               <select className="form-control" id="exampleFormControlSelect1">
                 <option>Douches</option>
                 <option>Toilettes</option>
@@ -29,23 +33,23 @@ const AddPlaceModal = () => (
             <div className="form-group">
               
             <div className="form-group">
-              <label for="exampleFormControlFile1"></label>
+              <label htmlFor="exampleFormControlFile1"></label>
               <input type="file" className="form-control-file" id="exampleFormControlFile1" />
             </div>
 
             <div className="form-group">
-              <label for="exampleFormControlFile1"></label>
+              <label htmlFor="exampleFormControlFile1"></label>
               <input type="file" className="form-control-file" id="exampleFormControlFile1" />
             </div>
 
             <div className="form-group">
-              <label for="exampleFormControlFile1"></label>
+              <label htmlFor="exampleFormControlFile1"></label>
               <input type="file" className="form-control-file" id="exampleFormControlFile1" />
             </div>
 
             </div>
             <div className="form-group">
-              <label for="exampleFormControlTextarea1"></label>
+              <label htmlFor="exampleFormControlTextarea1"></label>
               <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
           </form>

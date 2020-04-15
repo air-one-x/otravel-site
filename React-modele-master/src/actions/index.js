@@ -1,17 +1,12 @@
-export const ACTIVE_BUTTON_FILTER = 'ACTIVE_BUTTON_FILTER';
-export const ACTIVE_BUTTON_ADD = 'ACTIVE_BUTTON_FILTER';
-export const REMOVE_FILTER = "REMOVE_FILTER";
 
-export const activeButtonFilter = () => ({
-  type: ACTIVE_BUTTON_FILTER,
+export const CHANGE_EMAIL = 'CHANGE_EMAIL';
+export const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
+
+export const changePassword = (payload) => ({
+  type: CHANGE_PASSWORD,
+  payload,
 });
-
-export const activeButtonAdd = () => ({
-  type: ACTIVE_BUTTON_ADD,
+export const changeEmail = (payload) => ({
+  type: CHANGE_EMAIL,
+  payload,
 });
-
-export const removeFilter = () => ({
-  type: REMOVE_FILTER,
-})
-
-

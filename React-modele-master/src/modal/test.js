@@ -5,8 +5,7 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import { useSpring, animated } from 'react-spring'; // web.cjs is required for IE 11 support
 import { FormControl, FormGroup, FormControlLabel, Switch } from '@material-ui/core';
-import { faList } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -70,8 +69,8 @@ export default function SpringModal() {
 
   return (
     <div>
-      <button type="button" className="btn btn-circle" onClick={handleOpen}>
-        <FontAwesomeIcon icon={faList} />
+      <button type="button" onClick={handleOpen}>
+        F
       </button>
       <Modal
         aria-labelledby="spring-modal-title"

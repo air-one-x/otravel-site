@@ -3,7 +3,7 @@ import FilterPlaceModal from '../../../modal/filterPlaceModal';
 import './style.css';
 
 
-const FilterPlace = ({buttonFilter, handleFilter, cancelFilter}) => {
+const FilterPlace = () => {
     return(
     <div className="filter">
       <FilterPlaceModal />

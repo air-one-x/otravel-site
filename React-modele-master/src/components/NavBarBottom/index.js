@@ -6,7 +6,7 @@ import NavigationIcon from '@material-ui/icons/Navigation';
 import style from './style.css';
 
 
-const NavBarBottom = ({toto}) => {
+const NavBarBottom = () => {
         return(
             <div className="nav--bar--bottom">
                 <div className="mobile--buttons">

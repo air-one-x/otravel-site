@@ -59,7 +59,7 @@ Fade.propTypes = {
   onExited: PropTypes.func,
 };
 
-export default function SpringModal() {
+const LoginModal = ({ userEmail, userPassword, changeEmail, changePassword }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -72,9 +72,9 @@ export default function SpringModal() {
   };
 
   return (
-    <div>
-      <button type="button" onClick={handleOpen}>
-        react-spring
+    <div className="nav-link">
+      <button className="dropdown-item nav-link" type="button" onClick={handleOpen}>
+        connection
       </button>
       <Modal
         aria-labelledby="spring-modal-title"
@@ -100,7 +100,7 @@ export default function SpringModal() {
               <AccountCircle />
             </Grid>
             <Grid item>
-              <TextField type="email" id="email" label="Email" />
+              <TextField type="email" id="email" label="Email" value={userEmail} onChange={(event) => changeEmail(event.target.value)} />
             </Grid>
           </Grid>
         </div>
@@ -110,11 +110,13 @@ export default function SpringModal() {
                 <LockIcon />
               </Grid>
               <Grid item>
-                <TextField type="password" id="paswword" label="Mot de passe" />
+                <TextField type="password" id="paswword" label="Mot de passe" value={userPassword} />
               </Grid>
             </Grid>
-            <Button variant="contained">annuler</Button>
+            <div container className="m-3 justify-content-center">
+            <Button className="mr-3" variant="contained">annuler</Button>
             <Button variant="contained" color="primary">valider</Button>
+          </div>
           </div>
         </div>
 
@@ -126,3 +128,5 @@ export default function SpringModal() {
     </div>
   );
 }
+
+export default LoginModal;
