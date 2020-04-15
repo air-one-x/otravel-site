@@ -7,9 +7,13 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
 use App\Form\RegistrationType;
 use App\Services\ImageUploader;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class UserController extends AbstractController
 {
@@ -20,47 +24,46 @@ class UserController extends AbstractController
         $this->passwordEncoder = $passwordEncoder;
     }
 
+    
     /**
-     * @Route("/inscription", name="user_inscription")
+     * @Route("/inscription", name="user_inscription", methods={"POST"})
      */
-    public function index(Request $request): Response
+    public function inscription(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager, ValidatorInterface $validator)
     {
-        $user = new User();
-        $form = $this->createForm(RegistrationType::class, $user);
-        $form->handleRequest($request);
+       
+        $user = $serializer->deserialize($request->getContent(), User::class, 'json');
 
-         if ($form->isSubmitted() && $form->isValid()) {
+        if(empty($user->getAvatar())){
+            $user->setAvatar("account.png");
+        }
+        else{
+            $avatar = $user->getAvatar();
+            $avatar->move('uploads/images', $avatar->getClientOriginalName());
             
-            // On récupère l'objet qui représente le fichier envoyé
-            $file = $form['avatar']->getData();
-            $file->move('uploads/images', $file->getClientOriginalName());
-            $username = $form['username']->getData();
-            $email = $form['email']->getData();
-            $password = $form['password']->getData();
-
-            $user->setRoles(['ROLE_USER']);
-
-            $user->setAvatar($file->getClientOriginalName());
-            
-
-           $user->setAvatar($file);
-           $user->setUsername($username);
-           $user->setEmail($email);
-
-           $user->setPassword($this->passwordEncoder->encodePassword(
+        }
+        $user->setRoles(['ROLE_USER']);
+        
+        $password = $user->getPassword();
+        
+        $user->setPassword($this->passwordEncoder->encodePassword(
             $user,
             $password
         ));
-            
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
-
+        $errors = $validator->validate($user);
+        if(count($errors)) {
+            $errors = $serializer->serialize($errors, 'json');
+            return new Response($errors, 500, [
+                'Content-Type' => 'application/json'
+            ]);
         }
-
-        return $this->render('user/index.html.twig', [
-            'registrationForm' => $form->createView(),
-        ]);
+        $entityManager->persist($user);
+        $entityManager->flush();
+        $data = [
+            'status' => 201,
+            'message' => 'L\'utilisateur a bien été ajouté'
+        ];
+        return new JsonResponse($data, 201);
     }
 }
+

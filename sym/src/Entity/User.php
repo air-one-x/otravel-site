@@ -7,6 +7,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;	
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+
+
 
 
 /**
@@ -27,18 +31,27 @@ class User implements UserInterface
      * @Groups("user")
      * @Groups("places")
      * @Groups("commentary")
+     * @Assert\NotBlank
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups("user")
+     * )
      */
+    //      @Assert\File(
+    // mimeTypes = {"image/png","image/jpeg"},
+    // mimeTypesMessage = "Veuillez uploader un fichier au format JPG ou PNG"
     private $avatar;
     
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * @Groups("user")
+     * @Assert\NotBlank
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email."
+     * )
      */
     private $email;
 
@@ -50,6 +63,11 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min = 8,
+     *     minMessage = "Votre mot de passe doit avoir au moins {{ limit }} characteres",
+     *)
      */
     private $password;
 
@@ -116,7 +134,7 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string) $this->username;
     }
 
 

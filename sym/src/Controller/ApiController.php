@@ -45,21 +45,8 @@ class ApiController extends AbstractController
 
     }
 
-    /**
-     * @Route("/api/user/{id}/edit", name="edit_user")
-     */
-    public function edit()
-    {
-
-    }
-
-    /**
-     * @Route("/api/user/add", name="add_user")
-     */
-    public function add()
-    {
-
-    }
+   
+    
 
     /**
      * @Route("/api/category", name="browse_category")
@@ -132,21 +119,7 @@ class ApiController extends AbstractController
 
     }
 
-    /**
-     * @Route("/api/commentary/{id}/edit", name="edit_commentary")
-     */
-    public function edit_commentary()
-    {
 
-    }
-
-    /**
-     * @Route("/api/commentary/add", name="add_commentary")
-     */
-    public function add_commentary()
-    {
-
-    }
 
     /**
      * @Route("/api/place_picture", name="browse_place_picture")
@@ -171,13 +144,7 @@ class ApiController extends AbstractController
 
     }
 
-    /**
-     * @Route("/api/place_picture/add", name="add_place_picture")
-     */
-    public function add_place_picture()
-    {
 
-    }
 
     /**
      * @Route("/api/commentary_picture", name="browse_commentary_picture")
@@ -202,13 +169,7 @@ class ApiController extends AbstractController
 
     }
 
-    /**
-     * @Route("/api/commentary_picture/add", name="add_commentary_picture")
-     */
-    public function add_commentary_picture()
-    {
-
-    }
+   
 
 }
 

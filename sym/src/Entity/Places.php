@@ -35,8 +35,52 @@ class Places
      * @Groups("category")
      * @Groups("user")
      */
-    private $adress;
+    private $street;
 
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Groups("category")
+     * @Groups("user")
+     */
+    private $zipcode;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Groups("category")
+     * @Groups("user")
+     */
+    private $city;
+
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="Places")
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     * @Groups("places")
+     */
+    private $user;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="places")
+     * @Groups("places")
+     */
+    private $Category;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\PlacePicture", mappedBy="places")
+     * @Groups("places")
+     */
+    private $Place_picture;
+    
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $lng;
+    
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $lat;
     /**
      * @ORM\Column(type="datetime")
      * @Groups("places")
@@ -50,36 +94,7 @@ class Places
      * 
      */
     private $updated_at;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="Places")
-     * @ORM\JoinColumn(onDelete="SET NULL")
-     * @Groups("places")
-     */
-    private $user;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="places")
-     * @Groups("places")
-     */
-    private $Category;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\PlacePicture", mappedBy="places")
-     * @Groups("places")
-     */
-    private $Place_picture;
-
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $longitude;
-
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $latitude;
-
+    
    
     public function __construct()
     {
@@ -104,14 +119,14 @@ class Places
         return $this;
     }
 
-    public function getAdress(): ?string
+    public function getStreet(): ?string
     {
-        return $this->adress;
+        return $this->street;
     }
 
-    public function setAdress(string $adress): self
+    public function setStreet(string $street): self
     {
-        $this->adress = $adress;
+        $this->street = $street;
 
         return $this;
     }
@@ -209,26 +224,50 @@ class Places
         return $this;
     }
 
-    public function getLongitude(): ?float
+    public function getLng(): ?float
     {
-        return $this->longitude;
+        return $this->lng;
     }
 
-    public function setLongitude(float $longitude): self
+    public function setLng(float $lng): self
     {
-        $this->longitude = $longitude;
+        $this->lng = $lng;
 
         return $this;
     }
 
-    public function getLatitude(): ?float
+    public function getLat(): ?float
     {
-        return $this->latitude;
+        return $this->lat;
     }
 
-    public function setLatitude(float $latitude): self
+    public function setLat(float $lat): self
     {
-        $this->latitude = $latitude;
+        $this->lat = $lat;
+
+        return $this;
+    }
+
+    public function getZipcode(): ?string
+    {
+        return $this->zipcode;
+    }
+
+    public function setZipcode(string $zipcode): self
+    {
+        $this->zipcode = $zipcode;
+
+        return $this;
+    }
+    
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): self
+    {
+        $this->city = $city;
 
         return $this;
     }
