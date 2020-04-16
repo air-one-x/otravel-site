@@ -13,16 +13,22 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use App\Repository\UserRepository;
 
+
 class SecurityController extends AbstractController
 {
     /**
      * @Route("/login", name="app_login")
      */
+
     public function login(AuthenticationUtils $authenticationUtils, Request $request, SerializerInterface $serializer, ValidatorInterface $validator,  UserRepository $userRepository): Response
+
     {
         // if ($this->getUser()) {
         //     return $this->redirectToRoute('target_path');
         // }
+            
+        $user = $serializer->deserialize($request->getContent(), User::class, 'json');
+
 
         $data = json_decode($request->getContent());
         //$user = $serializer->deserialize($request->getContent(), User::class, 'json');
@@ -36,18 +42,22 @@ class SecurityController extends AbstractController
         //$data = $serializer->normalize($user, null,['groups' => 'user']);
 
 
+
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
         $errors = $validator->validate($user);
+
         if (count($errors)) {
+
             $errors = $serializer->serialize($errors, 'json');
             return new Response($errors, 500, [
                 'Content-Type' => 'application/json'
             ]);
         }
+
 
 
         $mess = [
