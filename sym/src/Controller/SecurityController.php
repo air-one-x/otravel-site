@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Controller;
-
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -12,41 +10,23 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use App\Repository\UserRepository;
-
-
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class SecurityController extends AbstractController
 {
-
     /**
      * @Route("/login", name="login", methods={"POST"})
      */
-    public function login(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, UserRepository $userRepository)
+    public function login(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, UserRepository $userRepository, SessionInterface $session)
     {
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
-            
-        // $user = $serializer->deserialize($request->getContent(), User::class, 'json');
-
-
         $data = json_decode($request->getContent());
-        //$user = $serializer->deserialize($request->getContent(), User::class, 'json');
-
-        // $email = $data->email;
-        // $password = $data->password;
-
-        // $request->request->get($password);
         $user = $userRepository->checkLogin($data);
-        //$data = $serializer->normalize($user, null,['groups' => 'user']);
-
-       
-        // get the login error if there is one
-        // $error = $authenticationUtils->getLastAuthenticationError();
-        // last username entered by the user
-        // $lastUsername = $authenticationUtils->getLastUsername();
             
         $errors = $validator->validate($user);
-
+        $test2 = $userRepository->findOneBy(['email' => $data->email ]);
+        $passwordDB = $test2->getPassword();
+        $passwordInput = $data->password; 
+        $result = password_verify($passwordInput,$passwordDB);
+    
         if (count($errors)) {
             
             $errors = $serializer->serialize($errors, 'json');
@@ -54,25 +34,16 @@ class SecurityController extends AbstractController
                 'Content-Type' => 'application/json'
             ]);
         }
-
-
-
-        $mess = [
-            'status' => 201,
-            'message' => 'L\'utilisateur a bien été ajouté'
-        ];
-
-
         // return new JsonResponse($data, 201);
-        if (empty($user)) {
+        if (empty($result)) {
             return new JsonResponse('mot de passe ou email incorect', 401, [
                 'Content-Type' => 'application/json'
             ]);
         } else {
-            return $this->json($user);
+            $session->set('user', $user);
+            return $this->json($test2);
         }
     }
-
     /**
      * @Route("/logout", name="app_logout")
      */
