@@ -39,7 +39,7 @@ class SecurityController extends AbstractController
         $user = $userRepository->checkLogin($data);
         //$data = $serializer->normalize($user, null,['groups' => 'user']);
 
-
+       
         // get the login error if there is one
         // $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user

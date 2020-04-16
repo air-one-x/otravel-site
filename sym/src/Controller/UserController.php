@@ -26,7 +26,7 @@ class UserController extends AbstractController
 
     
     /**
-     * @Route("/inscription", name="user_inscription", methods={"POST"})
+     * @Route("/inscription", name="inscription", methods={"POST"})
      */
     public function inscription(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager, ValidatorInterface $validator)
     {
