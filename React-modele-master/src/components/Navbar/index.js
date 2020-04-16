@@ -74,7 +74,7 @@ const NavBar = () => (
           <a className="nav-link-menu" disabled>Menu</a>
         </li>
         <li className="nav-item  nav-item-choice">
-          <FormLoginModal />
+          <FormLoginModal /> 
         </li>
         <li className="nav-item nav-item-choice">
           <a className="nav-link" href="#"><InscriptionModal /></a>
