@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import formLoginModal from '../modal/formLoginModal';
-import { changeEmail, changePassword, login } from '../actions';
+import { changeEmail, changePassword, login } from '../actions/connexion';
 
 const mapStateTopProps = (state) => ({
   userEmail: state.user.form.email,

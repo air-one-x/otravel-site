@@ -1,4 +1,4 @@
-import { CHANGE_EMAIL, CHANGE_PASSWORD, LOGIN_SUCCESS } from '../actions/index';
+import { CHANGE_EMAIL, CHANGE_PASSWORD, LOGIN_SUCCESS } from '../actions/connexion';
 
 const stateInit = {
   form: {

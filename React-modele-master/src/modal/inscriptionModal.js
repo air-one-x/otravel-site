@@ -61,7 +61,7 @@ Fade.propTypes = {
   onExited: PropTypes.func,
 };
 
-export default function SpringModal() {
+const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePasswordInscription, inputChangePseudoInscription, newUserEmail, newUserPseudo, newUserPassword}) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -97,38 +97,31 @@ export default function SpringModal() {
             <div>
 
               <div className={classes.margin}>
+                
                 <Grid container spacing={1} alignItems="flex-end">
                   <Grid container item>
                     <AccountCircle />
                   </Grid>
                   <Grid container item>
-                    <TextField type="text" id="name" label="nom" />
+                    <TextField type="text" id="paswword" label="pseudo" value={newUserPseudo} onChange={(event) => inputChangePseudoInscription(event.target.value)} />
                   </Grid>
                 </Grid>
 
-                <Grid container spacing={1} alignItems="flex-end">
-                  <Grid container item>
-                    <AccountCircle />
-                  </Grid>
-                  <Grid container item>
-                    <TextField type="password" label="prénom" />
-                  </Grid>
-                </Grid>
-
-                <Grid container spacing={1} alignItems="flex-end">
-                  <Grid container item>
-                    <AccountCircle />
-                  </Grid>
-                  <Grid container item>
-                    <TextField type="password" id="paswword" label="pseudo" />
-                  </Grid>
-                </Grid>
                 <Grid container spacing={1} alignItems="flex-end">
                   <Grid container item>
                     <AlternateEmailIcon />
                   </Grid>
                   <Grid container item>
-                    <TextField type="email" label="adresse email" />
+                    <TextField type="file" label="avatar" />
+                  </Grid>
+                </Grid>
+
+                <Grid container spacing={1} alignItems="flex-end">
+                  <Grid container item>
+                    <AlternateEmailIcon />
+                  </Grid>
+                  <Grid container item>
+                    <TextField type="email" label="adresse email" value={newUserEmail} onChange={(event) => inputChangeEmailInscription(event.target.value)}/>
                   </Grid>
                 </Grid>
 
@@ -137,18 +130,10 @@ export default function SpringModal() {
                     <LockIcon />
                   </Grid>
                   <Grid container item>
-                    <TextField type="password" label="Mot de passe" />
+                    <TextField type="password" label="Mot de passe" value={newUserPassword} onChange={(event) => inputChangePasswordInscription(event.target.value)} />
                   </Grid>
                 </Grid>
 
-                <Grid container spacing={1} alignItems="flex-end">
-                  <Grid container item>
-                    <LockIcon />
-                  </Grid>
-                  <Grid container item>
-                    <TextField type="password" label="Verification mot de passe" />
-                  </Grid>
-                </Grid>
               </div>
               <div className="CheckCond" style={{marginTop: '1rem', marginLeft: '0.5rem'}}>
                 <input type="checkbox" name="checkConditions" id="checkConditions" style={{width: '15px', height: '15px', marginRight: '0.3rem'}}/>
@@ -156,7 +141,7 @@ export default function SpringModal() {
               </div>
               <div className="m-3 justify-content-center">
                 <Button className="mr-3" variant="contained">annuler</Button>
-                <Button variant="contained" color="primary">valider</Button>
+                <Button onClick={insertNewUser} variant="contained" color="primary">valider</Button>
               </div>
             </div>
           </div>
@@ -164,4 +149,16 @@ export default function SpringModal() {
       </Modal>
     </div>
   );
+};
+
+SpringModal.propTypes = {
+  inputChangeEmailInscription: PropTypes.func.isRequired,
+  insertNewUser: PropTypes.func.isRequired,
+  inputChangePasswordInscription: PropTypes.func.isRequired, 
+  inputChangePseudoInscription: PropTypes.func.isRequired, 
+  newUserEmail: PropTypes.string.isRequired,
+  newUserPseudo: PropTypes.string.isRequired,
+  newUserPassword: PropTypes.string.isRequired,
 }
+
+export default SpringModal;

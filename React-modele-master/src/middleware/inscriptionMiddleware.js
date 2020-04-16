@@ -1,31 +1,29 @@
 import axios from 'axios';
-import { LOGIN, loginSucess } from '../actions/connexion';
+import { INSCRIPTION_SUCCESS } from '../actions/inscription';
 
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
-    case LOGIN:
+    case INSCRIPTION_SUCCESS:
       // Je veux lancer ma requête avec axios
       axios({
         method: 'post',
-        url: 'http://localhost:8001/login',
+        url: 'http://localhost:8001/inscription',
         withCredentials: true,
         data: {
-          email: store.getState().user.form.email,
-          password: store.getState().user.form.password,
+          username: store.getState().userInscription.form.pseudo,
+          email: store.getState().userInscription.form.email,
+          password: store.getState().userInscription.form.password,
         },
       }).then((res) => {
         // Si succès -> dispatcher une action success
-        console.log('requête_connexion', res);
-        store.dispatch(loginSucess(res.data[0]));
+        console.log('FELICITATION GAETAN', res);
       })
         .catch((err) => {
         // Si error -> Dispatcher une action error
           console.error(err);
         });
       break;
-
-
     default:
       next(action);
   }

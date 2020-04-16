@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle, faSearch, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import './style.css';
 import FormLoginModal from '../../containers/Login';
-import InscriptionModal from '../../modal/inscriptionModal';
+import InscriptionModal from '../../containers/Inscription';
 import AddPlaceModal from '../../modal/addPlaceModal';
 
 
