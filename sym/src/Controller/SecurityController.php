@@ -16,18 +16,17 @@ use App\Repository\UserRepository;
 
 class SecurityController extends AbstractController
 {
+
     /**
-     * @Route("/login", name="app_login")
+     * @Route("/login", name="login", methods={"POST"})
      */
-
-    public function login(AuthenticationUtils $authenticationUtils, Request $request, SerializerInterface $serializer, ValidatorInterface $validator,  UserRepository $userRepository): Response
-
+    public function login(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, UserRepository $userRepository)
     {
         // if ($this->getUser()) {
         //     return $this->redirectToRoute('target_path');
         // }
             
-        $user = $serializer->deserialize($request->getContent(), User::class, 'json');
+        // $user = $serializer->deserialize($request->getContent(), User::class, 'json');
 
 
         $data = json_decode($request->getContent());
@@ -37,23 +36,21 @@ class SecurityController extends AbstractController
         // $password = $data->password;
 
         // $request->request->get($password);
-
         $user = $userRepository->checkLogin($data);
         //$data = $serializer->normalize($user, null,['groups' => 'user']);
 
 
-
         // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
+        // $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
-
+        // $lastUsername = $authenticationUtils->getLastUsername();
+            
         $errors = $validator->validate($user);
 
         if (count($errors)) {
-
+            
             $errors = $serializer->serialize($errors, 'json');
-            return new Response($errors, 500, [
+            return new Response($errors, 401, [
                 'Content-Type' => 'application/json'
             ]);
         }
@@ -68,7 +65,7 @@ class SecurityController extends AbstractController
 
         // return new JsonResponse($data, 201);
         if (empty($user)) {
-            return new Response('mot de passe ou email incorect', 401, [
+            return new JsonResponse('mot de passe ou email incorect', 401, [
                 'Content-Type' => 'application/json'
             ]);
         } else {

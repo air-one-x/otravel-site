@@ -16,8 +16,8 @@ export default (store) => (next) => (action) => {
         },
       }).then((res) => {
         // Si succès -> dispatcher une action success
-        console.log('!!!!!!!', res.data);
-        store.dispatch(loginSucess(res.data.info));
+        console.log('!!!!!!!', res);
+        store.dispatch(loginSucess(res.data[0]));
       })
         .catch((err) => {
         // Si error -> Dispatcher une action error

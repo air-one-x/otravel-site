@@ -6,7 +6,7 @@ const stateInit = {
     password: 'totototo',
   },
   isLogged: false,
-  infos: {},
+  userInfos: {},
 };
 
 export default (state = stateInit, action = {}) => {
@@ -28,10 +28,10 @@ export default (state = stateInit, action = {}) => {
     case LOGIN_SUCCESS:
       return {
         ...state,
-        infos: {
+        userInfos: {
           ...action.payload,
         },
-        isLogged: action.payload.logged,
+        isLogged: true,
       };
     default:
       return state;
