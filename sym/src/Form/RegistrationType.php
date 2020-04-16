@@ -36,7 +36,6 @@ class RegistrationType extends AbstractType
                     'mimeTypesMessage' => 'Veuillez uploader un fichier au format JPG ou PNG',
                 ]) 
             ],
-           
         ])
             ->add('username', TextType::class, ['attr' => [
                 'placeholder' => "Votre nom d'utilisateur",

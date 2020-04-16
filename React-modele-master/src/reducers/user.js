@@ -2,8 +2,8 @@ import { CHANGE_EMAIL, CHANGE_PASSWORD, LOGIN_SUCCESS } from '../actions/index';
 
 const stateInit = {
   form: {
-    email: 'bouclierman@herocorp.io',
-    password: 'jennifer',
+    email: 'toto@toto.fr',
+    password: 'totototo',
   },
   isLogged: false,
   infos: {},
