@@ -5,6 +5,7 @@ import { changeEmail, changePassword, login } from '../actions/connexion';
 const mapStateTopProps = (state) => ({
   userEmail: state.user.form.email,
   userPassword: state.user.form.password,
+  isLoggedUser: state.user.isLogged,
 });
 
 const mapDispatchToProps = (dispatch) => ({

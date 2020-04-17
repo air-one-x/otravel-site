@@ -33,6 +33,10 @@ export default (state = stateInit, action = {}) => {
         userInfos: {
           ...action.payload,
         },
+        form : {
+          email: '',
+          password: '',
+        },
         isLogged: true,
       };
     default:
