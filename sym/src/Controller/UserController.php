@@ -52,9 +52,9 @@ class UserController extends AbstractController
         $emailgive = $user->getEmail();
         
 
-     
+        $emailbdd = $userRepository->findOneby(['email' => $emailgive]);
 
-         if($emailbdd = $userRepository->findOneby(['email' => $emailgive]))  { 
+        if($emailbdd){ 
 
              $userEmail = $emailbdd->getEmail();
              if($emailgive == $userEmail){
@@ -70,9 +70,10 @@ class UserController extends AbstractController
             /*username verification*/
 
             $usernamegive = $user->getUsername();
+            $usernamebdd = $userRepository->findOneby(['username' => $usernamegive]);
           
           
-          if($usernamebdd = $userRepository->findOneby(['username' => $usernamegive])){
+          if($usernamebdd){
     
             $userUsername = $usernamebdd->getUsername();
     
