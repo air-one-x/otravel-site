@@ -15,6 +15,7 @@ export default (state = stateInit, action = {}) => {
       return {
         ...state,
         form: {
+          ...state.form,
           email: action.payload,
         },
       };
@@ -22,6 +23,7 @@ export default (state = stateInit, action = {}) => {
       return {
         ...state,
         form: {
+          ...state.form,
           password: action.payload,
         },
       };
@@ -29,6 +31,7 @@ export default (state = stateInit, action = {}) => {
       return {
         ...state,
         userInfos: {
+          ...state.form,
           ...action.payload,
         },
         isLogged: true,

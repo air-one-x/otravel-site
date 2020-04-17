@@ -35,7 +35,7 @@ class SecurityController extends AbstractController
             ]);
         }
         // return new JsonResponse($data, 201);
-        if (empty($result)) {
+        if ($result === false) {
             return new JsonResponse('mot de passe ou email incorect', 401, [
                 'Content-Type' => 'application/json'
             ]);
