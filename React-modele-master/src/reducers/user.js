@@ -2,8 +2,8 @@ import { CHANGE_EMAIL, CHANGE_PASSWORD, LOGIN_SUCCESS } from '../actions/connexi
 
 const stateInit = {
   form: {
-    email: 'toto@toto.fr',
-    password: 'totototo',
+    email: '',
+    password: '',
   },
   isLogged: false,
   userInfos: {},
@@ -31,7 +31,6 @@ export default (state = stateInit, action = {}) => {
       return {
         ...state,
         userInfos: {
-          ...state.form,
           ...action.payload,
         },
         isLogged: true,
