@@ -50,8 +50,6 @@ class UserController extends AbstractController
         /*email verification*/
 
         $emailgive = $user->getEmail();
-        
-
         $emailbdd = $userRepository->findOneby(['email' => $emailgive]);
 
         if($emailbdd){ 
@@ -73,7 +71,7 @@ class UserController extends AbstractController
             $usernamebdd = $userRepository->findOneby(['username' => $usernamegive]);
           
           
-          if($usernamebdd){
+           if($usernamebdd){
     
             $userUsername = $usernamebdd->getUsername();
     
@@ -111,13 +109,8 @@ class UserController extends AbstractController
             $password
         ));
 
-        $errors = $validator->validate($user);
-        if(count($errors)) {
-            $errors = $serializer->serialize($errors, 'json');
-            return new Response($errors, 500, [
-                'Content-Type' => 'application/json'
-            ]);
-        }
+        /*push to database */
+       
         $entityManager->persist($user);
         $entityManager->flush();
         $data = [
