@@ -8,7 +8,7 @@ import AddPlaceModal from '../../modal/addPlaceModal';
 
 
 const NavBar = () => (
-  <nav className="navbar navbar-expand-lg navbar-light ">
+  <nav className="navbar navbar-expand-lg navbar-light menuOtravel " >
     <a className="navbar-brand navbar--title" href="#">O'Travel</a>
     <div className="input-group my-2 my-lg-0 navbar--input__search">
       <input type="text" className="form-control " placeholder="Rechercher une ville" />

@@ -64,6 +64,12 @@
     background-color: #f8f9fa;
 }
 
+.menuOtravel {
+    position: fixed;
+    z-index: 5;
+    width: 100%;
+}
+
 
 @media all and (max-width: 991px) {
 
@@ -87,11 +93,12 @@
    }
 
    .buttons--navbar {
-        position: relative;
+        position: absolute;
         background-color: white;
         width: 100%;
         top: 6.15rem;
         right:0;
+        z-index: 5;
     }
 
  
