@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LOGIN, loginSucess, LOGOUT, logoutSuccess } from '../actions/connexion';
+import { LOGIN, loginSuccess, LOGOUT, logoutSuccess, CHECK_AUTH, loginError } from '../actions/connexion';
 
 
 export default (store) => (next) => (action) => {
@@ -17,11 +17,12 @@ export default (store) => (next) => (action) => {
       }).then((res) => {
         // Si succès -> dispatcher une action success
         console.log('requête_connexion', res);
-        store.dispatch(loginSucess(res.data[0]));
+        store.dispatch(loginSuccess(res.data[0]));
       })
         .catch((err) => {
         // Si error -> Dispatcher une action error
           console.error(err);
+          store.dispatch(loginError());
         });
       break;
       case LOGOUT:
@@ -32,14 +33,28 @@ export default (store) => (next) => (action) => {
         })
           .then((res) => {
           // Si succès -> dispatcher une action success
-            console.log(res.data);
             store.dispatch(logoutSuccess(res.data.info));
           })
           .catch((err) => {
             console.log(err);
           });
         break;
-
+        case CHECK_AUTH:
+          axios({
+            url: 'http://localhost:8001/isLogged',
+            method: 'post',
+            withCredentials: true,
+          })
+            .then((res) => {
+              if (res.data.logged) {
+                console.log('middleware !!!' ,res.data);
+                store.dispatch(loginSuccess(res.data.info));
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+          break;
     default:
       next(action);
   }
