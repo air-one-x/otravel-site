@@ -14,3 +14,11 @@
     position: fixed;
 }
 
+@media all and (max-width: 959px) {
+    .map{
+        width:100%;
+        z-index: 1;
+        position: relative;
+        padding-top: 7rem;
+    }
+}

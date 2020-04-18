@@ -43,6 +43,40 @@
         "type": "Feature",
         "properties": {
           "PARK_ID": 3,
+          "NAME": "Nicolas",
+          "ADDRESS_FR": "8720, chemin Russell",
+          "NOTES": "5",
+          "MODIFIED_D": "2018/01/18",
+          "CREATED_DA": null,
+          "COMMENTARY": "commentaire",
+          "PICTURE": null
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [2.6608169, 48.539927]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "PARK_ID": 4,
+          "NAME": "Alexandre",
+          "ADDRESS_FR": "8720, chemin Russell",
+          "NOTES": "5",
+          "MODIFIED_D": "2018/01/18",
+          "CREATED_DA": null,
+          "COMMENTARY": "commentaire",
+          "PICTURE": null
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [4.8320114, 45.7578137]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "PARK_ID": 5,
           "NAME": "O'clock",
           "ADDRESS_FR": "8720, chemin Russell",
           "NOTES": "5",

@@ -8,11 +8,10 @@ import Grid from '@material-ui/core/Grid';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import LockIcon from '@material-ui/icons/Lock';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import { useSpring, animated } from 'react-spring'; // web.cjs is required for IE 11 support
 import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -25,6 +24,14 @@ const useStyles = makeStyles((theme) => ({
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+  },
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+  input: {
+    display: 'none',
   },
 }));
 
@@ -61,7 +68,7 @@ Fade.propTypes = {
   onExited: PropTypes.func,
 };
 
-const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePasswordInscription, inputChangePseudoInscription, newUserEmail, newUserPseudo, newUserPassword}) => {
+const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePasswordInscription, inputChangePseudoInscription, newUserEmail, newUserPseudo, newUserPassword, fileAvatarInscription, newUserAvatar}) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -74,7 +81,7 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
   };
 
   return (
-    <div>
+    <div className="nav-link">
       <button className="dropdown-item nav-link" type="button" onClick={handleOpen}>
                 inscription
       </button>
@@ -103,17 +110,28 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
                     <AccountCircle />
                   </Grid>
                   <Grid container item>
-                    <TextField type="text" id="paswword" label="pseudo" value={newUserPseudo} onChange={(event) => inputChangePseudoInscription(event.target.value)} />
+                    <TextField type="text" id="username" label="username" value={newUserPseudo} onChange={(event) => inputChangePseudoInscription(event.target.value)} />
                   </Grid>
                 </Grid>
 
                 <Grid container spacing={1} alignItems="flex-end">
-                  <Grid container item>
-                    <AlternateEmailIcon />
-                  </Grid>
-                  <Grid container item>
-                    <TextField type="file" label="avatar" />
-                  </Grid>
+                <Grid container item>
+                <div className={classes.root}>
+                  <input
+                    accept="image/*"
+                    className={classes.input}
+                    id="contained-button-file"
+                    multiple
+                    type="file"
+                  />
+                  <label htmlFor="contained-button-file">
+                    <Button variant="contained" color="primary" component="span" value={newUserAvatar} onChange={(event) => fileAvatarInscription(event.target.value)}>
+                      Télécharger une image de profil
+                    </Button>
+                  </label>
+                  <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
+                </div>
+                </Grid>
                 </Grid>
 
                 <Grid container spacing={1} alignItems="flex-end">
