@@ -7,8 +7,7 @@ const Home = () => {
 return(
 
     <div>
-        TU RECHERCHES UN LIEU POUR KKEN ?? 
-        ALORS N'ATTENDANT PLUS ET CLIC ICI ;/
+    Home
     </div>
 );
 };

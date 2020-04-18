@@ -58,7 +58,7 @@ Fade.propTypes = {
 };
 
 const LoginModal = ({
-  userEmail, userPassword, changeEmail, changePassword, login, isLoggedUser
+  userEmail, userPassword, changeEmail, changePassword, login, isLoggedUser ,logout,
 }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -89,7 +89,7 @@ const LoginModal = ({
       isLoggedUser&&
         <div>
 
-          <button className="dropdown-item nav-link" type="button">
+          <button className="dropdown-item nav-link" type="button" onClick={() => {logout(), handleClose()}} >
             déconnexion
           </button>
         </div>

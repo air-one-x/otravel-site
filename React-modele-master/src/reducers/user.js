@@ -1,9 +1,9 @@
-import { CHANGE_EMAIL, CHANGE_PASSWORD, LOGIN_SUCCESS } from '../actions/connexion';
+import { CHANGE_EMAIL, CHANGE_PASSWORD, LOGIN_SUCCESS, LOGOUT_SUCCESS } from '../actions/connexion';
 
 const stateInit = {
   form: {
-    email: '',
-    password: '',
+    email: 'you@you.you',
+    password: 'youyouyou',
   },
   isLogged: false,
   userInfos: {},
@@ -38,6 +38,16 @@ export default (state = stateInit, action = {}) => {
           password: '',
         },
         isLogged: true,
+      };
+      case LOGOUT_SUCCESS:
+      return {
+        ...state,
+        form: {
+          email: '',
+          password: '',
+        },
+        isLogged: false,
+        infos: {},
       };
     default:
       return state;

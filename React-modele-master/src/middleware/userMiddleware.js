@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LOGIN, loginSucess } from '../actions/connexion';
+import { LOGIN, loginSucess, LOGOUT, logoutSuccess } from '../actions/connexion';
 
 
 export default (store) => (next) => (action) => {
@@ -24,7 +24,21 @@ export default (store) => (next) => (action) => {
           console.error(err);
         });
       break;
-
+      case LOGOUT:
+        axios({
+          method: 'post',
+          url: 'http://localhost:8001/logout',
+          withCredentials: true,
+        })
+          .then((res) => {
+          // Si succès -> dispatcher une action success
+            console.log(res.data);
+            store.dispatch(logoutSuccess(res.data.info));
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        break;
 
     default:
       next(action);
