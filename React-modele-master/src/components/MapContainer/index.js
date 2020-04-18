@@ -14,7 +14,7 @@ const MapContainer = () => {
 
   return (
     <div className="map" id="mapid">
-      <Map center={[45.4, -75.7]} zoom={10}>
+      <Map center={[46.227638, 2.213749]} zoom={5}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
