@@ -14,6 +14,21 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        login:
+            pattern:  ^/login
+            stateless: true
+            anonymous: true
+            json_login:
+                check_path:               /login
+                success_handler:          lexik_jwt_authentication.handler.authentication_success
+                failure_handler:          lexik_jwt_authentication.handler.authentication_failure
+
+        addplaces:
+            pattern:   ^/places/add
+            stateless: true
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
         main:
             anonymous: lazy
             provider: app_user_provider
@@ -28,7 +43,10 @@ security:
             # https://symfony.com/doc/current/security/impersonating_user.html
        
     access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY } 
         - { path: ^/home, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/places, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/places/add, roles: ROLE_USER }
         - { path: ^/admin/[a-z]+(/(\d+)?)?$, roles: ROLE_ADMIN }
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/api/[a-z]+(/(\d+)?)?$, roles: ROLE_ADMIN }
