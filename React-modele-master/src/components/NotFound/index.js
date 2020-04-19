@@ -2,8 +2,7 @@ import React from 'react';
 
 const NotFound = () => (
     <div>
-        TU RECHERCHES DES INFOS SUR TA VOISINES ?? 
-        ALORS CLIC ICI ;/
+        Page Not Fonud 404 ERROR !
     </div>
 );
 

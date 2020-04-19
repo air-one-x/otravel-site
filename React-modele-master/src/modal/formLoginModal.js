@@ -58,7 +58,7 @@ Fade.propTypes = {
 };
 
 const LoginModal = ({
-  userEmail, userPassword, changeEmail, changePassword, login, isLoggedUser
+  userEmail, userPassword, changeEmail, changePassword, login, isLoggedUser ,logout,
 }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -71,7 +71,7 @@ const LoginModal = ({
     setOpen(false);
   };
 
-  const checkAuth = (param) => {
+  const checkLogged = (param) => {
     var param = isLoggedUser;
     if(param  === false){  
      
@@ -89,7 +89,7 @@ const LoginModal = ({
       isLoggedUser&&
         <div>
 
-          <button className="dropdown-item nav-link" type="button">
+          <button className="dropdown-item nav-link" type="button" onClick={() => {logout(), handleClose()}} >
             déconnexion
           </button>
         </div>
@@ -140,7 +140,7 @@ const LoginModal = ({
                 </Grid>
                 <div className="m-3 justify-content-center">
                   <Button className="mr-3" variant="contained" onClick={handleClose}>annuler</Button>
-                  <Button variant="contained" color="primary" onClick={()=> {login(); checkAuth()}}>valider</Button>
+                  <Button variant="contained" color="primary" onClick={()=> {login(); checkLogged()}}>valider</Button>
                 </div>
               </div>
             </div>

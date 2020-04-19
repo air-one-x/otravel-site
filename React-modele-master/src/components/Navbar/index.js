@@ -28,18 +28,18 @@ const NavBar = () => {
   return(
   <nav className="navbar navbar-expand-lg navbar-light menuOtravel " >
     <a className="navbar-brand navbar--title" href="#">O'Travel</a>
+
+
+    {/* VERSION ORDINATEUR */ }
+    <div className="menu-desktop">
     <div className="input-group my-2 my-lg-0 navbar--input__search">
-      <input type="text" className="form-control " placeholder="Rechercher une ville" />
+      <input type="text" className="form-control " placeholder="Rechercher une ville pc" />
       <div className="input-group-append">
         <button className="btn btn-secondary" type="button">
           <FontAwesomeIcon icon={faSearch} />
         </button>
       </div>
     </div>
-
-    {/* VERSION ORDINATEUR */ }
-    <div className="menu-desktop">
-
       <div className="nav-item nav-link">
         <button className="btn navbar-btn btn-outline-secondary" type="button">
           <label>Ajouter un lieu</label>
@@ -86,7 +86,14 @@ const NavBar = () => {
   {/*}  <button className="navbar-toggler button--burger" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon" />
 </button> */}
-
+<div className="input-group my-2 my-lg-0 navbar--input__search search-mobile">
+<input type="text" className="form-control " placeholder="Rechercher une ville mobile" />
+<div className="input-group-append">
+  <button className="btn btn-secondary" type="button">
+    <FontAwesomeIcon icon={faSearch} />
+  </button>
+</div>
+</div>
     <IconButton
     edge="start"
     className={classes.menuButton}

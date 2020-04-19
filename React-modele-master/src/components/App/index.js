@@ -1,6 +1,6 @@
 // == Import npm
-import React from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import './style.css';
 import { Switch, Route } from 'react-router-dom';
 // == Import
@@ -16,7 +16,10 @@ import PAGE404 from '../NotFound';
 
 
 // == Composant
-const App = () => (
+const App = ({ checkAuth }) => {
+   useEffect(checkAuth, []);
+
+  return (
 
   <div className="app">
     <Switch>
@@ -36,7 +39,11 @@ const App = () => (
     </Switch>
   </div>
 );
+}
 
+App.propTypes = {
+  checkAuth: PropTypes.func,
+};
 
 // == Export
 export default App;

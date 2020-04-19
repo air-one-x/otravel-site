@@ -48,7 +48,6 @@ class SecurityController extends AbstractController
                 'Content-Type' => 'application/json'
             ]);
         } else {
-            $session->set('user', $user);
             return $this->json($emailBdd);
         }
     }

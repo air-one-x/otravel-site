@@ -1,11 +1,12 @@
-import { CHANGE_EMAIL, CHANGE_PASSWORD, LOGIN_SUCCESS } from '../actions/connexion';
+import { CHANGE_EMAIL, CHANGE_PASSWORD, LOGIN_SUCCESS, LOGOUT_SUCCESS, LOGIN_ERROR } from '../actions/connexion';
 
 const stateInit = {
   form: {
-    email: '',
-    password: '',
+    email: 'bouclierman@herocorp.io',
+    password: 'jennifer',
   },
   isLogged: false,
+  error: '',
   userInfos: {},
 };
 
@@ -39,6 +40,22 @@ export default (state = stateInit, action = {}) => {
         },
         isLogged: true,
       };
+      case LOGOUT_SUCCESS:
+      return {
+        ...state,
+        form: {
+          email: '',
+          password: '',
+        },
+        isLogged: false,
+        infos: {},
+      };
+      case LOGIN_ERROR:
+        return {
+          ...state,
+          isLogged: false,
+          error: 'Identifiants incorrects',
+        };
     default:
       return state;
   }

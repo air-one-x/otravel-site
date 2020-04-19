@@ -24,18 +24,6 @@ class CategoryRepository extends ServiceEntityRepository
     //  */
 
     
-    public function findByExampleField($value)
-    {
-        // SELECT * FROM `places` INNER JOIN `places_category` ON `places`.`id` = `places_category`.`places_id` = 1
-
-         return $this->createQueryBuilder('c')
-            ->join('places_category.places_id', 'i')
-            ->where('c.id' . $value)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-
     /*
     public function findOneBySomeField($value): ?Category
     {

@@ -95,11 +95,12 @@ class Places
      */
     private $updated_at;
     
-   
     public function __construct()
     {
         $this->Category = new ArrayCollection();
         $this->Place_picture = new ArrayCollection();
+        $this->created_at = new \DateTime();
+        $this->updated_at = new \DateTime();
     }
 
     public function getId(): ?int
