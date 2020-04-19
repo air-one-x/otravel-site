@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Places;
+use App\Repository\PlacesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,7 +16,7 @@ class PlacesController extends AbstractController
   
 
     /**
-     * @Route("/places/edit", name="places_edit")
+     * @Route("/places/edit/{id}", name="places_edit_{id}")
      */
     public function edit()
     {
@@ -29,12 +30,13 @@ class PlacesController extends AbstractController
      */
     public function add(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository)
     {
+
+       
         // je veux:
             // Ajouter un endroit et renseignant ses catégories
         $places = $serializer->deserialize($request->getContent(), Places::class, 'json');
-
         $data = json_decode($request->getContent()); // je récup juste les données renseignées
-    
+        $description= $places->getDescription();       
         $name = $places->getName();
         $street = $places->getStreet();
         $zipcode = $places->getZipcode();
@@ -44,6 +46,7 @@ class PlacesController extends AbstractController
         $lat = $places->getLat();
            
         $newPlace = new Places();
+        $newPlace->setDescription($description);
         $newPlace->setName($name);  
         $newPlace->setStreet($street); 
         $newPlace->setZipcode($zipcode); 
@@ -68,10 +71,14 @@ class PlacesController extends AbstractController
             'message' => 'Le lieu a bien été ajouté'
         ];
         return new JsonResponse($data, 201);
+
+
+
+
     }
 
     /**
-     * @Route("/places/delete", name="places_delete")
+     * @Route("/places/delete/{id}", name="places_delete")
      */
     public function delete()
     {
