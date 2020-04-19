@@ -73,12 +73,12 @@ class Places
     private $Place_picture;
     
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", nullable=true)
      */
     private $lng;
     
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", nullable=true))
      */
     private $lat;
     /**
@@ -94,6 +94,11 @@ class Places
      * 
      */
     private $updated_at;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
     
     public function __construct()
     {
@@ -269,6 +274,18 @@ class Places
     public function setCity(string $city): self
     {
         $this->city = $city;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }
