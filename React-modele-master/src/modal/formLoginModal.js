@@ -58,7 +58,7 @@ Fade.propTypes = {
 };
 
 const LoginModal = ({
-  userEmail, userPassword, changeEmail, changePassword, login,
+  userEmail, userPassword, changeEmail, changePassword, login, isLoggedUser ,logout,
 }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -71,11 +71,36 @@ const LoginModal = ({
     setOpen(false);
   };
 
+  const checkLogged = (param) => {
+    var param = isLoggedUser;
+    if(param  === false){  
+     
+        console.log('Les données saisis ne sont pas correctes')
+      
+    } else {
+      handleClose();
+    }
+  };
+
   return (
-    <div className="nav-link">
+   
+    <div className="nav-link"> 
+    {
+      isLoggedUser&&
+        <div>
+
+          <button className="dropdown-item nav-link" type="button" onClick={() => {logout(), handleClose()}} >
+            déconnexion
+          </button>
+        </div>
+    }
+      
+      {
+        !isLoggedUser&& <div>
       <button className="dropdown-item nav-link" type="button" onClick={handleOpen}>
-        connection
+        connexion
       </button>
+
       <Modal
         aria-labelledby="spring-modal-title"
         aria-describedby="spring-modal-description"
@@ -114,8 +139,8 @@ const LoginModal = ({
                   </Grid>
                 </Grid>
                 <div className="m-3 justify-content-center">
-                  <Button className="mr-3" variant="contained">annuler</Button>
-                  <Button variant="contained" color="primary" onClick={login}>valider</Button>
+                  <Button className="mr-3" variant="contained" onClick={handleClose}>annuler</Button>
+                  <Button variant="contained" color="primary" onClick={()=> {login(); checkLogged()}}>valider</Button>
                 </div>
               </div>
             </div>
@@ -124,6 +149,8 @@ const LoginModal = ({
           </div>
         </Fade>
       </Modal>
+      </div>
+    }
     </div>
   );
 

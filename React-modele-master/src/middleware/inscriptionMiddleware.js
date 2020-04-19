@@ -12,6 +12,7 @@ export default (store) => (next) => (action) => {
         withCredentials: true,
         data: {
           username: store.getState().userInscription.form.pseudo,
+          avatar: store.getState().userInscription.form.avatar,
           email: store.getState().userInscription.form.email,
           password: store.getState().userInscription.form.password,
         },

@@ -1,27 +1,45 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle, faSearch, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import {IconButton,InputBase } from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
 import './style.css';
+import useStyles from './style.js';
 import FormLoginModal from '../../containers/Login';
 import InscriptionModal from '../../containers/Inscription';
+import ItemsMenu from './itemsMenu';
 import AddPlaceModal from '../../modal/addPlaceModal';
 
 
-const NavBar = () => (
+
+const NavBar = () => {
+  const classes = useStyles();
+
+  const [openMenu, setOpenMenu] = React.useState(null);
+
+  const handleClick = (event) => {
+    setOpenMenu(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setOpenMenu(null);
+  };
+
+  return(
   <nav className="navbar navbar-expand-lg navbar-light menuOtravel " >
     <a className="navbar-brand navbar--title" href="#">O'Travel</a>
+
+
+    {/* VERSION ORDINATEUR */ }
+    <div className="menu-desktop">
     <div className="input-group my-2 my-lg-0 navbar--input__search">
-      <input type="text" className="form-control " placeholder="Rechercher une ville" />
+      <input type="text" className="form-control " placeholder="Rechercher une ville pc" />
       <div className="input-group-append">
         <button className="btn btn-secondary" type="button">
           <FontAwesomeIcon icon={faSearch} />
         </button>
       </div>
     </div>
-
-    {/* VERSION ORDINATEUR */ }
-    <div className="menu-desktop">
-
       <div className="nav-item nav-link">
         <button className="btn navbar-btn btn-outline-secondary" type="button">
           <label>Ajouter un lieu</label>
@@ -63,11 +81,29 @@ const NavBar = () => (
       </div>
     </div>
 
-    {/* VERSION MOBILE */ }
+    {/* VERSION MOBILE  */ }
 
-    <button className="navbar-toggler button--burger" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+  {/*}  <button className="navbar-toggler button--burger" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon" />
-    </button>
+</button> */}
+<div className="input-group my-2 my-lg-0 navbar--input__search search-mobile">
+<input type="text" className="form-control " placeholder="Rechercher une ville mobile" />
+<div className="input-group-append">
+  <button className="btn btn-secondary" type="button">
+    <FontAwesomeIcon icon={faSearch} />
+  </button>
+</div>
+</div>
+    <IconButton
+    edge="start"
+    className={classes.menuButton}
+    color="inherit"
+    aria-label="open drawer"
+    onClick={handleClick}
+    >
+    <MenuIcon />
+    </IconButton>
+    <ItemsMenu openMenu={openMenu} closeMenu={handleClose} />
     <div className="collapse navbar-collapse buttons--navbar" id="navbarText">
       <ul className="navbar-nav mr-auto ">
         <li className="nav-item nav-item-menu">
@@ -92,4 +128,5 @@ const NavBar = () => (
     </div>
   </nav>
 );
+}
 export default NavBar;
