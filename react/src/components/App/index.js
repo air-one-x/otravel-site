@@ -5,7 +5,8 @@ import './style.css';
 import { Switch, Route } from 'react-router-dom';
 // == Import
 import NavBar from '../Navbar';
-import MapContainer from '../MapContainer';
+// import MapContainer from '../MapContainer';
+import MapContainer from '../../containers/Geolocation'
 import NavBarBottom from '../NavBarBottom';
 import Home from '../Home';
 import Conditions from '../Conditions';
@@ -18,7 +19,7 @@ import PAGE404 from '../NotFound';
 // == Composant
 const App = ({ checkAuth }) => {
    useEffect(checkAuth, []);
-
+   //useEffect(geolocation, []);
   return (
 
   <div className="app">
@@ -43,6 +44,7 @@ const App = ({ checkAuth }) => {
 
 App.propTypes = {
   checkAuth: PropTypes.func,
+  geolocation: PropTypes.func,
 };
 
 // == Export

@@ -1,20 +1,38 @@
-
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Map, Marker, Popup, TileLayer,
 } from 'react-leaflet';
 // import { Icon } from "leaflet";
 import './style.css';
 import * as parkData from '../../data/skateboard-parcks.json';
+import { useSelector } from 'react-redux'
+  
 
 
-const MapContainer = () => {
+const MapContainer = ({userLocation, lat, long, isLocated}) => {
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      console.log(navigator.geolocation);
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+      console.log('erreur !!')
+     
+    }
+  }
+  
+  const showPosition = (position) => {
+    console.log('show position', position.coords.latitude);
+    userLocation(position.coords)
+  }
+
+  useEffect(() => {
+     getLocation()
+  },[]);
+console.log('longlat', lat , long, isLocated)
   const [activePark, setActivePark] = React.useState(null);
-
-
   return (
     <div className="map" id="mapid">
-      <Map center={[46.227638, 2.213749]} zoom={6}>
+      <Map center={[lat, long]} zoom={6}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

@@ -11,7 +11,7 @@ export default (store) => (next) => (action) => {
         url: 'http://localhost:8001/login',
         withCredentials: true,
         data: {
-          email: store.getState().user.form.email,
+          username: store.getState().user.form.email,
           password: store.getState().user.form.password,
         },
       }).then((res) => {
