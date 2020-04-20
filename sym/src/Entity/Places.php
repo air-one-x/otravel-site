@@ -18,6 +18,7 @@ class Places
      * @ORM\Column(type="integer")
      * @Groups("places")
      * @Groups("user")
+     * @Groups("category")
      */
     private $id;
 
@@ -57,6 +58,7 @@ class Places
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="Places")
      * @ORM\JoinColumn(onDelete="SET NULL")
      * @Groups("places")
+     * @Groups("category")
      */
     private $user;
     
@@ -69,22 +71,26 @@ class Places
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\PlacePicture", mappedBy="places")
      * @Groups("places")
+     * @Groups("category")
      */
     private $Place_picture;
     
     /**
      * @ORM\Column(type="float", nullable=true)
+     * @Groups("category")
      */
     private $lng;
     
     /**
      * @ORM\Column(type="float", nullable=true))
+     * @Groups("category")
      */
     private $lat;
     /**
      * @ORM\Column(type="datetime")
      * @Groups("places")
      * @Groups("user")
+     * @Groups("category")
      */
     private $created_at;
 
@@ -97,6 +103,7 @@ class Places
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Groups("category")
      */
     private $description;
     
