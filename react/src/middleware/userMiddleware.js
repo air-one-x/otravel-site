@@ -17,6 +17,7 @@ export default (store) => (next) => (action) => {
       }).then((res) => {
         // Si succès -> dispatcher une action success
         console.log('requête_connexion', res);
+        localStorage.setItem('id_token', res.data.token);
         store.dispatch(loginSuccess(res.data[0]));
       })
         .catch((err) => {
@@ -33,6 +34,7 @@ export default (store) => (next) => (action) => {
         })
           .then((res) => {
           // Si succès -> dispatcher une action success
+            localStorage.removeItem('id_token');
             store.dispatch(logoutSuccess(res.data.info));
           })
           .catch((err) => {
@@ -44,10 +46,16 @@ export default (store) => (next) => (action) => {
             url: 'http://localhost:8001/isLogged',
             method: 'post',
             withCredentials: true,
+            headers: {
+              'authorization': 'beare' + localStorage.getItem('id_token'),
+              'Accept' : 'application/json',
+              'Content-Type': 'application/json'
+          }
           })
             .then((res) => {
               if (res.data.logged) {
                 console.log('middleware !!!' ,res.data);
+
                 store.dispatch(loginSuccess(res.data.info));
               }
             })
