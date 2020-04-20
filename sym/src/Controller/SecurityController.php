@@ -53,17 +53,9 @@ class SecurityController extends AbstractController
                 'Content-Type' => 'application/json'
             ]);
         } else {
-          
-            // return $this->json($emailBdd);
-
+            return $this->json($emailBdd);
         }
-
-
-
-
     }
-
-
     /**
      * @Route("/isLogged", name="test")
      */

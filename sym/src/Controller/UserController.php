@@ -46,7 +46,6 @@ class UserController extends AbstractController
             $avatar->move('uploads/images', $avatar->getClientOriginalName());
         }
 
-
         /*email verification*/
 
         $emailgive = $user->getEmail();
