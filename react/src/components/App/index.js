@@ -24,8 +24,7 @@ const App = ({ checkAuth }) => {
 
   <div className="app">
     <Switch>
-      <Route exact path="/" render={() => <Home />} />
-      <Route exact path="/map" render={() => (
+      <Route exact path="/" render={() => (
         <div>    
           <NavBar />
           <MapContainer />

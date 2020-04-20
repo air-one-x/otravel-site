@@ -9,6 +9,8 @@ import FormLoginModal from '../../containers/Login';
 import InscriptionModal from '../../containers/Inscription';
 import ItemsMenu from './itemsMenu';
 import AddPlaceModal from '../../modal/addPlaceModal';
+import FilterPc from '../../modal/filterPC';
+import { Link } from 'react-router-dom';
 
 
 
@@ -47,26 +49,16 @@ const NavBar = () => {
         </button>
       </div>
       <div className="dropdown">
-        <div className="nav-item dropdown mr-2 btn btn-outline-secondary">
-          <a className=" dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Catégories</a>
-          <div className="dropdown-menu">
-            <div className="dropdown-item custom-control custom-switch">
-              <input type="checkbox" className="custom-control-input" id="customSwitch1" />
-              <label className="custom-control-label ml-3" htmlFor="customSwitch1">Douches</label>
-            </div>
-            <div className="dropdown-item custom-control custom-switch">
-              <input type="checkbox" className="custom-control-input" id="customSwitch1" />
-              <label className="custom-control-label ml-3" htmlFor="customSwitch1">Toilettes</label>
-            </div>
-            <div className="dropdown-item custom-control custom-switch">
-              <input type="checkbox" className="custom-control-input" id="customSwitch1" />
-              <label className="custom-control-label ml-3" htmlFor="customSwitch1">Lavomatique</label>
-            </div>
-            <div className="dropdown-item custom-control custom-switch">
-              <input type="checkbox" className="custom-control-input" id="customSwitch1" />
-              <label className="custom-control-label ml-3" htmlFor="customSwitch1">Spot</label>
-            </div>
-          </div>
+      <FilterPc />
+      </div>
+      <div className="dropdown">
+        <button className="btn navbar-btn dropdown" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" type="button">
+          Plus
+        </button>
+        <div className="dropdown-menu dropdown-menu-right">
+          <Link to="/conditions-utilisations">Conditions</Link><br />
+          <Link to="/a-propos">A propos</Link><br />
+          <Link to="/contact">Conctact</Link>
         </div>
       </div>
 

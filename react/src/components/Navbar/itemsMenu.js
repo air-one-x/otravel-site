@@ -68,7 +68,7 @@ console.log('props.itemmenu', props);
           <InscriptionModal />
         </StyledMenuItem>
 
-        <Link to="/conditions">
+        <Link to="/conditions-utilisations">
         <StyledMenuItem>
           <ListItemIcon>
             <InboxIcon fontSize="small" />
