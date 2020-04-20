@@ -11,6 +11,9 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\CategoryRepository;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
+
 class PlacesController extends AbstractController
 {
   
@@ -28,7 +31,7 @@ class PlacesController extends AbstractController
     /**
      * @Route("/places/add", name="places_add")
      */
-    public function add(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository)
+    public function add(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository, SessionInterface $session)
     {
 
        
@@ -51,7 +54,7 @@ class PlacesController extends AbstractController
         $newPlace->setStreet($street); 
         $newPlace->setZipcode($zipcode); 
         $newPlace->setCity($city); 
-        $newPlace->setUser($this->getUser());
+        $newPlace->setUser($session->get('user'));
         $newPlace->setLng($lng);
         $newPlace->setLat($lat);
         

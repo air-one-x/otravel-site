@@ -27,9 +27,8 @@ class PlacesRepository extends ServiceEntityRepository
         // SELECT * FROM `places` INNER JOIN `places_category` ON `places`.`id` = `places_category`.`places_id` = 1
 
         return $this->createQueryBuilder('p')
-            ->join('places_category', 'i')
-            ->where('p.id =' . $value)
-            ->andWhere('i.places_id =' . $value)
+            ->join('p.category_id', 'c')
+            ->where('c =' . $value)
             ->getQuery()
             ->getResult()
         ;

@@ -29,6 +29,12 @@ security:
             guard:
                 authenticators:
                     - lexik_jwt_authentication.jwt_token_authenticator
+        isLogged:
+            pattern:   ^/isLogged
+            stateless: true
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
         main:
             anonymous: lazy
             provider: app_user_provider
@@ -49,8 +55,6 @@ security:
         - { path: ^/places/add, roles: ROLE_USER }
         - { path: ^/admin/[a-z]+(/(\d+)?)?$, roles: ROLE_ADMIN }
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/api/[a-z]+(/(\d+)?)?$, roles: ROLE_ADMIN }
-        - { path: ^/api, roles: ROLE_ADMIN }
         
     role_hierarchy:
         ROLE_ADMIN: ROLE_USER
