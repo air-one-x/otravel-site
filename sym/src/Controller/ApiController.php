@@ -45,9 +45,6 @@ class ApiController extends AbstractController
 
     }
 
-   
-    
-
     /**
      * @Route("/api/category", name="browse_category")
      */
@@ -119,8 +116,6 @@ class ApiController extends AbstractController
 
     }
 
-
-
     /**
      * @Route("/api/place_picture", name="browse_place_picture")
      */
@@ -141,10 +136,7 @@ class ApiController extends AbstractController
         $user = $placepictureRepository->find($placepicture);
         $data = $serializer->normalize($user, null, ['groups' => 'place_picture']);
         return $this->json($data);
-
     }
-
-
 
     /**
      * @Route("/api/commentary_picture", name="browse_commentary_picture")
@@ -167,6 +159,75 @@ class ApiController extends AbstractController
         $data = $serializer->normalize($user, null, ['groups' => 'commentary_picture']);
         return $this->json($data);
 
+    }
+    
+    /**
+     * @Route("/api/category/toilette/places", name="read_toilette_places")
+     */
+    public function read_toilette_places(CategoryRepository $categoryRepository, PlacesRepository $placesRepository, SerializerInterface $serializer)
+    {
+        $places = $placesRepository->findByExampleField(3);
+        dd($places);
+        
+        dd($category->getId());
+        
+        foreach($category as $categ){
+            
+            $test2 = $placesRepository->findOneBy(['id' => $categ->getId()]);
+            
+            dd($test2);
+        }
+ 
+
+        $criteria = 3;
+        $user = $PlacesRepository->findOneBy(['category_id' => $criteria]);
+        dd($user); 
+        //tu peu test stp si sa recup bien $user 
+
+
+
+        $data = $serializer->normalize($user, null, ['groups' => 'category']);
+        return $this->json($data);
+        
+    }
+
+    /**
+     * @Route("/api/category/douche/places", name="read_douche_places")
+     */
+    public function read_douche_places(Category $category, CategoryRepository $categoryRepository, SerializerInterface $serializer)
+    {
+     
+        $user = $categoryRepository->find($category);
+        $data = $serializer->normalize($user, null, ['groups' => 'category']);
+        return $this->json($data);
+        
+    }
+
+
+    /**
+     * @Route("/api/category/wifi/places", name="read_wifi_places")
+     */
+    public function read_wifi_places(Category $category, CategoryRepository $categoryRepository, SerializerInterface $serializer)
+    {
+     
+        $user = $categoryRepository->find($category);
+        $data = $serializer->normalize($user, null, ['groups' => 'category']);
+        return $this->json($data);
+        
+    }
+
+
+
+    /**
+     * @Route("/api/category/fontaine/places", name="read_fontaine_places")
+     */
+    public function read_fontaine_places(Category $category, CategoryRepository $categoryRepository, SerializerInterface $serializer)
+    {
+     
+        $user = $categoryRepository->find($category);
+        $data = $serializer->normalize($user, null, ['groups' => 'category']);
+        return $this->json($data);
+        
     }
 
    

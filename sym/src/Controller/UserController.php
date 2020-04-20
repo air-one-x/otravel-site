@@ -46,7 +46,6 @@ class UserController extends AbstractController
             $avatar->move('uploads/images', $avatar->getClientOriginalName());
         }
 
-
         /*email verification*/
 
         $emailgive = $user->getEmail();
@@ -118,6 +117,13 @@ class UserController extends AbstractController
             'message' => 'L\'utilisateur a bien été ajouté'
         ];
         return new JsonResponse($data, 201);
+    }
+    /**
+     * @Route("/logout", name="app_logout")
+     */
+    public function logout()
+    {
+        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 }
 

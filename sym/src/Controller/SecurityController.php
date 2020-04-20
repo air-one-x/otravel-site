@@ -9,18 +9,23 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 
 class SecurityController extends AbstractController
 {
+    private $session;
+
+    public function __construct(SessionInterface $session)
+    {
+        $this->session = $session;
+    }
     /**
      * @Route("/login", name="login", methods={"POST"})
      */
-
-    public function login(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, UserRepository $userRepository, SessionInterface $session)
+    public function login(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, UserRepository $userRepository)
     {
         $data = json_decode($request->getContent());
 
@@ -44,17 +49,22 @@ class SecurityController extends AbstractController
         // Check if log or password return error;
         
         if ($result === false) {
-            return new JsonResponse('mot de passe ou email incorect', 401, [
+            return new JsonResponse('mot de passe ou email incorrect', 401, [
                 'Content-Type' => 'application/json'
             ]);
         } else {
             return $this->json($emailBdd);
         }
     }
-
-
-
-
+    /**
+     * @Route("/isLogged", name="test")
+     */
+    public function isLogged(SerializerInterface $serializer)
+    {
+        $user = $this->getUser();
+        $data = $serializer->normalize($user, null, ['groups' => 'user']);
+        return $this->json($data);
+    }
     /**
      * @Route("/logout", name="app_logout")
      */

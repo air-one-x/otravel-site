@@ -8,7 +8,7 @@ export default (store) => (next) => (action) => {
       // Je veux lancer ma requête avec axios
       axios({
         method: 'post',
-        url: 'http://localhost:8001/login',
+        url: 'https://localhost:8001/login',
         withCredentials: true,
         data: {
           username: store.getState().user.form.email,

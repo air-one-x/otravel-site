@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Places;
-use App\Repository\PlacesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,10 +10,12 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\CategoryRepository;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
+
 class PlacesController extends AbstractController
 {
   
-
     /**
      * @Route("/places/edit/{id}", name="places_edit_{id}")
      */
@@ -28,12 +29,9 @@ class PlacesController extends AbstractController
     /**
      * @Route("/places/add", name="places_add")
      */
-    public function add(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository)
+    public function add(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository, SessionInterface $session)
     {
 
-       
-        // je veux:
-            // Ajouter un endroit et renseignant ses catégories
         $places = $serializer->deserialize($request->getContent(), Places::class, 'json');
         $data = json_decode($request->getContent()); // je récup juste les données renseignées
         $description= $places->getDescription();       
@@ -41,7 +39,6 @@ class PlacesController extends AbstractController
         $street = $places->getStreet();
         $zipcode = $places->getZipcode();
         $city = $places->getCity();
-        $user = $places->getUser();
         $lng = $places->getLng();
         $lat = $places->getLat();
            
@@ -58,7 +55,6 @@ class PlacesController extends AbstractController
         $categoriesSelected = $data->category; //je récup les catégories renseignées dans le formulaires
 
         foreach($categoriesSelected as $uniqueCategory){
-
             $test = $categoryRepository->findOneBy(['id' => $uniqueCategory]);
             $newPlace->addCategory($test);
 
@@ -70,10 +66,8 @@ class PlacesController extends AbstractController
             'status' => 201,
             'message' => 'Le lieu a bien été ajouté'
         ];
+
         return new JsonResponse($data, 201);
-
-
-
 
     }
 
