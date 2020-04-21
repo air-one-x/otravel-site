@@ -16,7 +16,6 @@ const MapContainer = ({userLocation, lat, long, isLocated}) => {
       navigator.geolocation.getCurrentPosition(showPosition);
     } else { 
       console.log('erreur !!')
-     
     }
   }
   
@@ -32,7 +31,7 @@ console.log('longlat', lat , long, isLocated)
   const [activePark, setActivePark] = React.useState(null);
   return (
     <div className="map" id="mapid">
-      <Map center={[lat, long]} zoom={6}>
+      <Map center={[lat, long]} zoom={isLocated ? 12 : 6}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

@@ -10,11 +10,13 @@ export default (store) => (next) => (action) => {
         method: 'post',
         url: 'http://localhost:8001/inscription',
         withCredentials: true,
+        headers: { 'Content-Type': 'multipart/form-data' },
         data: {
           username: store.getState().userInscription.form.pseudo,
           avatar: store.getState().userInscription.form.avatar,
           email: store.getState().userInscription.form.email,
           password: store.getState().userInscription.form.password,
+          nameFile: store.getState().userInscription.form.nameFile
         },
       }).then((res) => {
         // Si succès -> dispatcher une action success
