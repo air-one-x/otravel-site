@@ -109,14 +109,13 @@ const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, nam
             label="description"
             multiline
             rows={4}
-            defaultValue="description"
             variant="outlined"
             value={descriptionPlace}
             onChange={(event) => addDescriptionPlace(event.target.value)}
           />
           </Grid>
         </List>
-        <Button autoFocus color="inherit" onClick={addPlace;handleClose}>
+        <Button autoFocus color="inherit" onClick={() => {addPlace();handleClose()}}>
         save
       </Button>
       </Dialog>
