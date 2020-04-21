@@ -35,7 +35,12 @@ class PlacePicture
      * @ORM\JoinColumn(onDelete="SET NULL")
      * @Groups("place_picture")
      */
-    
+
+    public function __construct()
+    {
+
+        $this->upload_at = new \DateTime();
+    }
     public function getId(): ?int
     {
         return $this->id;

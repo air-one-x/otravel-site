@@ -81,8 +81,11 @@ class PlacesController extends AbstractController
         if(!empty($data->place_picture)){
             $picture = new PlacePicture;
             $picture->setName($data->place_picture);
-            $picture->move('uploads/images/places', $picture->getName());
         }
+
+        $newPlace->setPlacesPicture($picture);
+        $test2 = $newPlace->getPlacesPicture();
+        
         
         $categoriesSelected = $data->category; //je récup les catégories renseignées dans le formulaires
 
@@ -97,7 +100,7 @@ class PlacesController extends AbstractController
             'status' => 201,
             'message' => 'Le lieu a bien été ajouté'
         ];
-
+        
         return new JsonResponse($data, 201);
 
     }
