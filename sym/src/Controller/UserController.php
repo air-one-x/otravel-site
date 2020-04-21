@@ -36,7 +36,10 @@ class UserController extends AbstractController
        
         $user = $serializer->deserialize($request->getContent(), User::class, 'json');
         $user->setRoles(['ROLE_USER']);
+
         $content = json_decode($request->getContent());
+
+
 
         /*email verification*/
 
@@ -124,6 +127,13 @@ class UserController extends AbstractController
             'message' => 'L\'utilisateur a bien été ajouté'
         ];
         return new JsonResponse($data, 201);
+    }
+    /**
+     * @Route("/logout", name="app_logout")
+     */
+    public function logout()
+    {
+        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 }
 

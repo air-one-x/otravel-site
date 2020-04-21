@@ -45,9 +45,6 @@ class ApiController extends AbstractController
 
     }
 
-   
-    
-
     /**
      * @Route("/api/category", name="browse_category")
      */
@@ -119,8 +116,6 @@ class ApiController extends AbstractController
 
     }
 
-
-
     /**
      * @Route("/api/place_picture", name="browse_place_picture")
      */
@@ -141,10 +136,7 @@ class ApiController extends AbstractController
         $user = $placepictureRepository->find($placepicture);
         $data = $serializer->normalize($user, null, ['groups' => 'place_picture']);
         return $this->json($data);
-
     }
-
-
 
     /**
      * @Route("/api/commentary_picture", name="browse_commentary_picture")
@@ -168,9 +160,19 @@ class ApiController extends AbstractController
         return $this->json($data);
 
     }
+    
+    /**
+     * @Route("/api/category/places/{id}", name="read_places_from_category")
+     */
+    public function placesFromCategory(Category $category,CategoryRepository $categoryRepository, PlacesRepository $placesRepository, SerializerInterface $serializer)
+    {
+        
+        $places = $placesRepository->placesByCategory($category->getId());
 
-   
-
+        $data = $serializer->normalize($places, null, ['groups' => 'category']);
+        return $this->json($data);
+        
+    }
 }
 
 
