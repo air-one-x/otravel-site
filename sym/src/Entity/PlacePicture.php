@@ -31,10 +31,6 @@ class PlacePicture
      */
     private $upload_at;
 
-    /**
-     * @ORM\JoinColumn(onDelete="SET NULL")
-     * @Groups("place_picture")
-     */
 
     public function __construct()
     {
