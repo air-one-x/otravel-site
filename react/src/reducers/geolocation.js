@@ -2,8 +2,8 @@ import { GEOLOCATION } from '../actions/geolocation';
 
 const initialState = {
     coords: {
-        lat: 48,
-        long: 2,
+        lat: 52.4760892,
+        long: -71.8258668,
     },
     isLocated: false,
 }

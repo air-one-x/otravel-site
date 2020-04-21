@@ -2,8 +2,8 @@ import { CHANGE_EMAIL, CHANGE_PASSWORD, LOGIN_SUCCESS, LOGOUT_SUCCESS, LOGIN_ERR
 
 const stateInit = {
   form: {
-    email: 'bouclierman@herocorp.io',
-    password: 'jennifer',
+    email: 'azerty@azerty.fr',
+    password: 'azertyazerty',
   },
   isLogged: false,
   error: '',

@@ -117,7 +117,7 @@ const LoginModal = ({
           <div className={classes.paper}>
 
 
-            <div>
+            <form>
 
               <div className={classes.margin}>
                 <Grid container spacing={1} alignItems="flex-end" >
@@ -143,7 +143,7 @@ const LoginModal = ({
                   <Button variant="contained" color="primary" onClick={()=> {login(); checkLogged()}}>valider</Button>
                 </div>
               </div>
-            </div>
+            </form>
 
 
           </div>

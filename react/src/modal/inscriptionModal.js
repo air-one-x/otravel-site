@@ -68,7 +68,7 @@ Fade.propTypes = {
   onExited: PropTypes.func,
 };
 
-const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePasswordInscription, inputChangePseudoInscription, newUserEmail, newUserPseudo, newUserPassword, fileAvatarInscription, newUserAvatar}) => {
+const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePasswordInscription, inputChangePseudoInscription, newUserEmail, newUserPseudo, newUserPassword, pictureAvatarInscription,fileNameAvatarInscription, newUserAvatar}) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -79,7 +79,20 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
   const handleClose = () => {
     setOpen(false);
   };
+  const handleChange = (event) => {
+    console.log('event',event);
+    let files = event.files
+    console.log('file', files)
+    let reader = new FileReader();
+    reader.readAsDataURL(files[0]);
+    fileNameAvatarInscription(files[0].name)
 
+    reader.onload=(e)=>{
+      console.log('e',e.target)
+      pictureAvatarInscription(e.target.result)
+    }
+  }
+console.log('yyyyyyyyyyyyyyyyyyoooooooo', newUserAvatar);
   return (
     <div className="nav-link">
       <button className="dropdown-item nav-link" type="button" onClick={handleOpen}>
@@ -114,26 +127,15 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
                   </Grid>
                 </Grid>
 
+
                 <Grid container spacing={1} alignItems="flex-end">
-                <Grid container item>
-                <div className={classes.root}>
-                  <input
-                    accept="image/*"
-                    className={classes.input}
-                    id="contained-button-file"
-                    multiple
-                    type="file"
-                  />
-                  <label htmlFor="contained-button-file">
-                    <Button variant="contained" color="primary" component="span" value={newUserAvatar} onChange={(event) => fileAvatarInscription(event.target.value)}>
-                      Télécharger une image de profil
-                    </Button>
-                  </label>
-                  <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
-                </div>
-                </Grid>
+                  <Grid container item>
+                    <input type="file" label="file" onChange={(event) => handleChange(event.target)}/>
+                  </Grid>
                 </Grid>
 
+
+                
                 <Grid container spacing={1} alignItems="flex-end">
                   <Grid container item>
                     <AlternateEmailIcon />
@@ -155,6 +157,7 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
               </div>
               <div className="CheckCond" style={{marginTop: '1rem', marginLeft: '0.5rem'}}>
                 <input type="checkbox" name="checkConditions" id="checkConditions" style={{width: '15px', height: '15px', marginRight: '0.3rem'}}/>
+               
                 <label htmlFor="checkConditions" style={{fontSize: '0.7em'}}> En cochant la case, j'accepte les <a href="#" style={{color: '#303f9f'}}>conditions d'utilisations </a></label>
               </div>
               <div className="m-3 justify-content-center">
@@ -163,8 +166,8 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
               </div>
             </div>
           </div>
-        </Fade>
-      </Modal>
+          </Fade>
+          </Modal>
     </div>
   );
 };

@@ -37,14 +37,9 @@ class UserController extends AbstractController
         $user = $serializer->deserialize($request->getContent(), User::class, 'json');
         $user->setRoles(['ROLE_USER']);
 
-        /*Give avatar if the user don't put*/
-        if(empty($user->getAvatar())){
-            $user->setAvatar("account.png");
-        }
-        else{
-            $avatar = $user->getAvatar();
-            $avatar->move('uploads/images', $avatar->getClientOriginalName());
-        }
+        $content = json_decode($request->getContent());
+
+
 
         /*email verification*/
 
@@ -85,9 +80,6 @@ class UserController extends AbstractController
                 return new JsonResponse($data, 400);
             }
           }     
-      
-       
-        
      
         /*password verification*/
         $password = $user->getPassword();
@@ -108,6 +100,24 @@ class UserController extends AbstractController
             $password
         ));
 
+        /*Give avatar if the user don't put*/
+        if(empty($user->getAvatar())){
+            $user->setAvatar("account.png");
+        }
+        else{
+            $avatar = $user->getAvatar();
+            
+            $img = str_replace('data:image/png;base64,','', $avatar);
+            
+            $nomfichier= explode(".", $content->nameFile)  ;
+            $nomfichierUnique = $nomfichier[0].uniqid().'.'.$nomfichier[1];
+            $path = '../public/uploads/images/avatars/'. $nomfichierUnique;
+
+            $success = file_put_contents($path, base64_decode($img));
+            if(isset($success)){
+                $user->setAvatar($path);
+            }
+        }
         /*push to database */
        
         $entityManager->persist($user);
