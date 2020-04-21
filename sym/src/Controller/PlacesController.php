@@ -46,21 +46,25 @@ class PlacesController extends AbstractController
         
         // $places->setPlacesPicture($data->place_picture);
 
-        if(empty($places->getPlacesPicture())){
-            $places->setPlacesPicture("places.png");
-        }
+        // if(empty($places->getPlacesPicture())){
+        //     $places->setPlacesPicture("places.png");
+        // }
+        // else{
+        //     $placesPicture = $places->getPlacesPicture();
+
+        // }
 
         
-         $img = str_replace('data:image/png;base64,','', $placePicture);
+        // $img = str_replace('data:image/png;base64,','', $placePicture);
 
-         $nomfichier= explode(".", $data->nameFile)  ;
-         $nomfichierUnique = $nomfichier[0].uniqid().'.'.$nomfichier[1];
-         $path = '../public/uploads/images/placepicture/'. $nomfichierUnique;
+        // $nomfichier= explode(".", $data)  ;
+        // $nomfichierUnique = $nomfichier[0].uniqid().'.'.$nomfichier[1];
+        // $path = '../public/uploads/images/places_pictures/'. $nomfichierUnique;
 
-         $success = file_put_contents($path, base64_decode($img));
-         if(isset($success)){
-             $places->setPlacePicture($path);
-         }
+        // $success = file_put_contents($path, base64_decode($img));
+        // if(isset($success)){
+        //     $places->setPhoto($path);
+        // }
         
 
         
@@ -74,14 +78,13 @@ class PlacesController extends AbstractController
         $newPlace->setLng($lng);
         $newPlace->setLat($lat);
 
-        if(!empty($data->place_picture)){
+        if(!empty($data->places_picture)){
             $picture = new PlacePicture;
-            $picture->setName($data->place_picture);
+            $picture->setName($data->places_picture);
         }
 
         $newPlace->setPlacesPicture($picture);
-        $newPlace->getPlacesPicture();
-        
+        $test2 = $newPlace->getPlacesPicture();
         
         $categoriesSelected = $data->category; //je récup les catégories renseignées dans le formulaires
 
@@ -96,7 +99,7 @@ class PlacesController extends AbstractController
             'status' => 201,
             'message' => 'Le lieu a bien été ajouté'
         ];
-        
+
         return new JsonResponse($data, 201);
 
     }
