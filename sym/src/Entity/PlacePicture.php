@@ -26,7 +26,7 @@ class PlacePicture
     private $name;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      * @Groups("place_picture")
      */
     private $upload_at;
@@ -34,7 +34,6 @@ class PlacePicture
 
     public function __construct()
     {
-
         $this->upload_at = new \DateTime();
     }
     public function getId(): ?int

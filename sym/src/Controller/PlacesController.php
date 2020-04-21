@@ -11,7 +11,6 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\CategoryRepository;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class PlacesController extends AbstractController
 {
@@ -41,18 +40,6 @@ class PlacesController extends AbstractController
         $city = $places->getCity();
         $lng = $places->getLng();
         $lat = $places->getLat();
-
-        
-        // $img = str_replace('data:image/png;base64,','', $placePicture);
-
-        // $nomfichier= explode(".", $data)  ;
-        // $nomfichierUnique = $nomfichier[0].uniqid().'.'.$nomfichier[1];
-        // $path = '../public/uploads/images/places_pictures/'. $nomfichierUnique;
-
-        // $success = file_put_contents($path, base64_decode($img));
-        // if(isset($success)){
-        //     $places->setPhoto($path);
-        // }
         
         $newPlace = new Places();
         $newPlace->setDescription($description);
@@ -64,21 +51,22 @@ class PlacesController extends AbstractController
         $newPlace->setLng($lng);
         $newPlace->setLat($lat);
 
-        $pictureForm = $data->places_picture;
+        $pictureForm = $data->nameFile;
 
         $img = str_replace('data:image/png;base64,','', $pictureForm);
         
-        $nomfichier= explode(".", $data->nameFile)  ;
+        $nomfichier = explode(".", $data->nameFile)  ;
         $nomfichierUnique = $nomfichier[0].uniqid().'.'.$nomfichier[1];
-        $path = '../public/uploads/images/placesPicture/'. $nomfichierUnique;
+        $path = '../public/uploads/images/places/'. $nomfichierUnique;
         
         $success = file_put_contents($path, base64_decode($img));
+
         if(isset($success)){
-            // $user->setAvatar($path);
+            
             $picture = new PlacePicture;
             $picture->setName($pictureForm);
             $newPlace->setPlacesPicture($picture);
-
+            
         }
 
         $categoriesSelected = $data->category; //je récup les catégories renseignées dans le formulaires

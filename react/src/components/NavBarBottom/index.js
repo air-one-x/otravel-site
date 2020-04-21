@@ -1,5 +1,5 @@
 import React from 'react';
-import AddPlace from './AddPlace';
+import AddPlace from '../../containers/AddPlace';
 import FilterPlace from './FilterPlace';
 import LocalisationButton from './LocalisationButton';
 import NavigationIcon from '@material-ui/icons/Navigation';

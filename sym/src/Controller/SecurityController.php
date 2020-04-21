@@ -33,7 +33,7 @@ class SecurityController extends AbstractController
 
         $user = $userRepository->checkLogin($data);            
         $errors = $validator->validate($user);
-        $emailBdd = $userRepository->findOneBy(['email' => $data->email ]);
+        $emailBdd = $userRepository->findOneBy(['email' => $data->email]);
         $passwordDB = $emailBdd->getPassword();
         $passwordInput = $data->password; 
         $result = password_verify($passwordInput,$passwordDB);
@@ -65,7 +65,6 @@ class SecurityController extends AbstractController
         $avatar = $user->getAvatar();
         $encode = base64_encode($avatar);
         $user->setAvatar($encode);
-        dd($user);
         $data = $serializer->normalize($user, null, ['groups' => 'user']);
         return $this->json($data);
     }

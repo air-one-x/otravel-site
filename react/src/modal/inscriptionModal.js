@@ -130,7 +130,31 @@ console.log('yyyyyyyyyyyyyyyyyyoooooooo', newUserAvatar);
 
                 <Grid container spacing={1} alignItems="flex-end">
                   <Grid container item>
-                    <input type="file" label="file" onChange={(event) => handleChange(event.target)}/>
+                    <input type="file" label="file" onChange={(event) => {
+                      handleChange(event.target);
+                      
+                      var input = event.target.files[0];
+                      var reader = new FileReader(); 
+                      reader.onload = function(){
+                        if(newUserAvatar === "") {
+                          console.log(reader.result);
+                          const photo = document.createElement("img");
+                          photo.src = reader.result;
+                          photo.style.height = "200px";
+                          photo.style.width ="200px";
+                          photo.id="photoInscription"
+                          const avatar = document.getElementById('avatar');
+                          avatar.append(photo);
+                        } else {
+                          const photo = document.getElementById('photoInscription');
+                          photo.src=reader.result;
+                        }
+                        
+                     };
+                      
+                      
+                      reader.readAsDataURL(input);
+                      }}/>
                   </Grid>
                 </Grid>
 
@@ -153,7 +177,7 @@ console.log('yyyyyyyyyyyyyyyyyyoooooooo', newUserAvatar);
                     <TextField type="password" label="Mot de passe" value={newUserPassword} onChange={(event) => inputChangePasswordInscription(event.target.value)} />
                   </Grid>
                 </Grid>
-
+                <div id="avatar"> </div>
               </div>
               <div className="CheckCond" style={{marginTop: '1rem', marginLeft: '0.5rem'}}>
                 <input type="checkbox" name="checkConditions" id="checkConditions" style={{width: '15px', height: '15px', marginRight: '0.3rem'}}/>
