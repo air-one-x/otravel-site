@@ -1,18 +1,18 @@
 import { connect } from 'react-redux';
 import AddPlaceModal from '../modal/addPlaceModal';
-import {cityPlace, zipCodePlace, streetPlace, categoryPlace, namePlace , descriptionPlace} from '../actions/geolocation';
+import {cityPlace, zipCodePlace, streetPlace, categoryPlace, namePlace , descriptionPlace, addPlace} from '../actions/geolocation';
 
 
 const mapStateToProps = (state) => ({
     lat: state.geolocation.coords.lat,
     long: state.geolocation.coords.long,
     isLocated: state.geolocation.isLocated,
-    name: state.geolocation.form.name,
-    category: state.geolocation.form.category,
-    description: state.geolocation.form.description,
-    zipCode: state.geolocation.form.zipCode,
-    city: state.geolocation.form.city,
-    street: state.geolocation.form.street,
+    namePlace: state.geolocation.form.name,
+    categoryPlace: state.geolocation.form.category,
+    descriptionPlace: state.geolocation.form.description,
+    zipCodePlace: state.geolocation.form.zipCode,
+    cityPlace: state.geolocation.form.city,
+    streetPlace: state.geolocation.form.street,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -22,6 +22,7 @@ const mapDispatchToProps = (dispatch) => ({
     addZipCodePlace: (event) =>  dispatch(zipCodePlace(event)),
     addCityPlace: (event) =>  dispatch(cityPlace(event)),
     addStreetPlace: (event) =>  dispatch(streetPlace(event)),
+    addPlace: () => dispatch(addPlace()),
 
 });
 

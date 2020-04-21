@@ -5,13 +5,13 @@ const initialState = {
         lat: 52.4760892,
         long: -71.8258668,
     },
-    form : {
-      name: 'plage des cocotiers',
+    form: {
+      name: "plage des cocotiers",
       category: [1],
-      description: 'une belle douche',
-      street : 'Avenue montaigne',
+      description: "une belle douche",
+      street : "Avenue montaigne",
       zipCode: 14000,
-      city: 'city gang',
+      city: "city gang",
     },
     isLocated: false,
 };

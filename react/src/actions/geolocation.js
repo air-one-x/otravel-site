@@ -5,7 +5,12 @@ export const DESCRIPTION_PLACE = 'DESCRIPTION_PLACE';
 export const STREET_PLACE = 'STREET_PLACE';
 export const ZIPCODE_PLACE = 'ZIPCODE_PLACE';
 export const CITY_PLACE = 'CITY_PLACE';
+export const ADD_PLACE = 'ADD_PLACE';
 
+
+export const addPlace = () => ({
+  type: ADD_PLACE,
+});
  
 export const cityPlace = (payload) => ({
   type: CITY_PLACE,
