@@ -54,8 +54,6 @@ class PlacesController extends AbstractController
         //     $places->setPhoto($path);
         // }
         
-
-        
         $newPlace = new Places();
         $newPlace->setDescription($description);
         $newPlace->setName($name);  
@@ -83,8 +81,6 @@ class PlacesController extends AbstractController
 
         }
 
-
-        
         $categoriesSelected = $data->category; //je récup les catégories renseignées dans le formulaires
 
         foreach($categoriesSelected as $uniqueCategory){
