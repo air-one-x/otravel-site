@@ -116,7 +116,6 @@ class Places
     public function __construct()
     {
         $this->Category = new ArrayCollection();
-        $this->places_picture = new ArrayCollection();
         $this->created_at = new \DateTime();
         $this->updated_at = new \DateTime();
     }

@@ -41,18 +41,6 @@ class PlacesController extends AbstractController
         $city = $places->getCity();
         $lng = $places->getLng();
         $lat = $places->getLat();
-        $placePicture = $places->getPlacesPicture();
-
-        
-        // $places->setPlacesPicture($data->place_picture);
-
-        // if(empty($places->getPlacesPicture())){
-        //     $places->setPlacesPicture("places.png");
-        // }
-        // else{
-        //     $placesPicture = $places->getPlacesPicture();
-
-        // }
 
         
         // $img = str_replace('data:image/png;base64,','', $placePicture);
@@ -78,13 +66,24 @@ class PlacesController extends AbstractController
         $newPlace->setLng($lng);
         $newPlace->setLat($lat);
 
-        if(!empty($data->places_picture)){
+        $pictureForm = $data->places_picture;
+
+        $img = str_replace('data:image/png;base64,','', $pictureForm);
+        
+        $nomfichier= explode(".", $data->nameFile)  ;
+        $nomfichierUnique = $nomfichier[0].uniqid().'.'.$nomfichier[1];
+        $path = '../public/uploads/images/placesPicture/'. $nomfichierUnique;
+        
+        $success = file_put_contents($path, base64_decode($img));
+        if(isset($success)){
+            // $user->setAvatar($path);
             $picture = new PlacePicture;
-            $picture->setName($data->places_picture);
+            $picture->setName($pictureForm);
+            $newPlace->setPlacesPicture($picture);
+
         }
 
-        $newPlace->setPlacesPicture($picture);
-        $test2 = $newPlace->getPlacesPicture();
+
         
         $categoriesSelected = $data->category; //je récup les catégories renseignées dans le formulaires
 
