@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200419154216 extends AbstractMigration
+final class Version20200421125056 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,7 +22,9 @@ final class Version20200419154216 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE places ADD description LONGTEXT DEFAULT NULL');
+        $this->addSql('ALTER TABLE places ADD places_picture_id INT DEFAULT NULL');
+        $this->addSql('ALTER TABLE places ADD CONSTRAINT FK_FEAF6C559EC0931A FOREIGN KEY (places_picture_id) REFERENCES place_picture (id)');
+        $this->addSql('CREATE UNIQUE INDEX UNIQ_FEAF6C559EC0931A ON places (places_picture_id)');
     }
 
     public function down(Schema $schema) : void
@@ -30,6 +32,8 @@ final class Version20200419154216 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE places DROP description');
+        $this->addSql('ALTER TABLE places DROP FOREIGN KEY FK_FEAF6C559EC0931A');
+        $this->addSql('DROP INDEX UNIQ_FEAF6C559EC0931A ON places');
+        $this->addSql('ALTER TABLE places DROP places_picture_id');
     }
 }

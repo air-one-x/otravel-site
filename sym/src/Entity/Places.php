@@ -73,8 +73,7 @@ class Places
      * @Groups("places")
      * @Groups("category")
      */
-    private $Place_picture;
-    
+
     /**
      * @ORM\Column(type="float", nullable=true)
      * @Groups("category")
@@ -106,6 +105,13 @@ class Places
      * @Groups("category")
      */
     private $description;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\PlacePicture", cascade={"persist", "remove"})
+     * @Groups("places")
+     * @Groups("category")
+     */
+    private $places_picture;
     
     public function __construct()
     {
@@ -206,37 +212,6 @@ class Places
         return $this;
     }
 
-    /**
-     * @return Collection|PlacePicture[]
-     */
-    public function getPlacePicture(): Collection
-    {
-        return $this->Place_picture;
-    }
-
-    public function addPlacePicture(PlacePicture $placePicture): self
-    {
-        if (!$this->Place_picture->contains($placePicture)) {
-            $this->Place_picture[] = $placePicture;
-            $placePicture->setPlaces($this);
-        }
-
-        return $this;
-    }
-
-    public function removePlacePicture(PlacePicture $placePicture): self
-    {
-        if ($this->Place_picture->contains($placePicture)) {
-            $this->Place_picture->removeElement($placePicture);
-            // set the owning side to null (unless already changed)
-            if ($placePicture->getPlaces() === $this) {
-                $placePicture->setPlaces(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getLng(): ?float
     {
         return $this->lng;
@@ -293,6 +268,18 @@ class Places
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getPlacesPicture(): ?PlacePicture
+    {
+        return $this->places_picture;
+    }
+
+    public function setPlacesPicture(?PlacePicture $places_picture): self
+    {
+        $this->places_picture = $places_picture;
 
         return $this;
     }

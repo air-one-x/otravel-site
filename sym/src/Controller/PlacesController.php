@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\PlacePicture;
 use App\Entity\Places;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,7 +12,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\HttpFoundation\Session\Session;
 
 class PlacesController extends AbstractController
 {
@@ -29,7 +29,7 @@ class PlacesController extends AbstractController
     /**
      * @Route("/places/add", name="places_add")
      */
-    public function add(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository, SessionInterface $session)
+    public function add(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository)
     {
 
         $places = $serializer->deserialize($request->getContent(), Places::class, 'json');
@@ -41,7 +41,33 @@ class PlacesController extends AbstractController
         $city = $places->getCity();
         $lng = $places->getLng();
         $lat = $places->getLat();
-           
+        $placePicture = $places->getPlacesPicture();
+
+        
+        // $places->setPlacesPicture($data->place_picture);
+
+        // if(empty($places->getPlacesPicture())){
+        //     $places->setPlacesPicture("places.png");
+        // }
+        // else{
+        //     $placesPicture = $places->getPlacesPicture();
+
+        // }
+
+        
+        // $img = str_replace('data:image/png;base64,','', $placePicture);
+
+        // $nomfichier= explode(".", $data)  ;
+        // $nomfichierUnique = $nomfichier[0].uniqid().'.'.$nomfichier[1];
+        // $path = '../public/uploads/images/places_pictures/'. $nomfichierUnique;
+
+        // $success = file_put_contents($path, base64_decode($img));
+        // if(isset($success)){
+        //     $places->setPhoto($path);
+        // }
+        
+
+        
         $newPlace = new Places();
         $newPlace->setDescription($description);
         $newPlace->setName($name);  
@@ -51,15 +77,20 @@ class PlacesController extends AbstractController
         $newPlace->setUser($this->getUser());
         $newPlace->setLng($lng);
         $newPlace->setLat($lat);
+
+        if(!empty($data->place_picture)){
+            $picture = new PlacePicture;
+            $picture->setName($data->place_picture);
+            $picture->move('uploads/images/places', $picture->getName());
+        }
         
         $categoriesSelected = $data->category; //je récup les catégories renseignées dans le formulaires
 
         foreach($categoriesSelected as $uniqueCategory){
             $test = $categoryRepository->findOneBy(['id' => $uniqueCategory]);
             $newPlace->addCategory($test);
-
         }
-        
+
         $entityManager->persist($newPlace);
         $entityManager->flush();
         $data = [
