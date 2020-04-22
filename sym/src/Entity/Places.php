@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PlacesRepository")
  */
@@ -68,21 +69,19 @@ class Places
      */
     private $Category;
     
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\PlacePicture", mappedBy="places")
-     * @Groups("places")
-     * @Groups("category")
-     */
+  
 
     /**
      * @ORM\Column(type="float", nullable=true)
      * @Groups("category")
+     * @Groups("places")
      */
     private $lng;
     
     /**
      * @ORM\Column(type="float", nullable=true))
      * @Groups("category")
+     * @Groups("places")
      */
     private $lat;
     /**
