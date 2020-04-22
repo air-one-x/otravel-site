@@ -8,7 +8,7 @@ export default (store) => (next) => (action) => {
       // Je veux lancer ma requête avec axios
       axios({
         method: 'post',
-        url: 'http://localhost:8001/login',
+        url: 'https://localhost:8001/login',
         withCredentials: true,
         data: {
           username: store.getState().user.form.email,
@@ -18,7 +18,29 @@ export default (store) => (next) => (action) => {
         // Si succès -> dispatcher une action success
         console.log('requête_connexion', res);
         localStorage.setItem('id_token', res.data.token);
-        store.dispatch(loginSuccess(res.data[0]));
+         
+        axios({
+          url: 'https://localhost:8001/isLogged',
+          method: 'post',
+          withCredentials: true,
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('id_token')}`,
+        }
+        })
+          .then((res) => {
+            if (res.data) {
+              console.log('middleware !!!r ->>>>>>>>>>>>>>>>>>>' ,res.data);
+
+              store.dispatch(loginSuccess(res.data));
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            console.log(localStorage.getItem('id_token'));
+          });
+        
+
       })
         .catch((err) => {
         // Si error -> Dispatcher une action error
@@ -29,7 +51,7 @@ export default (store) => (next) => (action) => {
       case LOGOUT:
         axios({
           method: 'post',
-          url: 'http://localhost:8001/logout',
+          url: 'https://localhost:8001/logout',
           withCredentials: true,
         })
           .then((res) => {
@@ -43,24 +65,24 @@ export default (store) => (next) => (action) => {
         break;
         case CHECK_AUTH:
           axios({
-            url: 'http://localhost:8001/isLogged',
+            url: 'https://localhost:8001/isLogged',
             method: 'post',
             withCredentials: true,
             headers: {
-              'authorization': 'beare' + localStorage.getItem('id_token'),
-              'Accept' : 'application/json',
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem('id_token')}`,
           }
           })
             .then((res) => {
-              if (res.data.logged) {
-                console.log('middleware !!!' ,res.data);
+              if (res.data) {
+                console.log('middleware !!!r ->>>>>>>>>>>>>>>>>>>' ,res.data);
 
-                store.dispatch(loginSuccess(res.data.info));
+                store.dispatch(loginSuccess(res.data));
               }
             })
             .catch((error) => {
               console.log(error);
+              console.log(localStorage.getItem('id_token'));
             });
           break;
     default:

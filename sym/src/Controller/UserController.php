@@ -84,7 +84,7 @@ class UserController extends AbstractController
         /*password verification*/
         $password = $user->getPassword();
         $verif= strlen($password);
-        $valid = "8";
+        $valid = 8;
 
         if($verif < $valid){
                        
@@ -108,7 +108,7 @@ class UserController extends AbstractController
             $avatar = $user->getAvatar();
             
             $img = str_replace('data:image/png;base64,','', $avatar);
-            
+
             $nomfichier= explode(".", $content->nameFile)  ;
             $nomfichierUnique = $nomfichier[0].uniqid().'.'.$nomfichier[1];
             $path = '../public/uploads/images/avatars/'. $nomfichierUnique;

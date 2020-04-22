@@ -8,7 +8,7 @@ import useStyles from './style.js';
 import FormLoginModal from '../../containers/Login';
 import InscriptionModal from '../../containers/Inscription';
 import ItemsMenu from './itemsMenu';
-import AddPlaceModal from '../../modal/addPlaceModal';
+import AddPlaceModal from '../../containers/AddPlace';
 import FilterPc from '../../modal/filterPC';
 import { Link } from 'react-router-dom';
 
@@ -42,12 +42,11 @@ const NavBar = () => {
         </button>
       </div>
     </div>
+
       <div className="nav-item nav-link">
-        <button className="btn navbar-btn btn-outline-secondary" type="button">
-          <label>Ajouter un lieu</label>
-          <FontAwesomeIcon icon={faPlusCircle} className="ml-2" label="Ajouter un lieux" />
-        </button>
+        <AddPlaceModal />
       </div>
+
       <div className="dropdown">
       <FilterPc />
       </div>
