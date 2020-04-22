@@ -18,6 +18,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 
 
+
 class UserController extends AbstractController
 {
     private $passwordEncoder;
@@ -135,5 +136,40 @@ class UserController extends AbstractController
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
+
+
+
+    /**
+     * @Route("/user/edit/{id}", name="user_edit")
+     */
+
+    public function userEdit($id,User $user, UserRepository $userRepository, Request $request, SerializerInterface $serializer)
+    {
+        $userModify = $serializer->deserialize($request->getContent(), User::class, 'json');
+       
+
+        $actualuser = $userRepository->find($id);
+        
+       
+        $email = $userModify->getEmail();
+        $username = $userModify->getUsername();
+        $password = $userModify->getPassword();
+
+        $userModify->setPassword($this->passwordEncoder->encodePassword(
+            $userModify,
+            $password
+        ));
+
+        $userRepository->upgradePassword( $user,  $password);
+       
+
+        $actualuser->setUsername($username); 
+        $actualuser->setEmail($email);
+      
+        dd($actualuser);
+        
+    
+    }
+
 }
 
