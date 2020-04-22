@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\PlacePicture;
 use App\Entity\Places;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,8 +11,6 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\CategoryRepository;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\HttpFoundation\Session\Session;
 
 class PlacesController extends AbstractController
 {
@@ -29,9 +28,9 @@ class PlacesController extends AbstractController
     /**
      * @Route("/places/add", name="places_add")
      */
-    public function add(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository, SessionInterface $session)
+    public function add(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository)
     {
-
+    
         $places = $serializer->deserialize($request->getContent(), Places::class, 'json');
         $data = json_decode($request->getContent()); // je récup juste les données renseignées
         $description= $places->getDescription();       
@@ -41,7 +40,7 @@ class PlacesController extends AbstractController
         $city = $places->getCity();
         $lng = $places->getLng();
         $lat = $places->getLat();
-           
+        
         $newPlace = new Places();
         $newPlace->setDescription($description);
         $newPlace->setName($name);  
@@ -51,15 +50,32 @@ class PlacesController extends AbstractController
         $newPlace->setUser($this->getUser());
         $newPlace->setLng($lng);
         $newPlace->setLat($lat);
+
+        $pictureForm = $data->nameFile;
+
+        $img = str_replace('data:image/png;base64,','', $pictureForm);
         
+        $nomfichier = explode(".", $data->nameFile)  ;
+        $nomfichierUnique = $nomfichier[0].uniqid().'.'.$nomfichier[1];
+        $path = '../public/uploads/images/places/'. $nomfichierUnique;
+        
+        $success = file_put_contents($path, base64_decode($img));
+
+        if(isset($success)){
+            
+            $picture = new PlacePicture;
+            $picture->setName($pictureForm);
+            $newPlace->setPlacesPicture($picture);
+            
+        }
+
         $categoriesSelected = $data->category; //je récup les catégories renseignées dans le formulaires
 
         foreach($categoriesSelected as $uniqueCategory){
             $test = $categoryRepository->findOneBy(['id' => $uniqueCategory]);
             $newPlace->addCategory($test);
-
         }
-        
+
         $entityManager->persist($newPlace);
         $entityManager->flush();
         $data = [
@@ -68,17 +84,15 @@ class PlacesController extends AbstractController
         ];
 
         return new JsonResponse($data, 201);
-
     }
+    
 
     /**
      * @Route("/places/delete/{id}", name="places_delete")
      */
     public function delete()
     {
-        return $this->render('places/index.html.twig', [
-            'controller_name' => 'PlacesController',
-        ]);
+       
     }
 }
 

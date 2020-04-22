@@ -8,7 +8,7 @@ export default (store) => (next) => (action) => {
       // Je veux lancer ma requête avec axios
       axios({
         method: 'post',
-        url: 'http://localhost:8001/login',
+        url: 'https://localhost:8001/login',
         withCredentials: true,
         data: {
           username: store.getState().user.form.email,
@@ -16,11 +16,11 @@ export default (store) => (next) => (action) => {
         },
       }).then((res) => {
         // Si succès -> dispatcher une action success
-        console.log('requête_connexion', res);
+        console.log('requête_connexion ------------------------------------>', res.data);
         localStorage.setItem('id_token', res.data.token);
          
         axios({
-          url: 'http://localhost:8001/isLogged',
+          url: 'https://localhost:8001/isLogged',
           method: 'post',
           withCredentials: true,
           headers: {
@@ -30,9 +30,9 @@ export default (store) => (next) => (action) => {
         })
           .then((res) => {
             if (res.data) {
-              console.log('middleware !!!r ->>>>>>>>>>>>>>>>>>>' ,res.data);
-
+              console.log('middleware' ,res.data);
               store.dispatch(loginSuccess(res.data));
+              localStorage.setItem('img',res.data.avatar);
             }
           })
           .catch((error) => {
@@ -51,7 +51,7 @@ export default (store) => (next) => (action) => {
       case LOGOUT:
         axios({
           method: 'post',
-          url: 'http://localhost:8001/logout',
+          url: 'https://localhost:8001/logout',
           withCredentials: true,
         })
           .then((res) => {
@@ -65,7 +65,7 @@ export default (store) => (next) => (action) => {
         break;
         case CHECK_AUTH:
           axios({
-            url: 'http://localhost:8001/isLogged',
+            url: 'https://localhost:8001/isLogged',
             method: 'post',
             withCredentials: true,
             headers: {

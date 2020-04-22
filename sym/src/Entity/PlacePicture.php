@@ -26,18 +26,16 @@ class PlacePicture
     private $name;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      * @Groups("place_picture")
      */
     private $upload_at;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Places", inversedBy="Place_picture")
-     * @ORM\JoinColumn(onDelete="SET NULL")
-     * @Groups("place_picture")
-     */
-    private $places;
 
+    public function __construct()
+    {
+        $this->upload_at = new \DateTime();
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -67,15 +65,4 @@ class PlacePicture
         return $this;
     }
 
-    public function getPlaces(): ?Places
-    {
-        return $this->places;
-    }
-
-    public function setPlaces(?Places $places): self
-    {
-        $this->places = $places;
-
-        return $this;
-    }
 }

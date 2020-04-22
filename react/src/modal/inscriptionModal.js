@@ -144,6 +144,7 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
                           photo.id="photoInscription"
                           const avatar = document.getElementById('avatar');
                           avatar.append(photo);
+                          localStorage.setItem('test',input);
                         } else {
                           const photo = document.getElementById('photoInscription');
                           photo.src=reader.result;

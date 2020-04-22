@@ -53,16 +53,10 @@
     text-decoration: none;
 }
 
-.contact__footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+.contact__footer .footer__menu {
+    margin-top : 1rem;
 }
 
-.contact__footer .footer__menu {
-  padding-bottom: 1rem;
-  padding-top:1rem;
-}
 
 @media all and (min-width: 600px) {
     .contact form {
@@ -70,9 +64,11 @@
     }
 }
 
-@media all and (max-height: 562px) {
-    .contact__footer {
-        margin-top: 1rem;
-        position: static;
-    }
+@media all and (min-height: 498px) {
+    .contact__footer .footer__menu {
+    position: fixed;
+    bottom:0;
+    width: 100%;
+    padding: 1rem;
+}
 }

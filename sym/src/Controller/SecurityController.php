@@ -33,7 +33,7 @@ class SecurityController extends AbstractController
 
         $user = $userRepository->checkLogin($data);            
         $errors = $validator->validate($user);
-        $emailBdd = $userRepository->findOneBy(['email' => $data->email ]);
+        $emailBdd = $userRepository->findOneBy(['email' => $data->email]);
         $passwordDB = $emailBdd->getPassword();
         $passwordInput = $data->password; 
         $result = password_verify($passwordInput,$passwordDB);
@@ -62,12 +62,16 @@ class SecurityController extends AbstractController
     public function isLogged(SerializerInterface $serializer)
     {
         $user = $this->getUser();
+    
         $avatar = $user->getAvatar();
-        $encode = base64_encode($avatar);
+        $getFile = file_get_contents($avatar);
+        $encode = base64_encode($getFile);
         $user->setAvatar($encode);
         $data = $serializer->normalize($user, null, ['groups' => 'user']);
         return $this->json($data);
+
     }
+    
     /**
      * @Route("/logout", name="app_logout")
      */

@@ -19,6 +19,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 class ApiController extends AbstractController
 {
@@ -68,6 +69,42 @@ class ApiController extends AbstractController
         return $this->json($data);
         
     }
+
+
+
+    /**
+     * @Route("/api/adress/places", name="read_adress_places")
+     */
+    public function placesAdress(PlacesRepository $placesRepository, Request $request, SerializerInterface $serializer)
+    {
+
+       
+        $data = json_decode($request->getContent());
+        $lng = ($data->lng);
+        $lat = ($data->lat);
+
+        $array = [$lng, $lat];
+       
+        $stringifyData = implode(",", $array);
+       
+        //---------------Version Géocode
+        $geoCode = $stringifyData;
+        $geocoder = new \OpenCage\Geocoder\Geocoder('b38489ac53674c90b5e1b886beb901a3');
+        $result = $geocoder->geocode($stringifyData); # latitude,longitude (y,x)
+        
+
+        // return json($result['results'][0]['formatted']);
+
+        $returnAdress = $serializer->normalize($result);
+        return $this->json($returnAdress);
+
+       
+                
+    }
+
+
+
+
 
     /**
      * @Route("/api/places", name="browse_places")
@@ -173,7 +210,7 @@ class ApiController extends AbstractController
         return $this->json($data);
         
     }
+
+
 }
-
-
 

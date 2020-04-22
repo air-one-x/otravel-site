@@ -40,3 +40,12 @@
     text-decoration: none;
     color:white;
 }
+
+@media all and (min-height: 550px) {
+    .informations .footer__menu {
+    position: fixed;
+    bottom:0;
+    width: 100%;
+    padding: 1rem;
+}
+}

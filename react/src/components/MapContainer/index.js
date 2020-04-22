@@ -8,7 +8,7 @@ import * as parkData from '../../data/skateboard-parcks.json';
 import ReactLeafletSearch from "react-leaflet-search";
 import L from 'leaflet';
 import userLocationURL from './map-pin-solid.svg';
-import NavBar from '../Navbar';
+
 
 const myIcon = L.icon({
   iconUrl: userLocationURL,
@@ -36,7 +36,6 @@ const MapContainer = ({userLocation, lat, long, isLocated}) => {
 console.log('longlat', lat , long, isLocated)
   const [activePark, setActivePark] = React.useState(null);
 
-  const testSearch = (event) => (console.warn(event))
 
   return (
     <div>
@@ -47,23 +46,20 @@ console.log('longlat', lat , long, isLocated)
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
-        <form className="custom-style" >
+
         <ReactLeafletSearch
-          className="custom-style"
-          position="topright"
-          inputPlaceholder="chercher un lieux"
-          search={[]} // Setting this to [lat, lng] gives initial search input to the component and map flies to that coordinates, its like search from props not from user
-          zoom={12} // Default value is 10
-          showMarker={true}
-          showPopup={false}
-          openSearchOnLoad={true} // By default there's a search icon which opens the input when clicked. Setting this to true opens the search by default.
-          closeResultsOnClick={true} // By default, the search results remain when you click on one, and the map flies to the location of the result. But you might want to save space on your map by closing the results when one is clicked. The results are shown again (without another search) when focus is returned to the search input.
-          providerOptions={{searchBounds: []}} // The BingMap and OpenStreetMap providers both accept bounding coordinates in [se,nw] format. Note that in the case of OpenStreetMap, this only weights the results and doesn't exclude things out of bounds.
-          customProvider={undefined | {search: (searchString)=> {}}} // see examples to usage details until docs are ready
-          defaultValue="lanildut"
-          onChange={testSearch}
-      />
-      </form>
+    position="topright"
+    inputPlaceholder="The default text in the search bar"
+    search={[]} // Setting this to [lat, lng] gives initial search input to the component and map flies to that coordinates, its like search from props not from user
+    zoom={12} // Default value is 10
+    showMarker={true}
+    showPopup={false}
+    openSearchOnLoad={false} // By default there's a search icon which opens the input when clicked. Setting this to true opens the search by default.
+    closeResultsOnClick={false} // By default, the search results remain when you click on one, and the map flies to the location of the result. But you might want to save space on your map by closing the results when one is clicked. The results are shown again (without another search) when focus is returned to the search input.
+    providerOptions={{searchBounds: []}} // The BingMap and OpenStreetMap providers both accept bounding coordinates in [se,nw] format. Note that in the case of OpenStreetMap, this only weights the results and doesn't exclude things out of bounds.
+    customProvider={undefined | {search: (searchString)=> {}}} // see examples to usage details until docs are ready
+/>
+
         {isLocated &&(
           <Marker
             position={[lat, long]}
