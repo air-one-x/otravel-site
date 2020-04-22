@@ -51,7 +51,10 @@ class PlacesController extends AbstractController
         $newPlace->setLng($lng);
         $newPlace->setLat($lat);
 
+       
         $pictureForm = $data->nameFile;
+        
+        if(!empty($pictureForm)){
 
         $img = str_replace('data:image/png;base64,','', $pictureForm);
         
@@ -68,7 +71,7 @@ class PlacesController extends AbstractController
             $newPlace->setPlacesPicture($picture);
             
         }
-
+    }
         $categoriesSelected = $data->category; //je récup les catégories renseignées dans le formulaires
 
         foreach($categoriesSelected as $uniqueCategory){

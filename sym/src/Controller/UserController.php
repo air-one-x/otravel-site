@@ -138,6 +138,8 @@ class UserController extends AbstractController
     }
 
 
+  
+  
 
     /**
      * @Route("/user/edit/{id}", name="user_edit")
@@ -145,31 +147,36 @@ class UserController extends AbstractController
 
     public function userEdit($id,User $user, UserRepository $userRepository, Request $request, SerializerInterface $serializer)
     {
-        $userModify = $serializer->deserialize($request->getContent(), User::class, 'json');
-       
 
-        $actualuser = $userRepository->find($id);
         
-       
+        $userModify = $serializer->deserialize($request->getContent(), User::class, 'json');
+        
+        $actualUser = $userRepository->find($id);
+        
+        
         $email = $userModify->getEmail();
         $username = $userModify->getUsername();
         $password = $userModify->getPassword();
+        
 
-        $userModify->setPassword($this->passwordEncoder->encodePassword(
+        $passwordModif = $userModify->setPassword($this->passwordEncoder->encodePassword(
             $userModify,
             $password
         ));
-
-        $userRepository->upgradePassword( $user,  $password);
+         
+        $test = $passwordModif->getPassword();
        
-
-        $actualuser->setUsername($username); 
-        $actualuser->setEmail($email);
+     
+        // $actualUser->setPassword($testtt);
+        $upgradeP = $userRepository->upgradePassword($userModify, $test);
+        $actualUser->setUsername($username); 
+        $actualUser->setEmail($email);
       
-        dd($actualuser);
+        dd($actualUser);
         
     
     }
+   
 
 }
 

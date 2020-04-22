@@ -62,7 +62,6 @@ class SecurityController extends AbstractController
     public function isLogged(SerializerInterface $serializer)
     {
         $user = $this->getUser();
-    
         $avatar = $user->getAvatar();
         $getFile = file_get_contents($avatar);
         $encode = base64_encode($getFile);
