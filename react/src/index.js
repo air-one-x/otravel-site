@@ -11,7 +11,7 @@ import App from './containers/App';
 // Store
 import store from './store';
 
-import "leaflet/dist/leaflet.css";
+// import "leaflet/dist/leaflet.css";
 import "esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css";
 
 import "leaflet/dist/leaflet.js";
