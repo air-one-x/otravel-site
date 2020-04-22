@@ -12,6 +12,8 @@ import App from './containers/App';
 import store from './store';
 
 
+
+
 // == Render
 // 1. Le composant racine (celui qui contient l'ensemble de l'app)
 const rootComponent = (

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './style.css';
 import Footer from '../Footer';
 
-const Contact = () => (
+const Contact = ({email,pseudo}) => (
     <div className="contact">
        <header>
          <Link to="/"><h1>O'travel</h1></Link>
@@ -17,9 +17,8 @@ const Contact = () => (
                <option>Signaler un problème</option>
                <option>Suggestion</option>
            </select>
-           <input type="text" placeholder="Nom" className="contact__input"/>
-           <input type="text" placeholder="Prénom" className="contact__input" />
-           <input type="email" placeholder="Email" className="contact__input" />
+           <input type="text" className="contact__input" value={pseudo} disabled/>
+           <input type="email"  className="contact__input" value={email} disabled />
            <textarea placeholder="Commentaire" rows="5" className="contact__input contact__comment"/>
            <br />
            <button type="submit" className="contact__submit">Envoyer</button>
