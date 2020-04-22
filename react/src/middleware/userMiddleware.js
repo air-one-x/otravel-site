@@ -8,7 +8,7 @@ export default (store) => (next) => (action) => {
       // Je veux lancer ma requête avec axios
       axios({
         method: 'post',
-        url: 'http://localhost:8001/login',
+        url: 'https://localhost:8001/login',
         withCredentials: true,
         data: {
           username: store.getState().user.form.email,
@@ -20,7 +20,7 @@ export default (store) => (next) => (action) => {
         localStorage.setItem('id_token', res.data.token);
          
         axios({
-          url: 'http://localhost:8001/isLogged',
+          url: 'https://localhost:8001/isLogged',
           method: 'post',
           withCredentials: true,
           headers: {
@@ -51,7 +51,7 @@ export default (store) => (next) => (action) => {
       case LOGOUT:
         axios({
           method: 'post',
-          url: 'http://localhost:8001/logout',
+          url: 'https://localhost:8001/logout',
           withCredentials: true,
         })
           .then((res) => {
@@ -65,7 +65,7 @@ export default (store) => (next) => (action) => {
         break;
         case CHECK_AUTH:
           axios({
-            url: 'http://localhost:8001/isLogged',
+            url: 'https://localhost:8001/isLogged',
             method: 'post',
             withCredentials: true,
             headers: {

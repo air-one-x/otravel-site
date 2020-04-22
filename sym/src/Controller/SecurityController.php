@@ -68,6 +68,7 @@ class SecurityController extends AbstractController
         $data = $serializer->normalize($user, null, ['groups' => 'user']);
         return $this->json($data);
     }
+    
     /**
      * @Route("/logout", name="app_logout")
      */

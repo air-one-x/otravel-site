@@ -30,6 +30,23 @@ class PlacesController extends AbstractController
      */
     public function add(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository)
     {
+        //---------------Version Géocode
+        $x = "45.6944012, 4.9300878";
+        $geocoder = new \OpenCage\Geocoder\Geocoder('b38489ac53674c90b5e1b886beb901a3');
+        $result = $geocoder->geocode($x); # latitude,longitude (y,x)
+        dd($result['results'][0]['formatted']);
+
+        //-----------------Version adresse
+
+        // $geocoder = new \OpenCage\Geocoder\Geocoder('b38489ac53674c90b5e1b886beb901a3');
+        // $result = $geocoder->geocode('59 rue Anatole France, 69800 Saint Priest', ['language' => 'fr', 'countrycode' => 'fr']);
+        
+
+        // if ($result && $result['total_results'] > 0) {
+        // $first = $result['results'][0];
+        // dd($first['geometry']['lng'] . ';' . $first['geometry']['lat'] . ';' . $first['formatted'] . "\n");
+        // # 4.360081;43.8316276;6 Rue Massillon, 30020 Nîmes, Frankreich
+        // }
 
         $places = $serializer->deserialize($request->getContent(), Places::class, 'json');
         $data = json_decode($request->getContent()); // je récup juste les données renseignées
@@ -84,8 +101,8 @@ class PlacesController extends AbstractController
         ];
 
         return new JsonResponse($data, 201);
-
     }
+    
 
     /**
      * @Route("/places/delete/{id}", name="places_delete")

@@ -94,6 +94,24 @@
     "exsyst/swagger": {
         "version": "v0.4.1"
     },
+    "geocoder-php/common-http": {
+        "version": "4.2.0"
+    },
+    "geocoder-php/google-maps-provider": {
+        "version": "4.4.0"
+    },
+    "geocoder-php/plugin": {
+        "version": "1.1.0"
+    },
+    "guzzlehttp/guzzle": {
+        "version": "6.5.3"
+    },
+    "guzzlehttp/promises": {
+        "version": "v1.3.1"
+    },
+    "guzzlehttp/psr7": {
+        "version": "1.6.1"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
@@ -152,11 +170,29 @@
     "ocramius/proxy-manager": {
         "version": "2.2.3"
     },
+    "opencage/geocode": {
+        "version": "2.1.0"
+    },
     "pagerfanta/pagerfanta": {
         "version": "v2.1.3"
     },
     "php": {
         "version": "7.2"
+    },
+    "php-http/discovery": {
+        "version": "1.7.4"
+    },
+    "php-http/guzzle6-adapter": {
+        "version": "v2.0.1"
+    },
+    "php-http/httplug": {
+        "version": "2.1.0"
+    },
+    "php-http/message-factory": {
+        "version": "v1.0.2"
+    },
+    "php-http/promise": {
+        "version": "v1.0.0"
     },
     "phpdocumentor/reflection-common": {
         "version": "2.0.0"
@@ -176,11 +212,23 @@
     "psr/event-dispatcher": {
         "version": "1.0.0"
     },
+    "psr/http-client": {
+        "version": "1.0.0"
+    },
+    "psr/http-message": {
+        "version": "1.0.1"
+    },
     "psr/link": {
         "version": "1.0.0"
     },
     "psr/log": {
         "version": "1.1.3"
+    },
+    "psr/simple-cache": {
+        "version": "1.0.1"
+    },
+    "ralouphie/getallheaders": {
+        "version": "3.0.3"
     },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
@@ -578,6 +626,21 @@
     },
     "webmozart/assert": {
         "version": "1.7.0"
+    },
+    "willdurand/geocoder": {
+        "version": "4.2.2"
+    },
+    "willdurand/geocoder-bundle": {
+        "version": "5.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "5.0",
+            "ref": "b272ad4fbfcd45a20e7cbfdc4ad1b0e27a62fd3b"
+        },
+        "files": [
+            "config/packages/bazinga_geocoder.yaml"
+        ]
     },
     "zendframework/zend-code": {
         "version": "3.4.1"
