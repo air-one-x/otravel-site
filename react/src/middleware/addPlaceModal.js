@@ -19,11 +19,16 @@ export default (store) => (next) => (action) => {
               zipCode: store.getState().geolocation.form.zipCode.toString(),
               city: store.getState().geolocation.form.city,
               lat: store.getState().geolocation.coords.lat,
-              lng: store.getState().geolocation.coords.long
+              lng: store.getState().geolocation.coords.long,
+              nameFile: '',
+              adress: '1 rue ',
+              places_picture: localStorage.getItem('picturePlace'),
+
+
             },
           }).then((res) => {
             // Si succès -> dispatcher une action success
-            console.log('FELICITATION GAETAN', res);
+            console.log('AJJJJJOUUUUUUT D UUUUNNN LIIEEEEUUUUU', res);
           })
             .catch((err) => {
             // Si error -> Dispatcher une action error
