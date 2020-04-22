@@ -8,9 +8,8 @@ export default (store) => (next) => (action) => {
       // Je veux lancer ma requête avec axios
       axios({
         method: 'post',
-        url: 'https://localhost:8001/inscription',
+        url: 'http://localhost:8001/inscription',
         withCredentials: true,
-        headers: { 'Content-Type': 'multipart/form-data' },
         data: {
           username: store.getState().userInscription.form.pseudo,
           avatar: store.getState().userInscription.form.avatar,

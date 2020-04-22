@@ -131,7 +131,6 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
                   <Grid container item>
                     <input type="file" label="file" onChange={(event) => {
                       handleChange(event.target);
-                      
                       var input = event.target.files[0];
                       var reader = new FileReader(); 
                       reader.onload = function(){

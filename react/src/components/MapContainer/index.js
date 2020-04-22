@@ -8,7 +8,7 @@ import * as parkData from '../../data/skateboard-parcks.json';
 import ReactLeafletSearch from "react-leaflet-search";
 import L from 'leaflet';
 import userLocationURL from './map-pin-solid.svg';
-
+import NavBar from '../Navbar';
 
 const myIcon = L.icon({
   iconUrl: userLocationURL,

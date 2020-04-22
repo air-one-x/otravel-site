@@ -56,7 +56,7 @@ class PlacesController extends AbstractController
         $img = str_replace('data:image/png;base64,','', $pictureForm);
         
         $nomfichier = explode(".", $data->nameFile)  ;
-        $nomfichierUnique = $nomfichier[0].uniqid().'.'.$nomfichier[1];
+        $nomfichierUnique = $nomfichier[0].uniqid().'.'.$nomfichier[0];
         $path = '../public/uploads/images/places/'. $nomfichierUnique;
         
         $success = file_put_contents($path, base64_decode($img));
