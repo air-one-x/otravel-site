@@ -51,12 +51,15 @@ class PlacesController extends AbstractController
         $newPlace->setLng($lng);
         $newPlace->setLat($lat);
 
+       
         $pictureForm = $data->nameFile;
+        
+        if(!empty($pictureForm)){
 
         $img = str_replace('data:image/png;base64,','', $pictureForm);
         
         $nomfichier = explode(".", $data->nameFile)  ;
-        $nomfichierUnique = $nomfichier[0].uniqid().'.'.$nomfichier[1];
+        $nomfichierUnique = $nomfichier[0].uniqid().'.'.$nomfichier[0];
         $path = '../public/uploads/images/places/'. $nomfichierUnique;
         
         $success = file_put_contents($path, base64_decode($img));
@@ -68,7 +71,7 @@ class PlacesController extends AbstractController
             $newPlace->setPlacesPicture($picture);
             
         }
-
+    }
         $categoriesSelected = $data->category; //je récup les catégories renseignées dans le formulaires
 
         foreach($categoriesSelected as $uniqueCategory){
