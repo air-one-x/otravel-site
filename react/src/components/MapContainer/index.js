@@ -4,18 +4,21 @@ import {
 } from 'react-leaflet';
 // import { Icon } from "leaflet";
 import './style.css';
-import * as parkData from '../../data/skateboard-parcks.json';
 import ReactLeafletSearch from "react-leaflet-search";
 import L from 'leaflet';
 import userLocationURL from './map-pin-solid.svg';
 import NavBar from '../Navbar';
+
+
+
 
 const myIcon = L.icon({
   iconUrl: userLocationURL,
   iconSize: [33, 35]
 });
 
-const MapContainer = ({userLocation, lat, long, isLocated}) => {
+const MapContainer = ({userLocation, lat, long, isLocated, fetchPlaces, list}) => {
+
   const getLocation = () => {
     if (navigator.geolocation) {
       console.log(navigator.geolocation);
@@ -24,7 +27,7 @@ const MapContainer = ({userLocation, lat, long, isLocated}) => {
       console.log('erreur !!')
     }
   }
-  
+  console.log(fetchPlaces);
   const showPosition = (position) => {
     console.log('show position', position.coords.latitude);
     userLocation(position.coords)
@@ -32,9 +35,12 @@ const MapContainer = ({userLocation, lat, long, isLocated}) => {
 
   useEffect(() => {
      getLocation()
+
   },[]);
-console.log('longlat', lat , long, isLocated)
-  const [activePark, setActivePark] = React.useState(null);
+  useEffect(fetchPlaces,[]);
+
+console.log('longlat', lat , long, isLocated, list)
+  const [activePlace, setActivePlace] = React.useState(null);
 
 
   return (
@@ -67,31 +73,31 @@ console.log('longlat', lat , long, isLocated)
           >
           </Marker>)
         }
-        {parkData.features.map((park) => (
+        {list.map((place) => (
           <Marker
-            key={park.properties.PARK_ID}
+            key={place.id}
             position={[
-              park.geometry.coordinates[1],
-              park.geometry.coordinates[0],
+              place.lat,
+              place.lng,
             ]}
             onClick={() => {
-              setActivePark(park);
+              setActivePlace(place);
             }}
           />
         ))}
-        {activePark && (
+        {activePlace && (
         <Popup
           position={[
-            activePark.geometry.coordinates[1],
-            activePark.geometry.coordinates[0],
+            activePlace.lat,
+            activePlace.lng,
           ]}
           onClose={() => {
-            setActivePark(null);
+            setActivePlace(null);
           }}
         >
           <div>
-            <h2>{activePark.properties.NAME}</h2>
-            <p>{activePark.properties.DESCRIPTIO}</p>
+            <h2>{activePlace.name}</h2>
+            <p>{activePlace.user.username}</p>
           </div>
         </Popup>
         )}
