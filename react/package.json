@@ -63,6 +63,8 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.49",
     "axios": "^0.19.2",
+    "esri-leaflet": "^2.3.3",
+    "esri-leaflet-geocoder": "^2.3.2",
     "leaflet": "^1.6.0",
     "prop-types": "*",
     "react": "*",

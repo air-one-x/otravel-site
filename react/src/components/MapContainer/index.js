@@ -5,14 +5,20 @@ import {
 // import { Icon } from "leaflet";
 import './style.css';
 import * as parkData from '../../data/skateboard-parcks.json';
-import { useSelector } from 'react-redux'
-  
+import { useSelector } from 'react-redux';
 
+import L from 'leaflet';
+import userLocationURL from './map-pin-solid.svg';
+
+const myIcon = L.icon({
+  iconUrl: userLocationURL,
+  iconSize: [33, 35]
+});
 
 const MapContainer = ({userLocation, lat, long, isLocated}) => {
   const getLocation = () => {
     if (navigator.geolocation) {
-      console.log(navigator.geolocation);
+      console.log('test',navigator.geolocation);
       navigator.geolocation.getCurrentPosition(showPosition);
     } else { 
       console.log('erreur !!')
@@ -20,7 +26,7 @@ const MapContainer = ({userLocation, lat, long, isLocated}) => {
   }
   
   const showPosition = (position) => {
-    console.log('show position', position.coords.latitude);
+    console.log('show position', position);
     userLocation(position.coords)
   }
 
@@ -36,6 +42,14 @@ console.log('longlat', lat , long, isLocated)
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
+       {isLocated &&(
+        <Marker
+          position={[lat, long]}
+           icon={myIcon}
+        >
+        </Marker>)
+      }
+        
         {parkData.features.map((park) => (
           <Marker
             key={park.properties.PARK_ID}
