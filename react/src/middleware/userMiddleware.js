@@ -37,7 +37,7 @@ export default (store) => (next) => (action) => {
           })
           .catch((error) => {
             console.log(error);
-            console.log(localStorage.getItem('id_token'));
+            // console.log(localStorage.getItem('id_token'));
           });
         
 
@@ -82,7 +82,7 @@ export default (store) => (next) => (action) => {
             })
             .catch((error) => {
               console.log(error);
-              console.log(localStorage.getItem('id_token'));
+              // console.log(localStorage.getItem('id_token'));
             });
           break;
     default:

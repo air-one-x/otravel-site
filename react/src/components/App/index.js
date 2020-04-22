@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './style.css';
 import { Switch, Route } from 'react-router-dom';
 // == Import
-import NavBar from '../Navbar';
+
 // import MapContainer from '../MapContainer';
 import MapContainer from '../../containers/Geolocation'
 import NavBarBottom from '../NavBarBottom';
@@ -26,7 +26,7 @@ const App = ({ checkAuth }) => {
     <Switch>
       <Route exact path="/" render={() => (
         <div>    
-          <NavBar />
+
           <MapContainer />
           <NavBarBottom />
         </div>

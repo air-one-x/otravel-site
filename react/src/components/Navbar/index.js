@@ -13,6 +13,7 @@ import FilterPc from '../../modal/filterPC';
 import { Link } from 'react-router-dom';
 
 
+
 const NavBar = () => {
   const classes = useStyles();
 
@@ -41,6 +42,7 @@ const NavBar = () => {
         </button>
       </div>
     </div>
+
       <div className="nav-item nav-link">
         <AddPlaceModal />
       </div>
