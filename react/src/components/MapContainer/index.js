@@ -9,6 +9,7 @@ import ReactLeafletSearch from "react-leaflet-search";
 import L from 'leaflet';
 import userLocationURL from './map-pin-solid.svg';
 
+
 const myIcon = L.icon({
   iconUrl: userLocationURL,
   iconSize: [33, 35]
@@ -37,12 +38,15 @@ console.log('longlat', lat , long, isLocated)
 
 
   return (
+    <div>
+    <NavBar />
     <div className="map" id="mapid">
       <Map center={[lat, long]} zoom={isLocated ? 12 : 6}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
+
         <ReactLeafletSearch
     position="topright"
     inputPlaceholder="The default text in the search bar"
@@ -55,6 +59,7 @@ console.log('longlat', lat , long, isLocated)
     providerOptions={{searchBounds: []}} // The BingMap and OpenStreetMap providers both accept bounding coordinates in [se,nw] format. Note that in the case of OpenStreetMap, this only weights the results and doesn't exclude things out of bounds.
     customProvider={undefined | {search: (searchString)=> {}}} // see examples to usage details until docs are ready
 />
+
         {isLocated &&(
           <Marker
             position={[lat, long]}
@@ -91,6 +96,7 @@ console.log('longlat', lat , long, isLocated)
         </Popup>
         )}
       </Map>
+    </div>
     </div>
   );
   

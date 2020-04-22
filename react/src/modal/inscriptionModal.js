@@ -92,7 +92,6 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
       pictureAvatarInscription(e.target.result)
     }
   }
-console.log('yyyyyyyyyyyyyyyyyyoooooooo', newUserAvatar);
   return (
     <div className="nav-link">
       <button className="dropdown-item nav-link" type="button" onClick={handleOpen}>
