@@ -7,7 +7,7 @@ import './style.css';
 import useStyles from './style.js';
 import FormLoginModal from '../../containers/Login';
 import InscriptionModal from '../../containers/Inscription';
-import ItemsMenu from './itemsMenu';
+import ItemsMenu from '../../containers/NavBarTop';
 import AddPlaceModal from '../../containers/AddPlace';
 import FilterPc from '../../modal/filterPC';
 import { Link } from 'react-router-dom';
@@ -95,28 +95,6 @@ const NavBar = () => {
     <MenuIcon />
     </IconButton>
     <ItemsMenu openMenu={openMenu} closeMenu={handleClose} />
-    <div className="collapse navbar-collapse buttons--navbar" id="navbarText">
-      <ul className="navbar-nav mr-auto ">
-        <li className="nav-item nav-item-menu">
-          <a className="nav-link-menu" disabled>Menu</a>
-        </li>
-        <li className="nav-item  nav-item-choice">
-          <FormLoginModal /> 
-        </li>
-        <li className="nav-item nav-item-choice">
-          <a className="nav-link" href="#"><InscriptionModal /></a>
-        </li>
-        <li className="nav-item nav-item-choice">
-          <a className="nav-link" href="#">Conditions</a>
-        </li>
-        <li className="nav-item nav-item-choice">
-          <a className="nav-link" href="#">A propos</a>
-        </li>
-        <li className="nav-item nav-item-choice">
-          <a className="nav-link" href="#">Contact</a>
-        </li>
-      </ul>
-    </div>
   </nav>
 );
 }

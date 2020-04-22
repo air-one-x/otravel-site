@@ -11,6 +11,8 @@ import SendIcon from '@material-ui/icons/Send';
 import FormLoginModal from '../../containers/Login';
 import InscriptionModal from '../../containers/Inscription';
 import { Link } from 'react-router-dom';
+import Account from './account';
+
 
  const StyledMenu = withStyles({
     paper: {
@@ -43,8 +45,9 @@ import { Link } from 'react-router-dom';
     },
   }))(MenuItem);
 
- const itemsMenu = (props) => {
+ const itemsMenu = (props,{isLogged}) => {
 console.log('props.itemmenu', props);
+console.log('TESSSSSSST',props.isLogged);
     return(
         <StyledMenu
         id="customized-menu"
@@ -53,6 +56,17 @@ console.log('props.itemmenu', props);
         open={Boolean(props.openMenu)}
         onClose={props.closeMenu}
       >
+        {
+          
+            props.isLogged&&
+            <StyledMenuItem onClick={props.closeMenu}>
+              <ListItemIcon>
+                <InboxIcon fontSize="small" />
+              </ListItemIcon>
+              <Account />
+            </StyledMenuItem>
+          }
+        
         
         <StyledMenuItem>
           <ListItemIcon>
@@ -61,12 +75,16 @@ console.log('props.itemmenu', props);
           <FormLoginModal /> 
         </StyledMenuItem>
 
-        <StyledMenuItem>
+        {
+          !props.isLogged&&<StyledMenuItem>
           <ListItemIcon>
             <DraftsIcon fontSize="small" />
           </ListItemIcon>
           <InscriptionModal />
         </StyledMenuItem>
+        }
+
+        
 
         <Link to="/conditions-utilisations">
         <StyledMenuItem>
