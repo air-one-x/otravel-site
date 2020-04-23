@@ -3,20 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\RegistrationType;
 use App\Repository\UserRepository;
-use App\Services\ImageUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
-
-
 
 
 class UserController extends AbstractController
@@ -32,55 +26,53 @@ class UserController extends AbstractController
     /**
      * @Route("/inscription", name="inscription", methods={"POST"})
      */
-    public function inscription(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager, ValidatorInterface $validator, UserRepository $userRepository)
+    public function inscription(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager, UserRepository $userRepository)
     {
        
         $user = $serializer->deserialize($request->getContent(), User::class, 'json');
-        $user->setRoles(['ROLE_USER']);
-
         $content = json_decode($request->getContent());
 
-
+        $user->setRoles(['ROLE_USER']);
 
         /*email verification*/
 
-        $emailgive = $user->getEmail();
-        $emailbdd = $userRepository->findOneby(['email' => $emailgive]);
+        $emailForm = $user->getEmail();
+        $emailBdd = $userRepository->findOneby(['email' => $emailForm]);
 
-        if($emailbdd){ 
+        if($emailBdd){ 
 
-             $userEmail = $emailbdd->getEmail();
-             if($emailgive == $userEmail){
+            $userEmail = $emailBdd->getEmail();
+            if($emailForm == $userEmail){
             
-               $emailverif = false;
-               $data = [
+                $data = [
                   'status' => 400,
                   'message' => 'L\'adresse email est déja utilisée'
-               ];
-            return new JsonResponse($data, 400);
+                ];
+
+                return new JsonResponse($data, 400);
+            }
+
         }
-    }
             /*username verification*/
 
-            $usernamegive = $user->getUsername();
-            $usernamebdd = $userRepository->findOneby(['username' => $usernamegive]);
+        $usernameForm = $user->getUsername();
+        $usernameBdd = $userRepository->findOneby(['username' => $usernameForm]);
           
           
-           if($usernamebdd){
+        if($usernameBdd){
     
-            $userUsername = $usernamebdd->getUsername();
+            $userNameBdd = $usernameBdd->getUsername();
     
-           
-            if($usernamegive == $userUsername){
+            if($usernameForm == $userNameBdd){
                 
-                $usernameverif = false;
                 $data = [
                     'status' => 400,
                     'message' => 'Le username choisi n\'est pas disponible'
                 ];
                 return new JsonResponse($data, 400);
             }
-          }     
+
+        }     
      
         /*password verification*/
         $password = $user->getPassword();
@@ -95,7 +87,9 @@ class UserController extends AbstractController
                 'message' => 'Le mot de passe doit faire 8 charactère minimum'
             ];
             return new JsonResponse($data, 400);
+
         }
+
         $user->setPassword($this->passwordEncoder->encodePassword(
             $user,
             $password
@@ -103,21 +97,23 @@ class UserController extends AbstractController
 
         /*Give avatar if the user don't put*/
         if(empty($user->getAvatar())){
+
             $user->setAvatar("../public/uploads/images/avatars/account.png");        
+
         }
         else{
-            $avatar = $user->getAvatar();
             
+            $avatar = $user->getAvatar();
             $img = str_replace('data:image/png;base64,','', $avatar);
-
-            $nomfichier= explode(".", $content->nameFile)  ;
+            $nomfichier = explode(".", $content->nameFile)  ;
             $nomfichierUnique = $nomfichier[0].uniqid().'.'.$nomfichier[1];
             $path = '../public/uploads/images/avatars/'. $nomfichierUnique;
-
             $success = file_put_contents($path, base64_decode($img));
+
             if(isset($success)){
                 $user->setAvatar($path);
             }
+
         }
         /*push to database */
        
@@ -129,6 +125,80 @@ class UserController extends AbstractController
         ];
         return new JsonResponse($data, 201);
     }
+
+    /**
+     * @Route("/user/edit/{id}", name="useredit")
+     */
+
+    public function userEdit(User $user, UserRepository $userRepository, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager)
+    {
+        $findUser = $userRepository->findOneBy(['id' => $this->getUser()]);
+  
+        if($findUser->getId() !== $user->getId()){
+            $data = [
+                'status' => 400,
+                'message' => 'T\'as rien à faire là gros'
+            ];
+            return new JsonResponse($data, 400);
+        }else{
+
+            $updatedUserData = $serializer->deserialize($request->getContent(), User::class, 'json');
+
+            $content = json_decode($request->getContent());
+
+            // dd($findUser);
+
+            //Update Username
+            if(!empty($updatedUserData->getUsername())){
+
+                $username = $updatedUserData->getUsername();
+                $findUser->setUsername($username);
+
+            }
+            //Update Avatar
+            if(!empty($updatedUserData->getAvatar())){
+
+                $newAvatar = $updatedUserData->getAvatar();
+                $img = str_replace('data:image/png;base64,','', $newAvatar);
+                $nomfichier = explode(".", $content->nameFile)  ;
+                $nomfichierUnique = $nomfichier[0].uniqid().'.'.$nomfichier[1];
+                $path = '../public/uploads/images/avatars/'. $nomfichierUnique;
+                $success = file_put_contents($path, base64_decode($img));
+
+                if(isset($success)){
+                    $findUser->setAvatar($path);
+                }
+
+            }
+            //Update Email
+            if(!empty($updatedUserData->getEmail())){
+
+                $email = $updatedUserData->getEmail();
+                $findUser->setEmail($email);
+
+            }
+            //Update Password
+            if(!empty($updatedUserData->getPassword())){
+
+                $password = $updatedUserData->getPassword();
+                $findUser->setPassword($this->passwordEncoder->encodePassword(
+                    $findUser,
+                    $password
+                )); 
+
+            }
+    
+            $entityManager->persist($findUser);
+            $entityManager->flush();
+            
+            $data = [
+                'status' => 201,
+                'message' => 'Votre profil a bien été mis à jour'
+            ];
+            return new JsonResponse($data, 201);
+        }
+    }
+    
     /**
      * @Route("/logout", name="app_logout")
      */
@@ -136,47 +206,6 @@ class UserController extends AbstractController
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
-
-
-  
-  
-
-    /**
-     * @Route("/user/edit/{id}", name="user_edit")
-     */
-
-    public function userEdit($id,User $user, UserRepository $userRepository, Request $request, SerializerInterface $serializer)
-    {
-
-        
-        $userModify = $serializer->deserialize($request->getContent(), User::class, 'json');
-        
-        $actualUser = $userRepository->find($id);
-        
-        
-        $email = $userModify->getEmail();
-        $username = $userModify->getUsername();
-        $password = $userModify->getPassword();
-        
-
-        $passwordModif = $userModify->setPassword($this->passwordEncoder->encodePassword(
-            $userModify,
-            $password
-        ));
-         
-        $test = $passwordModif->getPassword();
-       
-     
-        // $actualUser->setPassword($testtt);
-        $upgradeP = $userRepository->upgradePassword($userModify, $test);
-        $actualUser->setUsername($username); 
-        $actualUser->setEmail($email);
-      
-        dd($actualUser);
-        
-    
-    }
-   
 
 }
 

@@ -41,7 +41,7 @@ class Places
 
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer", length=255)
      * @Groups("category")
      * @Groups("user")
      */
@@ -84,6 +84,13 @@ class Places
      * @Groups("places")
      */
     private $lat;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     * @Groups("category")
+     */
+    private $description;
+
     /**
      * @ORM\Column(type="datetime")
      * @Groups("places")
@@ -98,12 +105,6 @@ class Places
      * 
      */
     private $updated_at;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     * @Groups("category")
-     */
-    private $description;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\PlacePicture", cascade={"persist", "remove"})

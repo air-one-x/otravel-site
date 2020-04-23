@@ -29,6 +29,13 @@ class Commentary
     private $text;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="Commentary")
+     * @ORM\JoinColumn(onDelete="SET NULL")
+     * @Groups("commentary")
+     */
+    private $user;
+
+    /**
      * @ORM\Column(type="datetime")
      * @Groups("commentary")
      */
@@ -38,14 +45,6 @@ class Commentary
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $updated_at;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="Commentary")
-     * @ORM\JoinColumn(onDelete="SET NULL")
-     * @Groups("commentary")
-     */
-    private $user;
-
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\CommentaryPicture", mappedBy="commentary", orphanRemoval=true)

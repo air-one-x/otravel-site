@@ -201,7 +201,7 @@ class ApiController extends AbstractController
     /**
      * @Route("/api/category/places/{id}", name="read_places_from_category")
      */
-    public function placesFromCategory(Category $category,CategoryRepository $categoryRepository, PlacesRepository $placesRepository, SerializerInterface $serializer)
+    public function placesFromCategory(Category $category, PlacesRepository $placesRepository, SerializerInterface $serializer)
     {
         
         $places = $placesRepository->placesByCategory($category->getId());

@@ -50,28 +50,29 @@ class PlacesController extends AbstractController
         $newPlace->setUser($this->getUser());
         $newPlace->setLng($lng);
         $newPlace->setLat($lat);
-
-       
-        $pictureForm = $data->nameFile;
         
-        if(!empty($pictureForm)){
+        if(!empty($data->nameFile)){
 
-        $img = str_replace('data:image/png;base64,','', $pictureForm);
-        
-        $nomfichier = explode(".", $data->nameFile)  ;
-        $nomfichierUnique = $nomfichier[0].uniqid().'.'.$nomfichier[0];
-        $path = '../public/uploads/images/places/'. $nomfichierUnique;
-        
-        $success = file_put_contents($path, base64_decode($img));
+            $pictureForm = $data->nameFile;
 
-        if(isset($success)){
+            $img = str_replace('data:image/png;base64,','', $pictureForm);
             
-            $picture = new PlacePicture;
-            $picture->setName($pictureForm);
-            $newPlace->setPlacesPicture($picture);
+            $nomfichier = explode(".", $data->nameFile)  ;
+            $nomfichierUnique = $nomfichier[0].uniqid().'.'.$nomfichier[0];
+            $path = '../public/uploads/images/places/'. $nomfichierUnique;
             
+            $success = file_put_contents($path, base64_decode($img));
+
+            if(isset($success)){
+                
+                $picture = new PlacePicture;
+                $picture->setName($pictureForm);
+                $newPlace->setPlacesPicture($picture);
+                
+            }
+
         }
-    }
+        
         $categoriesSelected = $data->category; //je récup les catégories renseignées dans le formulaires
 
         foreach($categoriesSelected as $uniqueCategory){
