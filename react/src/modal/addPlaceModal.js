@@ -44,7 +44,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, namePlace , descriptionPlace, addNamePlace, addCategoryPlace, addDescriptionPlace, addZipCodePlace, addCityPlace, addStreetPlace, lat, long, addPlace}) => {
+const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, namePlace , descriptionPlace, addNamePlace, addCategoryPlace, addDescriptionPlace, addZipCodePlace, addCityPlace, addStreetPlace, lat, long, addPlace, sendLatLng}) => {
 
   const classes = useStyles(); 
   const [open, setOpen] = React.useState(false);
@@ -63,7 +63,7 @@ const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, nam
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button variant="outlined" color="primary" onClick={()=>{sendLatLng(); handleClickOpen()}}>
           Ajouter un lieu
       </Button>
       <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
@@ -100,7 +100,8 @@ const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, nam
           value={categoryPlace}
           onChange={(event) => addCategoryPlace(event.target.value)}
         >
-        <MenuItem value="1" >Douche</MenuItem>
+        <MenuItem value="1" >Douches</MenuItem>
+        <MenuItem value="2" >Toilettes</MenuItem>
       </Select>
     </FormControl>
           <Grid container item>
