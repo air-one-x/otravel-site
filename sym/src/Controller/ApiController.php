@@ -3,23 +3,23 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Category;
+use App\Entity\Commentary;
+use App\Entity\CommentaryPicture;
+use App\Entity\Places;
+use App\Entity\PlacePicture;
 use App\Entity\User;
 use App\Repository\UserRepository;
-use App\Entity\Category;
 use App\Repository\CategoryRepository;
-use App\Entity\Places;
 use App\Repository\PlacesRepository;
-use App\Entity\PlacePicture;
 use App\Repository\PlacePictureRepository;
-use App\Entity\Commentary;
 use App\Repository\CommentaryRepository;
-use App\Entity\CommentaryPicture;
 use App\Repository\CommentaryPictureRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Component\HttpFoundation\Request;
 
 class ApiController extends AbstractController
 {
@@ -70,50 +70,36 @@ class ApiController extends AbstractController
         
     }
 
-
-
     /**
      * @Route("/api/adress/places", name="read_adress_places")
      */
     public function placesAdress(PlacesRepository $placesRepository, Request $request, SerializerInterface $serializer)
     {
 
-       
         $data = json_decode($request->getContent());
+
         $lng = ($data->lng);
         $lat = ($data->lat);
-
         $array = [$lng, $lat];
-       
         $stringifyData = implode(",", $array);
-       
-        //---------------Version Géocode
         $geoCode = $stringifyData;
         $geocoder = new \OpenCage\Geocoder\Geocoder('b38489ac53674c90b5e1b886beb901a3');
         $result = $geocoder->geocode($stringifyData); # latitude,longitude (y,x)
-        
-
-        // return json($result['results'][0]['formatted']);
-
         $returnAdress = $serializer->normalize($result);
+
         return $this->json($returnAdress);
 
-       
-                
     }
-
-
-
-
 
     /**
      * @Route("/api/places", name="browse_places")
      */
     public function browse_places(PlacesRepository $placesRepository, SerializerInterface $serializer)
     {
-        $user = $placesRepository->findAll();
 
+        $user = $placesRepository->findAll();
         $data = $serializer->normalize($user, null, ['groups' => 'places']);
+
         return $this->json($data);
 
     }
@@ -125,6 +111,7 @@ class ApiController extends AbstractController
     {
         $user = $placesRepository->find($places);
         $data = $serializer->normalize($user, null, ['groups' => 'places']);
+
         return $this->json($data);
 
     }
@@ -135,8 +122,8 @@ class ApiController extends AbstractController
     public function browse_commentary(CommentaryRepository $commentaryRepository, SerializerInterface $serializer)
     {
         $user = $commentaryRepository->findAll();
-
         $data = $serializer->normalize($user, null, ['groups' => 'commentary']);
+
         return $this->json($data);
 
     }
@@ -158,9 +145,10 @@ class ApiController extends AbstractController
      */
     public function browse_place_picture(PlacePictureRepository $placepictureRepository, SerializerInterface $serializer)
     {
-        $user = $placepictureRepository->findAll();
 
+        $user = $placepictureRepository->findAll();
         $data = $serializer->normalize($user, null, ['groups' => 'place_picture']);
+
         return $this->json($data);
 
     }
@@ -170,9 +158,12 @@ class ApiController extends AbstractController
      */
     public function read_place_picture(PlacePicture $placepicture, PlacePictureRepository $placepictureRepository, SerializerInterface $serializer)
     {
+
         $user = $placepictureRepository->find($placepicture);
         $data = $serializer->normalize($user, null, ['groups' => 'place_picture']);
+
         return $this->json($data);
+
     }
 
     /**
@@ -180,9 +171,10 @@ class ApiController extends AbstractController
      */
     public function browse_commentary_picture(CommentaryPictureRepository $commentarypictureRepository, SerializerInterface $serializer)
     {
-        $user = $commentarypictureRepository->findAll();
 
+        $user = $commentarypictureRepository->findAll();
         $data = $serializer->normalize($user, null, ['groups' => 'commentary_picture']);
+
         return $this->json($data);
 
     }
@@ -192,8 +184,10 @@ class ApiController extends AbstractController
      */
     public function read_commentary_picture(CommentaryPicture $commentarypicture, CommentaryPictureRepository $commentarypictureRepository, SerializerInterface $serializer)
     {
+
         $user = $commentarypictureRepository->find($commentarypicture);
         $data = $serializer->normalize($user, null, ['groups' => 'commentary_picture']);
+
         return $this->json($data);
 
     }
@@ -205,12 +199,11 @@ class ApiController extends AbstractController
     {
         
         $places = $placesRepository->placesByCategory($category->getId());
-
         $data = $serializer->normalize($places, null, ['groups' => 'category']);
+
         return $this->json($data);
         
     }
-
 
 }
 

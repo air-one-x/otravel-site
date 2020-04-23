@@ -9,11 +9,13 @@ import FormLoginModal from '../../containers/Login';
 import InscriptionModal from '../../containers/Inscription';
 import ItemsMenu from '../../containers/NavBarTop';
 import AddPlaceModal from '../../containers/AddPlace';
-import FilterPc from '../../modal/filterPC';
+import FilterPc from '../../containers/filterPC';
 import { Link } from 'react-router-dom';
 import FormLoginModalAddPlace from '../../containers/addPlaceFakeLogin';
 
+
 const NavBar = ({isLogged}) => {
+
   const classes = useStyles();
 
   const [openMenu, setOpenMenu] = React.useState(null);

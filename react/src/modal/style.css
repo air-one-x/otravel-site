@@ -1,0 +1,42 @@
+
+
+@media all and (max-width: 959px) {
+    .icon {
+        display:block;
+    }
+
+    .text {
+        display: none;
+    }
+
+    .menu-desktop .pc {
+        display:none;
+    }
+
+    .test {
+        position: absolute;
+        bottom:0;
+    }
+}
+
+@media all and (min-width: 960px) {
+    .text {
+        display: block;
+    }
+    .icon {
+        display:none;
+    }
+
+    .menu-desktop .pc {
+        display:block;
+    }
+
+    .mobile--buttons .mobile {
+        display:none;
+    }
+
+    .test {
+        position: absolute;
+        top:0;
+    }
+}

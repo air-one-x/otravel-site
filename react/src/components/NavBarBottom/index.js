@@ -1,6 +1,6 @@
 import React from 'react';
 import AddPlace from '../../containers/AddPlace';
-import FilterPlace from './FilterPlace';
+import FilterPlace from '../../modal/filterPC';
 import LocalisationButton from './LocalisationButton';
 import NavigationIcon from '@material-ui/icons/Navigation';
 import './style.css';

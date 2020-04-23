@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import AddPlaceModal from '../modal/addPlaceModal';
-import {cityPlace, zipCodePlace, streetPlace, categoryPlace, namePlace , descriptionPlace, addPlace} from '../actions/geolocation';
+import {cityPlace, zipCodePlace, streetPlace, categoryPlace, namePlace , descriptionPlace, addPlace, sendAdress} from '../actions/geolocation';
 
 const mapStateToProps = (state) => ({
     lat: state.geolocation.coords.lat,
@@ -23,6 +23,7 @@ const mapDispatchToProps = (dispatch) => ({
     addCityPlace: (event) =>  dispatch(cityPlace(event)),
     addStreetPlace: (event) =>  dispatch(streetPlace(event)),
     addPlace: () => dispatch(addPlace()),
+    sendLatLng: () => dispatch(sendAdress()),
 
 });
 
