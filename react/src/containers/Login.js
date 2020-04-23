@@ -6,6 +6,7 @@ const mapStateTopProps = (state) => ({
   userEmail: state.user.form.email,
   userPassword: state.user.form.password,
   isLoggedUser: state.user.isLogged,
+  loginError: state.user.error,
 });
 
 const mapDispatchToProps = (dispatch) => ({

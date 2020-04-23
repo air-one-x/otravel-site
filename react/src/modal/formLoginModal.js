@@ -58,7 +58,7 @@ Fade.propTypes = {
 };
 
 const LoginModal = ({
-  userEmail, userPassword, changeEmail, changePassword, login, isLoggedUser ,logout,
+  userEmail, userPassword, changeEmail, changePassword, login, isLoggedUser ,logout, loginError
 }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -70,17 +70,15 @@ const LoginModal = ({
   const handleClose = () => {
     setOpen(false);
   };
-
-  const checkLogged = (param) => {
-    var param = isLoggedUser;
-    if(param  === false){  
-     
-        console.log('Les données saisis ne sont pas correctes')
-      
-    } else {
+  
+  const checkLogged = () => {
+    console.log('!!!!!!!!!!!!!!!!!!!!', loginError);
+    if(isLoggedUser  === true){  
       handleClose();
-    }
+    } 
   };
+
+
 
   return (
    
@@ -138,6 +136,7 @@ const LoginModal = ({
                     <TextField type="password" id="paswword" label="Mot de passe" value={userPassword} onChange={(event) => changePassword(event.target.value)} />
                   </Grid>
                 </Grid>
+                <p>{loginError === '' ? '' : loginError}</p>
                 <div className="m-3 justify-content-center">
                   <Button className="mr-3" variant="contained" onClick={handleClose}>annuler</Button>
                   <Button variant="contained" color="primary" onClick={()=> {login(); checkLogged()}}>valider</Button>
