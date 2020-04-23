@@ -34,24 +34,31 @@ class SecurityController extends AbstractController
         if (count($errors)) {
             
             $errors = $serializer->serialize($errors, 'json');
+
             return new Response($errors, 401, [
                 'Content-Type' => 'application/json'
             ]);
+
         }
 
         // Check if log or password return error;
         
         if ($result === false) {
+
             return new JsonResponse('mot de passe ou email incorrect', 401, [
                 'Content-Type' => 'application/json'
             ]);
+
         } else {
+
             return $this->json($emailBdd);
+
         }
+
     }
 
     /**
-     * @Route("/isLogged", name="test")
+     * @Route("/isLogged", name="is_logged")
      */
     public function isLogged(SerializerInterface $serializer)
     {
@@ -71,7 +78,9 @@ class SecurityController extends AbstractController
     public function loginAdmin(AuthenticationUtils $authenticationUtils): Response
     {
         if ($this->getUser()) {
+
             return $this->redirectToRoute('target_path');
+
         }
 
         // get the login error if there is one
@@ -89,4 +98,5 @@ class SecurityController extends AbstractController
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
+
 }

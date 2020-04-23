@@ -35,6 +35,13 @@ security:
             guard:
                 authenticators:
                     - lexik_jwt_authentication.jwt_token_authenticator
+        commentaryplaces:
+            pattern:   ^/commentary/add
+            stateless: true
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
+
 
         isLogged:
             pattern:   ^/isLogged

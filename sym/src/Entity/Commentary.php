@@ -55,6 +55,8 @@ class Commentary
     public function __construct()
     {
         $this->CommentaryPicture = new ArrayCollection();
+        $this->created_at = new \DateTime();
+        $this->updated_at = new \DateTime();
     }
 
     public function getId(): ?int
