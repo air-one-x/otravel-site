@@ -1,27 +1,20 @@
 <?php
 namespace App\Controller;
 
-use App\Entity\User;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use Symfony\Component\HttpFoundation\Session\Session;
 
 
 class SecurityController extends AbstractController
 {
-    private $session;
 
-    public function __construct(SessionInterface $session)
-    {
-        $this->session = $session;
-    }
     /**
      * @Route("/login", name="login", methods={"POST"})
      */
@@ -56,6 +49,7 @@ class SecurityController extends AbstractController
             return $this->json($emailBdd);
         }
     }
+
     /**
      * @Route("/isLogged", name="test")
      */
@@ -71,6 +65,23 @@ class SecurityController extends AbstractController
 
     }
     
+    /**
+     * @Route("/connect_admin", name="app_login")
+     */
+    public function loginAdmin(AuthenticationUtils $authenticationUtils): Response
+    {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('target_path');
+        }
+
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+    }
+
     /**
      * @Route("/logout", name="app_logout")
      */
