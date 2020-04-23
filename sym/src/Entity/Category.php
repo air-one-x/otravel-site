@@ -30,6 +30,12 @@ class Category
     private $name;
 
     /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Places", mappedBy="Category")
+     * @Groups("category") 
+     */
+    private $places;
+
+    /**
      * @ORM\Column(type="datetime")
      * @Groups("category") 
      */
@@ -39,14 +45,6 @@ class Category
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $updated_at;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Places", mappedBy="Category")
-     * @Groups("category") 
-     */
-    private $places;
-
-        
 
     public function __construct()
     {

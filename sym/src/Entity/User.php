@@ -38,11 +38,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups("user")
-     * )
      */
-    //     @Assert\File(
-    // mimeTypes = {"image/png","image/jpeg"},
-    // mimeTypesMessage = "Veuillez uploader un fichier au format JPG ou PNG"
     private $avatar;
     
     /**

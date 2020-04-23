@@ -29,6 +29,13 @@ security:
             guard:
                 authenticators:
                     - lexik_jwt_authentication.jwt_token_authenticator
+        useredit:
+            pattern:   ^/user/edit/\d+
+            stateless: true
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
+
         isLogged:
             pattern:   ^/isLogged
             stateless: true
