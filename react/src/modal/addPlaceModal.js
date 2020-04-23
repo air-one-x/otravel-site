@@ -115,6 +115,28 @@ const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, nam
           />
           </Grid>
         </List>
+        <input type="file" label="file" onChange={(event) => {
+                      var input = event.target.files[0];
+                      var reader = new FileReader(); 
+                      reader.onload = function(){
+                          console.log(reader.result);
+                          console.log(reader);
+                          const photo = document.createElement("img");
+                          photo.src = reader.result;
+                          photo.style.height = "200px";
+                          photo.style.width ="200px";
+                          photo.id="photoInscription"
+                          const avatar = document.getElementById('avatar');
+                          avatar.append(photo);
+                          localStorage.setItem('picturePlace',input);
+                       
+                        
+                     };
+                      
+                      
+                      reader.readAsDataURL(input);
+                      }}/>
+                      <div id="avatar"></div>
         <Button autoFocus color="inherit" onClick={() => {addPlace();handleClose()}}>
         save
       </Button>

@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import {
-  Map, Marker, Popup, TileLayer,Viewport,
+  Map, Marker, Popup, TileLayer,Viewport
 } from 'react-leaflet';
 // import { Icon } from "leaflet";
 import './style.css';
+import * as parkData from '../../data/skateboard-parcks.json';
 import ReactLeafletSearch from "react-leaflet-search";
 import L from 'leaflet';
 import userLocationURL from './map-pin-solid.svg';
 import NavBar from '../Navbar';
-
-
-
+import GeolocationButton from '../NavBarBottom/LocalisationButton';
 
 const myIcon = L.icon({
   iconUrl: userLocationURL,
@@ -20,7 +19,8 @@ const DEFAULT_VIEWPORT = {
   center: [51.505, -0.09],
   zoom: 6,
 }
-const MapContainer = ({userLocation, lat, long, isLocated, fetchPlaces, list}) => {
+
+const MapContainer = ({userLocation, lat, long, isLocated}) => {
   const [viewport, setViewport] = useState(DEFAULT_VIEWPORT)
   const getLocation = () => {
     if (navigator.geolocation) {
@@ -30,34 +30,37 @@ const MapContainer = ({userLocation, lat, long, isLocated, fetchPlaces, list}) =
       console.log('erreur !!')
     }
   }
-  console.log(fetchPlaces);
+  
   const showPosition = (position) => {
     console.log('show position', position.coords.latitude);
-    setViewport({center:[position.coords.latitude, position.coords.longitude], zoom: 10})
     userLocation(position.coords)
   }
 
   useEffect(() => {
      getLocation()
-
   },[]);
-  useEffect(fetchPlaces,[]);
+console.log('longlat', lat , long, isLocated)
+  const [activePark, setActivePark] = React.useState(null);
 
-console.log('longlat', viewport)
-  const [activePlace, setActivePlace] = React.useState(null);
-  const onClickReset = () => {
-    setViewport({center:[lat, long], zoom: 10})
-  }
-  
-  const onViewportChanged = (Viewport) => {
-    setViewport(Viewport)
-  }
+const handleGeo = () => {
 
+    getLocation()
+
+}
+const onClickReset = () => {
+  setViewport(DEFAULT_VIEWPORT)
+}
+
+const onViewportChanged = (Viewport) => {
+  setViewport(Viewport)
+}
   return (
     <div>
     <NavBar />
+
     <div className="map" id="mapid">
-      <Map onClick={onClickReset}
+    <GeolocationButton onClick={handleGeo} />
+      <Map       onClick={onClickReset}
       viewport={viewport}
       onViewportChanged={onViewportChanged}>
         <TileLayer
@@ -78,6 +81,9 @@ console.log('longlat', viewport)
     customProvider={undefined | {search: (searchString)=> {}}} // see examples to usage details until docs are ready
 />
 
+
+
+
         {isLocated &&(
           <Marker
             position={[lat, long]}
@@ -85,31 +91,32 @@ console.log('longlat', viewport)
           >
           </Marker>)
         }
-        {list.map((place) => (
+
+        {parkData.features.map((park) => (
           <Marker
-            key={place.id}
+            key={park.properties.PARK_ID}
             position={[
-              place.lat,
-              place.lng,
+              park.geometry.coordinates[1],
+              park.geometry.coordinates[0],
             ]}
             onClick={() => {
-              setActivePlace(place);
+              setActivePark(park);
             }}
           />
         ))}
-        {activePlace && (
+        {activePark && (
         <Popup
           position={[
-            activePlace.lat,
-            activePlace.lng,
+            activePark.geometry.coordinates[1],
+            activePark.geometry.coordinates[0],
           ]}
           onClose={() => {
-            setActivePlace(null);
+            setActivePark(null);
           }}
         >
           <div>
-            <h2>{activePlace.name}</h2>
-            <p>{activePlace.user.username}</p>
+            <h2>{activePark.properties.NAME}</h2>
+            <p>{activePark.properties.DESCRIPTIO}</p>
           </div>
         </Popup>
         )}

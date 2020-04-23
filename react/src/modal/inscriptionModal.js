@@ -92,7 +92,6 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
       pictureAvatarInscription(e.target.result)
     }
   }
-console.log('yyyyyyyyyyyyyyyyyyoooooooo', newUserAvatar);
   return (
     <div className="nav-link">
       <button className="dropdown-item nav-link" type="button" onClick={handleOpen}>
@@ -132,7 +131,6 @@ console.log('yyyyyyyyyyyyyyyyyyoooooooo', newUserAvatar);
                   <Grid container item>
                     <input type="file" label="file" onChange={(event) => {
                       handleChange(event.target);
-                      
                       var input = event.target.files[0];
                       var reader = new FileReader(); 
                       reader.onload = function(){
@@ -145,6 +143,7 @@ console.log('yyyyyyyyyyyyyyyyyyoooooooo', newUserAvatar);
                           photo.id="photoInscription"
                           const avatar = document.getElementById('avatar');
                           avatar.append(photo);
+                          localStorage.setItem('test',input);
                         } else {
                           const photo = document.getElementById('photoInscription');
                           photo.src=reader.result;

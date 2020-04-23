@@ -4,15 +4,16 @@ import PropTypes from 'prop-types';
 import './style.css';
 import { Switch, Route } from 'react-router-dom';
 // == Import
-import NavBar from '../Navbar';
+
 // import MapContainer from '../MapContainer';
 import MapContainer from '../../containers/Geolocation'
 import NavBarBottom from '../NavBarBottom';
-import Home from '../Home';
+import InformationsUser from '../../containers/AccountInformtions';
 import Conditions from '../Conditions';
 import Informations from '../Informations';
-import Contact from '../Contact';
+import Contact from '../../containers/FormContact';
 import PAGE404 from '../NotFound';
+import Places from '../../containers/PlacesUser';
 
 
 
@@ -26,12 +27,14 @@ const App = ({ checkAuth }) => {
     <Switch>
       <Route exact path="/" render={() => (
         <div>    
-          <NavBar />
+
           <MapContainer />
           <NavBarBottom />
         </div>
       )}
-      />   
+      />
+      <Route exact path="/mes-ajouts" component={Places} />   
+      <Route exact path="/mes-informations" component={InformationsUser} />   
       <Route exact path="/conditions-utilisations" component={Conditions} />
       <Route exact path="/a-propos" component={Informations} />
       <Route exact path ="/contact" component={Contact} />
