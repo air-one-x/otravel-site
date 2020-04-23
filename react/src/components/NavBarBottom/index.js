@@ -6,23 +6,24 @@ import NavigationIcon from '@material-ui/icons/Navigation';
 import './style.css';
 import FormLoginModal from '../../containers/addPlaceFakeLogin';
 
-
-
-const NavBarBottom = ({isLogged}) => {
-    console.warn('isLogged navbarbottom', isLogged);
-
+const NavBarBottom = (props) => {
     
-        return(
-            <div className="nav--bar--bottom">
-                <div className="mobile--buttons">
-                    <FilterPlace />
-                    {isLogged === true ? <AddPlace /> : <FormLoginModal /> }
-                    <LocalisationButton />
-                </div>
-                <div className="localisation--button--desktop">
-                   <NavigationIcon color="primary" />
-                </div>
+    const { isLogged, onClick,} = props
+
+    return(
+        <div className="nav--bar--bottom">
+            <div className="mobile--buttons">
+                <FilterPlace />
+                {isLogged === true ? <AddPlace /> : <FormLoginModal /> }
+                <LocalisationButton 
+                onClick={onClick}
+                />
             </div>
-        );
+            <div className="localisation--button--desktop">
+                <NavigationIcon color="primary" />
+            </div>
+        </div>
+    );
 };
+
 export default NavBarBottom;

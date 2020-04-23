@@ -21,6 +21,15 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '4px',
     padding: theme.spacing(2, 4, 3),
   },
+  btn: {
+    backgroundColor: white,
+    height: '40px',
+    width: '40px',
+    borderRadius: '50%',
+    display: flex,
+    justifyContent: center,
+    alignItems: center,
+  }
 }));
 
 const Fade = React.forwardRef((props, ref) => {
@@ -70,7 +79,7 @@ export default function SpringModal() {
 
   return (
     <div>
-      <button type="button" className="btn btn-circle" onClick={handleOpen}>
+      <button type="button" className={classes.btn} onClick={handleOpen}>
         <FontAwesomeIcon icon={faList} />
       </button>
       <Modal
