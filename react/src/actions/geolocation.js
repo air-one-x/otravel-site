@@ -6,7 +6,18 @@ export const STREET_PLACE = 'STREET_PLACE';
 export const ZIPCODE_PLACE = 'ZIPCODE_PLACE';
 export const CITY_PLACE = 'CITY_PLACE';
 export const ADD_PLACE = 'ADD_PLACE';
+export const CONVERT_ADRESS = 'CONVERT_ADRESS';
+export const SEND_ADRESS= 'SEND_ADRESS';
 
+
+export const sendAdress = () => ({
+  type: SEND_ADRESS,
+});
+
+export const convertAdress = (payload) => ({
+  type: CONVERT_ADRESS,
+  payload,
+});
 
 export const addPlace = () => ({
   type: ADD_PLACE,

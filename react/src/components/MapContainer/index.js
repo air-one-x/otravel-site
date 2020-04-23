@@ -20,7 +20,7 @@ const DEFAULT_VIEWPORT = {
   center: [51.505, -0.09],
   zoom: 6,
 }
-const MapContainer = ({userLocation, lat, long, isLocated, fetchPlaces, list}) => {
+const MapContainer = ({userLocation, lat, long, isLocated, fetchPlaces, list, newList, isFilterShower, isFilterToilet}) => {
   const [viewport, setViewport] = useState(DEFAULT_VIEWPORT)
   const getLocation = () => {
     if (navigator.geolocation) {
@@ -85,7 +85,38 @@ console.log('longlat', viewport)
           >
           </Marker>)
         }
-        {list.map((place) => (
+        {
+          isFilterShower && newList.map((place) => (
+            <Marker
+              key={place.id}
+              position={[
+                place.lat,
+                place.lng,
+              ]}
+              onClick={() => {
+                setActivePlace(place);
+              }}
+            />
+          ))
+        }
+
+{
+          isFilterToilet && newList.map((place) => (
+            <Marker
+              key={place.id}
+              position={[
+                place.lat,
+                place.lng,
+              ]}
+              onClick={() => {
+                setActivePlace(place);
+              }}
+            />
+          ))
+        }
+
+        
+        {!isFilterShower && !isFilterToilet && list.map((place) => (
           <Marker
             key={place.id}
             position={[
@@ -96,7 +127,8 @@ console.log('longlat', viewport)
               setActivePlace(place);
             }}
           />
-        ))}
+        ))
+        }
         {activePlace && (
         <Popup
           position={[

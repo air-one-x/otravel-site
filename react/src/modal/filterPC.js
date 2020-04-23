@@ -7,6 +7,9 @@ import { useSpring, animated } from 'react-spring'; // web.cjs is required for I
 import { FormControl, FormGroup, FormControlLabel, Switch } from '@material-ui/core';
 import { faList } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './style.css';
+
+
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -20,9 +23,7 @@ const useStyles = makeStyles((theme) => ({
     margin: '4px',
     borderRadius: '4px',
     padding: theme.spacing(2, 4, 3),
-    position: 'absolute',
-    top: 0,
-    right: 0
+    
   },
 }));
 
@@ -59,7 +60,7 @@ Fade.propTypes = {
   onExited: PropTypes.func,
 };
 
-const SpringModal = () => {
+const SpringModal = ({isFilterShower, changeIsFilterShower, checkFilter, places, removeShower, isFilterToilet, removeToilet, changeIsFilterToilet}) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -71,11 +72,15 @@ const SpringModal = () => {
     setOpen(false);
   };
 
+
+
   return (
     <div>
-      <button type="button" className="btn btn-circle" onClick={handleOpen}>
-        Catégories
+      <button type="button" className="btn btn-circle pc mobile" onClick={handleOpen}>
+        <span className="icon"><FontAwesomeIcon icon={faList} /></span>
+        <span className="text">Catégories</span>
       </button>
+     <div className="test">
       <Modal
         aria-labelledby="spring-modal-title"
         aria-describedby="spring-modal-description"
@@ -94,23 +99,30 @@ const SpringModal = () => {
               <FormGroup aria-label="position" >
 
                 <FormControlLabel
-                  value="start"
+                  value="1"
                   control={<Switch color="primary" />}
                   label="Douche"
                   labelPlacement="start"
+                  onClick={isFilterShower === false ? () => {changeIsFilterShower(); checkFilter()} : () => {removeShower()}}
                 />
 
                 <FormControlLabel
-                  value="start"
+                  value="2"
                   control={<Switch color="primary" />}
-                  label="Lavomatic"
+                  label="Toilette"
                   labelPlacement="start"
+                  onClick={isFilterToilet === false ? () => {changeIsFilterToilet(); checkFilter()} : () => {removeToilet()}}
                 />
+
+            
+
+                
               </FormGroup>
             </FormControl>
           </div>
         </Fade>
       </Modal>
+      </div> 
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { GEOLOCATION, NAME_PLACE, CATEGORY_PLACE, DESCRIPTION_PLACE, STREET_PLACE, ZIPCODE_PLACE, CITY_PLACE } from '../actions/geolocation';
+import { CONVERT_ADRESS, GEOLOCATION, NAME_PLACE, CATEGORY_PLACE, DESCRIPTION_PLACE, STREET_PLACE, ZIPCODE_PLACE, CITY_PLACE } from '../actions/geolocation';
 
 const initialState = {
     coords: {
@@ -6,12 +6,12 @@ const initialState = {
         long: -71.8258668,
     },
     form: {
-      name: "plage des cocotiers",
+      name: "",
       category: [1],
-      description: "une belle douche",
-      street : "Avenue montaigne",
+      description: "",
+      street : "",
       zipCode: 14000,
-      city: "city gang",
+      city: "",
     },
     isLocated: false,
 };
@@ -75,6 +75,16 @@ export default (state = initialState, action = {}) => {
            city: action.payload,
          },
          };
+         case CONVERT_ADRESS:
+          return {
+            ...state,
+       form : {
+         ...state.form,
+         street : action.payload.street,
+         zipCode: action.payload.postcode,
+         city: action.payload.city,
+       },
+       };
                               
 
         default:

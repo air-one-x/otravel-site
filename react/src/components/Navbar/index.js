@@ -9,8 +9,9 @@ import FormLoginModal from '../../containers/Login';
 import InscriptionModal from '../../containers/Inscription';
 import ItemsMenu from '../../containers/NavBarTop';
 import AddPlaceModal from '../../containers/AddPlace';
-import FilterPc from '../../modal/filterPC';
+import FilterPc from '../../containers/filterPC';
 import { Link } from 'react-router-dom';
+
 
 
 const NavBar = () => {
