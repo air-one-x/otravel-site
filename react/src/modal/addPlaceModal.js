@@ -16,6 +16,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
+import FormLoginModal from '../containers/Login';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -44,7 +45,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, namePlace , descriptionPlace, addNamePlace, addCategoryPlace, addDescriptionPlace, addZipCodePlace, addCityPlace, addStreetPlace, lat, long, addPlace}) => {
+const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, namePlace , descriptionPlace, addNamePlace, addCategoryPlace, addDescriptionPlace, addZipCodePlace, addCityPlace, addStreetPlace, lat, long, addPlace, isLogged}) => {
 
   const classes = useStyles(); 
   const [open, setOpen] = React.useState(false);
@@ -61,11 +62,26 @@ const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, nam
     console.log('event SELECT !!', event);
   };
 
+const checkIsLogged = () => {
+  if (isLogged === true) {
+    handleClickOpen();
+  } else {
+    console.log('sortir la modal de connexion');
+ 
+  
+    
+  }
+}
+
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+ 
+      <div>
+      <Button variant="outlined" color="primary" onClick={checkIsLogged}>
           Ajouter un lieu
       </Button>
+      </div>
+     
       <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
         <AppBar className={classes.appBar}>
           <Toolbar>

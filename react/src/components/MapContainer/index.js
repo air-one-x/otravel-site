@@ -7,7 +7,7 @@ import './style.css';
 import ReactLeafletSearch from "react-leaflet-search";
 import L from 'leaflet';
 import userLocationURL from './map-pin-solid.svg';
-import NavBar from '../Navbar';
+import NavBar from '../../containers/navBarFake';
 
 
 

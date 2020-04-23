@@ -7,7 +7,7 @@ import { Switch, Route } from 'react-router-dom';
 
 // import MapContainer from '../MapContainer';
 import MapContainer from '../../containers/Geolocation'
-import NavBarBottom from '../NavBarBottom';
+import NavBarBottom from '../../containers/NavBarBottom';
 import InformationsUser from '../../containers/AccountInformtions';
 import Conditions from '../Conditions';
 import Informations from '../Informations';
