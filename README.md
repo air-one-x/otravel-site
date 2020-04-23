@@ -34,13 +34,13 @@ Dans le dossier React ouvrir un terminal et lancer la commande:
 
 #### Versions
 
-**Dernière version stable :** 1.0
-**Dernière version :** 1.0
+*Dernière version stable :** 1.0
+*Dernière version :** 1.0
 
-##### Auteurs
+#### Auteurs
 
-Alexandre Techer
-Gaetan Lareur
-Erwan Xavier
-Nicolas Massaia
+- Alexandre Techer
+- Gaetan Lareur
+- Erwan Xavier
+- Nicolas Massaia
 
