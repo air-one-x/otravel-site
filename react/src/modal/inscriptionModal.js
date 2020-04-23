@@ -184,7 +184,7 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
                 <label htmlFor="checkConditions" style={{fontSize: '0.7em'}}> En cochant la case, j'accepte les <a href="#" style={{color: '#303f9f'}}>conditions d'utilisations </a></label>
               </div>
               <div className="m-3 justify-content-center">
-                <Button className="mr-3" variant="contained">annuler</Button>
+                <Button className="mr-3" variant="contained" onClick={handleClose} >annuler</Button>
                 <Button onClick={insertNewUser} variant="contained" color="primary">valider</Button>
               </div>
             </div>

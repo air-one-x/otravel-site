@@ -11,10 +11,11 @@ import ItemsMenu from '../../containers/NavBarTop';
 import AddPlaceModal from '../../containers/AddPlace';
 import FilterPc from '../../containers/filterPC';
 import { Link } from 'react-router-dom';
+import FormLoginModalAddPlace from '../../containers/addPlaceFakeLogin';
 
 
+const NavBar = ({isLogged}) => {
 
-const NavBar = () => {
   const classes = useStyles();
 
   const [openMenu, setOpenMenu] = React.useState(null);
@@ -26,6 +27,8 @@ const NavBar = () => {
   const handleClose = () => {
     setOpenMenu(null);
   };
+
+  console.log('????????',isLogged);
 
   return(
   <nav className="navbar navbar-expand-lg navbar-light menuOtravel " >
@@ -43,7 +46,7 @@ const NavBar = () => {
       </div>
     </div>
       <div className="nav-item nav-link">
-        <AddPlaceModal />
+      {isLogged === true ? <AddPlaceModal /> : <FormLoginModalAddPlace /> }
       </div>
 
       <div className="dropdown">

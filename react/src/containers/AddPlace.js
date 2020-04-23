@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import AddPlaceModal from '../modal/addPlaceModal';
 import {cityPlace, zipCodePlace, streetPlace, categoryPlace, namePlace , descriptionPlace, addPlace, sendAdress} from '../actions/geolocation';
 
-
 const mapStateToProps = (state) => ({
     lat: state.geolocation.coords.lat,
     long: state.geolocation.coords.long,
@@ -13,6 +12,7 @@ const mapStateToProps = (state) => ({
     zipCodePlace: state.geolocation.form.zipCode,
     cityPlace: state.geolocation.form.city,
     streetPlace: state.geolocation.form.street,
+    isLogged: state.user.isLogged,
 });
 
 const mapDispatchToProps = (dispatch) => ({

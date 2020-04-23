@@ -58,7 +58,7 @@ Fade.propTypes = {
 };
 
 const LoginModal = ({
-  userEmail, userPassword, changeEmail, changePassword, login, isLoggedUser ,logout, loginError
+  userEmail, userPassword, changeEmail, changePassword, login, isLoggedUser , loginError
 }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -71,9 +71,9 @@ const LoginModal = ({
     setOpen(false);
   };
   
+  console.log('!!!!!!!!!!!!!!!!!!!!', isLoggedUser);
   const checkLogged = () => {
-    console.log('!!!!!!!!!!!!!!!!!!!!', loginError);
-    if(isLoggedUser  === true){  
+    if(isLoggedUser  === true ){  
       handleClose();
     } 
   };
@@ -83,21 +83,16 @@ const LoginModal = ({
   return (
    
     <div className="nav-link"> 
-    {
-      isLoggedUser&&
-        <div>
-
-          <button className="dropdown-item nav-link" type="button" onClick={() => {logout(), handleClose()}} >
-            déconnexion
-          </button>
-        </div>
-    }
+    
       
-      {
-        !isLoggedUser&& <div>
-      <button className="dropdown-item nav-link" type="button" onClick={handleOpen}>
-        connexion
-      </button>
+
+    <Button 
+    variant="outlined" 
+    color="primary" 
+    onClick={handleOpen} 
+    style={{color: '#3f51b5'}}>
+          Ajouter un lieu
+      </Button>
 
       <Modal
         aria-labelledby="spring-modal-title"
@@ -116,7 +111,7 @@ const LoginModal = ({
 
 
             <form>
-
+              <p>Veuillez vous connecter pour ajouter un lieu </p>
               <div className={classes.margin}>
                 <Grid container spacing={1} alignItems="flex-end" >
                   <Grid container item>
@@ -149,8 +144,7 @@ const LoginModal = ({
         </Fade>
       </Modal>
       </div>
-    }
-    </div>
+    
   );
 
 };

@@ -3,15 +3,20 @@ import AddPlace from '../../containers/AddPlace';
 import FilterPlace from '../../modal/filterPC';
 import LocalisationButton from './LocalisationButton';
 import NavigationIcon from '@material-ui/icons/Navigation';
-import style from './style.css';
+import './style.css';
+import FormLoginModal from '../../containers/addPlaceFakeLogin';
 
 
-const NavBarBottom = () => {
+
+const NavBarBottom = ({isLogged}) => {
+    console.warn('isLogged navbarbottom', isLogged);
+
+    
         return(
             <div className="nav--bar--bottom">
                 <div className="mobile--buttons">
                     <FilterPlace />
-                    <AddPlace />
+                    {isLogged === true ? <AddPlace /> : <FormLoginModal /> }
                     <LocalisationButton />
                 </div>
                 <div className="localisation--button--desktop">
