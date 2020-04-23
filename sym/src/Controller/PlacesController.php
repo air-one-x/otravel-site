@@ -2,15 +2,15 @@
 
 namespace App\Controller;
 
-use App\Entity\PlacePicture;
 use App\Entity\Places;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\PlacePicture;
 use App\Repository\CategoryRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class PlacesController extends AbstractController
 {
@@ -20,9 +20,11 @@ class PlacesController extends AbstractController
      */
     public function edit()
     {
+
         return $this->render('places/index.html.twig', [
             'controller_name' => 'PlacesController',
         ]);
+
     }
 
     /**
@@ -54,13 +56,10 @@ class PlacesController extends AbstractController
         if(!empty($data->nameFile)){
 
             $pictureForm = $data->nameFile;
-
             $img = str_replace('data:image/png;base64,','', $pictureForm);
-            
             $nomfichier = explode(".", $data->nameFile)  ;
             $nomfichierUnique = $nomfichier[0].uniqid().'.'.$nomfichier[0];
             $path = '../public/uploads/images/places/'. $nomfichierUnique;
-            
             $success = file_put_contents($path, base64_decode($img));
 
             if(isset($success)){
@@ -73,11 +72,13 @@ class PlacesController extends AbstractController
 
         }
         
-        $categoriesSelected = $data->category; //je récup les catégories renseignées dans le formulaires
+        $categoriesSelected = $data->category;
 
         foreach($categoriesSelected as $uniqueCategory){
-            $test = $categoryRepository->findOneBy(['id' => $uniqueCategory]);
-            $newPlace->addCategory($test);
+
+            $findCategory = $categoryRepository->findOneBy(['id' => $uniqueCategory]);
+            $newPlace->addCategory($findCategory);
+
         }
 
         $entityManager->persist($newPlace);
@@ -88,6 +89,7 @@ class PlacesController extends AbstractController
         ];
 
         return new JsonResponse($data, 201);
+        
     }
     
 
