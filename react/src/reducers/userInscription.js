@@ -1,4 +1,4 @@
-import { CHANGE_NEW_PSEUDO, CHANGE_NEW_EMAIL, CHANGE_NEW_PASSWORD, INSCRIPTION_SUCCESS, ADD_AVATAR, ADD_NAME_PICTURE_AVATAR } from '../actions/inscription';
+import { CHANGE_NEW_PSEUDO, CHANGE_NEW_EMAIL, CHANGE_NEW_PASSWORD, INSCRIPTION_SUCCESS, ADD_AVATAR, ADD_NAME_PICTURE_AVATAR , TEST_EMAIL, CONDITION, INSCRIPTION_ERROR, CHECK_EMAIL} from '../actions/inscription';
 
 const stateInit = {
   form: {
@@ -8,6 +8,10 @@ const stateInit = {
     password: '',
     nameFile: ''
   },
+  correctEmail: '',
+  condition: false,
+  errorMessage:'',
+  responseIns: null,
 };
 
 export default (state = stateInit, action = {}) => {
@@ -56,6 +60,28 @@ export default (state = stateInit, action = {}) => {
       return {
         ...state,
       };
+      case TEST_EMAIL:
+        return {
+          ...state,
+          correctEmail: action.payload
+        };
+        case CONDITION:
+        return {
+          ...state,
+          condition: !state.condition
+        };
+
+        case INSCRIPTION_ERROR :
+          return {
+            ...state,
+            errorMessage: action.payload
+          }
+
+          case CHECK_EMAIL : 
+          return {
+            ...state,
+            responseIns: action.payload
+          }
     default:
       return state;
   }

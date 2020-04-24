@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 // == Import
 
 // import MapContainer from '../MapContainer';
@@ -18,7 +18,7 @@ import Places from '../../containers/PlacesUser';
 
 
 // == Composant
-const App = ({ checkAuth }) => {
+const App = ({ checkAuth, isLogged }) => {
    useEffect(checkAuth, []);
    //useEffect(geolocation, []);
   return (
@@ -33,8 +33,13 @@ const App = ({ checkAuth }) => {
         </div>
       )}
       />
-      <Route exact path="/mes-ajouts" component={Places} />   
-      <Route exact path="/mes-informations" component={InformationsUser} />   
+      {
+        isLogged ? <Route exact path="/mes-ajouts" component={Places} /> : <Redirect to="/" />
+      }
+      {
+        isLogged ? <Route exact path="/mes-informations" component={InformationsUser} /> : <Redirect to="/" />
+      }
+         
       <Route exact path="/conditions-utilisations" component={Conditions} />
       <Route exact path="/a-propos" component={Informations} />
       <Route exact path ="/contact" component={Contact} />

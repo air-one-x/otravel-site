@@ -4,7 +4,9 @@ import App from '../components/App';
 import { checkAuth } from '../actions/connexion';
 //  import { geolocation } from '../actions/geolocation';
 
-const mapStateToProps = null;
+const mapStateToProps = (state) => ({
+  isLogged: state.user.isLogged,
+});
 
 const mapDispatchToProps = (dispatch) => ({
     checkAuth: () => {
