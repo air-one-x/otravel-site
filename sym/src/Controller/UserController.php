@@ -200,11 +200,11 @@ class UserController extends AbstractController
     }
     
     /**
-     * @Route("/logout", name="app_logout")
-     */
-    public function logout()
+    * @Route("/", name="api")
+    */
+    public function browse()
     {
-        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+        return $this->json('coucou');
     }
 
 }

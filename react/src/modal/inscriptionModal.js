@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
@@ -68,7 +68,7 @@ Fade.propTypes = {
   onExited: PropTypes.func,
 };
 
-const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePasswordInscription, inputChangePseudoInscription, newUserEmail, newUserPseudo, newUserPassword, pictureAvatarInscription,fileNameAvatarInscription, newUserAvatar}) => {
+const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePasswordInscription, inputChangePseudoInscription, newUserEmail, newUserPseudo, newUserPassword, pictureAvatarInscription,fileNameAvatarInscription, newUserAvatar, valueEmail, testEmail, condition, checkCondition, error, responseIns}) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -92,6 +92,22 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
       pictureAvatarInscription(e.target.result)
     }
   }
+  const regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  const testRegex = (email) => {
+    return regex.test(email)
+  };
+
+  const messageRef = useRef(null);
+
+  const msgBDD = () => {
+    setTimeout(() => {
+      if(error === undefined) {
+        handleClose();
+      }
+    },2000);
+  }
+
   return (
     <div className="nav-link">
       <button className="dropdown-item nav-link" type="button" onClick={handleOpen}>
@@ -116,18 +132,37 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
             <div>
 
               <div className={classes.margin}>
+                <p style={{color:'red'}}>{error}</p>
                 
-                <Grid container spacing={1} alignItems="flex-end">
-                  <Grid container item>
+                <Grid container spacing={1} alignItems="flex-end" style={{display:'flex'}}>
+                  <Grid container item style={{width:'20%'}}>
                     <AccountCircle />
                   </Grid>
-                  <Grid container item>
+                  <Grid container item style={{width: '70%'}}>
                     <TextField type="text" id="username" label="username" value={newUserPseudo} onChange={(event) => inputChangePseudoInscription(event.target.value)} />
                   </Grid>
                 </Grid>
+                
+                <Grid container spacing={1} alignItems="flex-end" style={{display:'flex'}}>
+                  <Grid container item style={{width:'20%'}}>
+                    <AlternateEmailIcon />
+                  </Grid>
+                  <Grid container item style={{width: '70%'}}>
+                    <TextField type="email" label="adresse email" value={newUserEmail} onChange={(event) => {inputChangeEmailInscription(event.target.value); testEmail(testRegex(event.target.value))}} required/>
+                  </Grid>
+                </Grid>
 
+                <Grid container spacing={1} alignItems="flex-end" style={{display:'flex'}}>
+                  <Grid container item  style={{width:'20%'}}>
+                    <LockIcon />
+                  </Grid>
+                  <Grid container item style={{width: '70%'}}>
+                    <TextField type="password" label="Mot de passe" value={newUserPassword} onChange={(event) =>{ inputChangePasswordInscription(event.target.value)}} required />
+                  </Grid>
+                </Grid>
+                <div className="msgPassword" ref={messageRef}></div>
 
-                <Grid container spacing={1} alignItems="flex-end">
+                <Grid container spacing={2} alignItems="flex-end" style={{marginTop:'2rem'}}>
                   <Grid container item>
                     <input type="file" label="file" onChange={(event) => {
                       handleChange(event.target);
@@ -156,36 +191,23 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
                       }}/>
                   </Grid>
                 </Grid>
-
-
-                
-                <Grid container spacing={1} alignItems="flex-end">
-                  <Grid container item>
-                    <AlternateEmailIcon />
-                  </Grid>
-                  <Grid container item>
-                    <TextField type="email" label="adresse email" value={newUserEmail} onChange={(event) => inputChangeEmailInscription(event.target.value)}/>
-                  </Grid>
-                </Grid>
-
-                <Grid container spacing={1} alignItems="flex-end">
-                  <Grid container item>
-                    <LockIcon />
-                  </Grid>
-                  <Grid container item>
-                    <TextField type="password" label="Mot de passe" value={newUserPassword} onChange={(event) => inputChangePasswordInscription(event.target.value)} />
-                  </Grid>
-                </Grid>
                 <div id="avatar"> </div>
               </div>
               <div className="CheckCond" style={{marginTop: '1rem', marginLeft: '0.5rem'}}>
-                <input type="checkbox" name="checkConditions" id="checkConditions" style={{width: '15px', height: '15px', marginRight: '0.3rem'}}/>
+                <input type="checkbox" onClick={()=> checkCondition()} name="checkConditions" id="checkConditions" style={{width: '4%', height: '15px', marginRight: '0.3rem'}}/>
                
-                <label htmlFor="checkConditions" style={{fontSize: '0.7em'}}> En cochant la case, j'accepte les <a href="#" style={{color: '#303f9f'}}>conditions d'utilisations </a></label>
+                <label  htmlFor="checkConditions" style={{fontSize: '0.7em', width:'80%'}}> En cochant la case, j'accepte les <a href="#" style={{color: '#303f9f'}}>conditions d'utilisations </a></label>
               </div>
-              <div className="m-3 justify-content-center">
+              <div className="m-2 justify-content-center" style={{width:'100%', display:'flex', justifyContent: 'space-around'}}>
                 <Button className="mr-3" variant="contained" onClick={handleClose} >annuler</Button>
-                <Button onClick={insertNewUser} variant="contained" color="primary">valider</Button>
+                {
+                  newUserPassword.length <8 || 
+                  newUserPseudo.length < 0 || 
+                  valueEmail === false ||
+                  condition === false
+                  ? <Button onClick={insertNewUser} variant="contained" color="primary" disabled>valider</Button> 
+                  : <Button onClick={() => {insertNewUser(); msgBDD()}} variant="contained" color="primary">valider</Button>
+                }
               </div>
             </div>
           </div>

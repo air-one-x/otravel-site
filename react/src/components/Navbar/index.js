@@ -12,6 +12,7 @@ import AddPlaceModal from '../../containers/AddPlace';
 import FilterPc from '../../containers/filterPC';
 import { Link } from 'react-router-dom';
 import FormLoginModalAddPlace from '../../containers/addPlaceFakeLogin';
+import Account from './account';
 
 
 const NavBar = ({isLogged}) => {
@@ -57,9 +58,9 @@ const NavBar = ({isLogged}) => {
           Plus
         </button>
         <div className="dropdown-menu dropdown-menu-right">
-          <Link to="/conditions-utilisations">Conditions</Link><br />
-          <Link to="/a-propos">A propos</Link><br />
-          <Link to="/contact">Conctact</Link>
+          <a className="dropdown-item" href="#"> <Link to="/conditions-utilisations">Conditions</Link></a>
+          <a className="dropdown-item" href="#"><Link to="/a-propos">A propos</Link></a>
+          <a className="dropdown-item" href="#"> <Link to="/contact">Conctact</Link></a>
         </div>
       </div>
 
@@ -69,7 +70,13 @@ const NavBar = ({isLogged}) => {
         </button>
         <div className="dropdown-menu dropdown-menu-right">
           <a className="dropdown-item" href="#"><FormLoginModal /></a>
-          <a className="dropdown-item" href="#"><InscriptionModal /></a>
+          {
+            !isLogged&& <a className="dropdown-item" href="#"><InscriptionModal /></a>
+          }
+          
+          {
+            isLogged&& <a className="dropdown-item" href="#"><Account /></a>
+          }
         </div>
       </div>
     </div>

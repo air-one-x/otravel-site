@@ -60,7 +60,7 @@ export default (store) => (next) => (action) => {
             store.dispatch(logoutSuccess(res.data.info));
           })
           .catch((err) => {
-            console.log(err);
+            console.log('wwwwwwwwwwwwwweccccccchhhhhhhhhh',err);
           });
         break;
         case CHECK_AUTH:

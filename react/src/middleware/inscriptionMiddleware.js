@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { INSCRIPTION_SUCCESS } from '../actions/inscription';
+import { INSCRIPTION_SUCCESS, inscriptionError, checkEmail } from '../actions/inscription';
 
 
 export default (store) => (next) => (action) => {
@@ -20,10 +20,15 @@ export default (store) => (next) => (action) => {
       }).then((res) => {
         // Si succès -> dispatcher une action success
         console.log('FELICITATION GAETAN', res);
+        store.dispatch(checkEmail(true))
+
+
       })
         .catch((err) => {
         // Si error -> Dispatcher une action error
           console.error(err);
+          store.dispatch(checkEmail(false))
+          store.dispatch(inscriptionError('l\'email ou le pseudo  est déja utilisé '))
         });
       break;
     default:

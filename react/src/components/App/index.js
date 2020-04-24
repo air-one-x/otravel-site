@@ -2,7 +2,12 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
-import { Switch, Route } from 'react-router-dom';
+
+import { Switch, Route, Redirect } from 'react-router-dom';
+// == Import
+
+// import MapContainer from '../MapContainer';
+
 import MapContainer from '../../containers/Geolocation'
 import NavBarBottom from '../../containers/NavBarBottom';
 import InformationsUser from '../../containers/AccountInformtions';
@@ -19,7 +24,32 @@ const DEFAULT_VIEWPORT = {
 }
 
 // == Composant
-const App = ({ checkAuth , lat, long}) => {
+
+const App = ({ checkAuth }) => {
+   useEffect(checkAuth, []);
+   //useEffect(geolocation, []);
+  return (
+
+  <div className="app">
+    <Switch>
+      <Route exact path="/" render={() => (
+        <div>    
+
+          <MapContainer />
+          <NavBarBottom />
+        </div>
+      )}
+      />
+     
+         
+      <Route exact path="/conditions-utilisations" component={Conditions} />
+      <Route exact path="/a-propos" component={Informations} />
+      <Route exact path ="/contact" component={Contact} />
+      <Route component={PAGE404} />
+    </Switch>
+  </div>
+
+const App = ({ checkAuth , lat, long, isLogged}) => {
 
   const [viewport, setViewport] = useState(DEFAULT_VIEWPORT)
 
@@ -39,14 +69,19 @@ const App = ({ checkAuth , lat, long}) => {
           </div>
         )}
         />
-        <Route exact path="/mes-ajouts" component={Places} />   
-        <Route exact path="/mes-informations" component={InformationsUser} />   
+ {
+        isLogged ? <Route exact path="/mes-ajouts" component={Places} /> : <Redirect to="/" />
+      }
+      {
+        isLogged ? <Route exact path="/mes-informations" component={InformationsUser} /> : <Redirect to="/" />
+      } 
         <Route exact path="/conditions-utilisations" component={Conditions} />
         <Route exact path="/a-propos" component={Informations} />
         <Route exact path ="/contact" component={Contact} />
         <Route component={PAGE404} />
       </Switch>
     </div>
+
 );
 }
 
