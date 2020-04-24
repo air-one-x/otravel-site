@@ -29,7 +29,8 @@ Ensuite rendez vous dans le dossier React, ouvrez un terminal et lancer la comma
 Dans le dossier Sym, ouvrir un terminal et lancer la commande:
 - symfony serve -d
 
-Dans le dossier React ouvrir un terminal et lancer la commande:
+Dans le dossier React ouvrir un terminal et lancer les commandes:
+- yarn
 - yarn start
 
 #### Versions
