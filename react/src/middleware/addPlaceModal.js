@@ -22,7 +22,7 @@ export default (store) => (next) => (action) => {
               lng: store.getState().geolocation.coords.long,
               nameFile: '',
               adress: '1 rue ',
-              places_picture: localStorage.getItem('picturePlace'),
+              place_picture: localStorage.getItem('picturePlace'),
 
 
             },
@@ -34,6 +34,7 @@ export default (store) => (next) => (action) => {
             // Si error -> Dispatcher une action error
               console.error(err);
             });
+            break;
 
             case SEND_ADRESS: 
             console.log('convertion en cours');
@@ -54,7 +55,6 @@ export default (store) => (next) => (action) => {
           .catch((err) => {
             console.log(err);
           })
-            break;
         break;
         default :
         next(action);

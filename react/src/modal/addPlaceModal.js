@@ -46,7 +46,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 
-const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, namePlace , descriptionPlace, addNamePlace, addCategoryPlace, addDescriptionPlace, addZipCodePlace, addCityPlace, addStreetPlace, lat, long, addPlace, isLogged}) => {
+const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, namePlace , descriptionPlace, addNamePlace, addCategoryPlace, addDescriptionPlace, addZipCodePlace, addCityPlace, addStreetPlace, lat, long, addPlace, isLogged, sendAdress}) => {
 
 
 
@@ -81,7 +81,7 @@ const checkIsLogged = () => {
 
  
       <div>
-      <Button variant="outlined" color="primary" onClick={checkIsLogged}>
+      <Button variant="outlined" color="primary" onClick={() => {checkIsLogged();sendAdress()}}>
 
           Ajouter un lieu
       </Button>
@@ -150,7 +150,7 @@ const checkIsLogged = () => {
                           photo.id="photoInscription"
                           const avatar = document.getElementById('avatar');
                           avatar.append(photo);
-                          localStorage.setItem('picturePlace',input);
+                          localStorage.setItem('picturePlace',reader.result);
                        
                         
                      };

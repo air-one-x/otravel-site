@@ -23,7 +23,7 @@ const mapDispatchToProps = (dispatch) => ({
     addCityPlace: (event) =>  dispatch(cityPlace(event)),
     addStreetPlace: (event) =>  dispatch(streetPlace(event)),
     addPlace: () => dispatch(addPlace()),
-    sendLatLng: () => dispatch(sendAdress()),
+    sendAdress: () => dispatch(sendAdress()),
 
 });
 

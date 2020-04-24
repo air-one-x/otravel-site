@@ -8,7 +8,7 @@ import { v4 as uuid } from 'uuid';
 
 const InformationsUser = ({places}) => {
 
-  const nbPlaces = false;
+  const nbPlaces = true;
     return(
     <div className="places--user">
           <header>

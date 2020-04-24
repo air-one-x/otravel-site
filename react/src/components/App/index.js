@@ -25,30 +25,6 @@ const DEFAULT_VIEWPORT = {
 
 // == Composant
 
-const App = ({ checkAuth }) => {
-   useEffect(checkAuth, []);
-   //useEffect(geolocation, []);
-  return (
-
-  <div className="app">
-    <Switch>
-      <Route exact path="/" render={() => (
-        <div>    
-
-          <MapContainer />
-          <NavBarBottom />
-        </div>
-      )}
-      />
-     
-         
-      <Route exact path="/conditions-utilisations" component={Conditions} />
-      <Route exact path="/a-propos" component={Informations} />
-      <Route exact path ="/contact" component={Contact} />
-      <Route component={PAGE404} />
-    </Switch>
-  </div>
-
 const App = ({ checkAuth , lat, long, isLogged}) => {
 
   const [viewport, setViewport] = useState(DEFAULT_VIEWPORT)
