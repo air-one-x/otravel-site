@@ -54,7 +54,7 @@ const MapContainer = (props) => {
     <div>
       <NavBar />
       <div className="map" id="mapid">
-        <Map viewport={viewport} >
+        <Map viewport={viewport} minZoom="3">
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

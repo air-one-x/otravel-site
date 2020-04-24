@@ -20,7 +20,9 @@ const NavBarBottom = (props) => {
                 />
             </div>
             <div className="localisation--button--desktop">
-                <NavigationIcon color="primary" />
+            <LocalisationButton 
+            onClick={onClick}
+            />
             </div>
         </div>
     );
