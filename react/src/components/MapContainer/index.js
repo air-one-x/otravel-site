@@ -165,7 +165,7 @@ const MapContainer = (props) => {
             </div>
           </Popup>
           )}
-          {activePopupMarkerClick && isLogged&& (
+          {activePopupMarkerClick && (
             <Popup
               position={[
                 activePopupMarkerClick.lat,

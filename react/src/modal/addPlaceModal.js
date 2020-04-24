@@ -3,11 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import TextField from '@material-ui/core/TextField';
@@ -16,7 +14,6 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormLoginModal from '../containers/Login';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -46,51 +43,15 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 
-const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, namePlace , descriptionPlace, addNamePlace, addCategoryPlace, addDescriptionPlace, addZipCodePlace, addCityPlace, addStreetPlace, lat, long, addPlace, isLogged, sendAdress}) => {
+const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, namePlace , descriptionPlace, addNamePlace, addCategoryPlace, addDescriptionPlace, addZipCodePlace, addCityPlace, addStreetPlace, lat, long, addPlace,onClose, open, isLogged, sendAdress}) => {
 
-
-
-  const classes = useStyles(); 
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleChange = (event) => {
-    console.log('event SELECT !!', event);
-  };
-
-const checkIsLogged = () => {
-  if (isLogged === true) {
-    handleClickOpen();
-  } else {
-    console.log('sortir la modal de connexion');
- 
-  
-    
-  }
-}
+  const classes = useStyles();
 
   return (
-    <div>
-
- 
-      <div>
-      <Button variant="outlined" color="primary" onClick={() => {checkIsLogged();sendAdress()}}>
-
-          Ajouter un lieu
-      </Button>
-      </div>
-     
-      <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
+      <Dialog fullScreen open={open} onClose={onClose} TransitionComponent={Transition}>
         <AppBar className={classes.appBar}>
           <Toolbar>
-            <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
+            <IconButton edge="start" color="inherit" onClick={onClose} aria-label="close">
               <CloseIcon />
             </IconButton>
   
@@ -159,14 +120,10 @@ const checkIsLogged = () => {
                       reader.readAsDataURL(input);
                       }}/>
                       <div id="avatar"></div>
-        <Button autoFocus color="inherit" onClick={() => {addPlace();handleClose()}}>
+        <Button autoFocus color="inherit" onClick={() => {addPlace();onClose()}}>
         save
       </Button>
       </Dialog>
-    </div>
- 
-
- 
 );
 }
 export default AddPlaceModal;

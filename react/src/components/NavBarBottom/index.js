@@ -5,6 +5,7 @@ import LocalisationButton from './LocalisationButton';
 import NavigationIcon from '@material-ui/icons/Navigation';
 import './style.css';
 import FormLoginModal from '../../containers/addPlaceFakeLogin';
+import AddPlaceButtonComponent from '../AddPlaceButton/AddPlaceButtonComponent';
 
 const NavBarBottom = (props) => {
     
@@ -14,7 +15,8 @@ const NavBarBottom = (props) => {
         <div className="nav--bar--bottom">
             <div className="mobile--buttons">
                 <FilterPlace />
-                {isLogged === true ? <AddPlace /> : <FormLoginModal /> }
+                    {/*isLogged === true ? <AddPlace /> : <FormLoginModal /> */}
+                    <AddPlaceButtonComponent />
                 <LocalisationButton 
                 onClick={onClick}
                 />
