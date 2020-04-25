@@ -22,7 +22,7 @@ export default (store) => (next) => (action) => {
             return store.getState().placesReducer.geolocation.coords.long;
           }
         }
-        
+
         axios({
             method: 'post',
             url: 'http://localhost:8001/places/add',
@@ -32,7 +32,7 @@ export default (store) => (next) => (action) => {
             data: {
               name: store.getState().geolocation.form.name,
               category: store.getState().geolocation.form.category,
-              descirption: store.getState().geolocation.form.description,
+              description: store.getState().geolocation.form.description,
               street: store.getState().geolocation.form.street,
               zipCode: store.getState().geolocation.form.zipCode.toString(),
               city: store.getState().geolocation.form.city,
