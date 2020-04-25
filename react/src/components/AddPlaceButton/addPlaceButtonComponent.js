@@ -3,7 +3,8 @@ import Button from '@material-ui/core/Button';
 import AddPlace from '../../containers/AddPlace';
 import FormLoginModal from '../../containers/Login';
 
-const AddPlaceButtonComponent = ({isLogged, sendAdress}) => {
+const AddPlaceButtonComponent = ({isLogged, sendAdress, resetClickLocation}) => {
+
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
@@ -16,6 +17,7 @@ const AddPlaceButtonComponent = ({isLogged, sendAdress}) => {
     
     const handleClose = () => {
     setOpen(false);
+    resetClickLocation();
     };
 
     return (

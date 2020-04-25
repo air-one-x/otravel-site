@@ -6,16 +6,19 @@ export const CHECK_FILTER = 'CHECK_FILTER';
 export const ADD_FILTER= 'ADD_FILTER';
 export const REMOVE_SHOWER= 'REMOVE_SHOWER';
 export const REMOVE_FILTER_SHOWER= 'REMOVE_FILTER_SHOWER'
-
 export const IS_FILTER_TOILET='IS_FILTER_TOILET';
 export const REMOVE_TOILET = 'REMOVE_TOILET';
-export const REMOVE_FILTER_TOILET = 'REMOVE_FILTER_TOILET'
-export const ADD_LOCATION_PLACE = 'ADD_LOCATION_PLACE'
+export const REMOVE_FILTER_TOILET = 'REMOVE_FILTER_TOILET';
+export const ADD_LOCATION_PLACE = 'ADD_LOCATION_PLACE';
+export const RESET_LOCATION_PLACE = 'RESET_LOCATION_PLACE';
 
 
+export const resetClickLocation = () => ({
+    type: RESET_LOCATION_PLACE,
+})
 export const addLocationPlace = (payload) => ({
     type: ADD_LOCATION_PLACE,
-    payload
+    payload,
 })
 //action renvoyé par le middleware placesMiddleware
 export const addFilter = (payload) => ({
