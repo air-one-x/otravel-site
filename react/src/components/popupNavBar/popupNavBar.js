@@ -11,11 +11,12 @@ const PopupNavBar = () => {
     const [openAddComments, setOpenAddComments] = useState(false);
 
     const handleOpenAddComments = () => {
-        console.log('NTR');
+        console.log('open modal');
         setOpenAddComments(true);
     }
 
     const handleCloseAddComments = () => {
+        console.log('close modale')
         setOpenAddComments(false);
       };
 

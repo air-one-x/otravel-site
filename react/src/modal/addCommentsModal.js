@@ -12,8 +12,16 @@ const AddCommentsModal = ({
   newTitreComment, 
   newTextComment, 
   inputChangeTitleComment, 
-  inputChangeTextComment
+  inputChangeTextComment,
+  sendComment,
+  createSuccess,
+  resetCreatedSuccess
 }) => {
+
+    if(createSuccess === true){  
+      resetCreatedSuccess();
+      onClose();
+    } ;
 
   return (
     <Dialog onClose={onClose} aria-labelledby="simple-dialog-title" open={open}>
@@ -44,13 +52,14 @@ const AddCommentsModal = ({
         size="small" 
         color="default" 
         title="Annuler" 
-        onClick={onClose}
+        onClick={() =>  (onClose())}
       />
       <ButtonIcon 
         variant="contained" 
         size="small" 
         color="primary" 
         title="Valider"
+        onClick={() => (sendComment()) }
       />
       </DialogActions>
     </Dialog>

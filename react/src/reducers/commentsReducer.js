@@ -1,10 +1,11 @@
-import { CHANGE_TEXT_COMMENT, CHANGE_TITLE_COMMENT } from '../actions/comments';
+import { CHANGE_TEXT_COMMENT, CHANGE_TITLE_COMMENT, COMMENT_CREATED_SUCCESS, RESET_CREATED_SUCCESS } from '../actions/comments';
 
 export const initialState = {
     form: {
         title: '',
         comment: '',
-    }
+    },
+    createSuccess: false
 };
 
 export default (state = initialState, action = {}) => {
@@ -25,6 +26,18 @@ export default (state = initialState, action = {}) => {
                         ...state.form,
                         title: action.payload,
                     }
+                };
+            case COMMENT_CREATED_SUCCESS:
+                return {
+                    ...state,
+                    createSuccess: action.payload
+    
+                };
+            case RESET_CREATED_SUCCESS:
+                return {
+                    ...state,
+                    createSuccess: false
+    
                 };
             default:
                 return state;
