@@ -9,6 +9,7 @@ import userLocationURL from './map-pin-solid.svg';
 import NavBar from '../../containers/navBarFake';
 import AddPlaceButton from '../../containers/AddPlaceButtonContainer';
 import { isEmpty } from 'lodash';
+import PopupNavBar from '../popupNavBar/popupNavBar';
 
 const myIcon = L.icon({
   iconUrl: userLocationURL,
@@ -169,6 +170,7 @@ const MapContainer = ({
               <p>{activePlace.city} {activePlace.zipcode}</p>
               <p>Description: {activePlace.description}</p>
               <p>Ajouté par : {activePlace.user.username}</p>
+              <PopupNavBar />
             </div>
           </Popup>
           )}

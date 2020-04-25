@@ -1,0 +1,62 @@
+import React from 'react';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@material-ui/core/Dialog';
+import ButtonIcon from '../components/Generique/ButtonIcon';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import InputComponent from '../components/Generique/inputComponent'
+
+const AddCommentsModal = ({
+  open, 
+  onClose, 
+  newTitreComment, 
+  newTextComment, 
+  inputChangeTitleComment, 
+  inputChangeTextComment
+}) => {
+
+  return (
+    <Dialog onClose={onClose} aria-labelledby="simple-dialog-title" open={open}>
+      <DialogTitle id="simple-dialog-title">Ajouter un commentaire</DialogTitle>
+        <DialogContent>
+        <div className="mb-3">
+            <InputComponent           
+            value={newTitreComment}
+            onChange={(event) => inputChangeTitleComment(event.target.value)}
+            variant="outlined"
+            label="Titre du commentaire"
+          />
+        </div>
+         <div>
+          <InputComponent           
+            value={newTextComment}
+            onChange={(event) => inputChangeTextComment(event.target.value)}
+            variant="outlined"
+            label="Commentaire"
+            multiline
+            rows={4}
+          />
+          </div>
+        </DialogContent>
+      <DialogActions>
+      <ButtonIcon  
+        variant="contained" 
+        size="small" 
+        color="default" 
+        title="Annuler" 
+        onClick={onClose}
+      />
+      <ButtonIcon 
+        variant="contained" 
+        size="small" 
+        color="primary" 
+        title="Valider"
+      />
+      </DialogActions>
+    </Dialog>
+  );
+};
+
+
+
+export default AddCommentsModal;
