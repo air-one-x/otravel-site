@@ -7,7 +7,8 @@ import ReactLeafletSearch from "react-leaflet-search";
 import L from 'leaflet';
 import userLocationURL from './map-pin-solid.svg';
 import NavBar from '../../containers/navBarFake';
-import AddPlaceButton from '../../containers/AddPlaceButtonContainer'
+import AddPlaceButton from '../../containers/AddPlaceButtonContainer';
+import { isEmpty } from 'lodash';
 
 const myIcon = L.icon({
   iconUrl: userLocationURL,
@@ -61,7 +62,7 @@ const MapContainer = ({
     addLocationPlace(event.latlng)
   }
 
-
+//const urlImg = `http://localhost:8001/${activePlace.places_picture.name}`;
   useEffect(() => {
      getLocation()
 
@@ -162,8 +163,12 @@ const MapContainer = ({
             }}
           >
             <div>
-              <h2>{activePlace.name}</h2>
-              <p>{activePlace.user.username}</p>
+              <h2>Nom : {activePlace.name}</h2>
+              {isEmpty(activePlace.places_picture) ? "" : <img style={{ width:'50%' }} src={`http://localhost:8001/${activePlace.places_picture.name}`} />}
+              <p>Adresse : {activePlace.street}</p>
+              <p>{activePlace.city} {activePlace.zipcode}</p>
+              <p>Description: {activePlace.description}</p>
+              <p>Ajouté par : {activePlace.user.username}</p>
             </div>
           </Popup>
           )}

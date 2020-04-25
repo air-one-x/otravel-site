@@ -35,6 +35,7 @@ class Places
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("category")
+     * @Groups("places")
      * @Groups("user")
      */
     private $street;
@@ -43,6 +44,7 @@ class Places
     /**
      * @ORM\Column(type="integer", length=255)
      * @Groups("category")
+     * @Groups("places")
      * @Groups("user")
      */
     private $zipcode;
@@ -50,6 +52,7 @@ class Places
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("category")
+     * @Groups("places")
      * @Groups("user")
      */
     private $city;
@@ -88,6 +91,7 @@ class Places
     /**
      * @ORM\Column(type="text", nullable=true)
      * @Groups("category")
+     * @Groups("places")
      */
     private $description;
 

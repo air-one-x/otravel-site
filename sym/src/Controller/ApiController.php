@@ -98,6 +98,7 @@ class ApiController extends AbstractController
     {
 
         $user = $placesRepository->findAll();
+        
         $data = $serializer->normalize($user, null, ['groups' => 'places']);
 
         return $this->json($data);

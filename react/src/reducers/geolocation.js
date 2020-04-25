@@ -89,9 +89,9 @@ export default (state = initialState, action = {}) => {
             ...state,
        form : {
          ...state.form,
-         street : action.payload.road || "pas du rue identifié prédéfinie",
+         street : action.payload.road || action.payload.street || action.payload.hamlet || "pas du rue identifié prédéfinie",
          zipCode: action.payload.postcode || "pas de code postal prédéfini",
-         city: action.payload.county || "pas de ville prédéfinie",
+         city: action.payload.village || action.payload.city || action.payload.county || "pas de ville prédéfinie",
        },
        };
                               
