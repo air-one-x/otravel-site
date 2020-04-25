@@ -27,8 +27,7 @@ const MapContainer = ({
   isFilterToilet,
   setViewport,
   isLogged,
-  addLocationPlace,
-  clickLocation } ) => {
+  addLocationPlace, } ) => {
 
 
 

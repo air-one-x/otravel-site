@@ -1,11 +1,7 @@
 import React from 'react';
-import AddPlace from '../../containers/AddPlace';
 import FilterPlace from '../../modal/filterPC';
 import LocalisationButton from './LocalisationButton';
-import NavigationIcon from '@material-ui/icons/Navigation';
 import './style.css';
-import FormLoginModal from '../../containers/addPlaceFakeLogin';
-import AddPlaceButtonComponent from '../AddPlaceButton/addPlaceButtonComponent';
 import AddPlaceButton from '../../containers/AddPlaceButtonContainer'
 
 const NavBarBottom = (props) => {
