@@ -6,6 +6,23 @@ export default (store) => (next) => (action) => {
     switch(action.type) {
         case ADD_PLACE: 
         console.log('JE VOIS L AJOUT DUN LIEU ');
+        const formLatitude = () => {
+          if (!isEmpty(store.getState().placesReducer.locationPlace)) {
+            return store.getState().placesReducer.locationPlace.lat;
+          } else {
+            return store.getState().placesReducer.geolocation.coords.lat;
+          }
+        }
+        
+      
+        const formLongitude = () => {      
+          if (!isEmpty(store.getState().placesReducer.locationPlace)) {
+            return store.getState().placesReducer.locationPlace.lng;
+          } else {
+            return store.getState().placesReducer.geolocation.coords.long;
+          }
+        }
+        
         axios({
             method: 'post',
             url: 'http://localhost:8001/places/add',
@@ -19,8 +36,8 @@ export default (store) => (next) => (action) => {
               street: store.getState().geolocation.form.street,
               zipCode: store.getState().geolocation.form.zipCode.toString(),
               city: store.getState().geolocation.form.city,
-              lat: store.getState().geolocation.coords.lat,
-              lng: store.getState().geolocation.coords.long,
+              lat: formLatitude(),
+              lng: formLongitude(),
               nameFile: '',
               adress: '1 rue ',
               place_picture: localStorage.getItem('picturePlace'),

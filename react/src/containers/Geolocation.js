@@ -11,7 +11,8 @@ const mapStateToProps = (state) => ({
     isFilterShower: state.placesReducer.isFilterShower,
     isFilterToilet: state.placesReducer.isFilterToilet,
     newList: state.placesReducer.newList,
-    isLogged: state.user.isLogged
+    isLogged: state.user.isLogged,
+    clickLocation: state.placesReducer.locationPlace
 });
 
 const mapDispatchToProps = (dispatch) => ({

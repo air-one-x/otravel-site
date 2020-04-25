@@ -13,6 +13,7 @@ const mapStateToProps = (state) => ({
     cityPlace: state.geolocation.form.city,
     streetPlace: state.geolocation.form.street,
     isLogged: state.user.isLogged,
+    clickLocation: state.placesReducer.locationPlace
 });
 
 const mapDispatchToProps = (dispatch) => ({

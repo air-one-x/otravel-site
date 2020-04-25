@@ -27,7 +27,10 @@ const MapContainer = ({
   isFilterToilet,
   setViewport,
   isLogged,
-  addLocationPlace } ) => {
+  addLocationPlace,
+  clickLocation } ) => {
+
+
 
   const [activePlace, setActivePlace] = useState(null);
   const [latMarker, setlatMarker] = useState(0);

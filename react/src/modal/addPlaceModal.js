@@ -14,6 +14,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
+import {isEmpty} from 'lodash';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -43,9 +44,39 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 
-const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, namePlace , descriptionPlace, addNamePlace, addCategoryPlace, addDescriptionPlace, addZipCodePlace, addCityPlace, addStreetPlace, lat, long, addPlace,onClose, open, }) => {
-
+const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, namePlace , descriptionPlace, addNamePlace, addCategoryPlace, addDescriptionPlace, addZipCodePlace, addCityPlace, addStreetPlace, lat, long, addPlace,onClose, open, clickLocation, }) => {
   const classes = useStyles();
+  
+  // const test = () => {
+  //   console.warn(clickLocation.lat);
+  //   const formLat  = lat;
+  //   const formLng = lng;
+
+  //   if (!isEmpty(clickLocation)) {
+  //     return clickLocation;
+  //   } else {
+  //     let geolocation = {lat: lat, long: long};
+  //     return geolocation;
+  //   }
+  // }
+
+  const formLatitude = () => {
+
+    if (!isEmpty(clickLocation)) {
+      return clickLocation.lat;
+    } else {
+      return lat;
+    }
+  }
+
+  const formLongitude = () => {
+
+    if (!isEmpty(clickLocation)) {
+      return clickLocation.lng;
+    } else {
+      return long;
+    }
+  }
 
   return (
       <Dialog fullScreen open={open} onClose={onClose} TransitionComponent={Transition}>
@@ -71,8 +102,8 @@ const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, nam
         <Grid container item>
         <TextField id="name" label="name" type="text" value={namePlace} onChange={(event) => addNamePlace(event.target.value)} />
         </Grid>
-        <TextField id="outlined-basic" label="Latitude" variant="outlined" value={lat} />
-        <TextField id="outlined-basic" label="Longitude" variant="outlined" value={long} />
+        <TextField id="outlined-basic" label="Latitude" variant="outlined" value={formLatitude()} />
+        <TextField id="outlined-basic" label="Longitude" variant="outlined" value={formLongitude()} />
 
         <FormControl className={classes.formControl}>
         <InputLabel id="demo-simple-select-label">Type</InputLabel>
