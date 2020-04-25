@@ -10,7 +10,7 @@ export default (store) => (next) => (action) => {
           if (!isEmpty(store.getState().placesReducer.locationPlace)) {
             return store.getState().placesReducer.locationPlace.lat;
           } else {
-            return store.getState().placesReducer.geolocation.coords.lat;
+            return store.getState().geolocation.coords.lat;
           }
         }
         
@@ -19,10 +19,10 @@ export default (store) => (next) => (action) => {
           if (!isEmpty(store.getState().placesReducer.locationPlace)) {
             return store.getState().placesReducer.locationPlace.lng;
           } else {
-            return store.getState().placesReducer.geolocation.coords.long;
+            return store.getState().geolocation.coords.long;
           }
         }
-
+console.log('addplace', localStorage.getItem('picturePlace'));
         axios({
             method: 'post',
             url: 'http://localhost:8001/places/add',
@@ -38,7 +38,7 @@ export default (store) => (next) => (action) => {
               city: store.getState().geolocation.form.city,
               lat: formLatitude(),
               lng: formLongitude(),
-              nameFile: '',
+              nameFile: store.getState().geolocation.form.nameFile,
               adress: '1 rue ',
               place_picture: localStorage.getItem('picturePlace'),
 

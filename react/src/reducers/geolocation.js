@@ -1,4 +1,4 @@
-import { CONVERT_ADRESS, GEOLOCATION, NAME_PLACE, CATEGORY_PLACE, DESCRIPTION_PLACE, STREET_PLACE, ZIPCODE_PLACE, CITY_PLACE } from '../actions/geolocation';
+import { CONVERT_ADRESS, GEOLOCATION, NAME_PLACE, CATEGORY_PLACE, DESCRIPTION_PLACE, STREET_PLACE, ZIPCODE_PLACE, CITY_PLACE, ADD_NAME_PICTURE_PLACE } from '../actions/geolocation';
 
 const initialState = {
     coords: {
@@ -12,6 +12,7 @@ const initialState = {
       street : "",
       zipCode: 14000,
       city: "",
+      nameFile: "",
     },
     isLocated: false,
 };
@@ -35,6 +36,14 @@ export default (state = initialState, action = {}) => {
            name: action.payload,
          },
         };
+        case ADD_NAME_PICTURE_PLACE:
+          return {
+            ...state,
+           form : {
+             ...state.form,
+             nameFile: action.payload,
+           },
+          };
         case CATEGORY_PLACE:
           return {
             ...state,

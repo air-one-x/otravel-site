@@ -8,6 +8,7 @@ export const CITY_PLACE = 'CITY_PLACE';
 export const ADD_PLACE = 'ADD_PLACE';
 export const CONVERT_ADRESS = 'CONVERT_ADRESS';
 export const SEND_ADRESS= 'SEND_ADRESS';
+export const ADD_NAME_PICTURE_PLACE ='ADD_NAME_PICTURE_PLACE';
 
 
 export const sendAdress = () => ({
@@ -19,6 +20,10 @@ export const convertAdress = (payload) => ({
   payload,
 });
 
+export const addNamePicturePlace = (payload) => ({
+  type: ADD_NAME_PICTURE_PLACE,
+  payload
+});
 export const addPlace = () => ({
   type: ADD_PLACE,
 });

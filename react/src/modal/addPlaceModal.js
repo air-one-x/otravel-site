@@ -44,7 +44,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 
-const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, namePlace , descriptionPlace, addNamePlace, addCategoryPlace, addDescriptionPlace, addZipCodePlace, addCityPlace, addStreetPlace, lat, long, addPlace,onClose, open, clickLocation, }) => {
+const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, namePlace , descriptionPlace, addNamePlace, addCategoryPlace, addDescriptionPlace, addZipCodePlace, addCityPlace, addStreetPlace, lat, long, addPlace,onClose, open, clickLocation, addNamePicturePlace}) => {
   const classes = useStyles();
   
   // const test = () => {
@@ -131,6 +131,8 @@ const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, nam
         </List>
         <input type="file" label="file" onChange={(event) => {
                       var input = event.target.files[0];
+                      console.log('event file', input.name)
+                      addNamePicturePlace(input.name);
                       var reader = new FileReader(); 
                       reader.onload = function(){
                           console.log(reader.result);
