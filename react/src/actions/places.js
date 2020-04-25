@@ -10,7 +10,13 @@ export const REMOVE_FILTER_SHOWER= 'REMOVE_FILTER_SHOWER'
 export const IS_FILTER_TOILET='IS_FILTER_TOILET';
 export const REMOVE_TOILET = 'REMOVE_TOILET';
 export const REMOVE_FILTER_TOILET = 'REMOVE_FILTER_TOILET'
+export const ADD_LOCATION_PLACE = 'ADD_LOCATION_PLACE'
 
+
+export const addLocationPlace = (payload) => ({
+    type: ADD_LOCATION_PLACE,
+    payload
+})
 //action renvoyé par le middleware placesMiddleware
 export const addFilter = (payload) => ({
     type: ADD_FILTER,

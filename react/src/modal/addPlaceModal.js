@@ -43,7 +43,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 
-const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, namePlace , descriptionPlace, addNamePlace, addCategoryPlace, addDescriptionPlace, addZipCodePlace, addCityPlace, addStreetPlace, lat, long, addPlace,onClose, open, isLogged, sendAdress}) => {
+const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, namePlace , descriptionPlace, addNamePlace, addCategoryPlace, addDescriptionPlace, addZipCodePlace, addCityPlace, addStreetPlace, lat, long, addPlace,onClose, open, }) => {
 
   const classes = useStyles();
 

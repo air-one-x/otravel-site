@@ -7,27 +7,27 @@ import ReactLeafletSearch from "react-leaflet-search";
 import L from 'leaflet';
 import userLocationURL from './map-pin-solid.svg';
 import NavBar from '../../containers/navBarFake';
-import AddPlaceModal from '../../containers/AddPlace';
+import AddPlaceButton from '../../containers/AddPlaceButtonContainer'
 
 const myIcon = L.icon({
   iconUrl: userLocationURL,
   iconSize: [33, 35],
 });
 
-const MapContainer = (props) => {
-
-  const {
-    viewport,
-    userLocation,
-    lat,
-    long,
-    isLocated,
-    fetchPlaces,
-    list,
-    newList,
-    isFilterShower,
-    isFilterToilet,
-    setViewport } = props;
+const MapContainer = ({
+  viewport,
+  userLocation,
+  lat,
+  long,
+  isLocated,
+  fetchPlaces,
+  list,
+  newList,
+  isFilterShower,
+  isFilterToilet,
+  setViewport,
+  isLogged,
+  addLocationPlace } ) => {
 
   const [activePlace, setActivePlace] = useState(null);
   const [latMarker, setlatMarker] = useState(0);
@@ -48,18 +48,18 @@ const MapContainer = (props) => {
     userLocation(position.coords)
   }
 
-  const test = (event) => {
+  const onClickMap = (event) => {
     console.log('click sur la map', event)
     setMarkerClick(true);
     setlatMarker(event.latlng.lat),
     setlngMarker(event.latlng.lng)
   }
 
-  const test2 = (event) => {
+  const activeMarkerPopup = (event) => {
     console.log('itinaore', event)
     setPopupMarkerClick(true)
     setActivePopupMarkerClick(event.latlng)
-    
+    addLocationPlace(event.latlng)
   }
 
 
@@ -74,7 +74,7 @@ const MapContainer = (props) => {
     <div>
       <NavBar />
       <div className="map" id="mapid">
-        <Map viewport={viewport} minZoom="3" onClick={test} >
+        <Map viewport={viewport} minZoom="3" onClick={onClickMap} >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -97,7 +97,7 @@ const MapContainer = (props) => {
             <Marker
               position={[latMarker, lngMarker]}
               icon={myIcon}
-              onClick={test2}
+              onClick={activeMarkerPopup}
             >
             </Marker>)
           }
@@ -176,7 +176,7 @@ const MapContainer = (props) => {
               }}
             >
               <div>
-              <AddPlaceModal/>
+              <AddPlaceButton isLogged={isLogged}/>
               </div>
             </Popup>
             )}

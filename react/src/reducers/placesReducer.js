@@ -1,11 +1,12 @@
-import { FETCH_PLACES_SUCCESS, IS_FILTER_SHOWER, ADD_FILTER, REMOVE_FILTER_SHOWER, IS_FILTER_TOILET, REMOVE_FILTER_TOILET} from '../actions/places';
+import { ADD_LOCATION_PLACE, FETCH_PLACES_SUCCESS, IS_FILTER_SHOWER, ADD_FILTER, REMOVE_FILTER_SHOWER, IS_FILTER_TOILET, REMOVE_FILTER_TOILET} from '../actions/places';
 
 export const initialState = {
     list: [],
     isFilterShower: false,
     isFilterToilet: false,
     filter: null,
-    newList: []
+    newList: [],
+    locationPlace: {}
 };
 
 export default (state = initialState, action = {}) => {
@@ -52,6 +53,11 @@ export default (state = initialState, action = {}) => {
             newList:action.payload,
             isFilterToilet: !state.isFilterToilet,
             filter: null,
+        };
+        case ADD_LOCATION_PLACE: 
+        return {
+            ...state,
+            locationPlace:action.payload,
         };
        
             default:

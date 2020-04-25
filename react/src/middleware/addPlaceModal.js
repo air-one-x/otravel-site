@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { ADD_PLACE, SEND_ADRESS, convertAdress } from '../actions/geolocation';
+import {isEmpty} from 'lodash'
 
 export default (store) => (next) => (action) => {
     switch(action.type) {
@@ -37,15 +38,26 @@ export default (store) => (next) => (action) => {
             break;
 
             case SEND_ADRESS: 
-            console.log('convertion en cours');
+            console.log('convertion en cours',store.getState().geolocation, store.getState().placesReducer );
+            let data = {};
+            if(!isEmpty(store.getState().placesReducer.locationPlace)){
+              console.log('if')
+              data = {
+                lat: store.getState().placesReducer.locationPlace.lat,
+                long: store.getState().placesReducer.locationPlace.lng
+              }
+            }else{
+              data = store.getState().geolocation.coords
+            }
+
             axios({
               method: 'post',
               url: 'http://localhost:8001/api/adress/places',
               withCredentials: true,
               headers: {'Authorization': `Bearer ${localStorage.getItem('id_token')}`},
               data : {
-                lat: store.getState().geolocation.coords.long,
-                lng: store.getState().geolocation.coords.lat,              
+                lat: data.long,
+                lng: data.lat,              
               },
             })
           .then((res) => {

@@ -83,9 +83,6 @@ const LoginModal = ({
   return (
    
     <div className="nav-link"> 
-    
-      
-
     <Button 
     variant="outlined" 
     color="primary" 
