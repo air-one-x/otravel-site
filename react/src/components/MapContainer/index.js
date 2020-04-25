@@ -35,7 +35,6 @@ const MapContainer = ({
   const [latMarker, setlatMarker] = useState(0);
   const [lngMarker, setlngMarker] = useState(0);
   const [markerClick, setMarkerClick] = useState(false);
-  const [popupMarkerClick, setPopupMarkerClick] = useState(false);
   const [activePopupMarkerClick, setActivePopupMarkerClick] = useState(null);
 
   const getLocation = () => {
@@ -58,8 +57,6 @@ const MapContainer = ({
   }
 
   const activeMarkerPopup = (event) => {
-    console.log('itinaore', event)
-    setPopupMarkerClick(true)
     setActivePopupMarkerClick(event.latlng)
     addLocationPlace(event.latlng)
   }
@@ -116,10 +113,11 @@ const MapContainer = ({
                 key={place.id}
                 position={[
                   place.lat,
-                  place.lng,
+                  place.lat,
                 ]}
                 onClick={() => {
-                  setActivePlace(place);
+                  setActivePlace(place),
+                  setViewport({center:[place.lat, place.lng]})
                 }}
               />
             ))
@@ -133,7 +131,8 @@ const MapContainer = ({
                   place.lng,
                 ]}
                 onClick={() => {
-                  setActivePlace(place);
+                  setActivePlace(place),
+                  setViewport({center:[place.lat, place.lng]})
                 }}
               />
             ))
@@ -147,6 +146,7 @@ const MapContainer = ({
               ]}
               onClick={() => {
                 setActivePlace(place);
+                setViewport({center:[place.lat, place.lng]})
               }}
             />
           ))
