@@ -4,7 +4,8 @@ import Dialog from '@material-ui/core/Dialog';
 import ButtonIcon from '../components/Generique/ButtonIcon';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import InputComponent from '../components/Generique/inputComponent'
+import InputComponent from '../components/Generique/inputComponent';
+import DialogTitleComponent from '../components/Generique/dialogTitleComponent';
 
 const AddCommentsModal = ({
   open, 
@@ -25,7 +26,7 @@ const AddCommentsModal = ({
 
   return (
     <Dialog onClose={onClose} aria-labelledby="simple-dialog-title" open={open}>
-      <DialogTitle id="simple-dialog-title">Ajouter un commentaire</DialogTitle>
+      <DialogTitleComponent onClose={onClose} id="simple-dialog-title">Ajouter un commentaire</DialogTitleComponent>
         <DialogContent>
         <div className="mb-3">
             <InputComponent           

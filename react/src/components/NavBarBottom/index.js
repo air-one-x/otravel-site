@@ -1,5 +1,5 @@
 import React from 'react';
-import FilterPlace from '../../modal/filterPC';
+import FilterPlace from '../../containers/filterPC';
 import LocalisationButton from './LocalisationButton';
 import './style.css';
 import AddPlaceButton from '../../containers/AddPlaceButtonContainer'
