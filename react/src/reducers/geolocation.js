@@ -2,15 +2,15 @@ import { CONVERT_ADRESS, GEOLOCATION, NAME_PLACE, CATEGORY_PLACE, DESCRIPTION_PL
 
 const initialState = {
     coords: {
-        lat: 52.4760892,
-        long: -71.8258668,
+        lat: 46.603354,
+        long: 1.8883335,
     },
     form: {
       name: "",
-      category: [1],
+      category: [],
       description: "",
       street : "",
-      zipCode: 14000,
+      zipCode: 0,
       city: "",
       nameFile: "",
     },
@@ -49,7 +49,7 @@ export default (state = initialState, action = {}) => {
             ...state,
          form : {
            ...state.form,
-           category: [action.payload],
+           category: [...state.form.category, ...action.payload],
          },
           };
         case DESCRIPTION_PLACE:

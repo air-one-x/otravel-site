@@ -29,7 +29,7 @@ const MapContainer = ({
   isFilterToilet,
   setViewport,
   isLogged,
-  addLocationPlace, } ) => {
+  addLocationPlace, idClickPlace } ) => {
 
 
 
@@ -61,6 +61,12 @@ const MapContainer = ({
   const activeMarkerPopup = (event) => {
     setActivePopupMarkerClick(event.latlng)
     addLocationPlace(event.latlng)
+  }
+  
+  const clickMarkerID = (event) => {
+    console.log('CHERCHE ID PLACE', event);
+    idClickPlace(event)
+
   }
 
 //const urlImg = `http://localhost:8001/${activePlace.places_picture.name}`;
@@ -119,7 +125,8 @@ const MapContainer = ({
                 ]}
                 onClick={() => {
                   setActivePlace(place),
-                  setViewport({center:[place.lat, place.lng]})
+                  setViewport({center:[place.lat, place.lng]}),
+                  clickMarkerID(place.id)
                 }}
               />
             ))
@@ -134,7 +141,8 @@ const MapContainer = ({
                 ]}
                 onClick={() => {
                   setActivePlace(place),
-                  setViewport({center:[place.lat, place.lng]})
+                  setViewport({center:[place.lat, place.lng]}),
+                  clickMarker(place.id)
                 }}
               />
             ))
@@ -148,7 +156,8 @@ const MapContainer = ({
               ]}
               onClick={() => {
                 setActivePlace(place);
-                setViewport({center:[place.lat, place.lng]})
+                setViewport({center:[place.lat, place.lng]}),
+                clickMarkerID(place.id)
               }}
             />
           ))

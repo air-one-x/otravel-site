@@ -15,6 +15,11 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import {isEmpty} from 'lodash';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormLabel from '@material-ui/core/FormLabel';
+
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -105,18 +110,12 @@ const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, nam
         <TextField id="outlined-basic" label="Latitude" variant="outlined" value={formLatitude()} />
         <TextField id="outlined-basic" label="Longitude" variant="outlined" value={formLongitude()} />
 
-        <FormControl className={classes.formControl}>
-        <InputLabel id="demo-simple-select-label">Type</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={categoryPlace}
-          onChange={(event) => addCategoryPlace(event.target.value)}
-        >
-        <MenuItem value="1" >Douches</MenuItem>
-        <MenuItem value="2" >Toilettes</MenuItem>
-      </Select>
-    </FormControl>
+
+      <FormControl component="fieldset">
+        <FormLabel component="legend">type se services</FormLabel>
+            <FormControlLabel value="3" control={<Radio />} label="douche" onChange={(event) => addCategoryPlace(event.target.value)} />
+            <FormControlLabel value="4" control={<Radio />} label="toilette" onChange={(event) => addCategoryPlace(event.target.value)} />
+        </FormControl>
           <Grid container item>
             <TextField
             id="outlined-multiline-static"

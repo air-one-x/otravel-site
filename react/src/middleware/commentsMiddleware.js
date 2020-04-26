@@ -14,8 +14,8 @@ export default (store) => (next) => (action) => {
         headers: { 'Content-Type': 'multipart/form-data',
             'Authorization': `Bearer ${localStorage.getItem('id_token')}`},
         data: {
-          username: store.getState().userInscription.form.pseudo,
           text: store.getState().commentsReducer.form.comment,
+          places_id: store.getState().placesReducer.idClickPlace,
         },
       }).then((res) => {
         // Si succès -> dispatcher une action success

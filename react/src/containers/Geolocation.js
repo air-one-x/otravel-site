@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import mapContainer from '../components/MapContainer';
 import { geolocation } from '../actions/geolocation';
-import { fetchPlaces, addLocationPlace } from '../actions/places';
+import { fetchPlaces, addLocationPlace, idClickPlace } from '../actions/places';
 
 const mapStateToProps = (state) => ({
     lat: state.geolocation.coords.lat,
@@ -24,6 +24,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     addLocationPlace: (position) => {
         dispatch(addLocationPlace(position));
+     },
+    idClickPlace: (idPlace) => {
+        dispatch(idClickPlace(idPlace));
      }
 });
 

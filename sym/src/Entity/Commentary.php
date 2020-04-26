@@ -17,6 +17,7 @@ class Commentary
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      * @Groups("commentary") 
+     * @Groups("places") 
      */
     private $id;
 
@@ -25,6 +26,7 @@ class Commentary
      * @Groups("commentary")
      * @groups("user")
      * @Groups("commentary_picture")
+     * @Groups("places")
      */
     private $text;
 
@@ -32,25 +34,35 @@ class Commentary
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="Commentary")
      * @ORM\JoinColumn(onDelete="SET NULL")
      * @Groups("commentary")
+     * @Groups("places")
      */
     private $user;
 
     /**
      * @ORM\Column(type="datetime")
      * @Groups("commentary")
+     * @Groups("places")
      */
     private $created_at;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     * @Groups("places")
      */
     private $updated_at;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\CommentaryPicture", mappedBy="commentary", orphanRemoval=true)
      * @Groups("commentary")
+     * @Groups("places")
      */
     private $CommentaryPicture;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Places", inversedBy="commentary")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $places;
 
     public function __construct()
     {
@@ -139,6 +151,18 @@ class Commentary
                 $commentaryPicture->setCommentary(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPlaces(): ?Places
+    {
+        return $this->places;
+    }
+
+    public function setPlaces(?Places $places): self
+    {
+        $this->places = $places;
 
         return $this;
     }
