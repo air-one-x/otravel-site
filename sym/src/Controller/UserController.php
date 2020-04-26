@@ -111,7 +111,8 @@ class UserController extends AbstractController
             $success = file_put_contents($path, base64_decode($img));
 
             if(isset($success)){
-                $user->setAvatar($path);
+                $pathFileBdd = 'uploads/images/avatars/'.$nomfichierUnique;
+                $user->setAvatar($pathFileBdd);
             }
 
         }

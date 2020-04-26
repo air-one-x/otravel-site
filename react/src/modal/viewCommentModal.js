@@ -8,15 +8,17 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
+import { grey } from '@material-ui/core/colors';
 import DialogTitleComponent from '../components/Generique/dialogTitleComponent';
+import { isEmpty } from 'lodash';
+
 const useStyles = makeStyles(() => ({
     root: {
         maxWidth: 345,
         marginBottom: '1rem',
       },
       avatar: {
-        backgroundColor: red[500],
+        backgroundColor: grey[500],
       },
 }));
 
@@ -38,7 +40,11 @@ const ViewCommentPlace = ({ onClose, open, commentaryInfos }) => {
         <CardHeader
             avatar={
             <Avatar aria-label="recipe" className={classes.avatar}>
-                R
+            { isEmpty(comment.user.avatar)?
+                <img style={{ width:'100%' }} src={`http://localhost:8001/uploads/images/account.png`}/>:
+                <img style={{ width:'100%' }} src={`http://localhost:8001/${comment.user.avatar}`}/>
+            
+            }
             </Avatar>
             }
         
