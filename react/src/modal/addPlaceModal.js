@@ -44,7 +44,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 
-const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, namePlace , descriptionPlace, addNamePlace, addCategoryPlace, addDescriptionPlace, addZipCodePlace, addCityPlace, addStreetPlace, lat, long, addPlace,onClose, open, clickLocation, addNamePicturePlace}) => {
+const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, namePlace , descriptionPlace, addNamePlace, addCategoryPlace, addDescriptionPlace, addZipCodePlace, addCityPlace, addStreetPlace, lat, long, addPlace, onClose, open, clickLocation, addNamePicturePlace}) => {
   const classes = useStyles();
   
   // const test = () => {
@@ -153,7 +153,7 @@ const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, nam
                       reader.readAsDataURL(input);
                       }}/>
                       <div id="avatar"></div>
-        <Button autoFocus color="inherit" onClick={() => {addPlace();onClose()}}>
+        <Button autoFocus color="inherit" onClick={() => {addPlace(); onClose()}}>
         save
       </Button>
       </Dialog>

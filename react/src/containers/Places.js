@@ -7,7 +7,7 @@ const mapStateToProps = null;
 const mapDispatchToProps = (dispatch) => ({
     fetchPlaces: () => {
         dispatch(fetchPlaces());
-    }
+    },
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MapContainer);

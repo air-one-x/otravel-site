@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { ADD_PLACE, SEND_ADRESS, convertAdress } from '../actions/geolocation';
-import {isEmpty} from 'lodash'
+import { fetchPlaces } from '../actions/places';
+import {isEmpty} from 'lodash';
 
 export default (store) => (next) => (action) => {
     switch(action.type) {
@@ -46,7 +47,8 @@ console.log('addplace', localStorage.getItem('picturePlace'));
             },
           }).then((res) => {
             // Si succès -> dispatcher une action success
-            console.log('AJJJJJOUUUUUUT D UUUUNNN LIIEEEEUUUUU', res);
+            console.log('AJJJJJOUUUUUUT D UUUUNNN LIIEEEEUUUUU', res.config.data);
+            store.dispatch(fetchPlaces());
           })
             .catch((err) => {
             // Si error -> Dispatcher une action error

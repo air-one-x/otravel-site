@@ -26,7 +26,6 @@ const mapDispatchToProps = (dispatch) => ({
     addPlace: () => dispatch(addPlace()),
     addNamePicturePlace: (event) => dispatch(addNamePicturePlace(event)),
     sendAdress: () => dispatch(sendAdress()),
-
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddPlaceModal);
