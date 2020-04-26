@@ -179,7 +179,7 @@ const MapContainer = ({
               <p>{activePlace.city} {activePlace.zipcode}</p>
               <p>Description: {activePlace.description}</p>
               <p>Ajouté par : {activePlace.user.username}</p>
-              <PopupNavBar />
+              <PopupNavBar placeInfos={activePlace} />
             </div>
           </Popup>
           )}

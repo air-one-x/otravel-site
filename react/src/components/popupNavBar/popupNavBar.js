@@ -4,11 +4,12 @@ import DirectionsCarRoundedIcon from '@material-ui/icons/DirectionsCarRounded';
 import VisibilityRoundedIcon from '@material-ui/icons/VisibilityRounded';
 import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
 import AddCommentsModal from '../../containers/AddComments';
+import ViewComments from '../../modal/viewCommentModal';
 
-
-const PopupNavBar = () => {
+const PopupNavBar = ({ placeInfos }) => {
 
     const [openAddComments, setOpenAddComments] = useState(false);
+    const [openComments, setOpenComments] = useState(false);
 
     const handleOpenAddComments = () => {
         console.log('open modal');
@@ -20,6 +21,16 @@ const PopupNavBar = () => {
         setOpenAddComments(false);
       };
 
+    const handleOpenComments = () => {
+        console.log('open modal');
+        setOpenComments(true);
+    }
+
+    const handleCloseComments = () => {
+        console.log('close modale')
+        setOpenComments(false);
+      };
+
     return(
         <div>
             <ButtonIcon 
@@ -28,6 +39,7 @@ const PopupNavBar = () => {
                 color="primary" 
                 title="Commentaire" 
                 startIcon={<VisibilityRoundedIcon />}
+                onClick={handleOpenComments}
              />
             <ButtonIcon 
                 variant="contained" 
@@ -46,6 +58,7 @@ const PopupNavBar = () => {
              />
 
              <AddCommentsModal open={openAddComments} onClose={handleCloseAddComments} />
+             <ViewComments open={openComments} onClose={handleCloseComments} commentaryInfos={placeInfos.commentary} />
         </div>
     );
 }
