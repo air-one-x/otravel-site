@@ -54,9 +54,9 @@ const NavBar = ({isLogged}) => {
           Plus
         </button>
         <div className="dropdown-menu dropdown-menu-right">
-          <a className="dropdown-item" href="#"> <Link to="/conditions-utilisations">Conditions</Link></a>
-          <a className="dropdown-item" href="#"><Link to="/a-propos">A propos</Link></a>
-          <a className="dropdown-item" href="#"> <Link to="/contact">Conctact</Link></a>
+           <Link to="/conditions-utilisations">Conditions</Link>
+          <Link to="/a-propos">A propos</Link>
+          <Link to="/contact">Conctact</Link>
         </div>
       </div>
 
