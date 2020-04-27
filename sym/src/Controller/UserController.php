@@ -104,7 +104,7 @@ class UserController extends AbstractController
         else{
             
             $avatar = $user->getAvatar();
-            $img = str_replace('data:image/png;base64,','', $avatar);
+            $img = preg_replace('#^data:image/\w+;base64,#i', '', $avatar);
             $nomfichier = explode(".", $content->nameFile)  ;
             $nomfichierUnique = $nomfichier[0].uniqid().'.'.$nomfichier[1];
             $path = '../public/uploads/images/avatars/'. $nomfichierUnique;

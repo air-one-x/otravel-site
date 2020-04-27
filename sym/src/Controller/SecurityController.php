@@ -64,10 +64,10 @@ class SecurityController extends AbstractController
     {
         $user = $this->getUser();
         $avatar = $user->getAvatar();
-        $getFile = file_get_contents($avatar);
-        $encode = base64_encode($getFile);
-        $user->setAvatar($encode);
+        
+        $user->setAvatar($avatar);
         $data = $serializer->normalize($user, null, ['groups' => 'user']);
+     
         return $this->json($data);
 
     }
