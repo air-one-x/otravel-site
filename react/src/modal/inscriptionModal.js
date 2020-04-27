@@ -194,9 +194,9 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
                 <div id="avatar"> </div>
               </div>
               <div className="CheckCond" style={{marginTop: '1rem', marginLeft: '0.5rem'}}>
-                <input type="checkbox" onClick={()=> checkCondition()} name="checkConditions" id="checkConditions" style={{width: '4%', height: '15px', marginRight: '0.3rem'}}/>
+                <input type="checkbox" onClick={()=> checkCondition()} name="checkConditions" id="checkConditions" style={{width: '4%', height: '15px', marginRight: '0.3rem'}} checked={condition ===true ? true : false}/>
                
-                <label  htmlFor="checkConditions" style={{fontSize: '0.7em', width:'80%'}}> En cochant la case, j'accepte les <a href="#" style={{color: '#303f9f'}}>conditions d'utilisations </a></label>
+                <label  htmlFor="checkConditions" style={{fontSize: '0.7em', width:'80%'}} > En cochant la case, j'accepte les <a href="#" style={{color: '#303f9f'}}>conditions d'utilisations </a></label>
               </div>
               <div className="m-2 justify-content-center" style={{width:'100%', display:'flex', justifyContent: 'space-around'}}>
                 <Button className="mr-3" variant="contained" onClick={handleClose} >annuler</Button>
