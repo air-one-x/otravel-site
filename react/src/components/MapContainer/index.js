@@ -10,10 +10,24 @@ import NavBar from '../../containers/navBarFake';
 import AddPlaceButton from '../../containers/AddPlaceButtonContainer';
 import { isEmpty } from 'lodash';
 import PopupNavBar from '../popupNavBar/popupNavBar';
+import IconForShower from './shower-solid.svg';
+import IconToilet from './toilet-solid.svg';
 
 const myIcon = L.icon({
   iconUrl: userLocationURL,
   iconSize: [33, 35],
+  color: '#f0f',
+});
+
+const showerIcon = L.icon({
+  iconUrl: IconForShower,
+  iconSize: [20, 23],
+});
+
+const toiletIcon = L.icon({
+  iconUrl: IconToilet,
+  iconSize: [20, 23],
+  
 });
 
 const MapContainer = ({
@@ -81,7 +95,7 @@ const MapContainer = ({
     <div>
       <NavBar />
       <div className="map" id="mapid">
-        <Map viewport={viewport} minZoom="3" onClick={onClickMap} >
+        <Map viewport={viewport} minZoom="5" onClick={onClickMap} >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -97,6 +111,7 @@ const MapContainer = ({
             closeResultsOnClick={false} // By default, the search results remain when you click on one, and the map flies to the location of the result. But you might want to save space on your map by closing the results when one is clicked. The results are shown again (without another search) when focus is returned to the search input.
             providerOptions={{searchBounds: []}} // The BingMap and OpenStreetMap providers both accept bounding coordinates in [se,nw] format. Note that in the case of OpenStreetMap, this only weights the results and doesn't exclude things out of bounds.
             customProvider={undefined | {search: (searchString)=> {}}} // see examples to usage details until docs are ready
+            providerOptions={{ region: "fr" }}
           />
            
           {
@@ -119,6 +134,7 @@ const MapContainer = ({
             isFilterShower && newList.map((place) => (
               <Marker
                 key={place.id}
+                icon={showerIcon}
                 position={[
                   place.lat,
                   place.lng,
@@ -135,6 +151,7 @@ const MapContainer = ({
             isFilterToilet && newList.map((place) => (
               <Marker
                 key={place.id}
+                icon={toiletIcon}
                 position={[
                   place.lat,
                   place.lng,
@@ -150,6 +167,7 @@ const MapContainer = ({
           {!isFilterShower && !isFilterToilet && list.map((place) => (
             <Marker
               key={place.id}
+              icon={showerIcon}
               position={[
                 place.lat,
                 place.lng,
@@ -164,6 +182,7 @@ const MapContainer = ({
           }
           {activePlace && (
           <Popup
+            className="popup"
             position={[
               activePlace.lat,
               activePlace.lng,
@@ -174,12 +193,18 @@ const MapContainer = ({
           >
             <div>
               <h2>Nom : {activePlace.name}</h2>
-              {isEmpty(activePlace.places_picture) ? "" : <img style={{ width:'50%' }} src={`http://localhost:8001/${activePlace.places_picture.name}`} />}
-              <p>Adresse : {activePlace.street}</p>
-              <p>{activePlace.city} {activePlace.zipcode}</p>
-              <p>Description: {activePlace.description}</p>
-              <p>Ajouté par : {activePlace.user.username}</p>
-              <PopupNavBar placeInfos={activePlace} />
+              <div>
+                {isEmpty(activePlace.places_picture) ? "" : <img style={{ width:'50%' }} src={`http://localhost:8001/${activePlace.places_picture.name}`} />}
+              </div>
+              <div>
+                <p>Adresse : {activePlace.street}</p>
+                <p>{activePlace.city} {activePlace.zipcode}</p>
+                <p>Description: {activePlace.description}</p>
+                <p>Ajouté par : {activePlace.user.username}</p>
+              </div>
+              <div>
+                <PopupNavBar placeInfos={activePlace} isLogged={isLogged} />
+              </div>
             </div>
           </Popup>
           )}

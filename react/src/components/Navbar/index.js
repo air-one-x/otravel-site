@@ -34,14 +34,7 @@ const NavBar = ({isLogged}) => {
 
     {/* VERSION ORDINATEUR */ }
     <div className="menu-desktop">
-    <div className="input-group my-2 my-lg-0 navbar--input__search">
-      <input type="text" className="form-control " placeholder="Rechercher une ville pc" />
-      <div className="input-group-append">
-        <button className="btn btn-secondary" type="button">
-          <FontAwesomeIcon icon={faSearch} />
-        </button>
-      </div>
-    </div>
+
       <div className="nav-item nav-link">
       <AddPlaceButton isLogged={isLogged}/>
       </div>
@@ -81,14 +74,9 @@ const NavBar = ({isLogged}) => {
 
     {/* VERSION MOBILE  */ }
 
-<div className="input-group my-2 my-lg-0 navbar--input__search search-mobile">
-<input type="text" className="form-control " placeholder="Rechercher une ville mobile" />
-<div className="input-group-append">
-  <button className="btn btn-secondary" type="button">
-    <FontAwesomeIcon icon={faSearch} />
-  </button>
-</div>
-</div>
+
+
+
     <IconButton
     edge="start"
     className={classes.menuButton}

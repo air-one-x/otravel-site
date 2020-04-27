@@ -100,7 +100,7 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
 
   const messageRef = useRef(null);
 
-  const msgBDD = () => {
+  const msgBDD = (error) => {
     setTimeout(() => {
       if(error === undefined) {
         handleClose();
@@ -174,7 +174,7 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
                           const photo = document.createElement("img");
                           photo.src = reader.result;
                           photo.style.height = "200px";
-                          photo.style.width ="200px";
+                          photo.style.width ="300px";
                           photo.id="photoInscription"
                           const avatar = document.getElementById('avatar');
                           avatar.append(photo);

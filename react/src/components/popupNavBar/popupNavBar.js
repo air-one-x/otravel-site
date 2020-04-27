@@ -5,31 +5,30 @@ import VisibilityRoundedIcon from '@material-ui/icons/VisibilityRounded';
 import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
 import AddCommentsModal from '../../containers/AddComments';
 import ViewComments from '../../modal/viewCommentModal';
+import LoginModal from '../../containers/Login';
 
-const PopupNavBar = ({ placeInfos }) => {
+const PopupNavBar = ({ placeInfos, isLogged }) => {
 
-    const [openAddComments, setOpenAddComments] = useState(false);
     const [openComments, setOpenComments] = useState(false);
-
-    const handleOpenAddComments = () => {
-        console.log('open modal');
-        setOpenAddComments(true);
-    }
-
-    const handleCloseAddComments = () => {
-        console.log('close modale')
-        setOpenAddComments(false);
-      };
+    const [open, setOpen] = useState(false);
 
     const handleOpenComments = () => {
-        console.log('open modal');
+        // console.log('open modal');
         setOpenComments(true);
     }
 
     const handleCloseComments = () => {
-        console.log('close modale')
+        // console.log('close modale')
         setOpenComments(false);
       };
+
+    const handleClickOpen = () => {
+    setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return(
         <div>
@@ -47,18 +46,34 @@ const PopupNavBar = ({ placeInfos }) => {
                 color="primary" 
                 title="Commentaire" 
                 startIcon={<AddCircleRoundedIcon />}
-                onClick={handleOpenAddComments}
+                onClick={handleClickOpen}
              />
-            <ButtonIcon 
+            {/*<ButtonIcon 
                 variant="contained" 
                 size="small" 
                 color="primary" 
                 title="Itineraire" 
                 startIcon={<DirectionsCarRoundedIcon />}
-             />
+            />*/}
+             <ViewComments 
+                open={openComments} 
+                onClose={handleCloseComments} 
+                commentaryInfos={placeInfos.commentary} 
+                onClick={handleClickOpen}
+              />
 
-             <AddCommentsModal open={openAddComments} onClose={handleCloseAddComments} />
-             <ViewComments open={openComments} onClose={handleCloseComments} commentaryInfos={placeInfos.commentary} />
+             {
+                isLogged ?
+                <AddCommentsModal 
+                open={open} 
+                onClose={handleClose} 
+                />
+                : <LoginModal 
+                open={open}
+                setOpen={setOpen}
+                onClose={handleClose}
+              />
+             }
         </div>
     );
 }
