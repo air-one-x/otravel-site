@@ -5,7 +5,7 @@ import './style.css';
 import Footer from '../../Footer';
 import InputComponent from '../../Generique/inputComponent';
 
-const InformationsUser = ({username, email, date, contributions, inputChangeEmailInformation, inputChangePseudoInformation, inputChangePasswordInformation, newUserPassword, newUserEmail, newUserPseudo, insertNewInformation, updateMessage}) => {      
+const InformationsUser = ({username, email, date, contributions, inputChangeEmailInformation, inputChangePseudoInformation, inputChangePasswordInformation, newUserPassword, newUserEmail, newUserPseudo, insertNewInformation, updateMessage, userAvatar}) => {      
     
     console.warn(inputChangeEmailInformation);
 
@@ -16,9 +16,6 @@ const InformationsUser = ({username, email, date, contributions, inputChangeEmai
     const month1 = month+1;
     const year = newDate.getFullYear();
 
-
-        var imgCode = localStorage.getItem('img');
-        var img = `data:image/\w+/;base64,${imgCode}`;
 
         useEffect(()=> {    
             
@@ -48,8 +45,8 @@ const InformationsUser = ({username, email, date, contributions, inputChangeEmai
 
         <main className="informations--user__content">
            <div id="user__picture" style={{margin:'auto', textAlign:'center'}} >
+                <img src={`http://localhost:8001/${userAvatar}`} ></img>
            </div>
-
            <div className="user--statistic">
                <div>Membres depuis le : <time>{`${day1}/${month1}/${year}`}</time></div>
                <div className="user--additions">Contribution: <span>{contributions != undefined ? contributions.length : "0"}</span> ajouts</div>
