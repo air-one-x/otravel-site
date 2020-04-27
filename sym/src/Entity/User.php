@@ -103,7 +103,7 @@ class User implements UserInterface
     }
 
     public function __toString(){
-        return $this->avatar;
+        return $this->username;
     }
 
     public function getId(): ?int
