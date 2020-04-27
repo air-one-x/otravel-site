@@ -3,8 +3,11 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './style.css';
 import Footer from '../../Footer';
+import InputComponent from '../../Generique/inputComponent';
 
-const InformationsUser = ({username, email, date, contributions}) => {        
+const InformationsUser = ({username, email, date, contributions, inputChangeEmailInformation, inputChangePseudoInformation, inputChangePasswordInformation, newUserPassword, newUserEmail, newUserPseudo, insertNewInformation, updateMessage}) => {      
+    
+    console.warn(inputChangeEmailInformation);
 
     const newDate = new Date(date);
     const day = newDate.getDay();
@@ -33,8 +36,6 @@ const InformationsUser = ({username, email, date, contributions}) => {
         },[])
      
 
-    
-      
   
     
   
@@ -53,22 +54,28 @@ const InformationsUser = ({username, email, date, contributions}) => {
                <div>Membres depuis le : <time>{`${day1}/${month1}/${year}`}</time></div>
                <div className="user--additions">Contribution: <span>{contributions != undefined ? contributions.length : "0"}</span> ajouts</div>
            </div>
-
            <div className="user--all--data">
               <div className="user--username user--data ">
-                  <div className="user--label--data">Pseudo</div>
-                  <div className="user--content--data">{username}</div>
+                  <div className="user--label--data">Changer ici pour un nouveaux pseudo</div>
+                  <InputComponent label={username} value={newUserPseudo} onChange={(event) => inputChangePseudoInformation(event.target.value)} />
               </div>
               <div className="user--email user--data ">
-                  <div className="user--label--data">Email</div>
-                  <div className="user--content--data">{email}</div>
+                  <div className="user--label--data">Changer ici votre Email</div>
+                  <InputComponent label={email} value={newUserEmail} onChange={(event) => inputChangeEmailInformation(event.target.value)} />
               </div>
+              <div className="user--username user--data ">
+                <div className="user--label--data">Changement de mot de passe</div>
+                <InputComponent value={newUserPassword} onChange={(event) => inputChangePasswordInformation(event.target.value)} />
+            </div>
            </div>
         </main>
 
         <footer className="modification--data">
-            <button type="button">Modifier les informations</button>
+            <button type="button" onClick={() => {insertNewInformation()}}>Modifier les informations</button>
             <p><a href="#">Supprimer le compte</a></p>
+            <div>
+                <h2>{updateMessage}</h2>
+            </div>
         </footer>
 
         <Footer />
