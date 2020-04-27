@@ -12,6 +12,7 @@ import FormLoginModal from '../../containers/Login';
 import InscriptionModal from '../../containers/Inscription';
 import { Link } from 'react-router-dom';
 import Account from './account';
+import ConnexionButton from '../../containers/ConnexionButtonContainer'
 
 
  const StyledMenu = withStyles({
@@ -45,21 +46,20 @@ import Account from './account';
     },
   }))(MenuItem);
 
- const itemsMenu = (props,{isLogged}) => {
-console.log('props.itemmenu', props);
-console.log('TESSSSSSST',props.isLogged);
+ const itemsMenu = ({isLogged, closeMenu, openMenu}) => {
+
     return(
         <StyledMenu
         id="customized-menu"
-        anchorEl={props.openMenu}
+        anchorEl={openMenu}
         keepMounted
-        open={Boolean(props.openMenu)}
-        onClose={props.closeMenu}
+        open={Boolean(openMenu)}
+        onClose={closeMenu}
       >
         {
           
-            props.isLogged&&
-            <StyledMenuItem onClick={props.closeMenu}>
+            isLogged&&
+            <StyledMenuItem onClick={closeMenu}>
               <ListItemIcon>
                 <InboxIcon fontSize="small" />
               </ListItemIcon>
@@ -68,15 +68,15 @@ console.log('TESSSSSSST',props.isLogged);
           }
         
         
-        <StyledMenuItem>
+        <StyledMenuItem onClick={closeMenu} >
           <ListItemIcon>
             <SendIcon fontSize="small" />
           </ListItemIcon>
-          <FormLoginModal /> 
+          <ConnexionButton /> 
         </StyledMenuItem>
 
         {
-          !props.isLogged&&<StyledMenuItem>
+          !isLogged&&<StyledMenuItem onClick={closeMenu}>
           <ListItemIcon>
             <DraftsIcon fontSize="small" />
           </ListItemIcon>

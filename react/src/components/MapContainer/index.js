@@ -7,33 +7,36 @@ import ReactLeafletSearch from "react-leaflet-search";
 import L from 'leaflet';
 import userLocationURL from './map-pin-solid.svg';
 import NavBar from '../../containers/navBarFake';
-import AddPlaceModal from '../../containers/AddPlace';
+import AddPlaceButton from '../../containers/AddPlaceButtonContainer';
+import { isEmpty } from 'lodash';
+import PopupNavBar from '../popupNavBar/popupNavBar';
 
 const myIcon = L.icon({
   iconUrl: userLocationURL,
   iconSize: [33, 35],
 });
 
-const MapContainer = (props) => {
+const MapContainer = ({
+  viewport,
+  userLocation,
+  lat,
+  long,
+  isLocated,
+  fetchPlaces,
+  list,
+  newList,
+  isFilterShower,
+  isFilterToilet,
+  setViewport,
+  isLogged,
+  addLocationPlace, idClickPlace } ) => {
 
-  const {
-    viewport,
-    userLocation,
-    lat,
-    long,
-    isLocated,
-    fetchPlaces,
-    list,
-    newList,
-    isFilterShower,
-    isFilterToilet,
-    setViewport } = props;
+
 
   const [activePlace, setActivePlace] = useState(null);
   const [latMarker, setlatMarker] = useState(0);
   const [lngMarker, setlngMarker] = useState(0);
   const [markerClick, setMarkerClick] = useState(false);
-  const [popupMarkerClick, setPopupMarkerClick] = useState(false);
   const [activePopupMarkerClick, setActivePopupMarkerClick] = useState(null);
 
   const getLocation = () => {
@@ -48,21 +51,25 @@ const MapContainer = (props) => {
     userLocation(position.coords)
   }
 
-  const test = (event) => {
+  const onClickMap = (event) => {
     console.log('click sur la map', event)
     setMarkerClick(true);
     setlatMarker(event.latlng.lat),
     setlngMarker(event.latlng.lng)
   }
 
-  const test2 = (event) => {
-    console.log('itinaore', event)
-    setPopupMarkerClick(true)
+  const activeMarkerPopup = (event) => {
     setActivePopupMarkerClick(event.latlng)
-    
+    addLocationPlace(event.latlng)
+  }
+  
+  const clickMarkerID = (event) => {
+    console.log('CHERCHE ID PLACE', event);
+    idClickPlace(event)
+
   }
 
-
+//const urlImg = `http://localhost:8001/${activePlace.places_picture.name}`;
   useEffect(() => {
      getLocation()
 
@@ -74,7 +81,7 @@ const MapContainer = (props) => {
     <div>
       <NavBar />
       <div className="map" id="mapid">
-        <Map viewport={viewport} minZoom="3" onClick={test} >
+        <Map viewport={viewport} minZoom="3" onClick={onClickMap} >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -97,7 +104,7 @@ const MapContainer = (props) => {
             <Marker
               position={[latMarker, lngMarker]}
               icon={myIcon}
-              onClick={test2}
+              onClick={activeMarkerPopup}
             >
             </Marker>)
           }
@@ -114,10 +121,12 @@ const MapContainer = (props) => {
                 key={place.id}
                 position={[
                   place.lat,
-                  place.lng,
+                  place.lat,
                 ]}
                 onClick={() => {
-                  setActivePlace(place);
+                  setActivePlace(place),
+                  setViewport({center:[place.lat, place.lng]}),
+                  clickMarkerID(place.id)
                 }}
               />
             ))
@@ -131,7 +140,9 @@ const MapContainer = (props) => {
                   place.lng,
                 ]}
                 onClick={() => {
-                  setActivePlace(place);
+                  setActivePlace(place),
+                  setViewport({center:[place.lat, place.lng]}),
+                  clickMarker(place.id)
                 }}
               />
             ))
@@ -145,6 +156,8 @@ const MapContainer = (props) => {
               ]}
               onClick={() => {
                 setActivePlace(place);
+                setViewport({center:[place.lat, place.lng]}),
+                clickMarkerID(place.id)
               }}
             />
           ))
@@ -160,12 +173,17 @@ const MapContainer = (props) => {
             }}
           >
             <div>
-              <h2>{activePlace.name}</h2>
-              <p>{activePlace.user.username}</p>
+              <h2>Nom : {activePlace.name}</h2>
+              {isEmpty(activePlace.places_picture) ? "" : <img style={{ width:'50%' }} src={`http://localhost:8001/${activePlace.places_picture.name}`} />}
+              <p>Adresse : {activePlace.street}</p>
+              <p>{activePlace.city} {activePlace.zipcode}</p>
+              <p>Description: {activePlace.description}</p>
+              <p>Ajouté par : {activePlace.user.username}</p>
+              <PopupNavBar placeInfos={activePlace} />
             </div>
           </Popup>
           )}
-          {activePopupMarkerClick && isLogged&& (
+          {activePopupMarkerClick && (
             <Popup
               position={[
                 activePopupMarkerClick.lat,
@@ -176,7 +194,7 @@ const MapContainer = (props) => {
               }}
             >
               <div>
-              <AddPlaceModal/>
+              <AddPlaceButton isLogged={isLogged}/>
               </div>
             </Popup>
             )}

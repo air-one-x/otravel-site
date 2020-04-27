@@ -1,25 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle, faSearch, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
-import {IconButton,InputBase } from '@material-ui/core';
+import { faUserCircle, faSearch } from '@fortawesome/free-solid-svg-icons';
+import {IconButton } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import './style.css';
 import useStyles from './style.js';
-import FormLoginModal from '../../containers/Login';
 import InscriptionModal from '../../containers/Inscription';
 import ItemsMenu from '../../containers/NavBarTop';
-import AddPlaceModal from '../../containers/AddPlace';
 import FilterPc from '../../containers/filterPC';
 import { Link } from 'react-router-dom';
-import FormLoginModalAddPlace from '../../containers/addPlaceFakeLogin';
 import Account from './account';
-
+import ConnexionButton from '../../containers/ConnexionButtonContainer'
+import AddPlaceButton from '../../containers/AddPlaceButtonContainer'
 
 const NavBar = ({isLogged}) => {
 
   const classes = useStyles();
 
-  const [openMenu, setOpenMenu] = React.useState(null);
+  const [openMenu, setOpenMenu] = useState(null);
 
   const handleClick = (event) => {
     setOpenMenu(event.currentTarget);
@@ -28,8 +26,6 @@ const NavBar = ({isLogged}) => {
   const handleClose = () => {
     setOpenMenu(null);
   };
-
-  console.log('????????',isLogged);
 
   return(
   <nav className="navbar navbar-expand-lg navbar-light menuOtravel " >
@@ -47,7 +43,7 @@ const NavBar = ({isLogged}) => {
       </div>
     </div>
       <div className="nav-item nav-link">
-      {isLogged === true ? <AddPlaceModal /> : <FormLoginModalAddPlace /> }
+      <AddPlaceButton isLogged={isLogged}/>
       </div>
 
       <div className="dropdown">
@@ -69,7 +65,7 @@ const NavBar = ({isLogged}) => {
           <FontAwesomeIcon icon={faUserCircle} className="user--circle" />
         </button>
         <div className="dropdown-menu dropdown-menu-right">
-          <a className="dropdown-item" href="#"><FormLoginModal /></a>
+          <a className="dropdown-item" href="#"><ConnexionButton /></a>
           {
             !isLogged&& <a className="dropdown-item" href="#"><InscriptionModal /></a>
           }
@@ -83,9 +79,6 @@ const NavBar = ({isLogged}) => {
 
     {/* VERSION MOBILE  */ }
 
-  {/*}  <button className="navbar-toggler button--burger" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span className="navbar-toggler-icon" />
-</button> */}
 <div className="input-group my-2 my-lg-0 navbar--input__search search-mobile">
 <input type="text" className="form-control " placeholder="Rechercher une ville mobile" />
 <div className="input-group-append">

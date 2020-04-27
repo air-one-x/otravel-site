@@ -10,7 +10,6 @@ export default (store) => (next) => (action) => {
             method: 'get',
             url: 'http://localhost:8001/api/places',
 
-
         }).then((res) => {
             console.log('lieu a afficher requete réussi',res);
             store.dispatch(fetchPlacesSuccess(res.data));

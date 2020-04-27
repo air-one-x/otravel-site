@@ -3,20 +3,22 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormLoginModal from '../containers/Login';
+import {isEmpty} from 'lodash';
+import Radio from '@material-ui/core/Radio';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormLabel from '@material-ui/core/FormLabel';
+import DialogTitleComponent from '../components/Generique/dialogTitleComponent';
+import DialogContent from '@material-ui/core/DialogContent';
+import ButtonIcon from '../components/Generique/ButtonIcon';
+import DialogActions from '@material-ui/core/DialogActions';
+import InputComponent from '../components/Generique/inputComponent';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -39,6 +41,16 @@ const useStyles = makeStyles((theme) => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
+  header:{
+    backgroundColor: '#3f51b5',
+    color: '#fff',
+    
+  },
+  title:{
+    fontSize: '0.95em'
+  }
+  
+
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -46,127 +58,197 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 
-const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, namePlace , descriptionPlace, addNamePlace, addCategoryPlace, addDescriptionPlace, addZipCodePlace, addCityPlace, addStreetPlace, lat, long, addPlace, isLogged, sendAdress}) => {
-
-
-
-  const classes = useStyles(); 
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleChange = (event) => {
-    console.log('event SELECT !!', event);
-  };
-
-const checkIsLogged = () => {
-  if (isLogged === true) {
-    handleClickOpen();
-  } else {
-    console.log('sortir la modal de connexion');
- 
+const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, namePlace , descriptionPlace, addNamePlace, addCategoryPlace, addDescriptionPlace, addZipCodePlace, addCityPlace, addStreetPlace, lat, long, addPlace, onClose, open, clickLocation, addNamePicturePlace}) => {
+  const classes = useStyles();
   
-    
+  // const test = () => {
+  //   console.warn(clickLocation.lat);
+  //   const formLat  = lat;
+  //   const formLng = lng;
+
+  //   if (!isEmpty(clickLocation)) {
+  //     return clickLocation;
+  //   } else {
+  //     let geolocation = {lat: lat, long: long};
+  //     return geolocation;
+  //   }
+  // }
+  const getPicture = (input) =>{
+    //var input = event.target.files[0];
+    console.log('event file', input.name)
+    addNamePicturePlace(input.name);
+    var reader = new FileReader(); 
+    reader.onload = function(){
+        console.log(reader.result);
+        console.log(reader);
+        const photo = document.createElement("img");
+        photo.src = reader.result;
+        photo.style.height = "200px";
+        photo.style.width ="200px";
+        photo.id="photoInscription"
+        const avatar = document.getElementById('avatar');
+        avatar.append(photo);
+        localStorage.setItem('picturePlace',reader.result);
+   };  
+    reader.readAsDataURL(input);
   }
-}
+
+  const formLatitude = () => {
+
+    if (!isEmpty(clickLocation)) {
+      return clickLocation.lat;
+    } else {
+      return lat;
+    }
+  }
+
+  const formLongitude = () => {
+
+    if (!isEmpty(clickLocation)) {
+      return clickLocation.lng;
+    } else {
+      return long;
+    }
+  }
 
   return (
-    <div>
-
- 
-      <div>
-      <Button variant="outlined" color="primary" onClick={() => {checkIsLogged();sendAdress()}}>
-
-          Ajouter un lieu
-      </Button>
-      </div>
-     
-      <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
-        <AppBar className={classes.appBar}>
-          <Toolbar>
-            <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
-              <CloseIcon />
-            </IconButton>
-  
-          </Toolbar>
-        </AppBar>
-        
-        <List>
-        <Grid container item>
-        <TextField id="street" label="street" type="text" value={streetPlace} onChange={(event) => addStreetPlace(event.target.value)} />
-        </Grid>
-        <Grid container item>
-        <TextField id="zipcode" label="zipcode" type="text" value={zipCodePlace} onChange={(event) => addZipCodePlace(event.target.value)}  />
-        </Grid>
-        <Grid container item>
-        <TextField id="city" label="city" type="text" value={cityPlace} onChange={(event) => addCityPlace(event.target.value)} />
-        </Grid>
-        <Grid container item>
-        <TextField id="name" label="name" type="text" value={namePlace} onChange={(event) => addNamePlace(event.target.value)} />
-        </Grid>
-        <TextField id="outlined-basic" label="Latitude" variant="outlined" value={lat} />
-        <TextField id="outlined-basic" label="Longitude" variant="outlined" value={long} />
-
-        <FormControl className={classes.formControl}>
-        <InputLabel id="demo-simple-select-label">Type</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={categoryPlace}
-          onChange={(event) => addCategoryPlace(event.target.value)}
-        >
-        <MenuItem value="1" >Douches</MenuItem>
-        <MenuItem value="2" >Toilettes</MenuItem>
-      </Select>
-    </FormControl>
-          <Grid container item>
-            <TextField
-            id="outlined-multiline-static"
-            label="description"
-            multiline
-            rows={4}
-            variant="outlined"
-            value={descriptionPlace}
-            onChange={(event) => addDescriptionPlace(event.target.value)}
-          />
-          </Grid>
-        </List>
-        <input type="file" label="file" onChange={(event) => {
-                      var input = event.target.files[0];
-                      var reader = new FileReader(); 
-                      reader.onload = function(){
-                          console.log(reader.result);
-                          console.log(reader);
-                          const photo = document.createElement("img");
-                          photo.src = reader.result;
-                          photo.style.height = "200px";
-                          photo.style.width ="200px";
-                          photo.id="photoInscription"
-                          const avatar = document.getElementById('avatar');
-                          avatar.append(photo);
-                          localStorage.setItem('picturePlace',reader.result);
-                       
-                        
-                     };
-                      
-                      
-                      reader.readAsDataURL(input);
-                      }}/>
-                      <div id="avatar"></div>
-        <Button autoFocus color="inherit" onClick={() => {addPlace();handleClose()}}>
-        save
-      </Button>
+      <Dialog fullScreen open={open} onClose={onClose} TransitionComponent={Transition}>
+        <DialogTitleComponent onClose={onClose} id="simple-dialog-title">Ajouter un lieu</DialogTitleComponent>
+        <DialogContent className="m-auto row">
+          <Card className="mb-3 mr-1 column">
+            <CardHeader
+            className={classes.header}
+            title="Adresse du lieu"
+            classes={{title:classes.title}}
+            >
+            </CardHeader>
+            <CardContent>
+              <div className="mb-3">
+                <InputComponent 
+                  id="street" 
+                  label="Rue" 
+                  type="text" 
+                  value={streetPlace} 
+                  variant="outlined"
+                  onChange={(event) => addStreetPlace(event.target.value)} 
+                />
+              </div>
+              <div className="mb-3">
+                <InputComponent 
+                  id="zipcode" 
+                  label="Code Postal" 
+                  type="text" 
+                  value={zipCodePlace} 
+                  variant="outlined"
+                  onChange={(event) => addZipCodePlace(event.target.value)} 
+                />
+              </div>
+              <div className="mb-3">
+                <InputComponent 
+                  id="city" 
+                  label="Ville" 
+                  type="text" 
+                  value={cityPlace} 
+                  variant="outlined"
+                  onChange={(event) => addCityPlace(event.target.value)} />
+              </div>
+              <div className="mb-3">
+                <InputComponent 
+                  id="outlined-basic" 
+                  label="Latitude" 
+                  variant="outlined" 
+                  value={formLatitude()} />
+              </div>
+              <div className="mb-3">
+                <InputComponent 
+                  id="outlined-basic" 
+                  label="Longitude" 
+                  variant="outlined" 
+                  value={formLongitude()} />
+              </div>
+            </CardContent>
+          </Card>
+          <Card className="mb-3 mr-1 column">
+            <CardHeader
+            className={classes.header}
+            title="Description du lieu"
+            classes={{title:classes.title}}
+            >
+            </CardHeader>
+            <CardContent>
+              <div className="mb-3">
+                <InputComponent 
+                  id="name" 
+                  label="Nom du lieu" 
+                  type="text" 
+                  variant="outlined"
+                  value={namePlace} 
+                  onChange={(event) => addNamePlace(event.target.value)} 
+                />
+              </div>
+              <div className="mb-3">
+                <FormControl component="fieldset">
+                  <FormLabel component="legend">Type de services</FormLabel>
+                  <FormControlLabel 
+                    value="3" 
+                    control={<Radio />} 
+                    label="Douche" 
+                    onChange={(event) => addCategoryPlace(event.target.value)} 
+                  />
+                  <FormControlLabel 
+                    value="4" 
+                    control={<Radio />} 
+                    label="Toilette" 
+                    onChange={(event) => addCategoryPlace(event.target.value)}
+                  />
+                </FormControl>
+              </div>
+              <div className="mb-3">
+                  <InputComponent
+                    id="outlined-multiline-static"
+                    label="Description"
+                    multiline
+                    rows={6}
+                    variant="outlined"
+                    value={descriptionPlace}
+                    onChange={(event) => addDescriptionPlace(event.target.value)}
+                  />
+              </div>
+            </CardContent>
+          </Card>
+          <Card className=" mb-3 column">
+            <CardHeader
+            className={classes.header}
+            title="Photo du lieu"
+            classes={{title:classes.title}}
+            >
+            </CardHeader>
+            <CardContent>
+              <div className="mb-3">
+                <input type="file" label="file" onChange={(event) => {getPicture(event.target.files[0])}}/>
+              </div>
+              
+              <div id="avatar"></div>
+            </CardContent>
+          </Card>
+        </DialogContent>
+        <DialogActions>
+        <ButtonIcon  
+          variant="contained" 
+          size="small" 
+          color="default" 
+          title="Annuler" 
+          onClick={() =>  (onClose())}
+        />
+        <ButtonIcon 
+          variant="contained" 
+          size="small" 
+          color="primary" 
+          title="Ajouter"
+          onClick={() =>{addPlace(); onClose()}}
+        />
+      </DialogActions>
       </Dialog>
-    </div>
- 
-
- 
 );
 }
 export default AddPlaceModal;

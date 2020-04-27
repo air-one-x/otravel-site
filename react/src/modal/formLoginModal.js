@@ -28,6 +28,7 @@ const Fade = React.forwardRef((props, ref) => {
   const {
     in: open, children, onEnter, onExited, ...other
   } = props;
+  console.log('opeenref', open)
   const style = useSpring({
     from: { opacity: 0 },
     to: { opacity: open ? 1 : 0 },
@@ -58,53 +59,32 @@ Fade.propTypes = {
 };
 
 const LoginModal = ({
-  userEmail, userPassword, changeEmail, changePassword, login, isLoggedUser ,logout, loginError
+  userEmail, 
+  userPassword, 
+  changeEmail, 
+  changePassword,
+  login, 
+  isLoggedUser,
+  loginError,
+  onClose,
+  open,
 }) => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
   
   const checkLogged = () => {
     console.log('!!!!!!!!!!!!!!!!!!!!', loginError);
     if(isLoggedUser  === true){  
-      handleClose();
+      onClose();
     } 
   };
-
-
-
+  console.log('!!!!!!!!!dsfffffffffffsfdds!!!!!!!!!!!', open);
   return (
-   
-    <div className="nav-link"> 
-    {
-      isLoggedUser&&
-        <div>
-
-          <button className="dropdown-item nav-link" type="button" onClick={() => {logout(), handleClose()}} >
-            déconnexion
-          </button>
-        </div>
-    }
-      
-      {
-        !isLoggedUser&& <div>
-      <button className="dropdown-item nav-link" type="button" onClick={handleOpen}>
-        connexion
-      </button>
-
       <Modal
         aria-labelledby="spring-modal-title"
         aria-describedby="spring-modal-description"
         className={classes.modal}
         open={open}
-        onClose={handleClose}
+        onClose={onClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
@@ -113,10 +93,7 @@ const LoginModal = ({
       >
         <Fade in={open}>
           <div className={classes.paper}>
-
-
             <form>
-
               <div className={classes.margin}>
                 <Grid container spacing={1} alignItems="flex-end" >
                   <Grid container item>
@@ -138,7 +115,7 @@ const LoginModal = ({
                 </Grid>
                 <p>{loginError === '' ? '' : loginError}</p>
                 <div className="m-3 justify-content-center">
-                  <Button className="mr-3" variant="contained" onClick={handleClose}>annuler</Button>
+                  <Button className="mr-3" variant="contained" onClick={onClose}>annuler</Button>
                   <Button variant="contained" color="primary" onClick={()=> {login(); checkLogged()}}>valider</Button>
                 </div>
               </div>
@@ -148,9 +125,6 @@ const LoginModal = ({
           </div>
         </Fade>
       </Modal>
-      </div>
-    }
-    </div>
   );
 
 };
@@ -161,6 +135,7 @@ LoginModal.propTypes = {
   changeEmail: PropTypes.func.isRequired,
   changePassword: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired
 };
 
 export default LoginModal;

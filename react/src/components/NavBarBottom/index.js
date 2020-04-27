@@ -1,10 +1,8 @@
 import React from 'react';
-import AddPlace from '../../containers/AddPlace';
-import FilterPlace from '../../modal/filterPC';
+import FilterPlace from '../../containers/filterPC';
 import LocalisationButton from './LocalisationButton';
-import NavigationIcon from '@material-ui/icons/Navigation';
 import './style.css';
-import FormLoginModal from '../../containers/addPlaceFakeLogin';
+import AddPlaceButton from '../../containers/AddPlaceButtonContainer'
 
 const NavBarBottom = (props) => {
     
@@ -14,7 +12,7 @@ const NavBarBottom = (props) => {
         <div className="nav--bar--bottom">
             <div className="mobile--buttons">
                 <FilterPlace />
-                {isLogged === true ? <AddPlace /> : <FormLoginModal /> }
+                    <AddPlaceButton isLogged={isLogged}/>
                 <LocalisationButton 
                 onClick={onClick}
                 />

@@ -20,6 +20,7 @@ class Places
      * @Groups("places")
      * @Groups("user")
      * @Groups("category")
+     * @Groups("commentary")
      */
     private $id;
 
@@ -29,13 +30,16 @@ class Places
      * @Groups("places")
      * @Groups("user")
      * @Groups("place_picture")
+     * @Groups("commentary")
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("category")
+     * @Groups("places")
      * @Groups("user")
+     * @Groups("commentary")
      */
     private $street;
 
@@ -43,33 +47,39 @@ class Places
     /**
      * @ORM\Column(type="integer", length=255)
      * @Groups("category")
+     * @Groups("places")
      * @Groups("user")
+     * @Groups("commentary")
      */
     private $zipcode;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("category")
+     * @Groups("places")
      * @Groups("user")
+     * @Groups("commentary")
      */
     private $city;
 
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="Places")
      * @ORM\JoinColumn(onDelete="SET NULL")
      * @Groups("places")
      * @Groups("category")
+     * @Groups("commentary")
      */
     private $user;
-    
+
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="places")
      * @Groups("places")
+     * @Groups("commentary")
      */
     private $Category;
-    
-  
+
+
 
     /**
      * @ORM\Column(type="float", nullable=true)
@@ -77,7 +87,7 @@ class Places
      * @Groups("places")
      */
     private $lng;
-    
+
     /**
      * @ORM\Column(type="float", nullable=true))
      * @Groups("category")
@@ -88,6 +98,7 @@ class Places
     /**
      * @ORM\Column(type="text", nullable=true)
      * @Groups("category")
+     * @Groups("places")
      */
     private $description;
 
@@ -112,12 +123,19 @@ class Places
      * @Groups("category")
      */
     private $places_picture;
-    
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Commentary", mappedBy="places")
+     * @Groups("places")
+     */
+    private $commentary;
+
     public function __construct()
     {
         $this->Category = new ArrayCollection();
         $this->created_at = new \DateTime();
         $this->updated_at = new \DateTime();
+        $this->commentary = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -246,7 +264,7 @@ class Places
 
         return $this;
     }
-    
+
     public function getCity(): ?string
     {
         return $this->city;
@@ -279,6 +297,37 @@ class Places
     public function setPlacesPicture(?PlacePicture $places_picture): self
     {
         $this->places_picture = $places_picture;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commentary[]
+     */
+    public function getCommentary(): Collection
+    {
+        return $this->commentary;
+    }
+
+    public function addCommentary(Commentary $commentary): self
+    {
+        if (!$this->commentary->contains($commentary)) {
+            $this->commentary[] = $commentary;
+            $commentary->setPlaces($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentary(Commentary $commentary): self
+    {
+        if ($this->commentary->contains($commentary)) {
+            $this->commentary->removeElement($commentary);
+            // set the owning side to null (unless already changed)
+            if ($commentary->getPlaces() === $this) {
+                $commentary->setPlaces(null);
+            }
+        }
 
         return $this;
     }

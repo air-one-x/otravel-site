@@ -35,6 +35,7 @@ class PlacesController extends AbstractController
     
         $places = $serializer->deserialize($request->getContent(), Places::class, 'json');
         $data = json_decode($request->getContent()); // je récup juste les données renseignées
+
         $description= $places->getDescription();       
         $name = $places->getName();
         $street = $places->getStreet();
@@ -53,9 +54,9 @@ class PlacesController extends AbstractController
         $newPlace->setLng($lng);
         $newPlace->setLat($lat);
         
-        if(!empty($data->nameFile)){
+        if(!empty($data->place_picture && $data->nameFile)){
 
-            $pictureForm = $data->nameFile;
+            $pictureForm = $data->place_picture ;
             $img = str_replace('data:image/png;base64,','', $pictureForm);
             $nomfichier = explode(".", $data->nameFile)  ;
             $nomfichierUnique = $nomfichier[0].uniqid().'.'.$nomfichier[1];
@@ -63,9 +64,9 @@ class PlacesController extends AbstractController
             $success = file_put_contents($path, base64_decode($img));
 
             if(isset($success)){
-                
+                $pathFileBdd = 'uploads/images/places/'.$nomfichierUnique;
                 $picture = new PlacePicture;
-                $picture->setName($pictureForm);
+                $picture->setName($pathFileBdd);
                 $newPlace->setPlacesPicture($picture);
                 
             }

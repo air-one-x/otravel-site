@@ -8,6 +8,7 @@ import userMiddleware from '../middleware/userMiddleware';
  import inscriptionMiddleware from '../middleware/inscriptionMiddleware';
  import addPlaceModal from '../middleware/addPlaceModal';
  import placesMiddleware from '../middleware/placesMiddleware';
+ import commentMiddleware from '../middleware/commentsMiddleware'
 
 
 // == Enhancers
@@ -19,8 +20,8 @@ const enhancers = composeEnhancers(
     userMiddleware,
    inscriptionMiddleware,
    addPlaceModal,
-   placesMiddleware
-    // secondMiddleware,
+   placesMiddleware,
+   commentMiddleware
   ),
 );
 

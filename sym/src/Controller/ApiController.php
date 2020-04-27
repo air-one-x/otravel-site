@@ -84,7 +84,7 @@ class ApiController extends AbstractController
         $stringifyData = implode(",", $array);
         $geoCode = $stringifyData;
         $geocoder = new \OpenCage\Geocoder\Geocoder('b38489ac53674c90b5e1b886beb901a3');
-        $result = $geocoder->geocode($stringifyData); # latitude,longitude (y,x)
+        $result = $geocoder->geocode($geoCode); # latitude,longitude (y,x)
         $returnAdress = $serializer->normalize($result);
 
         return $this->json($returnAdress);
@@ -98,6 +98,7 @@ class ApiController extends AbstractController
     {
 
         $user = $placesRepository->findAll();
+        
         $data = $serializer->normalize($user, null, ['groups' => 'places']);
 
         return $this->json($data);

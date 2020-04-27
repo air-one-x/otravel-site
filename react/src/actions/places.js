@@ -1,16 +1,29 @@
 export const FETCH_PLACES_SUCCESS = 'FETCH_PLACES_SUCCESS';
 export const FETCH_PLACES = 'FETCH_PLACES';
-
 export const IS_FILTER_SHOWER='IS_FILTER';
 export const CHECK_FILTER = 'CHECK_FILTER';
 export const ADD_FILTER= 'ADD_FILTER';
 export const REMOVE_SHOWER= 'REMOVE_SHOWER';
 export const REMOVE_FILTER_SHOWER= 'REMOVE_FILTER_SHOWER'
-
 export const IS_FILTER_TOILET='IS_FILTER_TOILET';
 export const REMOVE_TOILET = 'REMOVE_TOILET';
-export const REMOVE_FILTER_TOILET = 'REMOVE_FILTER_TOILET'
+export const REMOVE_FILTER_TOILET = 'REMOVE_FILTER_TOILET';
+export const ADD_LOCATION_PLACE = 'ADD_LOCATION_PLACE';
+export const RESET_LOCATION_PLACE = 'RESET_LOCATION_PLACE';
+export const ID_CLICK_PLACE = 'ID_CLICK_PLACE';
 
+
+export const idClickPlace = (payload) => ({
+    type: ID_CLICK_PLACE,
+    payload,
+})
+export const resetClickLocation = () => ({
+    type: RESET_LOCATION_PLACE,
+})
+export const addLocationPlace = (payload) => ({
+    type: ADD_LOCATION_PLACE,
+    payload,
+})
 //action renvoyé par le middleware placesMiddleware
 export const addFilter = (payload) => ({
     type: ADD_FILTER,
