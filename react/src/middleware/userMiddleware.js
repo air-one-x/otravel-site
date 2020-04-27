@@ -30,15 +30,12 @@ export default (store) => (next) => (action) => {
         }
         })
           .then((res) => {
-            if (res.data) {
-              console.log('middleware' ,res.data);
+              console.log('<---------------middleware--------------------->' ,res.data);
               store.dispatch(loginSuccess(res.data));
               localStorage.setItem('img',res.data.avatar);
-            }
           })
           .catch((error) => {
-            console.log(error);
-            // console.log(localStorage.getItem('id_token'));
+           
           });
         
 
@@ -58,6 +55,8 @@ export default (store) => (next) => (action) => {
           .then((res) => {
           // Si succès -> dispatcher une action success
             localStorage.removeItem('id_token');
+              localStorage.removeItem('img');
+              localStorage.removeItem('test');
             store.dispatch(logoutSuccess(res.data.info));
           })
           .catch((err) => {
@@ -82,8 +81,11 @@ export default (store) => (next) => (action) => {
               }
             })
             .catch((error) => {
-              console.log(error);
-              // console.log(localStorage.getItem('id_token'));
+              console.log('------------------------------------------------------> JE PASSE',error);
+              localStorage.removeItem('id_token');
+              localStorage.removeItem('picturePlace');
+              localStorage.removeItem('img');
+
             });
           break;
           case INSERT_NEW_INFORMATION:

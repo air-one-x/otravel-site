@@ -98,12 +98,14 @@ console.log(removeShower, 'removesshower');
             <FormControl component="fieldset">
               <FormGroup aria-label="position" >
 
+
                 <FormControlLabel
+                  checked={isFilterShower === false ? false : true}
                   value="1"
                   control={<Switch color="primary" />}
                   label="Douche"
                   labelPlacement="start"
-                  onClick={isFilterShower === false ? () => {changeIsFilterShower(); checkFilter()} : () => {removeShower()}}
+                  onClick={isFilterShower === false ? (event) => {changeIsFilterShower(); checkFilter(); console.log(event.target.label)} : (event) => {removeShower(); console.log(event.target.label)}}
                 />
 
                 <FormControlLabel
@@ -113,7 +115,6 @@ console.log(removeShower, 'removesshower');
                   labelPlacement="start"
                   onClick={isFilterToilet === false ? () => {changeIsFilterToilet(); checkFilter()} : () => {removeToilet()}}
                 />
-
             
 
                 

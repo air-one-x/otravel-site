@@ -18,7 +18,7 @@ const InformationsUser = ({username, email, date, contributions, inputChangeEmai
 
 
         var imgCode = localStorage.getItem('img');
-        var img = `data:image/png;base64,${imgCode}`;
+        var img = `data:image/\w+/;base64,${imgCode}`;
 
         useEffect(()=> {    
             

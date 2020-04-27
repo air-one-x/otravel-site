@@ -121,7 +121,7 @@ const MapContainer = ({
                 key={place.id}
                 position={[
                   place.lat,
-                  place.lat,
+                  place.lng,
                 ]}
                 onClick={() => {
                   setActivePlace(place),
