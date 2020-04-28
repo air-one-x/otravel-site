@@ -1,21 +1,20 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import List from '@material-ui/core/List';
-import Slide from '@material-ui/core/Slide';
-import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
-import FormControl from '@material-ui/core/FormControl';
+import React, { useState } from 'react';
 import {isEmpty} from 'lodash';
+import DialogTitleComponent from '../components/Generique/dialogTitleComponent';
+import InputComponent from '../components/Generique/inputComponent';
+import ButtonIcon from '../components/Generique/ButtonIcon';
+
+// import material ui
+import { makeStyles } from '@material-ui/core/styles';
+import Dialog from '@material-ui/core/Dialog';
+import Slide from '@material-ui/core/Slide';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControl from '@material-ui/core/FormControl';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
-import DialogTitleComponent from '../components/Generique/dialogTitleComponent';
 import DialogContent from '@material-ui/core/DialogContent';
-import ButtonIcon from '../components/Generique/ButtonIcon';
 import DialogActions from '@material-ui/core/DialogActions';
-import InputComponent from '../components/Generique/inputComponent';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
@@ -61,18 +60,13 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, namePlace , descriptionPlace, addNamePlace, addCategoryPlace, addDescriptionPlace, addZipCodePlace, addCityPlace, addStreetPlace, lat, long, addPlace, onClose, open, clickLocation, addNamePicturePlace}) => {
   const classes = useStyles();
   
-  // const test = () => {
-  //   console.warn(clickLocation.lat);
-  //   const formLat  = lat;
-  //   const formLng = lng;
+  const [value, setValue] = useState({});
 
-  //   if (!isEmpty(clickLocation)) {
-  //     return clickLocation;
-  //   } else {
-  //     let geolocation = {lat: lat, long: long};
-  //     return geolocation;
-  //   }
-  // }
+  const handleChange = (event) => {
+    setValue(event.target.value);
+
+  };
+
   const getPicture = (input) =>{
     //var input = event.target.files[0];
     console.log('event file', input.name)
@@ -84,7 +78,7 @@ const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, nam
         const photo = document.createElement("img");
         photo.src = reader.result;
         photo.style.height = "200px";
-        photo.style.width ="200px";
+        photo.style.width ="300px";
         photo.id="photoInscription"
         const avatar = document.getElementById('avatar');
         avatar.append(photo);
@@ -189,6 +183,7 @@ const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, nam
               <div className="mb-3">
                 <FormControl component="fieldset">
                   <FormLabel component="legend">Type de services</FormLabel>
+                  <RadioGroup aria-label="services" name="services" value={value} onChange={handleChange}>
                   <FormControlLabel 
                     value="3" 
                     control={<Radio />} 
@@ -201,6 +196,7 @@ const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, nam
                     label="Toilette" 
                     onChange={(event) => addCategoryPlace(event.target.value)}
                   />
+                  </RadioGroup>
                 </FormControl>
               </div>
               <div className="mb-3">

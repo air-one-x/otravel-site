@@ -185,12 +185,10 @@ class UserController extends AbstractController
                 $password = $updatedUserData->getPassword();
 
                 if(strlen($password) < 8){
-
                     $data = [
                         'status' => 400,
-                        'message' => 'Le mot de passe saisi doit comporter 8 caractères minimum.'
+                        'message' => 'mot de passe trop court'
                     ];
-
                     return new JsonResponse($data, 400);
                 }
 

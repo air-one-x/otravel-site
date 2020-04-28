@@ -71,6 +71,8 @@ Fade.propTypes = {
 const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePasswordInscription, inputChangePseudoInscription, newUserEmail, newUserPseudo, newUserPassword, pictureAvatarInscription,fileNameAvatarInscription, newUserAvatar, valueEmail, testEmail, condition, checkCondition, error, responseIns}) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [closeModal, setCloseModal] = React.useState(false);
+
 
   const handleOpen = () => {
     setOpen(true);
@@ -98,16 +100,28 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
     return regex.test(email)
   };
 
+  const onChange = () => {
+    console.log('test')
+  }
+
   const messageRef = useRef(null);
 
   const msgBDD = () => {
-    setTimeout(() => {
-      if(error === undefined) {
-        handleClose();
-      }
-    },2000);
-  }
 
+    console.error('JE BLOQUE OU FERME LA MODAL', responseIns);
+    if(responseIns === true) {
+
+      handleClose();
+    }
+
+  }
+    // setTimeout(() => {
+    //   if(error === undefined) {
+    //     setOpen(true)
+    //   }else {
+    //     handleClose();
+    //   }
+    // },2000);
   return (
     <div className="nav-link">
       <button className="dropdown-item nav-link" type="button" onClick={handleOpen}>
@@ -174,7 +188,7 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
                           const photo = document.createElement("img");
                           photo.src = reader.result;
                           photo.style.height = "200px";
-                          photo.style.width ="200px";
+                          photo.style.width ="300px";
                           photo.id="photoInscription"
                           const avatar = document.getElementById('avatar');
                           avatar.append(photo);
@@ -194,7 +208,7 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
                 <div id="avatar"> </div>
               </div>
               <div className="CheckCond" style={{marginTop: '1rem', marginLeft: '0.5rem'}}>
-                <input type="checkbox" onClick={()=> checkCondition()} name="checkConditions" id="checkConditions" style={{width: '4%', height: '15px', marginRight: '0.3rem'}} checked={condition ===true ? true : false}/>
+                <input type="checkbox" onClick={()=> checkCondition()} name="checkConditions" id="checkConditions" style={{width: '4%', height: '15px', marginRight: '0.3rem'}} onChange={onChange} checked={condition ===true ? true : false}/>
                
                 <label  htmlFor="checkConditions" style={{fontSize: '0.7em', width:'80%'}} > En cochant la case, j'accepte les <a href="#" style={{color: '#303f9f'}}>conditions d'utilisations </a></label>
               </div>
