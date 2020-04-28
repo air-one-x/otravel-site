@@ -22,8 +22,8 @@ class CommentaryController extends AbstractController
      */
     public function CommentPlaces(PlacesRepository $placesRepository, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager)
     {
-        $commentary = $serializer->deserialize($request->getContent(), Commentary::class, 'json');
-        $data = json_decode($request->getContent()); // je récup juste les données renseignées
+
+        $data = json_decode($request->getContent());
         $text = $data->text;       
         $placesId = $data->places_id;
         $instance = $placesRepository->findOneBy(['id' => $placesId]);

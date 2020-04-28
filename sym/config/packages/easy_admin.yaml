@@ -48,7 +48,7 @@ easy_admin:
             form:
                 fields: 
                     - 'id'
-                    - 'user'
+                    - { property: 'user' }
                     - 'text'
         
         CommentairesPhoto:
