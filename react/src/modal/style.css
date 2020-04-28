@@ -3,6 +3,22 @@
 @media all and (max-width: 959px) {
     .icon {
         display:block;
+        background-color: #fff;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        border-width: 2px;
+        border-style: outset;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-color: buttonface;
+        color: #3F51B5;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
     }
 
     .text {
