@@ -35,7 +35,7 @@ console.log('addplace', localStorage.getItem('picturePlace'));
               category: store.getState().geolocation.form.category,
               description: store.getState().geolocation.form.description,
               street: store.getState().geolocation.form.street,
-              zipCode: store.getState().geolocation.form.zipCode.toString(),
+              zipCode: store.getState().geolocation.form.zipCode,
               city: store.getState().geolocation.form.city,
               lat: formLatitude(),
               lng: formLongitude(),

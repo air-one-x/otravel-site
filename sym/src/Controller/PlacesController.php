@@ -178,7 +178,7 @@ class PlacesController extends AbstractController
 
             if(isset($success)){
                 $pathFileBdd = 'uploads/images/places/'.$nomfichierUnique;
-                $picture = new PlacePicture(); ///////////////////////////////////////rajout des parenthèses à enlever si marche plus
+                $picture = new PlacePicture; ///////////////////////////////////////rajout des parenthèses à enlever si marche plus
                 $picture->setName($pathFileBdd);
                 $newPlace->setPlacesPicture($picture);
                 
