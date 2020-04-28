@@ -65,7 +65,7 @@ class PlacesController extends AbstractController
 
             if(isset($success)){
                 $pathFileBdd = 'uploads/images/places/'.$nomfichierUnique;
-                $picture = new PlacePicture;
+                $picture = new PlacePicture(); ///////////////////////////////////////rajout des parenthèses à enlever si marche plus
                 $picture->setName($pathFileBdd);
                 $newPlace->setPlacesPicture($picture);
                 
@@ -93,7 +93,6 @@ class PlacesController extends AbstractController
         
     }
     
-
     /**
      * @Route("/places/delete/{id}", name="places_delete")
      */
