@@ -15,10 +15,8 @@ use App\Repository\PlacesRepository;
 use App\Repository\PlacePictureRepository;
 use App\Repository\CommentaryRepository;
 use App\Repository\CommentaryPictureRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
 
 class ApiController extends AbstractController

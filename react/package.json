@@ -70,6 +70,7 @@
     "react": "*",
     "react-dom": "*",
     "react-leaflet": "^2.6.3",
+    "react-leaflet-locate-control": "^0.1.6",
     "react-leaflet-search": "^1.0.3",
     "react-redux": "*",
     "react-router-dom": "^5.1.2",

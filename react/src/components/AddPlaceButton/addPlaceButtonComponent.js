@@ -31,9 +31,10 @@ const AddPlaceButtonComponent = ({isLogged, sendAdress, resetClickLocation}) => 
             <AddPlace 
               open={open}
               onClose={handleClose}
-            /> :
-            <FormLoginModal
+              /> :
+              <FormLoginModal
               open={open}
+              sendAdress={sendAdress}
               setOpen={setOpen}
               onClose={handleClose}
           />}

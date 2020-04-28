@@ -168,6 +168,7 @@ class UserController extends AbstractController
 
                 if(isset($success)){
                     $findUser->setAvatar($path);
+                    
                 }
 
             }
@@ -182,6 +183,15 @@ class UserController extends AbstractController
             if(!empty($updatedUserData->getPassword())){
 
                 $password = $updatedUserData->getPassword();
+
+                if(strlen($password) < 8){
+                    $data = [
+                        'status' => 400,
+                        'message' => 'mot de passe trop court'
+                    ];
+                    return new JsonResponse($data, 400);
+                }
+
                 $findUser->setPassword($this->passwordEncoder->encodePassword(
                     $findUser,
                     $password
