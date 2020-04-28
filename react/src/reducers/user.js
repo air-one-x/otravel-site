@@ -19,7 +19,9 @@ const stateInit = {
   },
   isLogged: false,
   error: '',
-  userInfos: {},
+  userInfos: {
+    Places: []
+  },
   updateUserInfo: {
     newUserPseudo: "",
     newUserEmail: "",
@@ -79,6 +81,7 @@ export default (state = stateInit, action = {}) => {
       return {
         ...state,
         userInfos: {
+          ...state.userInfos,
           ...action.payload,
         },
         form : {

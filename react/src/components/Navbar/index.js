@@ -46,12 +46,10 @@ const NavBar = ({isLogged}) => {
         <button className="btn navbar-btn dropdown" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" type="button">
           Plus
         </button>
-        <div className="dropdown-menu dropdown-menu-right">
-
-          <Link to="/conditions-utilisations">Conditions</Link>
-
-          <Link to="/a-propos">A propos</Link>
-          <Link to="/contact">Conctact</Link>
+        <div className="dropdown-menu dropdown-menu-right more--infos">
+          <div><Link to="/conditions-utilisations">Conditions</Link></div>
+          <div><Link to="/a-propos">A propos</Link></div>
+          <div><Link to="/contact">Conctact</Link></div>
         </div>
       </div>
 
@@ -62,11 +60,11 @@ const NavBar = ({isLogged}) => {
         <div className="dropdown-menu dropdown-menu-right">
           <a className="dropdown-item" href="#"><ConnexionButton /></a>
           {
-            !isLogged&& <a className="dropdown-item" href="#"><InscriptionModal /></a>
+            !isLogged&& <a className="dropdown-item menu" href="#"><InscriptionModal /></a>
           }
           
           {
-            isLogged&& <a className="dropdown-item" href="#"><Account /></a>
+            isLogged&& <a className="dropdown-item menu" href="#"><Account /></a>
           }
         </div>
       </div>

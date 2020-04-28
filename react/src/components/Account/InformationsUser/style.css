@@ -12,6 +12,7 @@
     padding-left: 2rem;
     padding-right: 2rem;
     color: white;
+    margin-bottom: 2rem;
 }
 
 .informations--user header h2 {
@@ -39,20 +40,27 @@
     padding-left:2rem;
     padding-right: 2rem;
     padding-top: 2rem;
+    justify-content: center;
 }
 
-.user--label--data, .user--content--data {
-    border: 1px solid #dde0e2;
+.user--label--data {
     width: 50%;
     font-size: 90%;
     overflow-x: auto;
     padding-left: 0.5rem;
+    text-align:center;
+    display:flex;
+    align-items: flex-end;
 }
 
 .user--content--data input {
     border: none;
     background-color: #f0f4f7;
 
+}
+
+.user--data input {
+    width: 20%;
 }
 
 .user--content--data {
@@ -86,10 +94,23 @@
     width: 100%;
 }
 
-@media all and (min-height:379px){
+@media all and (min-height:667px){
     .informations--user .footer__menu {
         position: fixed;
         bottom:0;
         padding-bottom: 1rem;
+    }
+}
+
+@media all and (max-width:664px) {
+    .user--data  {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .user--label--data {
+        display: flex;
+        justify-content: center;
     }
 }

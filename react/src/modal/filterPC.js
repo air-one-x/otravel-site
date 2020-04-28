@@ -109,6 +109,7 @@ console.log(removeShower, 'removesshower');
                 />
 
                 <FormControlLabel
+                  checked={isFilterToilet === false ? false : true}
                   value="2"
                   control={<Switch color="primary" />}
                   label="Toilette"

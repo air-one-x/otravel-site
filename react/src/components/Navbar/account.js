@@ -53,7 +53,7 @@ export default function TemporaryDrawer() {
     >
       <List style={{marginTop:'0px', paddingTop:'0px'}}>
           <ListItem style={{backgroundColor: '#3f51b5', color:'white', fontWeight:'bold', paddingTop:'0px', display:'flex'}}>
-            <ListItemText primary={'Mes compte'} />
+            <ListItemText primary={'Mon compte'} />
             <FontAwesomeIcon icon={faTimes} />
           </ListItem>
 
@@ -85,7 +85,7 @@ export default function TemporaryDrawer() {
     <div>
       {[ 'Top'].map((anchor) => (
         <React.Fragment key={'top'}>
-          <Button onClick={toggleDrawer('top', true)}>{'Mon compte'}</Button>
+          <Button onClick={toggleDrawer('top', true)} style={{textTransform:'lowercase',fontSize:'1rem'}}>{'Mon compte'}</Button>
           <Drawer anchor={'top'} open={state['top']} onClose={toggleDrawer('top', false)}>
             {list('top')}
           </Drawer>

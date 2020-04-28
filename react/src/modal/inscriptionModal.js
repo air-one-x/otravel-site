@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
@@ -107,6 +107,17 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
   const messageRef = useRef(null);
 
   const msgBDD = () => {
+    setTimeout(()=> {
+      if(responseIns === true) {
+        handleClose();
+      } else if(responseIns === false) {
+        console.log('EMAIL OU PSEUDO DEJA PRIS');
+      }
+    },2000 );
+    
+  };
+  console.log(responseIns);
+
 
     console.error('JE BLOQUE OU FERME LA MODAL', responseIns);
     if(responseIns === true) {
@@ -153,7 +164,7 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
                     <AccountCircle />
                   </Grid>
                   <Grid container item style={{width: '70%'}}>
-                    <TextField type="text" id="username" label="username" value={newUserPseudo} onChange={(event) => inputChangePseudoInscription(event.target.value)} />
+                    <TextField type="text" id="username" label="username" value={newUserPseudo} onChange={(event) => {inputChangePseudoInscription(event.target.value); error=""}} />
                   </Grid>
                 </Grid>
                 
@@ -162,7 +173,7 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
                     <AlternateEmailIcon />
                   </Grid>
                   <Grid container item style={{width: '70%'}}>
-                    <TextField type="email" label="adresse email" value={newUserEmail} onChange={(event) => {inputChangeEmailInscription(event.target.value); testEmail(testRegex(event.target.value))}} required/>
+                    <TextField type="email" label="adresse email" value={newUserEmail} onChange={(event) => {inputChangeEmailInscription(event.target.value); testEmail(testRegex(event.target.value)); error=""}} required/>
                   </Grid>
                 </Grid>
 

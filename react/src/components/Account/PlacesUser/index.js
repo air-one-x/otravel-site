@@ -1,16 +1,30 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import './style.css';
 import Footer from '../../Footer';
 import Places from './itemsPlaces';
 import { v4 as uuid } from 'uuid';
 
-const InformationsUser = ({places}) => {
+const InformationsUser = ({places, isLogged}) => {
 
-  const nbPlaces = true;
+  let nbPlaces;
+
+       if(places.length != 0) {
+      nbPlaces = true
+  } else {
+      nbPlaces = false;
+  }
+  
+
+
+console.log('-----PLACES------->',places);
+
     return(
     <div className="places--user">
+        {
+           !isLogged && <Redirect to="/" />
+         }
           <header>
             <Link to="/"><h1>O'travel</h1></Link>
             <h2 style={{fontWeight:'lighter'}}>Mes ajouts</h2>
