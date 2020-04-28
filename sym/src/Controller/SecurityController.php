@@ -17,6 +17,7 @@ class SecurityController extends AbstractController
 
     /**
      * @Route("/login", name="login", methods={"POST"})
+     * @return Response
      */
     public function login(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, UserRepository $userRepository)
     {
@@ -58,7 +59,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/isLogged", name="is_logged")
+     * @Route("/isLogged", name="is_logged", methods={"POST"}))
      */
     public function isLogged(SerializerInterface $serializer)
     {
@@ -73,7 +74,7 @@ class SecurityController extends AbstractController
     }
     
     /**
-     * @Route("/connect_admin", name="app_login")
+     * @Route("/connect_admin", name="app_login", methods={"POST"})
      */
     public function loginAdmin(AuthenticationUtils $authenticationUtils): Response
     {
@@ -92,7 +93,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/logout", name="app_logout")
+     * @Route("/logout", name="app_logout", methods={"POST"})
      */
     public function logout()
     {

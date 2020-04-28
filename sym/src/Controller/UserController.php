@@ -25,6 +25,7 @@ class UserController extends AbstractController
     
     /**
      * @Route("/inscription", name="inscription", methods={"POST"})
+     * @return Response
      */
     public function inscription(Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager, UserRepository $userRepository)
     {
@@ -128,7 +129,8 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/user/edit/{id}", name="user_edit")
+     * @Route("/user/edit/{id}", name="user_edit", methods={"POST"})
+     * @return Response
      */
 
     public function userEdit(User $user, UserRepository $userRepository, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager)
@@ -138,7 +140,7 @@ class UserController extends AbstractController
         if($findUser->getId() !== $user->getId()){
             $data = [
                 'status' => 400,
-                'message' => 'T\'as rien à faire là gros'
+                'message' => 'vous vous êtes perdu?'
             ];
             return new JsonResponse($data, 400);
         }else{
@@ -147,7 +149,7 @@ class UserController extends AbstractController
 
             $content = json_decode($request->getContent());
 
-            // dd($findUser);
+          
 
             //Update Username
             if(!empty($updatedUserData->getUsername())){
@@ -210,13 +212,6 @@ class UserController extends AbstractController
         }
     }
     
-    /**
-    * @Route("/", name="api")
-    */
-    public function browse()
-    {
-        return $this->json('coucou');
-    }
-
+ 
 }
 

@@ -18,7 +18,8 @@ class CommentaryController extends AbstractController
 {
 
     /**
-     * @Route("/commentary/add", name="commentary_add")
+     * @Route("/commentary/add", name="commentary_add", methods={"POST"})
+     * @return Response
      */
     public function CommentPlaces(PlacesRepository $placesRepository, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager)
     {
