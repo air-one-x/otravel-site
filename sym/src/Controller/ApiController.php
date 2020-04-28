@@ -24,7 +24,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 class ApiController extends AbstractController
 {
     /**
-     * @Route("/api/user", name="browse_user")
+     * @Route("/api/user", name="browse_user", methods={"POST"})
      */
     public function browse(UserRepository $userRepository, SerializerInterface $serializer)
     {
@@ -36,7 +36,7 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/api/user/{id}", name="read_user")
+     * @Route("/api/user/{id}", name="read_user", methods={"POST"})
      */
     public function read(User $user, UserRepository $userRepository, SerializerInterface $serializer)
     {
@@ -47,7 +47,7 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/api/category", name="browse_category")
+     * @Route("/api/category", name="browse_category", methods={"POST"})
      */
     public function browse_category(CategoryRepository $categoryRepository, SerializerInterface $serializer)
     {
@@ -59,7 +59,7 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/api/category/{id}", name="read_category")
+     * @Route("/api/category/{id}", name="read_category", methods={"POST"})
      */
     public function read_category(Category $category, CategoryRepository $categoryRepository, SerializerInterface $serializer)
     {
@@ -71,7 +71,7 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/api/adress/places", name="read_adress_places")
+     * @Route("/api/adress/places", name="read_adress_places", methods={"POST"})
      */
     public function placesAdress(PlacesRepository $placesRepository, Request $request, SerializerInterface $serializer)
     {
@@ -92,7 +92,7 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/api/places", name="browse_places")
+     * @Route("/api/places", name="browse_places", methods={"POST"})
      */
     public function browse_places(PlacesRepository $placesRepository, SerializerInterface $serializer)
     {
@@ -106,7 +106,7 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/api/places/{id}", name="read_places")
+     * @Route("/api/places/{id}", name="read_places", methods={"POST"})
      */
     public function read_places(Places $places, PlacesRepository $placesRepository, SerializerInterface $serializer)
     {
@@ -118,7 +118,7 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/api/commentary", name="browse_commentary")
+     * @Route("/api/commentary", name="browse_commentary", methods={"POST"})
      */
     public function browse_commentary(CommentaryRepository $commentaryRepository, SerializerInterface $serializer)
     {
@@ -130,7 +130,7 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/api/commentary/{id}", name="read_commentary")
+     * @Route("/api/commentary/{id}", name="read_commentary", methods={"POST"})
      */
     public function read_commentary(Commentary $commentary, CommentaryRepository $commentaryRepository, SerializerInterface $serializer)
     {
@@ -142,7 +142,7 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/api/place_picture", name="browse_place_picture")
+     * @Route("/api/place_picture", name="browse_place_picture", methods={"POST"})
      */
     public function browse_place_picture(PlacePictureRepository $placepictureRepository, SerializerInterface $serializer)
     {
@@ -155,7 +155,7 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/api/place_picture/{id}", name="read_place_picture")
+     * @Route("/api/place_picture/{id}", name="read_place_picture", methods={"POST"})
      */
     public function read_place_picture(PlacePicture $placepicture, PlacePictureRepository $placepictureRepository, SerializerInterface $serializer)
     {
@@ -168,7 +168,7 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/api/commentary_picture", name="browse_commentary_picture")
+     * @Route("/api/commentary_picture", name="browse_commentary_picture", methods={"POST"})
      */
     public function browse_commentary_picture(CommentaryPictureRepository $commentarypictureRepository, SerializerInterface $serializer)
     {
@@ -181,7 +181,7 @@ class ApiController extends AbstractController
     }
 
     /**
-     * @Route("/api/commentary_picture/{id}", name="read_commentary_picture")
+     * @Route("/api/commentary_picture/{id}", name="read_commentary_picture", methods={"POST"})
      */
     public function read_commentary_picture(CommentaryPicture $commentarypicture, CommentaryPictureRepository $commentarypictureRepository, SerializerInterface $serializer)
     {
@@ -194,7 +194,7 @@ class ApiController extends AbstractController
     }
     
     /**
-     * @Route("/api/category/places/{id}", name="read_places_from_category")
+     * @Route("/api/category/places/{id}", name="read_places_from_category", methods={"POST"})
      */
     public function placesFromCategory(Category $category, PlacesRepository $placesRepository, SerializerInterface $serializer)
     {
