@@ -116,23 +116,8 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
     },2000 );
     
   };
-  console.log(responseIns);
 
 
-    console.error('JE BLOQUE OU FERME LA MODAL', responseIns);
-    if(responseIns === true) {
-
-      handleClose();
-    }
-
-  }
-    // setTimeout(() => {
-    //   if(error === undefined) {
-    //     setOpen(true)
-    //   }else {
-    //     handleClose();
-    //   }
-    // },2000);
   return (
     <div className="nav-link">
       <button className="dropdown-item nav-link" type="button" onClick={handleOpen}>

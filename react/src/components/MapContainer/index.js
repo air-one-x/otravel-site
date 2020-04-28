@@ -138,35 +138,33 @@ const MapContainer = ({
             </Marker>)
           }
           {
-            isFilterShower && newList.map((place) => (
+            isFilterShower && newList.map((test1) => (
               <Marker
-                key={place.id}
-                icon={showerIcon}
+                key={test1.id}
                 position={[
-                  place.lat,
-                  place.lng,
+                  test1.lat,
+                  test1.lng,
                 ]}
                 onClick={() => {
-                  setActivePlace(place),
-                  setViewport({center:[place.lat, place.lng]}),
-                  clickMarkerID(place.id)
+                  setActivePlace(test1),
+                  setViewport({center:[test1.lat, test1.lng]}),
+                  clickMarkerID(test1.id)
                 }}
               />
             ))
           }
           {
-            isFilterToilet && newList.map((place) => (
+            isFilterToilet && newList.map((test2) => (
               <Marker
-                key={place.id}
-                icon={toiletIcon}
+                key={test2.id}
                 position={[
-                  place.lat,
-                  place.lng,
+                  test2.lat,
+                  test2.lng,
                 ]}
                 onClick={() => {
-                  setActivePlace(place),
-                  setViewport({center:[place.lat, place.lng]}),
-                  clickMarker(place.id)
+                  setActivePlace(test2),
+                  setViewport({center:[test2.lat, test2.lng]}),
+                  clickMarker(test2.id)
                 }}
               />
             ))
@@ -174,7 +172,6 @@ const MapContainer = ({
           {!isFilterShower && !isFilterToilet && list.map((place) => (
             <Marker
               key={place.id}
-              icon={showerIcon}
               position={[
                 place.lat,
                 place.lng,

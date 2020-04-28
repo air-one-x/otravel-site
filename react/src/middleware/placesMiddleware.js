@@ -7,7 +7,7 @@ export default (store) => (next) => (action) => {
         case FETCH_PLACES:
 
         axios({
-            method: 'get',
+            method: 'post',
             url: 'http://localhost:8001/api/places',
 
         }).then((res) => {
