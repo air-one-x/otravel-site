@@ -198,7 +198,7 @@ class ApiController extends AbstractController
     {
         
         $places = $placesRepository->placesByCategory($category->getId());
-        $data = $serializer->normalize($places, null, ['groups' => 'category']);
+        $data = $serializer->normalize($places, null, ['groups' => 'places']);
 
         return $this->json($data);
         

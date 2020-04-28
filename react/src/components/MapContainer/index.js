@@ -164,7 +164,7 @@ const MapContainer = ({
                 onClick={() => {
                   setActivePlace(test2),
                   setViewport({center:[test2.lat, test2.lng]}),
-                  clickMarker(test2.id)
+                  clickMarkerID(test2.id)
                 }}
               />
             ))
