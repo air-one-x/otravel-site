@@ -59,6 +59,7 @@ export default (state = stateInit, action = {}) => {
     case INSCRIPTION_SUCCESS:
       return {
         ...state,
+        responseIns: action.payload
       };
       case TEST_EMAIL:
         return {

@@ -72,12 +72,10 @@ const LoginModal = ({
   const classes = useStyles();
   
   const checkLogged = () => {
-    console.log('!!!!!!!!!!!!!!!!!!!!', loginError);
     if(isLoggedUser  === true){  
       onClose();
     } 
   };
-  console.log('!!!!!!!!!dsfffffffffffsfdds!!!!!!!!!!!', open);
   return (
       <Modal
         aria-labelledby="spring-modal-title"
