@@ -11,8 +11,8 @@ import { isEmpty } from 'lodash';
 import userLocationURL from './pinBlue.svg';
 import newLocation from './pin.svg';
 import PopupNavBar from '../popupNavBar/popupNavBar';
-import IconForShower from './shower-icon.svg';
-import IconToilet from './wc.png';
+import IconForShower from './shower.png';
+import IconToilet from './wc.svg';
 
 const myIcon = L.icon({
   iconUrl: newLocation,
@@ -28,12 +28,12 @@ const newPointIcon = L.icon({
 
 const showerIcon = L.icon({
   iconUrl: IconForShower,
-  iconSize: [20, 23],
+  iconSize: [40, 42],
 });
 
 const toiletIcon = L.icon({
   iconUrl: IconToilet,
-  iconSize: [20, 23],
+  iconSize: [33, 35],
   
 });
 
@@ -45,6 +45,8 @@ const MapContainer = ({
   isLocated,
   fetchPlaces,
   list,
+  listShower,
+  listToilet,
   newList,
   isFilterShower,
   isFilterToilet,
@@ -138,54 +140,54 @@ const MapContainer = ({
             </Marker>)
           }
           {
-            isFilterShower && newList.map((test1) => (
+            isFilterShower && listShower.map((shower) => (
               <Marker
-              icon={showerIcon}
-                key={test1.id}
+                icon={showerIcon}
+                key={shower.id}
                 position={[
-                  test1.lat,
-                  test1.lng,
+                  shower.lat,
+                  shower.lng,
                 ]}
                 onClick={() => {
-                  setActivePlace(test1),
-                  setViewport({center:[test1.lat, test1.lng]}),
-                  clickMarkerID(test1.id)
+                  setActivePlace(shower),
+                  setViewport({center:[shower.lat, shower.lng]}),
+                  clickMarkerID(shower.id)
                 }}
               />
             ))
           }
           {
-            isFilterToilet && newList.map((test2) => (
+            isFilterToilet && listToilet.map((toilet) => (
               <Marker
               icon={toiletIcon}
-                key={test2.id}
+                key={toilet.id}
                 position={[
-                  test2.lat,
-                  test2.lng,
+                  toilet.lat,
+                  toilet.lng,
                 ]}
                 onClick={() => {
-                  setActivePlace(test2),
-                  setViewport({center:[test2.lat, test2.lng]}),
-                  clickMarkerID(test2.id)
+                  setActivePlace(toilet),
+                  setViewport({center:[toilet.lat, toilet.lng]}),
+                  clickMarkerID(toilet.id)
                 }}
               />
             ))
           }
-          {!isFilterShower && !isFilterToilet && list.map((place) => (
-            <Marker
-              key={place.id}
-              position={[
-                place.lat,
-                place.lng,
-              ]}
-              onClick={() => {
-                setActivePlace(place);
-                setViewport({center:[place.lat, place.lng]}),
-                clickMarkerID(place.id)
-              }}
-            />
-          ))
-          }
+           {/*!isFilterShower && !isFilterToilet && list.map((place) => (
+          //   <Marker
+          //     key={place.id}
+          //     position={[
+          //       place.lat,
+          //       place.lng,
+          //     ]}
+          //     onClick={() => {
+          //       setActivePlace(place);
+          //       setViewport({center:[place.lat, place.lng]}),
+          //       clickMarkerID(place.id)
+          //     }}
+          //   />
+          // ))
+          */}
           {activePlace && (
           <Popup
             className="popup"

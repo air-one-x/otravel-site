@@ -105,7 +105,8 @@ console.log(removeShower, 'removesshower');
                   control={<Switch color="primary" />}
                   label="Douche"
                   labelPlacement="start"
-                  onClick={isFilterShower === false ? (event) => {changeIsFilterShower(); checkFilter(); console.log(event.target.label)} : (event) => {removeShower(); console.log(event.target.label)}}
+                  // onClick={isFilterShower === false ? (event) => {changeIsFilterShower(); checkFilter(); console.log(event.target.label)} : (event) => {removeShower(); console.log(event.target.label)}}
+                  onClick={() => changeIsFilterShower()}
                 />
 
                 <FormControlLabel
@@ -114,7 +115,8 @@ console.log(removeShower, 'removesshower');
                   control={<Switch color="primary" />}
                   label="Toilette"
                   labelPlacement="start"
-                  onClick={isFilterToilet === false ? () => {changeIsFilterToilet(); checkFilter()} : () => {removeToilet()}}
+                  //onClick={isFilterToilet === false ? () => {changeIsFilterToilet(); checkFilter()} : () => {removeToilet()}}
+                  onClick={()=> changeIsFilterToilet() }
                 />
             
 

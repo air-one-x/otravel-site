@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { isFilterShower, checkFilter, removeShower, removeToilet, isFilterToilet} from '../actions/places';
+import { isFilterShower, isFilterToilet} from '../actions/places';
 import FilterPc from '../modal/filterPC';
 
 const mapStateToProps = (state) => ({
@@ -10,9 +10,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     changeIsFilterShower: ()=> dispatch(isFilterShower()),
-    checkFilter: () =>dispatch(checkFilter()),
-    removeShower: () => dispatch(removeShower()),
-    removeToilet: () => dispatch(removeToilet()),
+    // checkFilter: () =>dispatch(checkFilter()),
+    // removeShower: () => dispatch(removeShower()),
+    // removeToilet: () => dispatch(removeToilet()),
     changeIsFilterToilet: () => dispatch(isFilterToilet())
 });
 
