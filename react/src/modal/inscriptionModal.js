@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
@@ -101,12 +101,16 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
   const messageRef = useRef(null);
 
   const msgBDD = () => {
-    setTimeout(() => {
-      if(error === undefined) {
+    setTimeout(()=> {
+      if(responseIns === true) {
         handleClose();
+      } else if(responseIns === false) {
+        console.log('EMAIL OU PSEUDO DEJA PRIS');
       }
-    },2000);
-  }
+    },2000 );
+    
+  };
+  console.log(responseIns);
 
   return (
     <div className="nav-link">
@@ -139,7 +143,7 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
                     <AccountCircle />
                   </Grid>
                   <Grid container item style={{width: '70%'}}>
-                    <TextField type="text" id="username" label="username" value={newUserPseudo} onChange={(event) => inputChangePseudoInscription(event.target.value)} />
+                    <TextField type="text" id="username" label="username" value={newUserPseudo} onChange={(event) => {inputChangePseudoInscription(event.target.value); error=""}} />
                   </Grid>
                 </Grid>
                 
@@ -148,7 +152,7 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
                     <AlternateEmailIcon />
                   </Grid>
                   <Grid container item style={{width: '70%'}}>
-                    <TextField type="email" label="adresse email" value={newUserEmail} onChange={(event) => {inputChangeEmailInscription(event.target.value); testEmail(testRegex(event.target.value))}} required/>
+                    <TextField type="email" label="adresse email" value={newUserEmail} onChange={(event) => {inputChangeEmailInscription(event.target.value); testEmail(testRegex(event.target.value)); error=""}} required/>
                   </Grid>
                 </Grid>
 
@@ -194,7 +198,7 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
                 <div id="avatar"> </div>
               </div>
               <div className="CheckCond" style={{marginTop: '1rem', marginLeft: '0.5rem'}}>
-                <input type="checkbox" onClick={()=> checkCondition()} name="checkConditions" id="checkConditions" style={{width: '4%', height: '15px', marginRight: '0.3rem'}} checked={condition ===true ? true : false}/>
+                <input type="checkbox" onClick={()=> checkCondition()} name="checkConditions" id="checkConditions" style={{width: '4%', height: '15px', marginRight: '0.3rem'}} checked={condition ===true ? true : false}  />
                
                 <label  htmlFor="checkConditions" style={{fontSize: '0.7em', width:'80%'}} > En cochant la case, j'accepte les <a href="#" style={{color: '#303f9f'}}>conditions d'utilisations </a></label>
               </div>

@@ -11,7 +11,8 @@ const mapStateToProps = (state) => ({
     newUserEmail: state.user.updateUserInfo.newEmail,
     newUserPassword: state.user.updateUserInfo.newPassword,
     updateMessage: state.user.updateMessage,
-    userAvatar: state.user.userInfos.avatar
+    userAvatar: state.user.userInfos.avatar,
+    isLogged: state.user.isLogged,
 });
 
 const mapDispatchToProps = (dispatch) => ({

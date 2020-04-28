@@ -20,7 +20,7 @@ const ConnexionButtonComponent = ({ isLogged, logout }) => {
             {
             isLogged&&
                 <div>
-                <button className="dropdown-item nav-link" type="button" onClick={() => {logout(), handleClose()}} >
+                <button className="dropdown-item nav-link" type="button" onClick={() => {logout(), handleClose()}} style={{padding:'0'}}>
                     déconnexion
                 </button>
                 </div>

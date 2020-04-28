@@ -45,12 +45,10 @@ const App = ({ checkAuth , lat, long, isLogged}) => {
           </div>
         )}
         />
- {
-        isLogged ? <Route exact path="/mes-ajouts" component={Places} /> : <Redirect to="/" />
-      }
-      {
-        isLogged ? <Route exact path="/mes-informations" component={InformationsUser} /> : <Redirect to="/" />
-      } 
+      
+        
+        <Route exact path="/mes-ajouts" component={Places} />
+        <Route exact path="/mes-informations" component={InformationsUser} />
         <Route exact path="/conditions-utilisations" component={Conditions} />
         <Route exact path="/a-propos" component={Informations} />
         <Route exact path ="/contact" component={Contact} />
