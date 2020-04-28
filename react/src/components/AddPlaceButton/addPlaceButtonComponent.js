@@ -9,10 +9,10 @@ const AddPlaceButtonComponent = ({isLogged, sendAdress, resetClickLocation}) => 
 
     const handleClickOpen = () => {
         setOpen(true);
-        if(isLogged){
+        
           console.log('sendadress')
           sendAdress()
-        }
+        
       };
     
     const handleClose = () => {
@@ -27,17 +27,19 @@ const AddPlaceButtonComponent = ({isLogged, sendAdress, resetClickLocation}) => 
                 Ajouter un lieu
             </Button>
           </div>
-          { isLogged ? 
-            <AddPlace 
-              open={open}
-              onClose={handleClose}
-              /> :
-              <FormLoginModal
+          { !isLogged ? 
+            <FormLoginModal
               open={open}
               sendAdress={sendAdress}
               setOpen={setOpen}
               onClose={handleClose}
-          />}
+            />
+             :
+             <AddPlace 
+              open={open}
+              onClose={handleClose}
+              />
+          }
         </div>
     )
 }

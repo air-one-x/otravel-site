@@ -104,7 +104,7 @@ const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, nam
       return long;
     }
   }
-
+  console.log('addModal', streetPlace)
   return (
       <Dialog fullScreen open={open} onClose={onClose} TransitionComponent={Transition}>
         <DialogTitleComponent onClose={onClose} id="simple-dialog-title">Ajouter un lieu</DialogTitleComponent>

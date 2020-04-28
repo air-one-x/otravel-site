@@ -140,6 +140,7 @@ const MapContainer = ({
           {
             isFilterShower && newList.map((test1) => (
               <Marker
+              icon={showerIcon}
                 key={test1.id}
                 position={[
                   test1.lat,
@@ -156,6 +157,7 @@ const MapContainer = ({
           {
             isFilterToilet && newList.map((test2) => (
               <Marker
+              icon={toiletIcon}
                 key={test2.id}
                 position={[
                   test2.lat,
