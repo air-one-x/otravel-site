@@ -7,7 +7,7 @@ export default (store) => (next) => (action) => {
 
         axios({
             method: 'post',
-            url: 'https://ec2-3-86-88-131.compute-1.amazonaws.com/api/places',
+            url: 'http://ec2-107-20-110-81.compute-1.amazonaws.com/api/places',
 
         }).then((res) => {
             store.dispatch(fetchPlacesSuccess(res.data));
@@ -20,7 +20,7 @@ export default (store) => (next) => (action) => {
 
             axios({
                 method: 'post',
-                url: `https://ec2-3-86-88-131.compute-1.amazonaws.com/api/category/places/${store.getState().placesReducer.filter}`,
+                url: `http://ec2-107-20-110-81.compute-1.amazonaws.com/api/category/places/${store.getState().placesReducer.filter}`,
     
             }).then((res) => {
                 store.dispatch(addFilter(res.data));
