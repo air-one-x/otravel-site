@@ -31,7 +31,7 @@ const ViewCommentPlace = ({ onClose, open, commentaryInfos }) => {
 
   return (
     <Dialog onClose={onClose} aria-labelledby="simple-dialog-title" open={open}>
-    <DialogTitleComponent onClose={onClose} id="simple-dialog-title">Commentaires de ce lieu</DialogTitleComponent>
+    <DialogTitleComponent onClose={onClose} id="simple-dialog-title" style={{paddingRight: '3rem'}}>Commentaires de ce lieu</DialogTitleComponent>
       <DialogContent>
 { commentaryInfos.map((comment) => (
 

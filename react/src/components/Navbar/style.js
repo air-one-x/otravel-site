@@ -5,7 +5,7 @@ import { fade, makeStyles } from '@material-ui/core/styles';
       flexGrow: 1,
     },
     menuButton: {
-      marginLeft: theme.spacing(2),
+      marginLeft: theme.spacing(0),
       [theme.breakpoints.up('md')]: {
         display: 'none',
       },

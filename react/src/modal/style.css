@@ -35,6 +35,11 @@
     }
 }
 
+.mobile{
+    padding: 0px;
+    padding-bottom: 3px;
+}
+
 @media all and (min-width: 960px) {
     .text {
         display: block;
