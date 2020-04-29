@@ -14,8 +14,8 @@ import {
 
 const stateInit = {
   form: {
-    email: 'azerty@azerty.fr',
-    password: 'azertyazerty',
+    email: '',
+    password: '',
   },
   isLogged: false,
   error: '',

@@ -8,6 +8,11 @@ export const TEST_EMAIL = 'TEST_EMAIL';
 export const CONDITION = 'CONDITION';
 export const INSCRIPTION_ERROR = 'INSCRIPTION_ERROR';
 export const CHECK_EMAIL = 'CHECK_EMAIL';
+export const CHECK_STATE = 'CHECK_STATE';
+
+export const checkState = () => ({
+  type: CHECK_STATE,
+});
 
 export const checkEmail = (payload) => ({
   type: CHECK_EMAIL,
