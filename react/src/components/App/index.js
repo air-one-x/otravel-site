@@ -19,7 +19,7 @@ import Places from '../../containers/PlacesUser';
 
 
 const DEFAULT_VIEWPORT = {
-  center: [51.505, -0.09],
+  center: [46.603354, 1.8883335],
   zoom: 6,
 }
 
