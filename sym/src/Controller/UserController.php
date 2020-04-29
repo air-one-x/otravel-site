@@ -32,75 +32,75 @@ class UserController extends AbstractController
        
         $user = $serializer->deserialize($request->getContent(), User::class, 'json');
         $content = json_decode($request->getContent());
-
+        
         $user->setRoles(['ROLE_USER']);
-
+        
         /*email verification*/
+        $emailForm = htmlspecialchars($user->getEmail());
 
-        $emailForm = $user->getEmail();
         $emailBdd = $userRepository->findOneby(['email' => $emailForm]);
-
+        
         if($emailBdd){ 
-
-            $userEmail = $emailBdd->getEmail();
-            if($emailForm == $userEmail){
             
+            $userEmail = htmlspecialchars($emailBdd->getEmail());
+            if($emailForm == $userEmail){
+                
                 $data = [
-                  'status' => 400,
-                  'message' => 'L\'adresse email est déja utilisée'
+                    'status' => 400,
+                    'message' => 'L\'adresse email est déja utilisée'
                 ];
-
+                
                 return new JsonResponse($data, 400);
             }
-
+            
         }
-            /*username verification*/
 
-        $usernameForm = $user->getUsername();
+        /*username verification*/
+        $usernameForm = htmlspecialchars($user->getUsername());
         $usernameBdd = $userRepository->findOneby(['username' => $usernameForm]);
-          
-          
+        
         if($usernameBdd){
-    
-            $userNameBdd = $usernameBdd->getUsername();
-    
+            
+            $userNameBdd = htmlspecialchars($usernameBdd->getUsername());
+            
             if($usernameForm == $userNameBdd){
                 
                 $data = [
                     'status' => 400,
                     'message' => 'Le username choisi n\'est pas disponible'
                 ];
+                
                 return new JsonResponse($data, 400);
             }
-
+            
         }     
-     
+        
         /*password verification*/
-        $password = $user->getPassword();
+        $password = htmlspecialchars($user->getPassword());
         $verif= strlen($password);
         $valid = 8;
-
+        
         if($verif < $valid){
-                       
+            
             $verif = false;
             $data = [
                 'status' => 400,
                 'message' => 'Le mot de passe doit faire 8 charactère minimum'
             ];
             return new JsonResponse($data, 400);
-
+            
         }
-
+        
         $user->setPassword($this->passwordEncoder->encodePassword(
             $user,
             $password
         ));
-
+        
         /*Give avatar if the user don't put*/
         if(empty($user->getAvatar())){
-
+            
             $user->setAvatar("../public/uploads/images/avatars/account.png");        
-
+            
         }
         else{
             
@@ -110,15 +110,15 @@ class UserController extends AbstractController
             $nomfichierUnique = $nomfichier[0].uniqid().'.'.$nomfichier[1];
             $path = '../public/uploads/images/avatars/'. $nomfichierUnique;
             $success = file_put_contents($path, base64_decode($img));
-
+            
             if(isset($success)){
                 $pathFileBdd = 'uploads/images/avatars/'.$nomfichierUnique;
                 $user->setAvatar($pathFileBdd);
             }
-
+            
         }
+
         /*push to database */
-       
         $entityManager->persist($user);
         $entityManager->flush();
         $data = [
@@ -132,7 +132,6 @@ class UserController extends AbstractController
      * @Route("/user/edit/{id}", name="user_edit", methods={"POST"})
      * @return Response
      */
-
     public function userEdit(User $user, UserRepository $userRepository, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager)
     {
         $findUser = $userRepository->findOneBy(['id' => $this->getUser()]);
@@ -140,7 +139,7 @@ class UserController extends AbstractController
         if($findUser->getId() !== $user->getId()){
             $data = [
                 'status' => 400,
-                'message' => 'vous vous êtes perdu?'
+                'message' => 'vous vous êtes perdu ?'
             ];
             return new JsonResponse($data, 400);
         }else{
@@ -149,12 +148,10 @@ class UserController extends AbstractController
 
             $content = json_decode($request->getContent());
 
-          
-
             //Update Username
             if(!empty($updatedUserData->getUsername())){
 
-                $username = $updatedUserData->getUsername();
+                $username = htmlspecialchars($updatedUserData->getUsername());
                 $findUser->setUsername($username);
 
             }
@@ -169,6 +166,7 @@ class UserController extends AbstractController
                 $success = file_put_contents($path, base64_decode($img));
 
                 if(isset($success)){
+
                     $findUser->setAvatar($path);
                     
                 }
@@ -177,19 +175,19 @@ class UserController extends AbstractController
             //Update Email
             if(!empty($updatedUserData->getEmail())){
 
-                $email = $updatedUserData->getEmail();
+                $email = htmlspecialchars($updatedUserData->getEmail());
                 $findUser->setEmail($email);
 
             }
             //Update Password
             if(!empty($updatedUserData->getPassword())){
 
-                $password = $updatedUserData->getPassword();
+                $password = htmlspecialchars($updatedUserData->getPassword());
 
                 if(strlen($password) < 8){
                     $data = [
                         'status' => 400,
-                        'message' => 'mot de passe trop court'
+                        'message' => 'Mot de passe trop court'
                     ];
                     return new JsonResponse($data, 400);
                 }
