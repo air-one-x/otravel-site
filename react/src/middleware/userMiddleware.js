@@ -20,7 +20,7 @@ export default (store) => (next) => (action) => {
         localStorage.setItem('id_token', res.data.token);
          
         axios({
-          url: '/isLogged',
+          url: 'http://ec2-107-20-110-81.compute-1.amazonaws.com/isLogged',
           method: 'post',
           withCredentials: true,
           headers: {
