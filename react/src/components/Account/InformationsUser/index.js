@@ -9,7 +9,6 @@ import InputComponent from '../../Generique/inputComponent';
 const InformationsUser = ({username, email, date, contributions, inputChangeEmailInformation, inputChangePseudoInformation, inputChangePasswordInformation, newUserPassword, newUserEmail, newUserPseudo, insertNewInformation, updateMessage, userAvatar, isLogged}) => { 
     
     
-    console.log(isLogged);
 
     
 

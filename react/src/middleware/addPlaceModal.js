@@ -6,7 +6,6 @@ import {isEmpty} from 'lodash';
 export default (store) => (next) => (action) => {
     switch(action.type) {
         case ADD_PLACE: 
-        console.log('JE VOIS L AJOUT DUN LIEU ');
         const formLatitude = () => {
           if (!isEmpty(store.getState().placesReducer.locationPlace)) {
             return store.getState().placesReducer.locationPlace.lat;
@@ -23,7 +22,6 @@ export default (store) => (next) => (action) => {
             return store.getState().geolocation.coords.long;
           }
         }
-console.log('addplace', localStorage.getItem('picturePlace'));
         axios({
             method: 'post',
             url: 'http://localhost:8001/places/add',
@@ -47,20 +45,16 @@ console.log('addplace', localStorage.getItem('picturePlace'));
             },
           }).then((res) => {
             // Si succès -> dispatcher une action success
-            console.log('AJJJJJOUUUUUUT D UUUUNNN LIIEEEEUUUUU', res.config.data);
             store.dispatch(fetchPlaces());
           })
             .catch((err) => {
             // Si error -> Dispatcher une action error
-              console.error(err);
             });
             break;
 
             case SEND_ADRESS: 
-            console.log('convertion en cours',store.getState().geolocation, store.getState().placesReducer );
             let data = {};
             if(!isEmpty(store.getState().placesReducer.locationPlace)){
-              console.log('if')
               data = {
                 lat: store.getState().placesReducer.locationPlace.lat,
                 long: store.getState().placesReducer.locationPlace.lng
@@ -80,11 +74,9 @@ console.log('addplace', localStorage.getItem('picturePlace'));
               },
             })
           .then((res) => {
-            console.log('VOICI L ADRESSE :', res.data.results[0].components);
             store.dispatch(convertAdress(res.data.results[0].components))
           })
           .catch((err) => {
-            console.log(err);
           })
         break;
         default :

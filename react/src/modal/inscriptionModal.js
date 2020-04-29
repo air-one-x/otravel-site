@@ -82,15 +82,12 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
     setOpen(false);
   };
   const handleChange = (event) => {
-    console.log('event',event);
     let files = event.files
-    console.log('file', files)
     let reader = new FileReader();
     reader.readAsDataURL(files[0]);
     fileNameAvatarInscription(files[0].name)
 
     reader.onload=(e)=>{
-      console.log('e',e.target)
       pictureAvatarInscription(e.target.result)
     }
   }
@@ -101,7 +98,7 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
   };
 
   const onChange = () => {
-    console.log('test')
+    console.log('')
   }
 
   const messageRef = useRef(null);
@@ -111,7 +108,6 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
         handleClose();
         checkState();
       } else if(responseIns === false) {
-        console.log('EMAIL OU PSEUDO DEJA PRIS');
       }
     },[nb] );
     
@@ -180,7 +176,6 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
                       var reader = new FileReader(); 
                       reader.onload = function(){
                         if(typeof photo != undefined) {
-                          console.log(reader.result);
                           const photo = document.createElement("img");
                           photo.src = reader.result;
                           photo.style.height = "200px";

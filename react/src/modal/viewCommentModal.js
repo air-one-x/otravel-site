@@ -26,7 +26,6 @@ const useStyles = makeStyles(() => ({
 
 const ViewCommentPlace = ({ onClose, open, commentaryInfos }) => {
 
-    console.log(commentaryInfos);
   const classes = useStyles();
 
   return (

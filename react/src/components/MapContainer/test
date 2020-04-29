@@ -24,22 +24,18 @@ const MapContainer = ({userLocation, lat, long, isLocated}) => {
   const [viewport, setViewport] = useState(DEFAULT_VIEWPORT)
   const getLocation = () => {
     if (navigator.geolocation) {
-      console.log(navigator.geolocation);
       navigator.geolocation.getCurrentPosition(showPosition);
     } else { 
-      console.log('erreur !!')
     }
   }
   
   const showPosition = (position) => {
-    console.log('show position', position.coords.latitude);
     userLocation(position.coords)
   }
 
   useEffect(() => {
      getLocation()
   },[]);
-console.log('longlat', lat , long, isLocated)
   const [activePark, setActivePark] = React.useState(null);
 
 const handleGeo = () => {

@@ -102,7 +102,7 @@ class UserController extends AbstractController
 
 
             
-            $user->setAvatar("../public/uploads/images/avatars/account.png");        
+            $user->setAvatar("uploads/images/avatars/account.png");        
             
         }
         else{

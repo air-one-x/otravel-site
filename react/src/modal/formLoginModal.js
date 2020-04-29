@@ -28,7 +28,6 @@ const Fade = React.forwardRef((props, ref) => {
   const {
     in: open, children, onEnter, onExited, ...other
   } = props;
-  console.log('opeenref', open)
   const style = useSpring({
     from: { opacity: 0 },
     to: { opacity: open ? 1 : 0 },

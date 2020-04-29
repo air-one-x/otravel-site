@@ -18,9 +18,7 @@
     position: fixed;
 }
 
-.popup{  
-    height: 40vh;
-}
+
 
 .leaflet-container a.leaflet-popup-close-button{
     font-size: 27px;

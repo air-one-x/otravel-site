@@ -69,12 +69,9 @@ const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, nam
 
   const getPicture = (input) =>{
     //var input = event.target.files[0];
-    console.log('event file', input.name)
     addNamePicturePlace(input.name);
     var reader = new FileReader(); 
     reader.onload = function(){
-        console.log(reader.result);
-        console.log(reader);
         const photo = document.createElement("img");
         photo.src = reader.result;
         photo.style.height = "200px";
@@ -104,7 +101,6 @@ const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, nam
       return long;
     }
   }
-  console.log('addModal', streetPlace)
   return (
       <Dialog fullScreen open={open} onClose={onClose} TransitionComponent={Transition}>
         <DialogTitleComponent onClose={onClose} id="simple-dialog-title">Ajouter un lieu</DialogTitleComponent>
@@ -124,7 +120,6 @@ const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, nam
                   type="text" 
                   value={streetPlace} 
                   variant="outlined"
-                  onChange={(event) => addStreetPlace(event.target.value)} 
                 />
               </div>
               <div className="mb-3">
@@ -134,7 +129,6 @@ const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, nam
                   type="text" 
                   value={zipCodePlace} 
                   variant="outlined"
-                  onChange={(event) => addZipCodePlace(event.target.value)} 
                 />
               </div>
               <div className="mb-3">
@@ -144,7 +138,7 @@ const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, nam
                   type="text" 
                   value={cityPlace} 
                   variant="outlined"
-                  onChange={(event) => addCityPlace(event.target.value)} />
+                   />
               </div>
               <div className="mb-3">
                 <InputComponent 
