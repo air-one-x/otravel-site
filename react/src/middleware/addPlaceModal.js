@@ -24,7 +24,7 @@ export default (store) => (next) => (action) => {
         }
         axios({
             method: 'post',
-            url: 'http://localhost:8001/places/add',
+            url: 'https://localhost:8001/places/add',
             withCredentials: true,
             headers: { 'Content-Type': 'multipart/form-data',
             'Authorization': `Bearer ${localStorage.getItem('id_token')}`},
@@ -65,7 +65,7 @@ export default (store) => (next) => (action) => {
 
             axios({
               method: 'post',
-              url: 'http://localhost:8001/api/adress/places',
+              url: 'https://localhost:8001/api/adress/places',
               withCredentials: true,
               headers: {'Authorization': `Bearer ${localStorage.getItem('id_token')}`},
               data : {

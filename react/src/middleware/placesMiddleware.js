@@ -7,7 +7,7 @@ export default (store) => (next) => (action) => {
 
         axios({
             method: 'post',
-            url: 'http://localhost:8001/api/places',
+            url: 'https://localhost:8001/api/places',
 
         }).then((res) => {
             store.dispatch(fetchPlacesSuccess(res.data));
@@ -20,7 +20,7 @@ export default (store) => (next) => (action) => {
 
             axios({
                 method: 'post',
-                url: `http://localhost:8001/api/category/places/${store.getState().placesReducer.filter}`,
+                url: `https://localhost:8001/api/category/places/${store.getState().placesReducer.filter}`,
     
             }).then((res) => {
                 store.dispatch(addFilter(res.data));
