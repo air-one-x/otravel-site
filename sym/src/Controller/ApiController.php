@@ -76,8 +76,8 @@ class ApiController extends AbstractController
 
         $data = json_decode($request->getContent());
 
-        $lng = ($data->lng);
-        $lat = ($data->lat);
+        $lng = $data->lng;
+        $lat = $data->lat;
         $array = [$lng, $lat];
         $stringifyData = implode(",", $array);
         $geoCode = $stringifyData;

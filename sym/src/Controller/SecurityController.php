@@ -29,7 +29,7 @@ class SecurityController extends AbstractController
         $errors = $validator->validate($user);
         $emailBdd = $userRepository->findOneBy(['email' => $data->email]);
         $passwordDB = $emailBdd->getPassword();
-        $passwordInput = $data->password; 
+        $passwordInput = htmlspecialchars($data->password); 
         $result = password_verify($passwordInput,$passwordDB);
     
         if (count($errors)) {
@@ -100,7 +100,7 @@ class SecurityController extends AbstractController
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
-        /**
+    /**
     * @Route("/", name="api")
     */
     public function browse()
