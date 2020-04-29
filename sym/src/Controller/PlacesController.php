@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Places;
 use App\Entity\PlacePicture;
-use App\Entity\User;
 use App\Repository\CategoryRepository;
 use App\Repository\PlacesRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -25,8 +24,6 @@ class PlacesController extends AbstractController
     {
 
     }
-
-    
 
     /**
      * @Route("/places/add", name="places_add", methods={"POST"})
