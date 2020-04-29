@@ -24,7 +24,7 @@ export default (store) => (next) => (action) => {
         }
         axios({
             method: 'post',
-            url: 'http://ec2-3-86-88-131.compute-1.amazonaws.com/places/add', http://ec2-3-86-88-131.compute-1.amazonaws.com/
+            url: 'https://ec2-3-86-88-131.compute-1.amazonaws.com/places/add', http://ec2-3-86-88-131.compute-1.amazonaws.com/
             withCredentials: true,
             headers: { 'Content-Type': 'multipart/form-data',
             'Authorization': `Bearer ${localStorage.getItem('id_token')}`},
@@ -65,7 +65,7 @@ export default (store) => (next) => (action) => {
 
             axios({
               method: 'post',
-              url: 'http://ec2-3-86-88-131.compute-1.amazonaws.com/api/adress/places',
+              url: 'https://ec2-3-86-88-131.compute-1.amazonaws.com/api/adress/places',
               withCredentials: true,
               headers: {'Authorization': `Bearer ${localStorage.getItem('id_token')}`},
               data : {
