@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { changeNewEmail, changeNewPassword, changeNewPseudo, inscriptionSuccess, addAvatar, addNamePictureAvatar, testEmail, condition} from '../actions/inscription';
+import { changeNewEmail, changeNewPassword, changeNewPseudo, inscriptionSuccess, addAvatar, addNamePictureAvatar, testEmail, condition, checkState} from '../actions/inscription';
 import inscriptionModal from '../modal/inscriptionModal';
 
 const mapStateToProps = (state) => ({
@@ -10,7 +10,8 @@ const mapStateToProps = (state) => ({
   valueEmail: state.userInscription.correctEmail,
   condition: state.userInscription.condition,
   error: state.userInscription.errorMessage,
-  responseIns: state.userInscription.responseIns
+  responseIns: state.userInscription.responseIns,
+  nb: state.userInscription.nb
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -21,7 +22,8 @@ const mapDispatchToProps = (dispatch) => ({
     inputChangePasswordInscription: (event) => dispatch(changeNewPassword(event)),
     insertNewUser: () =>dispatch(inscriptionSuccess()),
     testEmail: (event) => dispatch(testEmail(event)),
-    checkCondition: () => dispatch(condition())
+    checkCondition: () => dispatch(condition()),
+    checkState: () => dispatch(checkState())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(inscriptionModal);

@@ -187,6 +187,7 @@ const MapContainer = ({
           {activePlace && (
           <Popup
             className="popup"
+            style={{width:'50%'}}
             position={[
               activePlace.lat,
               activePlace.lng,

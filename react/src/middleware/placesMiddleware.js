@@ -38,7 +38,7 @@ export default (store) => (next) => (action) => {
 
                 console.log('-----------------------------------------------------');
                 const showers = store.getState().placesReducer.newList;
-                const resultShower = showers.filter((shower) => shower.name != 'douche' );
+                const resultShower = showers.filter((shower) => shower.Category[0].name != 'douche' );
                 store.dispatch(removeFilterShower(resultShower))
                 console.log('------------------------------------------------------');
 
@@ -48,7 +48,7 @@ export default (store) => (next) => (action) => {
 
             console.log('-----------------------------------------------------');
             const toilets = store.getState().placesReducer.newList;
-            const resultToilet = toilets.filter((toilet) => toilet.name != 'toilette' );
+            const resultToilet = toilets.filter((toilet) => toilet.Category[0].name != 'toilette' );
             console.log(resultToilet);
             store.dispatch(removeFilterToilet(resultToilet))
             console.log('------------------------------------------------------');

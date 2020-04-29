@@ -68,7 +68,7 @@ Fade.propTypes = {
   onExited: PropTypes.func,
 };
 
-const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePasswordInscription, inputChangePseudoInscription, newUserEmail, newUserPseudo, newUserPassword, pictureAvatarInscription,fileNameAvatarInscription, newUserAvatar, valueEmail, testEmail, condition, checkCondition, error, responseIns}) => {
+const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePasswordInscription, inputChangePseudoInscription, newUserEmail, newUserPseudo, newUserPassword, pictureAvatarInscription,fileNameAvatarInscription, newUserAvatar, valueEmail, testEmail, condition, checkCondition, error, responseIns, checkState, nb}) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [closeModal, setCloseModal] = React.useState(false);
@@ -106,16 +106,16 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
 
   const messageRef = useRef(null);
 
-  const msgBDD = () => {
-    setTimeout(()=> {
+    useEffect(()=> {
       if(responseIns === true) {
         handleClose();
+        checkState();
       } else if(responseIns === false) {
         console.log('EMAIL OU PSEUDO DEJA PRIS');
       }
-    },2000 );
+    },[nb] );
     
-  };
+
 
 
   return (
@@ -179,7 +179,7 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
                       var input = event.target.files[0];
                       var reader = new FileReader(); 
                       reader.onload = function(){
-                        if(newUserAvatar === "") {
+                        if(typeof photo != undefined) {
                           console.log(reader.result);
                           const photo = document.createElement("img");
                           photo.src = reader.result;
@@ -216,7 +216,7 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
                   valueEmail === false ||
                   condition === false
                   ? <Button onClick={insertNewUser} variant="contained" color="primary" disabled>valider</Button> 
-                  : <Button onClick={() => {insertNewUser(); msgBDD()}} variant="contained" color="primary">valider</Button>
+                  : <Button onClick={() => {insertNewUser()}} variant="contained" color="primary">valider</Button>
                 }
               </div>
             </div>

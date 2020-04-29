@@ -57,14 +57,14 @@ const NavBar = ({isLogged}) => {
         <button className="btn navbar-btn dropdown" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" type="button">
           <FontAwesomeIcon icon={faUserCircle} className="user--circle" />
         </button>
-        <div className="dropdown-menu dropdown-menu-right">
-          <a className="dropdown-item" href="#"><ConnexionButton /></a>
+        <div className="dropdown-menu dropdown-menu-right menuP">
+          <ConnexionButton />
           {
-            !isLogged&& <a className="dropdown-item menu" href="#"><InscriptionModal /></a>
+            !isLogged&& <InscriptionModal />
           }
           
           {
-            isLogged&& <a className="dropdown-item menu" href="#"><Account /></a>
+            isLogged&& <Account />
           }
         </div>
       </div>
