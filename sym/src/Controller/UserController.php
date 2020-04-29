@@ -99,7 +99,7 @@ class UserController extends AbstractController
         /*Give avatar if the user don't put*/
         if(empty($user->getAvatar())){
             
-            $user->setAvatar("public/uploads/images/avatars/account.png");        
+            $user->setAvatar("../public/uploads/images/avatars/account.png");        
             
         }
         else{
