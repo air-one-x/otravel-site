@@ -49,7 +49,7 @@ export default (state = initialState, action = {}) => {
             ...state,
          form : {
            ...state.form,
-           category: [...state.form.category, ...action.payload],
+           category: [action.payload],
          },
           };
         case DESCRIPTION_PLACE:

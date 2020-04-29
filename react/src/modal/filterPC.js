@@ -72,7 +72,6 @@ const SpringModal = ({isFilterShower, changeIsFilterShower, checkFilter, places,
     setOpen(false);
   };
 
-console.log(removeShower, 'removesshower');
 
   return (
     <div>
@@ -105,7 +104,7 @@ console.log(removeShower, 'removesshower');
                   control={<Switch color="primary" />}
                   label="Douche"
                   labelPlacement="start"
-                  onClick={isFilterShower === false ? (event) => {changeIsFilterShower(); checkFilter(); console.log(event.target.label)} : (event) => {removeShower(); console.log(event.target.label)}}
+                  onClick={isFilterShower === false ? (event) => {changeIsFilterShower(); checkFilter()} : (event) => {removeShower()}}
                 />
 
                 <FormControlLabel

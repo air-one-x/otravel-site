@@ -17,7 +17,6 @@ export default (store) => (next) => (action) => {
         },
       }).then((res) => {
         // Si succès -> dispatcher une action success
-        console.log('requête_connexion ------------------------------------>', res.data);
         localStorage.setItem('id_token', res.data.token);
          
         axios({
@@ -30,7 +29,6 @@ export default (store) => (next) => (action) => {
         }
         })
           .then((res) => {
-              console.log('<---------------middleware--------------------->' ,res.data);
               store.dispatch(loginSuccess(res.data));
               localStorage.setItem('img',res.data.avatar);
           })
@@ -42,7 +40,6 @@ export default (store) => (next) => (action) => {
       })
         .catch((err) => {
         // Si error -> Dispatcher une action error
-          console.error(err);
           store.dispatch(loginError());
         });
       break;
@@ -60,7 +57,6 @@ export default (store) => (next) => (action) => {
             store.dispatch(logoutSuccess(res.data.info));
           })
           .catch((err) => {
-            console.log('wwwwwwwwwwwwwweccccccchhhhhhhhhh',err);
           });
         break;
         case CHECK_AUTH:
@@ -75,13 +71,11 @@ export default (store) => (next) => (action) => {
           })
             .then((res) => {
               if (res.data) {
-                console.log('middleware !!!r ->>>>>>>>>>>>>>>>>>>' ,res.data);
 
                 store.dispatch(loginSuccess(res.data));
               }
             })
             .catch((error) => {
-              console.log('------------------------------------------------------> JE PASSE',error);
               localStorage.removeItem('id_token');
               localStorage.removeItem('picturePlace');
               localStorage.removeItem('img');
@@ -105,7 +99,6 @@ export default (store) => (next) => (action) => {
               },
             }).then((res) => {
                 if (res.data) {
-                  console.log('middleware !!!r ->>>>>>>>>>>>>>>>>>>' ,res.data.message);
                   store.dispatch(updateMessage(res.data.message));
                   axios({
                     url: 'http://localhost:8001/isLogged',
@@ -118,20 +111,15 @@ export default (store) => (next) => (action) => {
                   })
                     .then((res) => {
                       if (res.data) {
-                        console.log('middleware' ,res.data);
                         store.dispatch(loginSuccess(res.data));
                         localStorage.setItem('img',res.data.avatar);
                       }
                     })
                     .catch((error) => {
-                      console.log(error);
-                      // console.log(localStorage.getItem('id_token'));
                     });
                 }
               })
               .catch((error) => {
-                console.log(error);
-                // console.log(localStorage.getItem('id_token'));
               });
             break;
     default:

@@ -74,11 +74,27 @@ class PlacesController extends AbstractController
         
         $categoriesSelected = $data->category;
 
-        foreach($categoriesSelected as $uniqueCategory){
+        
+        if(empty($categoriesSelected)){
+            $data = [
+                'status' => 400,
+                'message' => 'Rajoute une catégorie zeubi'
+            ];
+            return new JsonResponse($data,400 );
+        }else{
+            foreach($categoriesSelected as $uniqueCategory){
+                $findCategory = $categoryRepository->findOneBy(['id' => $uniqueCategory]);
+                $newPlace->addCategory($findCategory);
+            }
+        }
 
-            $findCategory = $categoryRepository->findOneBy(['id' => $uniqueCategory]);
-            $newPlace->addCategory($findCategory);
+        if(empty(trim(!isset($name)))){
 
+            $data = [
+                'status' => 400,
+                'message' => 'Vous devez saisir un nom'
+            ];
+            return new JsonResponse($data, 400);
         }
 
         $entityManager->persist($newPlace);

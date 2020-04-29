@@ -62,7 +62,6 @@ const MapContainer = ({
 
   const getLocation = () => {
     if (navigator.geolocation) {
-      console.log(navigator.geolocation);
       navigator.geolocation.getCurrentPosition(showPosition);
     }
   }
@@ -73,7 +72,6 @@ const MapContainer = ({
   }
 
   const onClickMap = (event) => {
-    console.log('click sur la map', event)
     setMarkerClick(true);
     setlatMarker(event.latlng.lat),
     setlngMarker(event.latlng.lng)
@@ -85,7 +83,6 @@ const MapContainer = ({
   }
   
   const clickMarkerID = (event) => {
-    console.log('CHERCHE ID PLACE', event);
     idClickPlace(event)
 
   }

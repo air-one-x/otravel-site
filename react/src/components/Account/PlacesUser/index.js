@@ -18,7 +18,6 @@ const InformationsUser = ({places, isLogged}) => {
   
 
 
-console.log('-----PLACES------->',places);
 
     return(
     <div className="places--user">

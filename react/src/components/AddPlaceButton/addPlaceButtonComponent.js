@@ -10,7 +10,6 @@ const AddPlaceButtonComponent = ({isLogged, sendAdress, resetClickLocation}) => 
     const handleClickOpen = () => {
         setOpen(true);
         
-          console.log('sendadress')
           sendAdress()
         
       };
