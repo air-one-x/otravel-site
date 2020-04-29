@@ -3,6 +3,7 @@
 
 }
 
+
 .navbar--input__search {
     
     border-radius: 5px; 
@@ -108,7 +109,17 @@
 }
 }
 
+@media (min-width: 600px) {
+.MuiMenuItem-root {
+    min-height: none;
+}
+}
 @media all and (max-width: 959px) {
+
+    .nav-link{
+        padding: 0;
+
+    }
 
     .navbar {
         /*padding-bottom: 1.5rem;*/

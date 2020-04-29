@@ -13,7 +13,7 @@ import InscriptionModal from '../../containers/Inscription';
 import { Link } from 'react-router-dom';
 import Account from './account';
 import ConnexionButton from '../../containers/ConnexionButtonContainer'
-
+import './style';
 
  const StyledMenu = withStyles({
     paper: {

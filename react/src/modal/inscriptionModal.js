@@ -121,7 +121,7 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
   return (
     <div className="nav-link">
       <button className="dropdown-item nav-link" type="button" onClick={handleOpen}>
-                inscription
+                Inscription
       </button>
       <Modal
         aria-labelledby="spring-modal-title"
