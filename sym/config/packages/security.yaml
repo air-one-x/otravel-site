@@ -50,7 +50,7 @@ security:
 
 
         isLogged:
-            pattern:   ^/isLogged
+            pattern:   ^/api/isLogged
             stateless: true
             guard:
                 authenticators:

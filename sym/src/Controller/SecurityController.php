@@ -59,7 +59,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/isLogged", name="is_logged", methods={"POST"}))
+     * @Route("/api/isLogged", name="is_logged", methods={"POST"}))
      */
     public function isLogged(SerializerInterface $serializer)
     {
