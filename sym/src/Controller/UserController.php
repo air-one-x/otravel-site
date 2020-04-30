@@ -99,11 +99,8 @@ class UserController extends AbstractController
         /*Give avatar if the user don't put*/
         if(empty($user->getAvatar())){
 
-
-
-            
             $user->setAvatar("uploads/images/avatars/account.png");        
-            
+
         }
         else{
             
@@ -111,7 +108,7 @@ class UserController extends AbstractController
             $img = preg_replace('#^data:image/\w+;base64,#i', '', $avatar);
             $nomfichier = explode(".", $content->nameFile)  ;
             $nomfichierUnique = $nomfichier[0].uniqid().'.'.$nomfichier[1];
-            $path = '../public/uploads/images/avatars/'. $nomfichierUnique;
+            $path = '../sym/public/uploads/images/avatars/'. $nomfichierUnique;
             $success = file_put_contents($path, base64_decode($img));
             
             if(isset($success)){
