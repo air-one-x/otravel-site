@@ -8,7 +8,7 @@ export default (store) => (next) => (action) => {
       // Je veux lancer ma requête avec axios
       axios({
         method: 'post',
-        url: 'http://ec2-107-20-110-81.compute-1.amazonaws.com/commentary/add',
+        url: 'http://ec2-3-85-160-178.compute-1.amazonaws.com/commentary/add',
         withCredentials: true,
         headers: { 'Content-Type': 'multipart/form-data',
             'Authorization': `Bearer ${localStorage.getItem('id_token')}`},
