@@ -200,7 +200,7 @@ const MapContainer = ({
             <div>
               <h2>Nom : {activePlace.name}</h2>
               <div>
-                {isEmpty(activePlace.places_picture) ? "" : <img style={{ width:'50%' }} src={`http://localhost:8001/${activePlace.places_picture.name}`} />}
+                {isEmpty(activePlace.places_picture) ? "" : <img style={{ width:'50%' }} src={`http://ec2-3-85-160-178.compute-1.amazonaws.com/${activePlace.places_picture.name}`} />}
               </div>
               <div>
                 <p>Adresse : {activePlace.street}</p>
