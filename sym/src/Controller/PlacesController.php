@@ -88,7 +88,7 @@ class PlacesController extends AbstractController
             }
         }
 
-        if(empty(trim(!isset($name)))){
+        if(isset($name)){
 
             $data = [
                 'status' => 400,
