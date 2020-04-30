@@ -162,7 +162,7 @@ class UserController extends AbstractController
                 $img = str_replace('data:image/png;base64,','', $newAvatar);
                 $nomfichier = explode(".", $content->nameFile)  ;
                 $nomfichierUnique = $nomfichier[0].uniqid().'.'.$nomfichier[1];
-                $path = '../public/uploads/images/avatars/'. $nomfichierUnique;
+                $path = 'uploads/images/avatars/'. $nomfichierUnique;
                 $success = file_put_contents($path, base64_decode($img));
 
                 if(isset($success)){
