@@ -84,7 +84,16 @@ import './style';
         </StyledMenuItem>
         }
 
+        {
+          isLogged&&
         
+          <StyledMenuItem onClick={closeMenu}>
+            <ListItemIcon>
+              <DraftsIcon fontSize="small" />
+            </ListItemIcon>
+            <a target="_blank" href="http://ec2-3-85-160-178.compute-1.amazonaws.com/admin">Admin</a>
+          </StyledMenuItem>
+        }        
 
         <Link to="/conditions-utilisations">
         <StyledMenuItem>

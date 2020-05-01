@@ -13,12 +13,10 @@ const PopupNavBar = ({ placeInfos, isLogged }) => {
     const [open, setOpen] = useState(false);
 
     const handleOpenComments = () => {
-        // console.log('open modal');
         setOpenComments(true);
     }
 
     const handleCloseComments = () => {
-        // console.log('close modale')
         setOpenComments(false);
       };
 

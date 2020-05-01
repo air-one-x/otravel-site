@@ -12,6 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import { useSpring, animated } from 'react-spring'; // web.cjs is required for IE 11 support
 import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
+import { isEmpty } from 'lodash';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -23,7 +24,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
+    padding: theme.spacing(2, 3),
+    display: 'table-caption',
   },
   root: {
     '& > *': {
@@ -68,7 +70,7 @@ Fade.propTypes = {
   onExited: PropTypes.func,
 };
 
-const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePasswordInscription, inputChangePseudoInscription, newUserEmail, newUserPseudo, newUserPassword, pictureAvatarInscription,fileNameAvatarInscription, newUserAvatar, valueEmail, testEmail, condition, checkCondition, error, responseIns}) => {
+const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePasswordInscription, inputChangePseudoInscription, newUserEmail, newUserPseudo, newUserPassword, pictureAvatarInscription,fileNameAvatarInscription, newUserAvatar, valueEmail, testEmail, condition, checkCondition, error, responseIns, checkState, nb}) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [closeModal, setCloseModal] = React.useState(false);
@@ -82,15 +84,12 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
     setOpen(false);
   };
   const handleChange = (event) => {
-    console.log('event',event);
     let files = event.files
-    console.log('file', files)
     let reader = new FileReader();
     reader.readAsDataURL(files[0]);
     fileNameAvatarInscription(files[0].name)
 
     reader.onload=(e)=>{
-      console.log('e',e.target)
       pictureAvatarInscription(e.target.result)
     }
   }
@@ -101,21 +100,20 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
   };
 
   const onChange = () => {
-    console.log('test')
+    console.log('')
   }
 
   const messageRef = useRef(null);
 
-  const msgBDD = () => {
-    setTimeout(()=> {
+    useEffect(()=> {
       if(responseIns === true) {
         handleClose();
+        checkState();
       } else if(responseIns === false) {
-        console.log('EMAIL OU PSEUDO DEJA PRIS');
       }
-    },2000 );
+    },[nb] );
     
-  };
+
 
 
   return (
@@ -150,16 +148,22 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
                   </Grid>
                   <Grid container item style={{width: '70%'}}>
                     <TextField type="text" id="username" label="username" value={newUserPseudo} onChange={(event) => {inputChangePseudoInscription(event.target.value); error=""}} />
+                    </Grid>
                   </Grid>
-                </Grid>
+                    {
+                      isEmpty(newUserPseudo)  || newUserPseudo.length <3 ? <p style={{color: 'red', marginLeft: '4rem'}}>veuillez entrer un pseudo</p> : <p style={{color: 'white'}}>veuillez entrer un pseudo</p>
+                    }
                 
                 <Grid container spacing={1} alignItems="flex-end" style={{display:'flex'}}>
                   <Grid container item style={{width:'20%'}}>
                     <AlternateEmailIcon />
                   </Grid>
                   <Grid container item style={{width: '70%'}}>
-                    <TextField type="email" label="adresse email" value={newUserEmail} onChange={(event) => {inputChangeEmailInscription(event.target.value); testEmail(testRegex(event.target.value)); error=""}} required/>
+                    <TextField type="email" style={{border: 'red 1px solide'}} label="adresse email" value={newUserEmail} onChange={(event) => {inputChangeEmailInscription(event.target.value); testEmail(testRegex(event.target.value)); error=""}} required/>
                   </Grid>
+                    {
+                      isEmpty(newUserEmail) ? <p style={{color: 'red', marginLeft: '4rem'}}>veuillez entrer un email valide</p> : <p style={{color: 'white'}}>veuillez entrer un email valide</p>
+                    }
                 </Grid>
 
                 <Grid container spacing={1} alignItems="flex-end" style={{display:'flex'}}>
@@ -169,18 +173,20 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
                   <Grid container item style={{width: '70%'}}>
                     <TextField type="password" label="Mot de passe" value={newUserPassword} onChange={(event) =>{ inputChangePasswordInscription(event.target.value)}} required />
                   </Grid>
+                    {
+                      isEmpty(newUserPassword) || newUserPassword.length <8 ? <p style={{color: 'red', marginLeft: '4rem'}}>8 charactères minimum</p> : <p style={{color: 'white'}}>8 charactères minimum</p>
+                    }
                 </Grid>
                 <div className="msgPassword" ref={messageRef}></div>
 
-                <Grid container spacing={2} alignItems="flex-end" style={{marginTop:'2rem'}}>
+                <Grid container spacing={1} alignItems="flex-end" style={{marginTop:'1rem'}}>
                   <Grid container item>
                     <input type="file" label="file" onChange={(event) => {
                       handleChange(event.target);
                       var input = event.target.files[0];
                       var reader = new FileReader(); 
                       reader.onload = function(){
-                        if(newUserAvatar === "") {
-                          console.log(reader.result);
+                        if(typeof photo != undefined) {
                           const photo = document.createElement("img");
                           photo.src = reader.result;
                           photo.style.height = "200px";
@@ -216,7 +222,7 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
                   valueEmail === false ||
                   condition === false
                   ? <Button onClick={insertNewUser} variant="contained" color="primary" disabled>valider</Button> 
-                  : <Button onClick={() => {insertNewUser(); msgBDD()}} variant="contained" color="primary">valider</Button>
+                  : <Button onClick={() => {insertNewUser()}} variant="contained" color="primary">valider</Button>
                 }
               </div>
             </div>

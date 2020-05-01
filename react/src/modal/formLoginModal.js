@@ -28,7 +28,6 @@ const Fade = React.forwardRef((props, ref) => {
   const {
     in: open, children, onEnter, onExited, ...other
   } = props;
-  console.log('opeenref', open)
   const style = useSpring({
     from: { opacity: 0 },
     to: { opacity: open ? 1 : 0 },
@@ -111,7 +110,7 @@ const LoginModal = ({
                     <TextField type="password" id="paswword" label="Mot de passe" value={userPassword} onChange={(event) => changePassword(event.target.value)} />
                   </Grid>
                 </Grid>
-                <p>{loginError === '' ? '' : loginError}</p>
+                <p style={{color: 'red'}}>{loginError === '' ? '' : loginError}</p>
                 <div className="m-3 justify-content-center">
                   <Button className="mr-3" variant="contained" onClick={onClose}>annuler</Button>
                   <Button variant="contained" color="primary" onClick={()=> {login(); checkLogged()}}>valider</Button>

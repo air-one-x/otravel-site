@@ -18,15 +18,14 @@
     position: fixed;
 }
 
-.popup{  
-    height: 40vh;
-}
+
 
 .leaflet-container a.leaflet-popup-close-button{
     font-size: 27px;
     margin-right: 0.3rem;
     margin-top: 0.3rem;
 }
+
 
 @media all and (max-width: 959px) {
     .map{

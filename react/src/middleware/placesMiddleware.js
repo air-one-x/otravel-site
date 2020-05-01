@@ -2,19 +2,16 @@ import axios from 'axios';
 import { FETCH_PLACES, FETCH_SHOWER, FETCH_TOILET, fetchShowerSuccess, fetchPlacesSuccess, fetchToiletSuccess} from '../actions/places';
 
 export default (store) => (next) => (action) => {
-    console.log('Ais-je besoin de lancer une requete ?');
     switch (action.type) {
         case FETCH_PLACES:
 
         axios({
             method: 'post',
-            url: 'http://localhost:8001/api/places',
+            url: 'http://ec2-3-85-160-178.compute-1.amazonaws.com/api/places',
 
         }).then((res) => {
-            console.log('lieu a afficher requete réussi',res);
             store.dispatch(fetchPlacesSuccess(res.data));
         }).catch((err) => {
-            console.log(err);
         });
 
         break;
@@ -41,7 +38,6 @@ export default (store) => (next) => (action) => {
                 console.log('VOICI LA LISTE DES WC PAR FILTRE',res);
                 store.dispatch(fetchToiletSuccess(res.data));
             }).catch((err) => {
-                console.log(err);
             });
     
         break;

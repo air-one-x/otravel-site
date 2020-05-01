@@ -21,11 +21,11 @@ class CommentaryController extends AbstractController
      * @Route("/commentary/add", name="commentary_add", methods={"POST"})
      * @return Response
      */
-    public function CommentPlaces(PlacesRepository $placesRepository, Request $request, SerializerInterface $serializer, EntityManagerInterface $entityManager)
+    public function CommentPlaces(PlacesRepository $placesRepository, Request $request, EntityManagerInterface $entityManager)
     {
 
         $data = json_decode($request->getContent());
-        $text = $data->text;       
+        $text = htmlspecialchars($data->text);       
         $placesId = $data->places_id;
         $instance = $placesRepository->findOneBy(['id' => $placesId]);
         

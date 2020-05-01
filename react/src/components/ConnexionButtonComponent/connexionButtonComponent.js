@@ -2,7 +2,6 @@ import React from 'react';
 import FormLoginModal from '../../containers/Login';
 
 const ConnexionButtonComponent = ({ isLogged, logout }) => {
-    console.log('propsbuttoncoisLoggedUser', isLogged,)
 
     const [open, setOpen] = React.useState(false);
 
@@ -11,7 +10,6 @@ const ConnexionButtonComponent = ({ isLogged, logout }) => {
     };
 
     const handleClose = () => {
-        console.log('closemodallogin');
         setOpen(false);
     };
     

@@ -19,7 +19,7 @@ import Places from '../../containers/PlacesUser';
 
 
 const DEFAULT_VIEWPORT = {
-  center: [51.505, -0.09],
+  center: [46.603354, 1.8883335],
   zoom: 6,
 }
 
@@ -46,7 +46,9 @@ const App = ({ checkAuth , lat, long, isLogged}) => {
         )}
         />
       
-        
+        <Route exact path="/admin">
+          <Redirect exact to="http://ec2-3-85-160-178.compute-1.amazonaws.com/admin" />
+        </Route>
         <Route exact path="/mes-ajouts" component={Places} />
         <Route exact path="/mes-informations" component={InformationsUser} />
         <Route exact path="/conditions-utilisations" component={Conditions} />

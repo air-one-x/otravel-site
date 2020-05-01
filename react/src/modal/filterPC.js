@@ -72,7 +72,6 @@ const SpringModal = ({isFilterShower, changeIsFilterShower, checkFilter, places,
     setOpen(false);
   };
 
-console.log(removeShower, 'removesshower');
 
   return (
     <div>

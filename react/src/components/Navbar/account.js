@@ -53,7 +53,7 @@ export default function TemporaryDrawer() {
     >
       <List style={{marginTop:'0px', paddingTop:'0px'}}>
           <ListItem style={{backgroundColor: '#3f51b5', color:'white', fontWeight:'bold', paddingTop:'0px', display:'flex'}}>
-            <ListItemText primary={'Mon compte'} />
+            <ListItemText primary={'Mon compte'}/>
             <FontAwesomeIcon icon={faTimes} />
           </ListItem>
 
@@ -63,9 +63,7 @@ export default function TemporaryDrawer() {
           </ListItem>
           </Link>
 
-          <ListItem button>
-            <ListItemText primary={'Mes avis'} />
-          </ListItem>
+          
           
           <Link to="/mes-ajouts">
           <ListItem button>

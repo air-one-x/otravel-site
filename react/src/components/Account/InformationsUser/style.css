@@ -19,6 +19,11 @@
     font-weight: lighter;
 }
 
+.informations--user header h1:hover {
+    color: white;
+    text-decoration: none;
+}
+
 .user__picture {
     background-color: #3f51b5;
     height: 50px;

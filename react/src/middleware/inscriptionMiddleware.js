@@ -8,7 +8,7 @@ export default (store) => (next) => (action) => {
       // Je veux lancer ma requête avec axios
       axios({
         method: 'post',
-        url: 'http://localhost:8001/inscription',
+        url: 'http://ec2-3-85-160-178.compute-1.amazonaws.com/inscription',
         withCredentials: true,
         data: {
           username: store.getState().userInscription.form.pseudo,
@@ -19,14 +19,12 @@ export default (store) => (next) => (action) => {
         },
       }).then((res) => {
         // Si succès -> dispatcher une action success
-        console.log('FELICITATION GAETAN', res);
         store.dispatch(checkEmail(true))
 
 
       })
         .catch((err) => {
         // Si error -> Dispatcher une action error
-          console.error(err);
           store.dispatch(checkEmail(false))
           store.dispatch(inscriptionError('l\'email ou le pseudo  est déja utilisé '))
         });

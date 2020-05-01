@@ -64,7 +64,6 @@ const MapContainer = ({
 
   const getLocation = () => {
     if (navigator.geolocation) {
-      console.log(navigator.geolocation);
       navigator.geolocation.getCurrentPosition(showPosition);
     }
   }
@@ -75,7 +74,6 @@ const MapContainer = ({
   }
 
   const onClickMap = (event) => {
-    console.log('click sur la map', event)
     setMarkerClick(true);
     setlatMarker(event.latlng.lat),
     setlngMarker(event.latlng.lng)
@@ -87,7 +85,6 @@ const MapContainer = ({
   }
   
   const clickMarkerID = (event) => {
-    console.log('CHERCHE ID PLACE', event);
     idClickPlace(event)
 
   }
@@ -191,6 +188,7 @@ const MapContainer = ({
           {activePlace && (
           <Popup
             className="popup"
+            style={{width:'50%'}}
             position={[
               activePlace.lat,
               activePlace.lng,
@@ -202,7 +200,7 @@ const MapContainer = ({
             <div>
               <h2>Nom : {activePlace.name}</h2>
               <div>
-                {isEmpty(activePlace.places_picture) ? "" : <img style={{ width:'50%' }} src={`http://localhost:8001/${activePlace.places_picture.name}`} />}
+                {isEmpty(activePlace.places_picture) ? "" : <img style={{ width:'50%' }} src={`http://ec2-3-85-160-178.compute-1.amazonaws.com/${activePlace.places_picture.name}`} />}
               </div>
               <div>
                 <p>Adresse : {activePlace.street}</p>

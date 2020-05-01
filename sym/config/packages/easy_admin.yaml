@@ -13,7 +13,6 @@ easy_admin:
             label: 'Utilisateurs'
             form:
                 fields: 
-                    - 'id'
                     - 'username'
                     - 'avatar'
                     - 'email'

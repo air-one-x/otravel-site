@@ -119,13 +119,14 @@ class Places
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\PlacePicture", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(onDelete="CASCADE")
      * @Groups("places")
      * @Groups("category")
      */
     private $places_picture;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Commentary", mappedBy="places")
+     * @ORM\OneToMany(targetEntity="App\Entity\Commentary", mappedBy="places", cascade={"persist", "remove"})
      * @Groups("places")
      */
     private $commentary;

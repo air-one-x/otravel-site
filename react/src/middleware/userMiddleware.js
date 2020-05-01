@@ -9,7 +9,7 @@ export default (store) => (next) => (action) => {
       // Je veux lancer ma requête avec axios
       axios({
         method: 'post',
-        url: 'http://localhost:8001/login',
+        url: 'http://ec2-3-85-160-178.compute-1.amazonaws.com/login',
         withCredentials: true,
         data: {
           username: store.getState().user.form.email,
@@ -17,11 +17,10 @@ export default (store) => (next) => (action) => {
         },
       }).then((res) => {
         // Si succès -> dispatcher une action success
-        console.log('requête_connexion ------------------------------------>', res.data);
         localStorage.setItem('id_token', res.data.token);
          
         axios({
-          url: 'http://localhost:8001/isLogged',
+          url: 'http://ec2-3-85-160-178.compute-1.amazonaws.com/api/isLogged',
           method: 'post',
           withCredentials: true,
           headers: {
@@ -30,9 +29,10 @@ export default (store) => (next) => (action) => {
         }
         })
           .then((res) => {
-              console.log('<---------------middleware--------------------->' ,res.data);
               store.dispatch(loginSuccess(res.data));
               localStorage.setItem('img',res.data.avatar);
+              console.log(res.data);
+
           })
           .catch((error) => {
            
@@ -42,14 +42,13 @@ export default (store) => (next) => (action) => {
       })
         .catch((err) => {
         // Si error -> Dispatcher une action error
-          console.error(err);
           store.dispatch(loginError());
         });
       break;
       case LOGOUT:
         axios({
           method: 'post',
-          url: 'http://localhost:8001/logout',
+          url: 'http://ec2-3-85-160-178.compute-1.amazonaws.com/logout',
           withCredentials: true,
         })
           .then((res) => {
@@ -60,12 +59,11 @@ export default (store) => (next) => (action) => {
             store.dispatch(logoutSuccess(res.data.info));
           })
           .catch((err) => {
-            console.log('wwwwwwwwwwwwwweccccccchhhhhhhhhh',err);
           });
         break;
         case CHECK_AUTH:
           axios({
-            url: 'http://localhost:8001/isLogged',
+            url: 'http://ec2-3-85-160-178.compute-1.amazonaws.com/api/isLogged',
             method: 'post',
             withCredentials: true,
             headers: {
@@ -75,13 +73,11 @@ export default (store) => (next) => (action) => {
           })
             .then((res) => {
               if (res.data) {
-                console.log('middleware !!!r ->>>>>>>>>>>>>>>>>>>' ,res.data);
-
+                console.log(res.data);
                 store.dispatch(loginSuccess(res.data));
               }
             })
             .catch((error) => {
-              console.log('------------------------------------------------------> JE PASSE',error);
               localStorage.removeItem('id_token');
               localStorage.removeItem('picturePlace');
               localStorage.removeItem('img');
@@ -92,7 +88,7 @@ export default (store) => (next) => (action) => {
             const id = store.getState().user.userInfos.id;
             axios({
               method: 'post',
-              url: `http://localhost:8001/user/edit/${id}`,
+              url: `http://ec2-3-85-160-178.compute-1.amazonaws.com/user/edit/${id}`,
               withCredentials: true,
               headers: {
                 'Content-Type': 'application/json',
@@ -105,10 +101,9 @@ export default (store) => (next) => (action) => {
               },
             }).then((res) => {
                 if (res.data) {
-                  console.log('middleware !!!r ->>>>>>>>>>>>>>>>>>>' ,res.data.message);
                   store.dispatch(updateMessage(res.data.message));
                   axios({
-                    url: 'http://localhost:8001/isLogged',
+                    url: 'http://ec2-3-85-160-178.compute-1.amazonaws.com/api/isLogged',
                     method: 'post',
                     withCredentials: true,
                     headers: {
@@ -118,20 +113,15 @@ export default (store) => (next) => (action) => {
                   })
                     .then((res) => {
                       if (res.data) {
-                        console.log('middleware' ,res.data);
                         store.dispatch(loginSuccess(res.data));
                         localStorage.setItem('img',res.data.avatar);
                       }
                     })
                     .catch((error) => {
-                      console.log(error);
-                      // console.log(localStorage.getItem('id_token'));
                     });
                 }
               })
               .catch((error) => {
-                console.log(error);
-                // console.log(localStorage.getItem('id_token'));
               });
             break;
     default:

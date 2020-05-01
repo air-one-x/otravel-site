@@ -13,3 +13,8 @@
 .places--user {
     overflow-y: auto;
 }
+
+.places--user header h1:hover {
+    color:white;
+    text-decoration: none;
+}
