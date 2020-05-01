@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { ADD_PLACE, SEND_ADRESS, convertAdress } from '../actions/geolocation';
-import { fetchPlaces, fetchShower } from '../actions/places';
+import { fetchPlaces, fetchShower, fetchToilet, fetchSpotKite, fetchSpotVan } from '../actions/places';
 import {isEmpty} from 'lodash';
 
 export default (store) => (next) => (action) => {
@@ -48,6 +48,8 @@ export default (store) => (next) => (action) => {
             store.dispatch(fetchPlaces());
             store.dispatch(fetchShower());
             store.dispatch(fetchToilet());
+            store.dispatch(fetchSpotKite());
+            store.dispatch(fetchSpotVan());
           })
             .catch((err) => {
             // Si error -> Dispatcher une action error

@@ -60,7 +60,19 @@ Fade.propTypes = {
   onExited: PropTypes.func,
 };
 
-const SpringModal = ({isFilterShower, changeIsFilterShower, checkFilter, places, removeShower, isFilterToilet, removeToilet, changeIsFilterToilet}) => {
+const SpringModal = ({
+  isFilterShower, 
+  changeIsFilterShower, 
+  checkFilter, 
+  places, 
+  removeShower, 
+  isFilterToilet, 
+  removeToilet, 
+  changeIsFilterToilet, 
+  isFilterSpotKite, 
+  isFilterSpotVan, 
+  changeIsFilterSpotKite,
+  changeIsFilterSpotVan }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -116,6 +128,25 @@ const SpringModal = ({isFilterShower, changeIsFilterShower, checkFilter, places,
                   labelPlacement="start"
                   //onClick={isFilterToilet === false ? () => {changeIsFilterToilet(); checkFilter()} : () => {removeToilet()}}
                   onClick={()=> changeIsFilterToilet() }
+                />
+                <FormControlLabel
+                  checked={isFilterSpotKite === false ? false : true}
+                  value="3"
+                  control={<Switch color="primary" />}
+                  label="spot KiteSurf"
+                  labelPlacement="start"
+                  // onClick={isFilterShower === false ? (event) => {changeIsFilterShower(); checkFilter(); console.log(event.target.label)} : (event) => {removeShower(); console.log(event.target.label)}}
+                  onClick={() => changeIsFilterSpotKite()}
+                />
+
+                <FormControlLabel
+                  checked={isFilterSpotVan === false ? false : true}
+                  value="4"
+                  control={<Switch color="primary" />}
+                  label="Spot van"
+                  labelPlacement="start"
+                  //onClick={isFilterToilet === false ? () => {changeIsFilterToilet(); checkFilter()} : () => {removeToilet()}}
+                  onClick={()=> changeIsFilterSpotVan() }
                 />
             
 

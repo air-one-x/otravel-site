@@ -50,9 +50,14 @@ const MapContainer = ({
   newList,
   isFilterShower,
   isFilterToilet,
+  listSpotKite,
+  isFilterSpotKite,
+  listSpotVan,
+  isFilterSpotVan,
   setViewport,
   isLogged,
-  addLocationPlace, idClickPlace } ) => {
+  addLocationPlace, 
+  idClickPlace } ) => {
 
 
 
@@ -89,7 +94,7 @@ const MapContainer = ({
 
   }
 
-//const urlImg = `http://localhost:8001/${activePlace.places_picture.name}`;
+//const urlImg = `http://ec2-3-85-160-178.compute-1.amazonaws.com/${activePlace.places_picture.name}`;
   useEffect(() => {
      getLocation()
 
@@ -166,6 +171,38 @@ const MapContainer = ({
                   setActivePlace(toilet),
                   setViewport({center:[toilet.lat, toilet.lng]}),
                   clickMarkerID(toilet.id)
+                }}
+              />
+            ))
+          }
+          {
+            isFilterSpotKite && listSpotKite.map((spotKite) => (
+              <Marker
+                key={spotKite.id}
+                position={[
+                  spotKite.lat,
+                  spotKite.lng,
+                ]}
+                onClick={() => {
+                  setActivePlace(spotKite),
+                  setViewport({center:[spotKite.lat, spotKite.lng]}),
+                  clickMarkerID(spotKite.id)
+                }}
+              />
+            ))
+          }
+          {
+            isFilterSpotVan && listSpotVan.map((spotVan) => (
+              <Marker
+                key={spotVan.id}
+                position={[
+                  spotVan.lat,
+                  spotVan.lng,
+                ]}
+                onClick={() => {
+                  setActivePlace(spotVan),
+                  setViewport({center:[spotVan.lat, spotVan.lng]}),
+                  clickMarkerID(spotVan.id)
                 }}
               />
             ))

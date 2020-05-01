@@ -190,6 +190,18 @@ const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, nam
                     label="Toilette" 
                     onChange={(event) => addCategoryPlace(event.target.value)}
                   />
+                  <FormControlLabel 
+                    value="5" 
+                    control={<Radio />} 
+                    label="Spot KiteSurf" 
+                    onChange={(event) => addCategoryPlace(event.target.value)} 
+                  />
+                  <FormControlLabel 
+                    value="6" 
+                    control={<Radio />} 
+                    label="Spot Van" 
+                    onChange={(event) => addCategoryPlace(event.target.value)}
+                  />
                   </RadioGroup>
                 </FormControl>
               </div>

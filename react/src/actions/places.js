@@ -13,8 +13,35 @@ export const RESET_LOCATION_PLACE = 'RESET_LOCATION_PLACE';
 export const ID_CLICK_PLACE = 'ID_CLICK_PLACE';
 export const FETCH_SHOWER = 'FETCH_SHOWER';
 export const FETCH_SHOWER_SUCCESS = 'FETCH_SHOWER_SUCCESS';
-export const FETCH_TOILET_SUCCESS = 'FETCH_TOILET_SUCCESS';
 export const FETCH_TOILET = 'FETCH_TOILET';
+export const FETCH_TOILET_SUCCESS = 'FETCH_TOILET_SUCCESS';
+export const FETCH_SPOT_KITE = 'FETCH_SPOT_KITE';
+export const FETCH_SPOT_VAN = 'FETCH_SPOT_VAN';
+export const FETCH_SPOT_KITE_SUCCESS = 'FETCH_SPOT_KITE_SUCCESS';
+export const FETCH_SPOT_VAN_SUCCESS = 'FETCH_SPOT_VAN_SUCCESS';
+export const IS_FILTER_SPOT_KITE='IS_FILTER_SPOT_KITE';
+export const IS_FILTER_SPOT_VAN='IS_FILTER_SPOT_VAN';
+
+export const isFilterSpotVan = () => ({
+    type: IS_FILTER_SPOT_VAN,
+});
+export const isFilterSpotKite = () => ({
+    type: IS_FILTER_SPOT_KITE,
+});
+export const fetchSpotVanSuccess = (payload) => ({
+    type: FETCH_SPOT_VAN_SUCCESS,
+    payload,
+})
+export const fetchSpotKiteSuccess = (payload) => ({
+    type: FETCH_SPOT_KITE_SUCCESS,
+    payload,
+})
+export const fetchSpotVan = () => ({
+    type: FETCH_SPOT_VAN,
+})
+export const fetchSpotKite = () => ({
+    type: FETCH_SPOT_KITE,
+})
 
 export const idClickPlace = (payload) => ({
     type: ID_CLICK_PLACE,
@@ -32,32 +59,6 @@ export const addFilter = (payload) => ({
     type: ADD_FILTER,
     payload,
 });
-
-// export const removeFilterShower = (payload) => ({
-//     type: REMOVE_FILTER_SHOWER,
-//     payload
-// });
-
-// export const removeFilterToilet = (payload) => ({
-//     type: REMOVE_FILTER_TOILET,
-//     payload
-// });
-//action qui se fait intercépter par le middleware placesMiddleware
-// export const checkFilter = () => ({
-//     type: CHECK_FILTER,
-// });
-
-// export const removeShower = (payload) => ({
-//     type: REMOVE_SHOWER,
-//     payload
-// });
-
-// export const removeToilet = (payload) => ({
-//     type: REMOVE_TOILET,
-//     payload
-// });
-
-// autres actions 
 
 export const isFilterShower = () => ({
     type: IS_FILTER_SHOWER,

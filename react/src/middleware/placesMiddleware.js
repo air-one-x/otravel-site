@@ -1,5 +1,15 @@
 import axios from 'axios';
-import { FETCH_PLACES, FETCH_SHOWER, FETCH_TOILET, fetchShowerSuccess, fetchPlacesSuccess, fetchToiletSuccess} from '../actions/places';
+import { 
+    FETCH_PLACES, 
+    FETCH_SHOWER, 
+    FETCH_TOILET, 
+    FETCH_SPOT_VAN,
+    FETCH_SPOT_KITE,
+    fetchSpotVanSuccess,
+    fetchSpotKiteSuccess, 
+    fetchShowerSuccess, 
+    fetchPlacesSuccess, 
+    fetchToiletSuccess} from '../actions/places';
 
 export default (store) => (next) => (action) => {
     switch (action.type) {
@@ -18,7 +28,7 @@ export default (store) => (next) => (action) => {
         case FETCH_SHOWER:
             axios({
                 method: 'post',
-                url: `http://localhost:8001/api/category/places/3`,
+                url: `http://ec2-3-85-160-178.compute-1.amazonaws.com/api/category/places/3`,
     
             }).then((res) => {
                 console.log('VOICI LA LISTE DES DOUCHES PAR FILTRE',res);
@@ -32,11 +42,37 @@ export default (store) => (next) => (action) => {
 
             axios({
                 method: 'post',
-                url: `http://localhost:8001/api/category/places/4`,
+                url: `http://ec2-3-85-160-178.compute-1.amazonaws.com/api/category/places/4`,
     
             }).then((res) => {
                 console.log('VOICI LA LISTE DES WC PAR FILTRE',res);
                 store.dispatch(fetchToiletSuccess(res.data));
+            }).catch((err) => {
+            });
+    
+        break;
+        case FETCH_SPOT_KITE:
+
+            axios({
+                method: 'post',
+                url: `http://ec2-3-85-160-178.compute-1.amazonaws.com/api/category/places/5`,
+    
+            }).then((res) => {
+                console.log('VOICI LA LISTE DES SPOT DE KITE PAR FILTRE',res);
+                store.dispatch(fetchSpotKiteSuccess(res.data));
+            }).catch((err) => {
+            });
+    
+        break;
+        case FETCH_SPOT_VAN:
+
+            axios({
+                method: 'post',
+                url: `http://ec2-3-85-160-178.compute-1.amazonaws.com/api/category/places/6`,
+    
+            }).then((res) => {
+                console.log('VOICI LA LISTE DES SPOT POUR VAN PAR FILTRE',res);
+                store.dispatch(fetchSpotVanSuccess(res.data));
             }).catch((err) => {
             });
     
@@ -46,7 +82,7 @@ export default (store) => (next) => (action) => {
 
         //     axios({
         //         method: 'post',
-        //         url: `http://localhost:8001/api/category/places/${store.getState().placesReducer.filter}`,
+        //         url: `http://ec2-3-85-160-178.compute-1.amazonaws.com/api/category/places/${store.getState().placesReducer.filter}`,
     
         //     }).then((res) => {
         //         console.log('VOICI LA LISTE DES LIEUX PAR FILTRE',res);
