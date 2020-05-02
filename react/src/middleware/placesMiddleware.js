@@ -5,11 +5,15 @@ import {
     FETCH_TOILET, 
     FETCH_SPOT_VAN,
     FETCH_SPOT_KITE,
+    FETCH_LAUNDRY,
+    FETCH_MARKET_FARM,
     fetchSpotVanSuccess,
     fetchSpotKiteSuccess, 
     fetchShowerSuccess, 
     fetchPlacesSuccess, 
-    fetchToiletSuccess} from '../actions/places';
+    fetchToiletSuccess,
+    fetchLaundrySuccess,
+    fetchMarketFarmSuccess } from '../actions/places';
 
 export default (store) => (next) => (action) => {
     switch (action.type) {
@@ -77,7 +81,32 @@ export default (store) => (next) => (action) => {
             });
     
         break;
+        case FETCH_LAUNDRY:
 
+            axios({
+                method: 'post',
+                url: `http://ec2-3-85-160-178.compute-1.amazonaws.com/api/category/places/7`,
+    
+            }).then((res) => {
+                console.log('VOICI LA LISTE DES LAVOMATIC PAR FILTRE',res);
+                store.dispatch(fetchLaundrySuccess(res.data));
+            }).catch((err) => {
+            });
+    
+        break;        
+        case FETCH_MARKET_FARM:
+
+            axios({
+                method: 'post',
+                url: `http://ec2-3-85-160-178.compute-1.amazonaws.com/api/category/places/8`,
+
+            }).then((res) => {
+                console.log('VOICI LA LISTE DES PRODUCTEUR PAR FILTRE',res);
+                store.dispatch(fetchMarketFarmSuccess(res.data));
+            }).catch((err) => {
+            });
+
+        break;
         // case CHECK_FILTER:
 
         //     axios({

@@ -13,6 +13,10 @@ import newLocation from './pin.svg';
 import PopupNavBar from '../popupNavBar/popupNavBar';
 import IconForShower from './shower.png';
 import IconToilet from './wc.svg';
+import IconKite from './kite.png';
+import IconVan from './van.png';
+import IconLaundry from './laundry.png';
+import IconFarm from './farm.png';
 
 const myIcon = L.icon({
   iconUrl: newLocation,
@@ -33,7 +37,28 @@ const showerIcon = L.icon({
 
 const toiletIcon = L.icon({
   iconUrl: IconToilet,
-  iconSize: [33, 35],
+  iconSize: [40, 42],
+  
+});
+
+const vanIcon = L.icon({
+  iconUrl: IconVan,
+  iconSize: [40, 42],
+});
+
+const kiteIcon = L.icon({
+  iconUrl: IconKite,
+  iconSize: [40, 42],
+});
+
+const laundryIcon = L.icon({
+  iconUrl: IconLaundry,
+  iconSize: [40, 42],
+});
+
+const marketFarmIcon = L.icon({
+  iconUrl: IconFarm,
+  iconSize: [40, 42],
   
 });
 
@@ -54,6 +79,10 @@ const MapContainer = ({
   isFilterSpotKite,
   listSpotVan,
   isFilterSpotVan,
+  listLaundry,
+  isFilterLaundry,
+  listMarketFarm,
+  isFilterMarketFarm,
   setViewport,
   isLogged,
   addLocationPlace, 
@@ -161,7 +190,7 @@ const MapContainer = ({
           {
             isFilterToilet && listToilet.map((toilet) => (
               <Marker
-              icon={toiletIcon}
+                icon={toiletIcon}
                 key={toilet.id}
                 position={[
                   toilet.lat,
@@ -178,6 +207,7 @@ const MapContainer = ({
           {
             isFilterSpotKite && listSpotKite.map((spotKite) => (
               <Marker
+                icon={kiteIcon}
                 key={spotKite.id}
                 position={[
                   spotKite.lat,
@@ -194,6 +224,7 @@ const MapContainer = ({
           {
             isFilterSpotVan && listSpotVan.map((spotVan) => (
               <Marker
+                icon={vanIcon}
                 key={spotVan.id}
                 position={[
                   spotVan.lat,
@@ -203,6 +234,40 @@ const MapContainer = ({
                   setActivePlace(spotVan),
                   setViewport({center:[spotVan.lat, spotVan.lng]}),
                   clickMarkerID(spotVan.id)
+                }}
+              />
+            ))
+          }
+          {
+            isFilterLaundry && listLaundry.map((Laundry) => (
+              <Marker
+                icon={laundryIcon}
+                key={Laundry.id}
+                position={[
+                  Laundry.lat,
+                  Laundry.lng,
+                ]}
+                onClick={() => {
+                  setActivePlace(Laundry),
+                  setViewport({center:[Laundry.lat, Laundry.lng]}),
+                  clickMarkerID(Laundry.id)
+                }}
+              />
+            ))
+          }
+          {
+            isFilterMarketFarm && listMarketFarm.map((MarketFarm) => (
+              <Marker
+                icon={farmIcon}
+                key={MarketFarm.id}
+                position={[
+                  MarketFarm.lat,
+                  MarketFarm.lng,
+                ]}
+                onClick={() => {
+                  setActivePlace(MarketFarm),
+                  setViewport({center:[MarketFarm.lat, MarketFarm.lng]}),
+                  clickMarkerID(MarketFarm.id)
                 }}
               />
             ))

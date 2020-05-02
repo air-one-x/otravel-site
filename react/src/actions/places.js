@@ -21,7 +21,35 @@ export const FETCH_SPOT_KITE_SUCCESS = 'FETCH_SPOT_KITE_SUCCESS';
 export const FETCH_SPOT_VAN_SUCCESS = 'FETCH_SPOT_VAN_SUCCESS';
 export const IS_FILTER_SPOT_KITE='IS_FILTER_SPOT_KITE';
 export const IS_FILTER_SPOT_VAN='IS_FILTER_SPOT_VAN';
+// ====
+export const FETCH_LAUNDRY = 'FETCH_LAUNDRY';
+export const FETCH_MARKET_FARM = 'FETCH_MARKET_FARM';
+export const FETCH_LAUNDRY_SUCCESS = 'FETCH_LAUNDRY_SUCCESS';
+export const FETCH_MARKET_FARM_SUCCESS = 'FETCH_MARKET_FARM_SUCCESS';
+export const IS_FILTER_LAUNDRY='IS_FILTER_LAUNDRY';
+export const IS_FILTER_MARKET_FARM='IS_FILTER_MARKET_FARM';
 
+export const isFilterMarketFarm = () => ({
+    type: IS_FILTER_MARKET_FARM,
+});
+export const isFilterLaundry = () => ({
+    type: IS_FILTER_LAUNDRY,
+});
+export const fetchMarketFarmSuccess = (payload) => ({
+    type: FETCH_MARKET_FARM_SUCCESS,
+    payload,
+})
+export const fetchLaundrySuccess = (payload) => ({
+    type: FETCH_LAUNDRY_SUCCESS,
+    payload,
+})
+export const fetchMarketFarm = () => ({
+    type: FETCH_MARKET_FARM,
+})
+export const fetchLaundry = () => ({
+    type: FETCH_LAUNDRY,
+})
+// ====
 export const isFilterSpotVan = () => ({
     type: IS_FILTER_SPOT_VAN,
 });

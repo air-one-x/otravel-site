@@ -10,7 +10,11 @@ import {
   FETCH_SPOT_KITE_SUCCESS,
   FETCH_SPOT_VAN_SUCCESS,
   IS_FILTER_SPOT_KITE,
-  IS_FILTER_SPOT_VAN
+  IS_FILTER_SPOT_VAN,
+  FETCH_LAUNDRY_SUCCESS,
+  FETCH_MARKET_FARM_SUCCESS,
+  IS_FILTER_LAUNDRY,
+  IS_FILTER_MARKET_FARM
 } from '../actions/places';
 
 export const initialState = {
@@ -19,12 +23,16 @@ export const initialState = {
   isFilterToilet: true,
   isFilterSpotVan: true,
   isFilterSpotKite: true,
+  isFilterLaundry: true,
+  isFilterMarketFarm: true,
   filter: null,
   newList: [],
   listShower:[],
   listToilet:[],
   listSpotVan:[],
   listSpotKite:[],
+  listLaundry:[],
+  listMarketFarm:[],
   locationPlace: {},
   idClickPlace: null,
 };
@@ -94,6 +102,32 @@ export default (state = initialState, action = {}) => {
         isFilterSpotVan: !state.isFilterSpotVan,
          // filter: 6
       };
+      // =====
+      case FETCH_LAUNDRY_SUCCESS:
+        return {
+          ...state,
+          listLaundry: [...action.payload],
+  
+        };
+        case FETCH_MARKET_FARM_SUCCESS:
+          return {
+            ...state,
+            listMarketFarm: [...action.payload],
+    
+          };
+      case IS_FILTER_LAUNDRY:
+        return {
+          ...state,
+          isFilterLaundry: !state.isFilterLaundry,
+            //filter: 7
+        };
+      case IS_FILTER_MARKET_FARM:
+        return {
+          ...state,
+          isFilterMarketFarm: !state.isFilterMarketFarm,
+           // filter: 8
+        };
+      // =====
     case ADD_LOCATION_PLACE:
       return {
         ...state,

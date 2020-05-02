@@ -1,7 +1,16 @@
 import { connect } from 'react-redux';
 import mapContainer from '../components/MapContainer';
 import { geolocation } from '../actions/geolocation';
-import { fetchPlaces, fetchShower, fetchToilet, addLocationPlace, idClickPlace, fetchSpotKite, fetchSpotVan } from '../actions/places';
+import { 
+    fetchPlaces, 
+    fetchShower, 
+    fetchToilet, 
+    addLocationPlace, 
+    idClickPlace, 
+    fetchSpotKite, 
+    fetchSpotVan, 
+    fetchLaundry,
+    fetchMarketFarm} from '../actions/places';
 
 const mapStateToProps = (state) => ({
     lat: state.geolocation.coords.lat,
@@ -16,6 +25,10 @@ const mapStateToProps = (state) => ({
     isFilterSpotKite: state.placesReducer.isFilterSpotKite,
     listSpotVan: state.placesReducer.listSpotVan,
     isFilterSpotVan: state.placesReducer.isFilterSpotVan,
+    listLaundry: state.placesReducer.listLaundry,
+    isFilterLaundry: state.placesReducer.isFilterLaundry,
+    listMarketFarm: state.placesReducer.listMarketFarm,
+    isFilterMarketFarm: state.placesReducer.isFilterMarketFarm,
     newList: state.placesReducer.newList,
     isLogged: state.user.isLogged,
     clickLocation: state.placesReducer.locationPlace
@@ -31,6 +44,8 @@ const mapDispatchToProps = (dispatch) => ({
         dispatch(fetchToilet());
         dispatch(fetchSpotKite());
         dispatch(fetchSpotVan());
+        dispatch(fetchLaundry());
+        dispatch(fetchMarketFarm());
     },
     addLocationPlace: (position) => {
         dispatch(addLocationPlace(position));

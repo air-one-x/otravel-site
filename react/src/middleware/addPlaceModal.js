@@ -50,6 +50,8 @@ export default (store) => (next) => (action) => {
             store.dispatch(fetchToilet());
             store.dispatch(fetchSpotKite());
             store.dispatch(fetchSpotVan());
+            store.dispatch(fetchLaundry());
+            store.dispatch(fetchMarketFarm());
           })
             .catch((err) => {
             // Si error -> Dispatcher une action error

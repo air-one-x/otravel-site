@@ -63,16 +63,16 @@ Fade.propTypes = {
 const SpringModal = ({
   isFilterShower, 
   changeIsFilterShower, 
-  checkFilter, 
-  places, 
-  removeShower, 
   isFilterToilet, 
-  removeToilet, 
   changeIsFilterToilet, 
   isFilterSpotKite, 
-  isFilterSpotVan, 
   changeIsFilterSpotKite,
-  changeIsFilterSpotVan }) => {
+  isFilterSpotVan, 
+  changeIsFilterSpotVan, 
+  isFilterLaundry, 
+  isFilterMarketFarm, 
+  changeIsFilterLaundry,
+  changeIsFilterMarketFarm }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -149,7 +149,25 @@ const SpringModal = ({
                   onClick={()=> changeIsFilterSpotVan() }
                 />
             
+                <FormControlLabel
+                  checked={isFilterLaundry === false ? false : true}
+                  value="5"
+                  control={<Switch color="primary" />}
+                  label="Lavomatique"
+                  labelPlacement="start"
+                  //onClick={isFilterToilet === false ? () => {changeIsFilterToilet(); checkFilter()} : () => {removeToilet()}}
+                  onClick={()=> changeIsFilterLaundry() }
+                />
 
+                <FormControlLabel
+                  checked={isFilterMarketFarm === false ? false : true}
+                  value="6"
+                  control={<Switch color="primary" />}
+                  label="Producteur/artisan"
+                  labelPlacement="start"
+                  //onClick={isFilterToilet === false ? () => {changeIsFilterToilet(); checkFilter()} : () => {removeToilet()}}
+                  onClick={()=> changeIsFilterMarketFarm() }
+                />
                 
               </FormGroup>
             </FormControl>
