@@ -14,7 +14,7 @@ import {
   FETCH_LAUNDRY_SUCCESS,
   FETCH_MARKET_FARM_SUCCESS,
   IS_FILTER_LAUNDRY,
-  IS_FILTER_MARKET_FARM
+  IS_FILTER_MARKET_FARM,
 } from '../actions/places';
 
 export const initialState = {
@@ -27,12 +27,12 @@ export const initialState = {
   isFilterMarketFarm: true,
   filter: null,
   newList: [],
-  listShower:[],
-  listToilet:[],
-  listSpotVan:[],
-  listSpotKite:[],
-  listLaundry:[],
-  listMarketFarm:[],
+  listShower: [],
+  listToilet: [],
+  listSpotVan: [],
+  listSpotKite: [],
+  listLaundry: [],
+  listMarketFarm: [],
   locationPlace: {},
   idClickPlace: null,
 };
@@ -46,87 +46,87 @@ export default (state = initialState, action = {}) => {
 
       };
     case FETCH_PLACES_SUCCESS:
-      console.log(action.payload)
+      // console.log(action.payload)
       return {
         ...state,
         list: [...action.payload],
 
       };
     case FETCH_SHOWER_SUCCESS:
-      console.log(action.payload)
+      // console.log(action.payload)
       return {
         ...state,
         listShower: [...action.payload],
 
       };
-      case FETCH_TOILET_SUCCESS:
-        console.log(action.payload)
-        return {
-          ...state,
-          listToilet: [...action.payload],
-  
-        };
+    case FETCH_TOILET_SUCCESS:
+      // console.log(action.payload)
+      return {
+        ...state,
+        listToilet: [...action.payload],
+
+      };
     case IS_FILTER_SHOWER:
       return {
         ...state,
         isFilterShower: !state.isFilterShower,
-          //filter: 3
+        // filter: 3
       };
     case IS_FILTER_TOILET:
       return {
         ...state,
         isFilterToilet: !state.isFilterToilet,
-         // filter: 4
+        // filter: 4
       };
-      case FETCH_SPOT_KITE_SUCCESS:
+    case FETCH_SPOT_KITE_SUCCESS:
       return {
         ...state,
         listSpotKite: [...action.payload],
 
       };
-      case FETCH_SPOT_VAN_SUCCESS:
-        return {
-          ...state,
-          listSpotVan: [...action.payload],
-  
-        };
+    case FETCH_SPOT_VAN_SUCCESS:
+      return {
+        ...state,
+        listSpotVan: [...action.payload],
+
+      };
     case IS_FILTER_SPOT_KITE:
       return {
         ...state,
         isFilterSpotKite: !state.isFilterSpotKite,
-          //filter: 5
+        // filter: 5
       };
     case IS_FILTER_SPOT_VAN:
       return {
         ...state,
         isFilterSpotVan: !state.isFilterSpotVan,
-         // filter: 6
+        // filter: 6
       };
       // =====
-      case FETCH_LAUNDRY_SUCCESS:
-        return {
-          ...state,
-          listLaundry: [...action.payload],
-  
-        };
-        case FETCH_MARKET_FARM_SUCCESS:
-          return {
-            ...state,
-            listMarketFarm: [...action.payload],
-    
-          };
-      case IS_FILTER_LAUNDRY:
-        return {
-          ...state,
-          isFilterLaundry: !state.isFilterLaundry,
-            //filter: 7
-        };
-      case IS_FILTER_MARKET_FARM:
-        return {
-          ...state,
-          isFilterMarketFarm: !state.isFilterMarketFarm,
-           // filter: 8
-        };
+    case FETCH_LAUNDRY_SUCCESS:
+      return {
+        ...state,
+        listLaundry: [...action.payload],
+
+      };
+    case FETCH_MARKET_FARM_SUCCESS:
+      return {
+        ...state,
+        listMarketFarm: [...action.payload],
+
+      };
+    case IS_FILTER_LAUNDRY:
+      return {
+        ...state,
+        isFilterLaundry: !state.isFilterLaundry,
+        // filter: 7
+      };
+    case IS_FILTER_MARKET_FARM:
+      return {
+        ...state,
+        isFilterMarketFarm: !state.isFilterMarketFarm,
+        // filter: 8
+      };
       // =====
     case ADD_LOCATION_PLACE:
       return {
@@ -138,10 +138,10 @@ export default (state = initialState, action = {}) => {
         ...state,
         locationPlace: {},
       };
-          // case ADD_FILTER:
-    //   return {
-    //     ...state,
-    //     newList: [...state.newList, ...action.payload],
+      // case ADD_FILTER:
+      //   return {
+      //     ...state,
+      //     newList: [...state.newList, ...action.payload],
 
     //   };
       // case REMOVE_FILTER_TOILET:
@@ -161,4 +161,4 @@ export default (state = initialState, action = {}) => {
     default:
       return state;
   }
-}
+};

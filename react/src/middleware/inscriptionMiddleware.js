@@ -8,7 +8,7 @@ export default (store) => (next) => (action) => {
       // Je veux lancer ma requête avec axios
       axios({
         method: 'post',
-        url: 'http://apiotravel.ovh/inscription',
+        url: 'https://apiotravel.ovh/inscription',
         withCredentials: true,
         data: {
           username: store.getState().userInscription.form.pseudo,

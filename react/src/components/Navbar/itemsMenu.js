@@ -91,7 +91,7 @@ import './style';
             <ListItemIcon>
               <DraftsIcon fontSize="small" />
             </ListItemIcon>
-            <a target="_blank" href="http://apiotravel.ovh/admin">Admin</a>
+            <a target="_blank" href="https://apiotravel.ovh/admin">Admin</a>
           </StyledMenuItem>
         }        
 

@@ -40,8 +40,8 @@ const ViewCommentPlace = ({ onClose, open, commentaryInfos }) => {
             avatar={
             <Avatar aria-label="recipe" className={classes.avatar}>
             { isEmpty(comment.user.avatar)?
-                <img style={{ width:'100%' }} src={`http://apiotravel.ovh/uploads/images/account.png`}/>:
-                <img style={{ width:'100%' }} src={`http://apiotravel.ovh/${comment.user.avatar}`}/>
+                <img style={{ width:'100%' }} src={`https://apiotravel.ovh/uploads/images/account.png`}/>:
+                <img style={{ width:'100%' }} src={`https://apiotravel.ovh/${comment.user.avatar}`}/>
             
             }
             </Avatar>

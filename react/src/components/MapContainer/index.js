@@ -123,7 +123,7 @@ const MapContainer = ({
 
   }
 
-//const urlImg = `http://apiotravel.ovh/${activePlace.places_picture.name}`;
+//const urlImg = `https://apiotravel.ovh/${activePlace.places_picture.name}`;
   useEffect(() => {
      getLocation()
 
@@ -302,7 +302,7 @@ const MapContainer = ({
             <div>
               <h2>Nom : {activePlace.name}</h2>
               <div>
-                {isEmpty(activePlace.places_picture) ? "" : <img style={{ width:'50%' }} src={`http://apiotravel.ovh/${activePlace.places_picture.name}`} />}
+                {isEmpty(activePlace.places_picture) ? "" : <img style={{ width:'50%' }} src={`https://apiotravel.ovh/${activePlace.places_picture.name}`} />}
               </div>
               <div>
                 <p>Adresse : {activePlace.street}</p>

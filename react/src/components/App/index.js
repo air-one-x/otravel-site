@@ -47,7 +47,7 @@ const App = ({ checkAuth , lat, long, isLogged}) => {
         />
       
         <Route exact path="/admin">
-          <Redirect exact to="http://apiotravel.ovh/admin" />
+          <Redirect exact to="https://apiotravel.ovh/admin" />
         </Route>
         <Route exact path="/mes-ajouts" component={Places} />
         <Route exact path="/mes-informations" component={InformationsUser} />
