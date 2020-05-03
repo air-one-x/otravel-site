@@ -53,7 +53,7 @@ const NavBar = ({isLogged}) => {
       </div>
       {
         isLogged&&
-        <Button type="button"><a target="_blank" href="http://ec2-3-85-160-178.compute-1.amazonaws.com/admin">Admin</a></Button>
+        <Button type="button"><a target="_blank" href="http://apiotravel.ovh/admin">Admin</a></Button>
       }
 
       <div className="dropdown">

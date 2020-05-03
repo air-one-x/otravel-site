@@ -25,16 +25,16 @@ const useStyles = makeStyles((theme) => ({
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 3),
-    display: 'table-caption',
+    //display: 'table-caption',
   },
   root: {
     '& > *': {
       margin: theme.spacing(1),
     },
   },
-  input: {
-    display: 'none',
-  },
+  // input: {
+  //   display: 'none',
+  // },
 }));
 
 const Fade = React.forwardRef((props, ref) => {
@@ -142,41 +142,43 @@ const SpringModal = ({inputChangeEmailInscription,insertNewUser, inputChangePass
               <div className={classes.margin}>
                 <p style={{color:'red'}}>{error}</p>
                 
-                <Grid container spacing={1} alignItems="flex-end" style={{display:'flex'}}>
-                  <Grid container item style={{width:'20%'}}>
+                <Grid container spacing={1} alignItems="flex-end">
+                  <Grid item >
                     <AccountCircle />
                   </Grid>
-                  <Grid container item style={{width: '70%'}}>
+                  <Grid item>
                     <TextField type="text" id="username" label="username" value={newUserPseudo} onChange={(event) => {inputChangePseudoInscription(event.target.value); error=""}} />
                     </Grid>
                   </Grid>
                     {
-                      isEmpty(newUserPseudo)  || newUserPseudo.length <3 ? <p style={{color: 'red', marginLeft: '4rem'}}>veuillez entrer un pseudo</p> : <p style={{color: 'white'}}>veuillez entrer un pseudo</p>
+                      isEmpty(newUserPseudo)  || newUserPseudo.length <3 ? <p style={{color: 'red', marginLeft: '2rem'}}>veuillez entrer un pseudo</p> : <p style={{color: 'white'}}>veuillez entrer un pseudo</p>
                     }
                 
-                <Grid container spacing={1} alignItems="flex-end" style={{display:'flex'}}>
-                  <Grid container item style={{width:'20%'}}>
+                <Grid container spacing={1} alignItems="flex-end" >
+                  <Grid item >
                     <AlternateEmailIcon />
                   </Grid>
-                  <Grid container item style={{width: '70%'}}>
+                  <Grid item >
                     <TextField type="email" style={{border: 'red 1px solide'}} label="adresse email" value={newUserEmail} onChange={(event) => {inputChangeEmailInscription(event.target.value); testEmail(testRegex(event.target.value)); error=""}} required/>
                   </Grid>
-                    {
-                      isEmpty(newUserEmail) ? <p style={{color: 'red', marginLeft: '4rem'}}>veuillez entrer un email valide</p> : <p style={{color: 'white'}}>veuillez entrer un email valide</p>
-                    }
                 </Grid>
+                    {
+                      isEmpty(newUserEmail) ? <p style={{color: 'red', marginLeft: '2rem'}}>veuillez entrer un email valide</p> : <p style={{color: 'white'}}>veuillez entrer un email valide</p>
+                    }
+                
 
-                <Grid container spacing={1} alignItems="flex-end" style={{display:'flex'}}>
-                  <Grid container item  style={{width:'20%'}}>
+                <Grid container spacing={1} alignItems="flex-end">
+                  <Grid item>
                     <LockIcon />
                   </Grid>
-                  <Grid container item style={{width: '70%'}}>
+                  <Grid item>
                     <TextField type="password" label="Mot de passe" value={newUserPassword} onChange={(event) =>{ inputChangePasswordInscription(event.target.value)}} required />
                   </Grid>
+                  </Grid>
                     {
-                      isEmpty(newUserPassword) || newUserPassword.length <8 ? <p style={{color: 'red', marginLeft: '4rem'}}>8 charactères minimum</p> : <p style={{color: 'white'}}>8 charactères minimum</p>
+                      isEmpty(newUserPassword) || newUserPassword.length <8 ? <p style={{color: 'red',marginLeft: '2rem'}}>8 charactères minimum</p> : <p style={{color: 'white',marginLeft: '2rem'}}>8 charactères minimum</p>
                     }
-                </Grid>
+                
                 <div className="msgPassword" ref={messageRef}></div>
 
                 <Grid container spacing={1} alignItems="flex-end" style={{marginTop:'1rem'}}>

@@ -21,7 +21,7 @@ export default (store) => (next) => (action) => {
 
         axios({
             method: 'post',
-            url: 'http://ec2-3-85-160-178.compute-1.amazonaws.com/api/places',
+            url: 'http://apiotravel.ovh/api/places',
 
         }).then((res) => {
             store.dispatch(fetchPlacesSuccess(res.data));
@@ -32,7 +32,7 @@ export default (store) => (next) => (action) => {
         case FETCH_SHOWER:
             axios({
                 method: 'post',
-                url: `http://ec2-3-85-160-178.compute-1.amazonaws.com/api/category/places/3`,
+                url: `http://apiotravel.ovh/api/category/places/3`,
     
             }).then((res) => {
                 console.log('VOICI LA LISTE DES DOUCHES PAR FILTRE',res);
@@ -46,7 +46,7 @@ export default (store) => (next) => (action) => {
 
             axios({
                 method: 'post',
-                url: `http://ec2-3-85-160-178.compute-1.amazonaws.com/api/category/places/4`,
+                url: `http://apiotravel.ovh/api/category/places/4`,
     
             }).then((res) => {
                 console.log('VOICI LA LISTE DES WC PAR FILTRE',res);
@@ -59,7 +59,7 @@ export default (store) => (next) => (action) => {
 
             axios({
                 method: 'post',
-                url: `http://ec2-3-85-160-178.compute-1.amazonaws.com/api/category/places/5`,
+                url: `http://apiotravel.ovh/api/category/places/5`,
     
             }).then((res) => {
                 console.log('VOICI LA LISTE DES SPOT DE KITE PAR FILTRE',res);
@@ -72,7 +72,7 @@ export default (store) => (next) => (action) => {
 
             axios({
                 method: 'post',
-                url: `http://ec2-3-85-160-178.compute-1.amazonaws.com/api/category/places/6`,
+                url: `http://apiotravel.ovh/api/category/places/6`,
     
             }).then((res) => {
                 console.log('VOICI LA LISTE DES SPOT POUR VAN PAR FILTRE',res);
@@ -85,7 +85,7 @@ export default (store) => (next) => (action) => {
 
             axios({
                 method: 'post',
-                url: `http://ec2-3-85-160-178.compute-1.amazonaws.com/api/category/places/7`,
+                url: `http://apiotravel.ovh/api/category/places/7`,
     
             }).then((res) => {
                 console.log('VOICI LA LISTE DES LAVOMATIC PAR FILTRE',res);
@@ -98,7 +98,7 @@ export default (store) => (next) => (action) => {
 
             axios({
                 method: 'post',
-                url: `http://ec2-3-85-160-178.compute-1.amazonaws.com/api/category/places/8`,
+                url: `http://apiotravel.ovh/api/category/places/8`,
 
             }).then((res) => {
                 console.log('VOICI LA LISTE DES PRODUCTEUR PAR FILTRE',res);
@@ -111,7 +111,7 @@ export default (store) => (next) => (action) => {
 
         //     axios({
         //         method: 'post',
-        //         url: `http://ec2-3-85-160-178.compute-1.amazonaws.com/api/category/places/${store.getState().placesReducer.filter}`,
+        //         url: `http://apiotravel.ovh/api/category/places/${store.getState().placesReducer.filter}`,
     
         //     }).then((res) => {
         //         console.log('VOICI LA LISTE DES LIEUX PAR FILTRE',res);

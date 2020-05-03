@@ -9,7 +9,7 @@ export default (store) => (next) => (action) => {
       // Je veux lancer ma requête avec axios
       axios({
         method: 'post',
-        url: 'http://ec2-3-85-160-178.compute-1.amazonaws.com/login',
+        url: 'http://apiotravel.ovh/login',
         withCredentials: true,
         data: {
           username: store.getState().user.form.email,
@@ -20,7 +20,7 @@ export default (store) => (next) => (action) => {
         localStorage.setItem('id_token', res.data.token);
          
         axios({
-          url: 'http://ec2-3-85-160-178.compute-1.amazonaws.com/api/isLogged',
+          url: 'http://apiotravel.ovh/api/isLogged',
           method: 'post',
           withCredentials: true,
           headers: {
@@ -48,7 +48,7 @@ export default (store) => (next) => (action) => {
       case LOGOUT:
         axios({
           method: 'post',
-          url: 'http://ec2-3-85-160-178.compute-1.amazonaws.com/logout',
+          url: 'http://apiotravel.ovh/logout',
           withCredentials: true,
         })
           .then((res) => {
@@ -63,7 +63,7 @@ export default (store) => (next) => (action) => {
         break;
         case CHECK_AUTH:
           axios({
-            url: 'http://ec2-3-85-160-178.compute-1.amazonaws.com/api/isLogged',
+            url: 'http://apiotravel.ovh/api/isLogged',
             method: 'post',
             withCredentials: true,
             headers: {
@@ -88,7 +88,7 @@ export default (store) => (next) => (action) => {
             const id = store.getState().user.userInfos.id;
             axios({
               method: 'post',
-              url: `http://ec2-3-85-160-178.compute-1.amazonaws.com/user/edit/${id}`,
+              url: `http://apiotravel.ovh/user/edit/${id}`,
               withCredentials: true,
               headers: {
                 'Content-Type': 'application/json',
@@ -103,7 +103,7 @@ export default (store) => (next) => (action) => {
                 if (res.data) {
                   store.dispatch(updateMessage(res.data.message));
                   axios({
-                    url: 'http://ec2-3-85-160-178.compute-1.amazonaws.com/api/isLogged',
+                    url: 'http://apiotravel.ovh/api/isLogged',
                     method: 'post',
                     withCredentials: true,
                     headers: {

@@ -24,7 +24,7 @@ export default (store) => (next) => (action) => {
         }
         axios({
             method: 'post',
-            url: 'http://ec2-3-85-160-178.compute-1.amazonaws.com/places/add', 
+            url: 'http://apiotravel.ovh/places/add', 
             withCredentials: true,
             headers: { 'Content-Type': 'multipart/form-data',
             'Authorization': `Bearer ${localStorage.getItem('id_token')}`},
@@ -71,7 +71,7 @@ export default (store) => (next) => (action) => {
 
             axios({
               method: 'post',
-              url: 'http://ec2-3-85-160-178.compute-1.amazonaws.com/api/adress/places', 
+              url: 'http://apiotravel.ovh/api/adress/places', 
 
               withCredentials: true,
               headers: {'Authorization': `Bearer ${localStorage.getItem('id_token')}`},

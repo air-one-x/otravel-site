@@ -15,7 +15,7 @@ import IconForShower from './shower.png';
 import IconToilet from './wc.svg';
 import IconKite from './kite.png';
 import IconVan from './van.png';
-import IconLaundry from './laundry.png';
+import IconLaundry from './laundry1.png';
 import IconFarm from './farm.png';
 
 const myIcon = L.icon({
@@ -103,7 +103,7 @@ const MapContainer = ({
   }
 
   const showPosition = (position) => {
-    setViewport({center:[position.coords.latitude, position.coords.longitude], zoom: 10})
+    setViewport({center:[position.coords.latitude, position.coords.longitude], zoom: 12})
     userLocation(position.coords)
   }
 
@@ -123,7 +123,7 @@ const MapContainer = ({
 
   }
 
-//const urlImg = `http://ec2-3-85-160-178.compute-1.amazonaws.com/${activePlace.places_picture.name}`;
+//const urlImg = `http://apiotravel.ovh/${activePlace.places_picture.name}`;
   useEffect(() => {
      getLocation()
 
@@ -302,7 +302,7 @@ const MapContainer = ({
             <div>
               <h2>Nom : {activePlace.name}</h2>
               <div>
-                {isEmpty(activePlace.places_picture) ? "" : <img style={{ width:'50%' }} src={`http://ec2-3-85-160-178.compute-1.amazonaws.com/${activePlace.places_picture.name}`} />}
+                {isEmpty(activePlace.places_picture) ? "" : <img style={{ width:'50%' }} src={`http://apiotravel.ovh/${activePlace.places_picture.name}`} />}
               </div>
               <div>
                 <p>Adresse : {activePlace.street}</p>
