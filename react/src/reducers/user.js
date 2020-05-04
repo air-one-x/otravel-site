@@ -20,7 +20,8 @@ const stateInit = {
   isLogged: false,
   error: '',
   userInfos: {
-    Places: []
+    Places: [],
+    roles: []
   },
   updateUserInfo: {
     newUserPseudo: "",
