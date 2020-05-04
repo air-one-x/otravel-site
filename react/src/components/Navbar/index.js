@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle, faSearch } from '@fortawesome/free-solid-svg-icons';
-import {IconButton } from '@material-ui/core';
+import {IconButton, Button } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import './style.css';
 import useStyles from './style.js';
 import InscriptionModal from '../../containers/Inscription';
 import ItemsMenu from '../../containers/NavBarTop';
 import FilterPc from '../../containers/filterPC';
-import { Link } from 'react-router-dom';
+import { Link, Route, BrowserRouter as Router, Redirect } from 'react-router-dom';
 import Account from './account';
 import ConnexionButton from '../../containers/ConnexionButtonContainer'
 import AddPlaceButton from '../../containers/AddPlaceButtonContainer'
@@ -34,7 +34,6 @@ const NavBar = ({isLogged}) => {
 
     {/* VERSION ORDINATEUR */ }
     <div className="menu-desktop">
-
       <div className="nav-item nav-link">
       <AddPlaceButton isLogged={isLogged}/>
       </div>
@@ -52,6 +51,10 @@ const NavBar = ({isLogged}) => {
           <div><Link to="/contact">Conctact</Link></div>
         </div>
       </div>
+      {
+        isLogged&&
+        <Button type="button"><a target="_blank" href="https://apiotravel.ovh/admin">Admin</a></Button>
+      }
 
       <div className="dropdown">
         <button className="btn navbar-btn dropdown" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" type="button">

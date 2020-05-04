@@ -11,8 +11,12 @@ import { isEmpty } from 'lodash';
 import userLocationURL from './pinBlue.svg';
 import newLocation from './pin.svg';
 import PopupNavBar from '../popupNavBar/popupNavBar';
-import IconForShower from './shower-icon.svg';
-import IconToilet from './wc.png';
+import IconForShower from './shower.png';
+import IconToilet from './wc.svg';
+import IconKite from './kite.png';
+import IconVan from './van.png';
+import IconLaundry from './laundry1.png';
+import IconFarm from './farm.png';
 
 const myIcon = L.icon({
   iconUrl: newLocation,
@@ -28,12 +32,33 @@ const newPointIcon = L.icon({
 
 const showerIcon = L.icon({
   iconUrl: IconForShower,
-  iconSize: [20, 23],
+  iconSize: [40, 42],
 });
 
 const toiletIcon = L.icon({
   iconUrl: IconToilet,
-  iconSize: [20, 23],
+  iconSize: [40, 42],
+  
+});
+
+const vanIcon = L.icon({
+  iconUrl: IconVan,
+  iconSize: [40, 42],
+});
+
+const kiteIcon = L.icon({
+  iconUrl: IconKite,
+  iconSize: [40, 42],
+});
+
+const laundryIcon = L.icon({
+  iconUrl: IconLaundry,
+  iconSize: [40, 42],
+});
+
+const marketFarmIcon = L.icon({
+  iconUrl: IconFarm,
+  iconSize: [40, 42],
   
 });
 
@@ -45,12 +70,23 @@ const MapContainer = ({
   isLocated,
   fetchPlaces,
   list,
+  listShower,
+  listToilet,
   newList,
   isFilterShower,
   isFilterToilet,
+  listSpotKite,
+  isFilterSpotKite,
+  listSpotVan,
+  isFilterSpotVan,
+  listLaundry,
+  isFilterLaundry,
+  listMarketFarm,
+  isFilterMarketFarm,
   setViewport,
   isLogged,
-  addLocationPlace, idClickPlace } ) => {
+  addLocationPlace, 
+  idClickPlace } ) => {
 
 
 
@@ -67,7 +103,7 @@ const MapContainer = ({
   }
 
   const showPosition = (position) => {
-    setViewport({center:[position.coords.latitude, position.coords.longitude], zoom: 10})
+    setViewport({center:[position.coords.latitude, position.coords.longitude], zoom: 12})
     userLocation(position.coords)
   }
 
@@ -87,7 +123,7 @@ const MapContainer = ({
 
   }
 
-//const urlImg = `http://localhost:8001/${activePlace.places_picture.name}`;
+//const urlImg = `https://apiotravel.ovh/${activePlace.places_picture.name}`;
   useEffect(() => {
      getLocation()
 
@@ -135,56 +171,122 @@ const MapContainer = ({
             </Marker>)
           }
           {
-            isFilterShower && newList.map((test1) => (
+            isFilterShower && listShower.map((shower) => (
               <Marker
-              icon={test1.Category[0].name === 'douche' ? showerIcon : toiletIcon}
-                key={test1.id}
+                icon={showerIcon}
+                key={shower.id}
                 position={[
-                  test1.lat,
-                  test1.lng,
+                  shower.lat,
+                  shower.lng,
                 ]}
                 onClick={() => {
-                  setActivePlace(test1),
-                  setViewport({center:[test1.lat, test1.lng]}),
-                  clickMarkerID(test1.id)
+                  setActivePlace(shower),
+                  setViewport({center:[shower.lat, shower.lng]}),
+                  clickMarkerID(shower.id)
                 }}
               />
             ))
           }
           {
-            isFilterToilet && newList.map((test2) => (
+            isFilterToilet && listToilet.map((toilet) => (
               <Marker
-              icon={test2.Category[0].name === 'douche' ? showerIcon : toiletIcon}
-                key={test2.id}
+                icon={toiletIcon}
+                key={toilet.id}
                 position={[
-                  test2.lat,
-                  test2.lng,
+                  toilet.lat,
+                  toilet.lng,
                 ]}
                 onClick={() => {
-                  setActivePlace(test2),
-                  setViewport({center:[test2.lat, test2.lng]}),
-                  clickMarkerID(test2.id)
+                  setActivePlace(toilet),
+                  setViewport({center:[toilet.lat, toilet.lng]}),
+                  clickMarkerID(toilet.id)
                 }}
               />
             ))
           }
-          {!isFilterShower && !isFilterToilet && list.map((place) => (
-            <Marker
-              key={place.id}
-              icon={place.Category[0].name === 'douche' ? showerIcon : toiletIcon}
-              position={[
-                place.lat,
-                place.lng,
-              ]}
-              onClick={() => {
-                setActivePlace(place);
-                setViewport({center:[place.lat, place.lng]}),
-                clickMarkerID(place.id)
-              }}
-            />
-          ))
+          {
+            isFilterSpotKite && listSpotKite.map((spotKite) => (
+              <Marker
+                icon={kiteIcon}
+                key={spotKite.id}
+                position={[
+                  spotKite.lat,
+                  spotKite.lng,
+                ]}
+                onClick={() => {
+                  setActivePlace(spotKite),
+                  setViewport({center:[spotKite.lat, spotKite.lng]}),
+                  clickMarkerID(spotKite.id)
+                }}
+              />
+            ))
           }
-
+          {
+            isFilterSpotVan && listSpotVan.map((spotVan) => (
+              <Marker
+                icon={vanIcon}
+                key={spotVan.id}
+                position={[
+                  spotVan.lat,
+                  spotVan.lng,
+                ]}
+                onClick={() => {
+                  setActivePlace(spotVan),
+                  setViewport({center:[spotVan.lat, spotVan.lng]}),
+                  clickMarkerID(spotVan.id)
+                }}
+              />
+            ))
+          }
+          {
+            isFilterLaundry && listLaundry.map((Laundry) => (
+              <Marker
+                icon={laundryIcon}
+                key={Laundry.id}
+                position={[
+                  Laundry.lat,
+                  Laundry.lng,
+                ]}
+                onClick={() => {
+                  setActivePlace(Laundry),
+                  setViewport({center:[Laundry.lat, Laundry.lng]}),
+                  clickMarkerID(Laundry.id)
+                }}
+              />
+            ))
+          }
+          {
+            isFilterMarketFarm && listMarketFarm.map((MarketFarm) => (
+              <Marker
+                icon={marketFarmIcon}
+                key={MarketFarm.id}
+                position={[
+                  MarketFarm.lat,
+                  MarketFarm.lng,
+                ]}
+                onClick={() => {
+                  setActivePlace(MarketFarm),
+                  setViewport({center:[MarketFarm.lat, MarketFarm.lng]}),
+                  clickMarkerID(MarketFarm.id)
+                }}
+              />
+            ))
+          }
+           {/*!isFilterShower && !isFilterToilet && list.map((place) => (
+          //   <Marker
+          //     key={place.id}
+          //     position={[
+          //       place.lat,
+          //       place.lng,
+          //     ]}
+          //     onClick={() => {
+          //       setActivePlace(place);
+          //       setViewport({center:[place.lat, place.lng]}),
+          //       clickMarkerID(place.id)
+          //     }}
+          //   />
+          // ))
+          */}
           {activePlace && (
           <Popup
             className="popup"
@@ -200,7 +302,7 @@ const MapContainer = ({
             <div>
               <h2>Nom : {activePlace.name}</h2>
               <div>
-                {isEmpty(activePlace.places_picture) ? "" : <img style={{ width:'50%' }} src={`http://ec2-3-85-160-178.compute-1.amazonaws.com/${activePlace.places_picture.name}`} />}
+                {isEmpty(activePlace.places_picture) ? "" : <img style={{ width:'50%' }} src={`https://apiotravel.ovh/${activePlace.places_picture.name}`} />}
               </div>
               <div>
                 <p>Adresse : {activePlace.street}</p>

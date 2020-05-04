@@ -24,7 +24,7 @@ const InformationsUser = ({username, email, date, contributions, inputChangeEmai
 
         <main className="informations--user__content">
            <div id="user__picture" style={{margin:'auto', textAlign:'center'}} >
-                <img src={`http://ec2-3-85-160-178.compute-1.amazonaws.com/${userAvatar}`} style={{width:'150px', height:'150px', borderRadius:'50%'}}></img>
+                <img src={`https://apiotravel.ovh/${userAvatar}`} style={{width:'150px', height:'150px', borderRadius:'50%'}}></img>
            </div>
            <div className="user--statistic">
                <div className="user--additions">Contribution: <span>{contributions != undefined ? contributions.length : "0"}</span> ajouts</div>

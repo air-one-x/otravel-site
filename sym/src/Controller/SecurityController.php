@@ -68,7 +68,7 @@ class SecurityController extends AbstractController
         
         $user->setAvatar($avatar);
         $data = $serializer->normalize($user, null, ['groups' => 'user']);
-     
+
         return $this->json($data);
 
     }

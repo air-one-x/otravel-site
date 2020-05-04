@@ -33,6 +33,10 @@
         position: absolute;
         bottom:0;
     }
+    .mobile{
+        padding: 0px;
+        padding-bottom: 3px;
+    }
 }
 
 .mobile{

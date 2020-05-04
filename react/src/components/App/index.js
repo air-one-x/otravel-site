@@ -20,7 +20,7 @@ import Places from '../../containers/PlacesUser';
 
 const DEFAULT_VIEWPORT = {
   center: [46.603354, 1.8883335],
-  zoom: 6,
+  zoom: 5,
 }
 
 // == Composant
@@ -32,7 +32,7 @@ const App = ({ checkAuth , lat, long, isLogged}) => {
   useEffect(checkAuth, []);
 
   const onClickReset = () => {
-    setViewport({center:[lat, long], zoom: 10})
+    setViewport({center:[lat, long], zoom: 12})
   }
   
   return (
@@ -46,7 +46,9 @@ const App = ({ checkAuth , lat, long, isLogged}) => {
         )}
         />
       
-        
+        <Route exact path="/admin">
+          <Redirect exact to="https://apiotravel.ovh/admin" />
+        </Route>
         <Route exact path="/mes-ajouts" component={Places} />
         <Route exact path="/mes-informations" component={InformationsUser} />
         <Route exact path="/conditions-utilisations" component={Conditions} />

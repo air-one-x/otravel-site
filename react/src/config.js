@@ -1,1 +1,0 @@
-const baseUrl = 'http://ec2-107-20-110-81.compute-1.amazonaws.com/'

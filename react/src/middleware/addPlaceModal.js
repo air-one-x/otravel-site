@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { ADD_PLACE, SEND_ADRESS, convertAdress } from '../actions/geolocation';
-import { fetchPlaces } from '../actions/places';
+import { fetchPlaces, fetchShower, fetchToilet, fetchSpotKite, fetchSpotVan } from '../actions/places';
 import {isEmpty} from 'lodash';
 
 export default (store) => (next) => (action) => {
@@ -24,7 +24,7 @@ export default (store) => (next) => (action) => {
         }
         axios({
             method: 'post',
-            url: 'http://ec2-3-85-160-178.compute-1.amazonaws.com/places/add', 
+            url: 'https://apiotravel.ovh/places/add', 
             withCredentials: true,
             headers: { 'Content-Type': 'multipart/form-data',
             'Authorization': `Bearer ${localStorage.getItem('id_token')}`},
@@ -46,6 +46,12 @@ export default (store) => (next) => (action) => {
           }).then((res) => {
             // Si succès -> dispatcher une action success
             store.dispatch(fetchPlaces());
+            store.dispatch(fetchShower());
+            store.dispatch(fetchToilet());
+            store.dispatch(fetchSpotKite());
+            store.dispatch(fetchSpotVan());
+            store.dispatch(fetchLaundry());
+            store.dispatch(fetchMarketFarm());
           })
             .catch((err) => {
             // Si error -> Dispatcher une action error
@@ -65,7 +71,7 @@ export default (store) => (next) => (action) => {
 
             axios({
               method: 'post',
-              url: 'http://ec2-3-85-160-178.compute-1.amazonaws.com/api/adress/places', 
+              url: 'https://apiotravel.ovh/api/adress/places', 
 
               withCredentials: true,
               headers: {'Authorization': `Bearer ${localStorage.getItem('id_token')}`},

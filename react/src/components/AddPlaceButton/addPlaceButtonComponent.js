@@ -22,7 +22,7 @@ const AddPlaceButtonComponent = ({isLogged, sendAdress, resetClickLocation}) => 
     return (
         <div>
           <div>
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+            <Button variant="outlined" color="primary" style={{backgroundColor: 'white'}} onClick={handleClickOpen}>
                 Ajouter un lieu
             </Button>
           </div>

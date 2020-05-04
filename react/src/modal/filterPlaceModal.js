@@ -65,7 +65,7 @@ Fade.propTypes = {
   onExited: PropTypes.func,
 };
 
-export default function SpringModal() {
+const SpringModal = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -117,6 +117,7 @@ export default function SpringModal() {
           </div>
         </Fade>
       </Modal>
-    </div>
+      </div>
   );
 }
+export default SpringModal;

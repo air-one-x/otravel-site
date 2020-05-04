@@ -30,7 +30,7 @@ const ViewCommentPlace = ({ onClose, open, commentaryInfos }) => {
 
   return (
     <Dialog onClose={onClose} aria-labelledby="simple-dialog-title" open={open}>
-    <DialogTitleComponent onClose={onClose} id="simple-dialog-title" style={{paddingRight: '3rem'}}>Commentaires de ce lieu</DialogTitleComponent>
+    <DialogTitleComponent onClose={onClose} id="simple-dialog-title" style={{paddingRight: '3rem'}} >Commentaires de ce lieu</DialogTitleComponent>
       <DialogContent>
 { commentaryInfos.map((comment) => (
 
@@ -40,8 +40,8 @@ const ViewCommentPlace = ({ onClose, open, commentaryInfos }) => {
             avatar={
             <Avatar aria-label="recipe" className={classes.avatar}>
             { isEmpty(comment.user.avatar)?
-                <img style={{ width:'100%' }} src={`http://ec2-3-85-160-178.compute-1.amazonaws.com/uploads/images/account.png`}/>:
-                <img style={{ width:'100%' }} src={`http://ec2-3-85-160-178.compute-1.amazonaws.com/${comment.user.avatar}`}/>
+                <img style={{ width:'100%' }} src={`https://apiotravel.ovh/uploads/images/account.png`}/>:
+                <img style={{ width:'100%' }} src={`https://apiotravel.ovh/${comment.user.avatar}`}/>
             
             }
             </Avatar>

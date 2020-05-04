@@ -13,7 +13,7 @@ import InscriptionModal from '../../containers/Inscription';
 import { Link } from 'react-router-dom';
 import Account from './account';
 import ConnexionButton from '../../containers/ConnexionButtonContainer'
-
+import './style';
 
  const StyledMenu = withStyles({
     paper: {
@@ -84,7 +84,16 @@ import ConnexionButton from '../../containers/ConnexionButtonContainer'
         </StyledMenuItem>
         }
 
+        {
+          isLogged&&
         
+          <StyledMenuItem onClick={closeMenu}>
+            <ListItemIcon>
+              <DraftsIcon fontSize="small" />
+            </ListItemIcon>
+            <a target="_blank" href="https://apiotravel.ovh/admin">Admin</a>
+          </StyledMenuItem>
+        }        
 
         <Link to="/conditions-utilisations">
         <StyledMenuItem>

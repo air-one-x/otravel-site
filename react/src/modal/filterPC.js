@@ -60,7 +60,19 @@ Fade.propTypes = {
   onExited: PropTypes.func,
 };
 
-const SpringModal = ({isFilterShower, changeIsFilterShower, checkFilter, places, removeShower, isFilterToilet, removeToilet, changeIsFilterToilet}) => {
+const SpringModal = ({
+  isFilterShower, 
+  changeIsFilterShower, 
+  isFilterToilet, 
+  changeIsFilterToilet, 
+  isFilterSpotKite, 
+  changeIsFilterSpotKite,
+  isFilterSpotVan, 
+  changeIsFilterSpotVan, 
+  isFilterLaundry, 
+  isFilterMarketFarm, 
+  changeIsFilterLaundry,
+  changeIsFilterMarketFarm }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -104,7 +116,8 @@ const SpringModal = ({isFilterShower, changeIsFilterShower, checkFilter, places,
                   control={<Switch color="primary" />}
                   label="Douche"
                   labelPlacement="start"
-                  onClick={isFilterShower === false ? (event) => {changeIsFilterShower(); checkFilter()} : (event) => {removeShower()}}
+                  // onClick={isFilterShower === false ? (event) => {changeIsFilterShower(); checkFilter(); console.log(event.target.label)} : (event) => {removeShower(); console.log(event.target.label)}}
+                  onClick={() => changeIsFilterShower()}
                 />
 
                 <FormControlLabel
@@ -113,10 +126,48 @@ const SpringModal = ({isFilterShower, changeIsFilterShower, checkFilter, places,
                   control={<Switch color="primary" />}
                   label="Toilette"
                   labelPlacement="start"
-                  onClick={isFilterToilet === false ? () => {changeIsFilterToilet(); checkFilter()} : () => {removeToilet()}}
+                  //onClick={isFilterToilet === false ? () => {changeIsFilterToilet(); checkFilter()} : () => {removeToilet()}}
+                  onClick={()=> changeIsFilterToilet() }
+                />
+                <FormControlLabel
+                  checked={isFilterSpotKite === false ? false : true}
+                  value="3"
+                  control={<Switch color="primary" />}
+                  label="spot KiteSurf"
+                  labelPlacement="start"
+                  // onClick={isFilterShower === false ? (event) => {changeIsFilterShower(); checkFilter(); console.log(event.target.label)} : (event) => {removeShower(); console.log(event.target.label)}}
+                  onClick={() => changeIsFilterSpotKite()}
+                />
+
+                <FormControlLabel
+                  checked={isFilterSpotVan === false ? false : true}
+                  value="4"
+                  control={<Switch color="primary" />}
+                  label="Spot van"
+                  labelPlacement="start"
+                  //onClick={isFilterToilet === false ? () => {changeIsFilterToilet(); checkFilter()} : () => {removeToilet()}}
+                  onClick={()=> changeIsFilterSpotVan() }
                 />
             
+                <FormControlLabel
+                  checked={isFilterLaundry === false ? false : true}
+                  value="5"
+                  control={<Switch color="primary" />}
+                  label="Lavomatique"
+                  labelPlacement="start"
+                  //onClick={isFilterToilet === false ? () => {changeIsFilterToilet(); checkFilter()} : () => {removeToilet()}}
+                  onClick={()=> changeIsFilterLaundry() }
+                />
 
+                <FormControlLabel
+                  checked={isFilterMarketFarm === false ? false : true}
+                  value="6"
+                  control={<Switch color="primary" />}
+                  label="Producteur/artisan"
+                  labelPlacement="start"
+                  //onClick={isFilterToilet === false ? () => {changeIsFilterToilet(); checkFilter()} : () => {removeToilet()}}
+                  onClick={()=> changeIsFilterMarketFarm() }
+                />
                 
               </FormGroup>
             </FormControl>
