@@ -6,6 +6,7 @@ import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
 import AddCommentsModal from '../../containers/AddComments';
 import ViewComments from '../../modal/viewCommentModal';
 import LoginModal from '../../containers/Login';
+import './style.css';
 
 const PopupNavBar = ({ placeInfos, isLogged }) => {
 
@@ -29,8 +30,9 @@ const PopupNavBar = ({ placeInfos, isLogged }) => {
     };
 
     return(
-        <div>
+        <div className="popupNavbar">
             <ButtonIcon 
+                className="buttonPopupNavbar"
                 variant="contained" 
                 size="small" 
                 color="primary" 
@@ -39,6 +41,7 @@ const PopupNavBar = ({ placeInfos, isLogged }) => {
                 onClick={handleOpenComments}
              />
             <ButtonIcon 
+                className="buttonPopupNavbar"
                 variant="contained" 
                 size="small" 
                 color="primary" 

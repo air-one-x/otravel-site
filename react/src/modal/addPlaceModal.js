@@ -259,7 +259,7 @@ const AddPlaceModal = ({cityPlace, zipCodePlace, streetPlace, categoryPlace, nam
           size="small" 
           color="primary" 
           title="Ajouter"
-          onClick={() =>{addPlace(); onClose()}}
+          onClick={() =>{addPlace(); onClose(); }}
         />
       </DialogActions>
       </Dialog>

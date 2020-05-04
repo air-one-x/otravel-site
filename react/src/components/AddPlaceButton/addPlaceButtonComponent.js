@@ -17,6 +17,7 @@ const AddPlaceButtonComponent = ({isLogged, sendAdress, resetClickLocation}) => 
     const handleClose = () => {
     setOpen(false);
     resetClickLocation();
+    localStorage.removeItem(picturePlace);
     };
 
     return (

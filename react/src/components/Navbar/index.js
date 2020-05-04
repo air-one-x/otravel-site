@@ -13,11 +13,17 @@ import Account from './account';
 import ConnexionButton from '../../containers/ConnexionButtonContainer'
 import AddPlaceButton from '../../containers/AddPlaceButtonContainer'
 
-const NavBar = ({isLogged}) => {
+const NavBar = ({isLogged, isAdmin }) => {
 
   const classes = useStyles();
 
   const [openMenu, setOpenMenu] = useState(null);
+
+  const [buttonAdmin, setButtonAdmin] = useState(false);
+
+    if (isAdmin === ["USER_ADMIN"]) {
+      setButtonAdmin(true);
+    } 
 
   const handleClick = (event) => {
     setOpenMenu(event.currentTarget);
@@ -52,7 +58,7 @@ const NavBar = ({isLogged}) => {
         </div>
       </div>
       {
-        isLogged&&
+        buttonAdmin&&
         <Button type="button"><a target="_blank" href="https://apiotravel.ovh/admin">Admin</a></Button>
       }
 
