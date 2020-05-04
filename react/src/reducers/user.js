@@ -17,7 +17,7 @@ const stateInit = {
     email: '',
     password: '',
   },
-  isLogged: true,
+  isLogged: false,
   error: '',
   userInfos: {
     Places: []

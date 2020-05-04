@@ -258,7 +258,7 @@ const MapContainer = ({
           {
             isFilterMarketFarm && listMarketFarm.map((MarketFarm) => (
               <Marker
-                icon={farmIcon}
+                icon={marketFarmIcon}
                 key={MarketFarm.id}
                 position={[
                   MarketFarm.lat,
