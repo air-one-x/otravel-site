@@ -19,12 +19,6 @@ const NavBar = ({isLogged, isAdmin }) => {
 
   const [openMenu, setOpenMenu] = useState(null);
 
-  const [buttonAdmin, setButtonAdmin] = useState(false);
-
-    if (isAdmin === ["USER_ADMIN"]) {
-      setButtonAdmin(true);
-    } 
-
   const handleClick = (event) => {
     setOpenMenu(event.currentTarget);
   };
@@ -58,7 +52,7 @@ const NavBar = ({isLogged, isAdmin }) => {
         </div>
       </div>
       {
-        buttonAdmin&&
+        isAdmin.includes('ROLE_ADMIN')&&
         <Button type="button"><a target="_blank" href="https://apiotravel.ovh/admin">Admin</a></Button>
       }
 
