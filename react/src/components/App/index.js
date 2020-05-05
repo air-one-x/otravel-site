@@ -42,11 +42,10 @@ const App = ({ checkAuth , lat, long, isLogged}) => {
           <div>    
             <MapContainer viewport={viewport} setViewport={setViewport} />
             <NavBarBottom onClick={onClickReset} />
+            <Places />
           </div>
         )}
         />
-      
-        <Route exact path="/mes-ajouts" component={Places} />
         <Route exact path="/mes-informations" component={InformationsUser} />
         <Route exact path="/conditions-utilisations" component={Conditions} />
         <Route exact path="/a-propos" component={Informations} />

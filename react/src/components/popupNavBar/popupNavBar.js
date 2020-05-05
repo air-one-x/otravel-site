@@ -8,7 +8,7 @@ import ViewComments from '../../modal/viewCommentModal';
 import LoginModal from '../../containers/Login';
 import './style.css';
 
-const PopupNavBar = ({ placeInfos, isLogged }) => {
+const PopupNavBar = ({ placeInfos, isLogged, test }) => {
 
     const [openComments, setOpenComments] = useState(false);
     const [open, setOpen] = useState(false);
@@ -59,8 +59,9 @@ const PopupNavBar = ({ placeInfos, isLogged }) => {
              <ViewComments 
                 open={openComments} 
                 onClose={handleCloseComments} 
-                commentaryInfos={placeInfos.commentary} 
+                commentaryInfos={placeInfos} 
                 onClick={handleClickOpen}
+                test = {placeInfos}
               />
 
              {

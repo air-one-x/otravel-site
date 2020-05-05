@@ -9,7 +9,7 @@ import InscriptionModal from '../../containers/Inscription';
 import ItemsMenu from '../../containers/NavBarTop';
 import FilterPc from '../../containers/filterPC';
 import { Link, Route, BrowserRouter as Router, Redirect } from 'react-router-dom';
-import Account from './account';
+import Account from '../../containers/navbarAccount';
 import ConnexionButton from '../../containers/ConnexionButtonContainer'
 import AddPlaceButton from '../../containers/AddPlaceButtonContainer'
 

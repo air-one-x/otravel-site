@@ -3,6 +3,11 @@ export const CHANGE_NEW_EMAIL = 'CHANGE_NEW_EMAIL';
 export const CHANGE_NEW_PSEUDO = 'CHANGE_NEW_PSEUDO';
 export const INSERT_NEW_INFORMATION = 'INSERT_NEW_INFORMATION';
 export const UPDATE_MESSAGE = 'UPDATE_MESSAGE';
+export const INFORMATION_USER = 'INFORMATION_USER';
+
+export const informationUser = () => ({
+  type: INFORMATION_USER,
+});
 
 export const updateMessage = (payload) => ({
     type: UPDATE_MESSAGE,
