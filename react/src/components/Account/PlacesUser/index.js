@@ -6,7 +6,7 @@ import Footer from '../../Footer';
 import Places from './itemsPlaces';
 import { v4 as uuid } from 'uuid';
 
-const InformationsUser = ({places, isLogged}) => {
+const InformationsUser = ({places, isLogged, allPlaces, user, isInfos, checkInfos}) => {
 
   let nbPlaces;
 
@@ -20,18 +20,18 @@ const InformationsUser = ({places, isLogged}) => {
 
 
     return(
-    <div className="places--user">
+    <div className="places--user" style={isInfos == true ? {display:'block'}: {display: 'none'} } >
         {
            !isLogged && <Redirect to="/" />
          }
           <header>
-            <Link to="/"><h1>O'travel</h1></Link>
-            <h2 style={{fontWeight:'lighter'}}>Mes ajouts</h2>
+              <div>O'Travel</div>
+            <div onClick={checkInfos}>X</div>
         </header>
 
         <main>
             {
-               nbPlaces&&places.map((place) => <Places place={place} key={uuid()} />)
+               nbPlaces&&places.map((place) => <Places place={place} allPlaces={allPlaces} user={user} key={uuid()} />)
             }
             {
                 !nbPlaces&&<div style={{textAlign:'center', marginTop:'1rem'}}>Aucun lieux ajoutés</div>

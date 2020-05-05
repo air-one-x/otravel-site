@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
@@ -46,7 +46,13 @@ import './style';
     },
   }))(MenuItem);
 
- const itemsMenu = ({isLogged, closeMenu, openMenu}) => {
+ const itemsMenu = ({isLogged, closeMenu, openMenu, isAdmin}) => {
+
+  const [buttonAdmin, setButtonAdmin] = useState(false);
+
+  if (isAdmin === ["USER_ADMIN"]) {
+    setButtonAdmin(true);
+  } 
 
     return(
         <StyledMenu
@@ -85,7 +91,7 @@ import './style';
         }
 
         {
-          isLogged&&
+          buttonAdmin&&
         
           <StyledMenuItem onClick={closeMenu}>
             <ListItemIcon>

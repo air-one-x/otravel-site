@@ -85,8 +85,8 @@ class User implements UserInterface
     private $updated_at;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Places", mappedBy="user")
-     *@Groups("user")
+     * @ORM\OneToMany(targetEntity="App\Entity\Places", mappedBy="places")
+     *@Groups("places")
      */
     private $Places;
 

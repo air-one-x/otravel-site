@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { ADD_PLACE, SEND_ADRESS, convertAdress } from '../actions/geolocation';
-import { fetchPlaces, fetchShower, fetchToilet, fetchSpotKite, fetchSpotVan } from '../actions/places';
+import { fetchPlaces, fetchShower, fetchToilet, fetchSpotKite, fetchSpotVan, fetchLaundry, fetchMarketFarm } from '../actions/places';
 import {isEmpty} from 'lodash';
 
 export default (store) => (next) => (action) => {

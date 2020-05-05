@@ -13,6 +13,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
+import seeInfos from '../Account/seeInfo';
 
 
 
@@ -25,7 +26,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function TemporaryDrawer() {
+export default function TemporaryDrawer({checkInfos}) {
   const classes = useStyles();
   const [state, setState] = React.useState({
     top: false,
@@ -65,11 +66,11 @@ export default function TemporaryDrawer() {
 
           
           
-          <Link to="/mes-ajouts">
-          <ListItem button>
+          <ListItem button onClick={checkInfos}>
           <ListItemText primary={'Mes ajouts'} />
           </ListItem>
-          </Link>
+
+
 
          
       

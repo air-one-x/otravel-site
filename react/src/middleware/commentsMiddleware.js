@@ -1,5 +1,12 @@
 import axios from 'axios';
 import { SEND_COMMENT, commentCreatedSuccess} from '../actions/comments';
+import { fetchPlaces, 
+  fetchShower, 
+  fetchToilet, 
+  fetchSpotKite,
+  fetchSpotVan, 
+  fetchLaundry,
+  fetchMarketFarm, test } from '../actions/places';
 
 
 export default (store) => (next) => (action) => {
@@ -18,10 +25,15 @@ export default (store) => (next) => (action) => {
         },
       }).then((res) => {
         // Si succès -> dispatcher une action success
-        store.dispatch(commentCreatedSuccess(true))
+        //store.dispatch(commentCreatedSuccess(true));
+        console.log('je passe');
+        store.dispatch(test());
+        store.dispatch(fetchPlaces());
+        
       })
         .catch((err) => {
         // Si error -> Dispatcher une action error
+        console.log('qqquuuuoi');
           store.dispatch(commentCreatedSuccess(false))
         });
       break;
