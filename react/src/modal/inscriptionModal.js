@@ -196,7 +196,7 @@ const SpringModal = ({
                   </Grid>
                 </Grid>
                 {
-                      isEmpty(newUserPassword) || newUserPassword.length < 8 ? <p style={{ color: 'red', marginLeft: '2rem' }}>8 charactères minimum</p> : <p style={{ color: 'white', marginLeft: '2rem' }}>8 charactères minimum</p>
+                      isEmpty(newUserPassword) || newUserPassword.length < 8 ? <p style={{ color: 'red', marginLeft: '2rem' }}>8 caractères minimum</p> : <p style={{ color: 'white', marginLeft: '2rem' }}>8 caractères minimum</p>
                     }
 
                 <div className="msgPassword" ref={messageRef} />

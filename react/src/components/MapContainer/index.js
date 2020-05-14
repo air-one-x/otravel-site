@@ -86,7 +86,7 @@ const MapContainer = ({
   setViewport,
   isLogged,
   addLocationPlace, 
-  idClickPlace, test, isInfos } ) => {
+  idClickPlace } ) => {
 
 
 
@@ -130,18 +130,15 @@ const MapContainer = ({
   },[]);
 
   useEffect(fetchPlaces,[]);
-  useEffect(() => fetchPlaces,[test]);
-
 
   return (
     <div>
       <NavBar />
-      <div className="map" id="mapid"  >
-        <Map viewport={viewport} minZoom="3" onClick={onClickMap} style={isInfos == true ? {width: '70%'}: { width: '100%' }} >
+      <div className="map" id="mapid">
+        <Map viewport={viewport} minZoom="3" onClick={onClickMap} >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            
           />
           <ReactLeafletSearch
             position="topright"
@@ -314,9 +311,7 @@ const MapContainer = ({
                 <p>Ajouté par : {activePlace.user.username}</p>
               </div>
               <div>
-                <PopupNavBar placeInfos={
-                  list.find((test) => activePlace.id == test.id )
-                } isLogged={isLogged} />
+                <PopupNavBar placeInfos={list.find((test) => activePlace.id == test.id )} isLogged={isLogged} />
               </div>
             </div>
           </Popup>

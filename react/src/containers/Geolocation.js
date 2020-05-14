@@ -31,9 +31,7 @@ const mapStateToProps = (state) => ({
     isFilterMarketFarm: state.placesReducer.isFilterMarketFarm,
     newList: state.placesReducer.newList,
     isLogged: state.user.isLogged,
-    clickLocation: state.placesReducer.locationPlace,
-    test: state.placesReducer.test,
-    isInfos: state.user.isInfos
+    clickLocation: state.placesReducer.locationPlace
 });
 
 const mapDispatchToProps = (dispatch) => ({

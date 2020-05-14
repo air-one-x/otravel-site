@@ -29,12 +29,6 @@ export const FETCH_MARKET_FARM_SUCCESS = 'FETCH_MARKET_FARM_SUCCESS';
 export const IS_FILTER_LAUNDRY='IS_FILTER_LAUNDRY';
 export const IS_FILTER_MARKET_FARM='IS_FILTER_MARKET_FARM';
 
-export const TEST = 'TEST';
-
-export const test  =() => ({
-    type: TEST,
-});
-
 export const isFilterMarketFarm = () => ({
     type: IS_FILTER_MARKET_FARM,
 });

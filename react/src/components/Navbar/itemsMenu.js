@@ -48,12 +48,6 @@ import './style';
 
  const itemsMenu = ({isLogged, closeMenu, openMenu, isAdmin}) => {
 
-  const [buttonAdmin, setButtonAdmin] = useState(false);
-
-  if (isAdmin === ["USER_ADMIN"]) {
-    setButtonAdmin(true);
-  } 
-
     return(
         <StyledMenu
         id="customized-menu"

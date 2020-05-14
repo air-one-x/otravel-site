@@ -45,6 +45,9 @@ export default (store) => (next) => (action) => {
             },
           }).then((res) => {
             // Si succès -> dispatcher une action success
+            localStorage.removeItem('picturePlace');
+            store.setState().geolocation.form.name = "";
+            store.setState().geolocation.form.description = "";
             store.dispatch(fetchPlaces());
             store.dispatch(fetchShower());
             store.dispatch(fetchToilet());

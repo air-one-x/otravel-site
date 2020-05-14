@@ -15,12 +15,10 @@ import {
   FETCH_MARKET_FARM_SUCCESS,
   IS_FILTER_LAUNDRY,
   IS_FILTER_MARKET_FARM,
-  TEST
 } from '../actions/places';
 
 export const initialState = {
   list: [],
-  test: 1,
   isFilterShower: true,
   isFilterToilet: true,
   isFilterSpotVan: true,
@@ -139,11 +137,6 @@ export default (state = initialState, action = {}) => {
       return {
         ...state,
         locationPlace: {},
-      };
-      case TEST :
-      return {
-        ...state,
-        test: state.test +1,
       };
       // case ADD_FILTER:
       //   return {

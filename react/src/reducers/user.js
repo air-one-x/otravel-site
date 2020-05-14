@@ -9,8 +9,7 @@ import {
   CHANGE_NEW_PASSWORD,
   CHANGE_NEW_EMAIL,
   CHANGE_NEW_PSEUDO,
-  UPDATE_MESSAGE,
-  INFORMATION_USER
+  UPDATE_MESSAGE
 } from '../actions/account';
 
 const stateInit = {
@@ -30,7 +29,6 @@ const stateInit = {
     newUserPassword: "",
   },
   updateMessage: "",
-  isInfos: false,
 };
 
 export default (state = stateInit, action = {}) => {
@@ -109,12 +107,6 @@ export default (state = stateInit, action = {}) => {
           isLogged: false,
           error: 'Identifiants incorrects',
         };
-        case INFORMATION_USER:
-          return {
-            ...state,
-            isInfos: !state.isInfos,
-            
-          };
     default:
       return state;
   }

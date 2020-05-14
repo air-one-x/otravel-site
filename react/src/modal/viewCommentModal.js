@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -11,8 +11,6 @@ import Typography from '@material-ui/core/Typography';
 import { grey } from '@material-ui/core/colors';
 import DialogTitleComponent from '../components/Generique/dialogTitleComponent';
 import { isEmpty } from 'lodash';
-import { fetchPlaces } from '../actions/places';
-import axios from 'axios';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -26,18 +24,16 @@ const useStyles = makeStyles(() => ({
 
 
 
-const ViewCommentPlace = ({ onClose, open, commentaryInfos, test }) => {
+const ViewCommentPlace = ({ onClose, open, commentaryInfos }) => {
 
   const classes = useStyles();
 
-
-
+  console.log(commentaryInfos);
   return (
     <Dialog onClose={onClose} aria-labelledby="simple-dialog-title" open={open}>
     <DialogTitleComponent onClose={onClose} id="simple-dialog-title" style={{paddingRight: '3rem'}} >Commentaires de ce lieu</DialogTitleComponent>
       <DialogContent>
-{ test.commentary.map((comment) => (
-
+{ commentaryInfos.map((comment) => (
 
         <Card className={classes.root} key={comment.id}>
         <CardHeader
